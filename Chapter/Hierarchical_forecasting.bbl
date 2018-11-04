@@ -1,0 +1,141 @@
+\begin{thebibliography}{xx}
+
+\harvarditem[Athanasopoulos et~al.]{Athanasopoulos, Ahmed \harvardand\
+  Hyndman}{2009}{athanasopoulos2009}
+Athanasopoulos, G., Ahmed, R.~A. \harvardand\ Hyndman, R.~J.  \harvardyearleft
+  2009\harvardyearright , `{Hierarchical forecasts for Australian domestic
+  tourism}', {\em International Journal of Forecasting} {\bf 25}(1),~146--166.
+
+\harvarditem[{Ben Taieb} et~al.]{{Ben Taieb}, Huser, Hyndman \harvardand\
+  Genton}{2017}{BenTaieb2017}
+{Ben Taieb}, S., Huser, R., Hyndman, R.~J. \harvardand\ Genton, M.~G.
+  \harvardyearleft 2017\harvardyearright , `{Forecasting uncertainty in
+  electricity smart meter data by boosting additive quantile regression}', {\em
+  IEEE Transactions on Smart Grid} {\bf 7}(5),~2448--2455.
+
+\harvarditem[Dunn et~al.]{Dunn, Williams \harvardand\ Dechaine}{1976}{dunn1976}
+Dunn, D.~M., Williams, W.~H. \harvardand\ Dechaine, T.~L.  \harvardyearleft
+  1976\harvardyearright , `{Aggregate Versus Subaggregate Models in Local Area
+  Forecasting}', {\em Journal of American Statistical Association} {\bf
+  71}(353),~68--71.
+
+\harvarditem[Gamakumara et~al.]{Gamakumara, Panagiotelis, Athanasopoulos
+  \harvardand\ Hyndman}{2018}{Gamakumara2018}
+Gamakumara, P., Panagiotelis, A., Athanasopoulos, G. \harvardand\ Hyndman,
+  R.~J.  \harvardyearleft 2018\harvardyearright , {Probabilisitic Forecasts in
+  Hierarchical Time Series}.
+
+\harvarditem[Gel et~al.]{Gel, Raftery \harvardand\ Gneiting}{2004}{Gel2004}
+Gel, Y., Raftery, A.~E. \harvardand\ Gneiting, T.  \harvardyearleft
+  2004\harvardyearright , `{Calibrated Probabilistic Mesoscale Weather Field
+  Forecasting}', {\em Journal of the American Statistical Association} {\bf
+  99}(July),~575--583.
+
+\harvarditem{Gneiting \harvardand\ Katzfuss}{2014}{Gneiting2014}
+Gneiting, T. \harvardand\ Katzfuss, M.  \harvardyearleft 2014\harvardyearright
+  , `{Probabilistic Forecasting}', {\em Annual Review of Statistics and Its
+  Application} {\bf 1},~125--151.
+
+\harvarditem{Gneiting \harvardand\ Raftery}{2005}{Gneiting2005}
+Gneiting, T. \harvardand\ Raftery, A.~E.  \harvardyearleft
+  2005\harvardyearright , `{Weather{\_}forecasting{\_}with{\_}ensem.PDF}', {\em
+  Science} {\bf 310.5746},~248--249.
+
+\harvarditem{Gneiting \harvardand\ Raftery}{2007}{Gneiting2007}
+Gneiting, T. \harvardand\ Raftery, A.~E.  \harvardyearleft
+  2007\harvardyearright , `{Strictly Proper Scoring Rules, Prediction, and
+  Estimation}', {\em Journal of the American Statistical Association} {\bf
+  102}(477),~359--378.
+
+\harvarditem[Gneiting et~al.]{Gneiting, Raftery, Westveld \harvardand\
+  Goldman}{2005}{Gneiting2005a}
+Gneiting, T., Raftery, A.~E., Westveld, A.~H. \harvardand\ Goldman, T.
+  \harvardyearleft 2005\harvardyearright , `{Calibrated Probabilistic
+  Forecasting Using Ensemble Model Output Statistics and Minimum CRPS
+  Estimation}', {\em Monthly Weather Review} {\bf 133}(5),~1098--1118.
+
+\harvarditem[Gneiting et~al.]{Gneiting, Stanberry, Grimit, Held \harvardand\
+  Johnson}{2008}{gneiting2008}
+Gneiting, T., Stanberry, L.~I., Grimit, E.~P., Held, L. \harvardand\ Johnson,
+  N.~A.  \harvardyearleft 2008\harvardyearright , `{Assessing probabilistic
+  forecasts of multivariate quantities, with an application to ensemble
+  predictions of surface winds}', {\em Test} {\bf 17}(2),~211--235.
+
+\harvarditem{Gross \harvardand\ Sohl}{1990}{gross1990}
+Gross, C.~W. \harvardand\ Sohl, J.~E.  \harvardyearleft 1990\harvardyearright ,
+  `{Disaggregation methods to expedite product line forecasting}', {\em Journal
+  of Forecasting} {\bf 9}(3),~233--254.
+
+\harvarditem[Hyndman et~al.]{Hyndman, Ahmed, Athanasopoulos \harvardand\
+  Shang}{2011}{hyndman2011}
+Hyndman, R.~J., Ahmed, R.~A., Athanasopoulos, G. \harvardand\ Shang, H.~L.
+  \harvardyearleft 2011\harvardyearright , `{Optimal combination forecasts for
+  hierarchical time series}', {\em Computational Statistics and Data Analysis}
+  {\bf 55}(9),~2579--2589.
+
+\harvarditem[Hyndman et~al.]{Hyndman, Lee \harvardand\ Wang}{2016}{Hyndman2016}
+Hyndman, R.~J., Lee, A.~J. \harvardand\ Wang, E.  \harvardyearleft
+  2016\harvardyearright , `{Fast computation of reconciled forecasts for
+  hierarchical and grouped time series}', {\em Computational Statistics and
+  Data Analysis} {\bf 97},~16--32.
+\newline\harvardurl{http://dx.doi.org/10.1016/j.csda.2015.11.007}
+
+\harvarditem[Jeon et~al.]{Jeon, Panagiotelis \harvardand\
+  Petropoulos}{2018}{Jeon2018}
+Jeon, J., Panagiotelis, A. \harvardand\ Petropoulos, F.  \harvardyearleft
+  2018\harvardyearright , {Reconciliation of probabilistic forecasts with an
+  application to wind power}.
+
+\harvarditem[McSharry et~al.]{McSharry, Bouwman \harvardand\
+  Bloemhof}{2005}{McSharry2005}
+McSharry, P.~E., Bouwman, S. \harvardand\ Bloemhof, G.  \harvardyearleft
+  2005\harvardyearright , `{Probabilistic forecasts of the magnitude and timing
+  of peak electricity demand}', {\em IEEE Transactions on Power Systems} {\bf
+  20}(2),~1166--1172.
+
+\harvarditem[Mir{\v{c}}eti{\'{c}} et~al.]{Mir{\v{c}}eti{\'{c}},
+  Nikoli{\v{c}}i{\'{c}}, Stojanovi{\'{c}} \harvardand\
+  Maslari{\'{c}}}{2017}{Mircetic2017}
+Mir{\v{c}}eti{\'{c}}, D., Nikoli{\v{c}}i{\'{c}}, S., Stojanovi{\'{c}}, D.
+  \harvardand\ Maslari{\'{c}}, M.  \harvardyearleft 2017\harvardyearright ,
+  `{Modified top down approach for hierarchical forecasting in a beverage
+  supply chain}', {\em Transportation Research Procedia} {\bf 22},~193--202.
+
+\harvarditem{Pinson}{2013}{Pinson2013}
+Pinson, P.  \harvardyearleft 2013\harvardyearright , `{Wind Energy: Forecasting
+  Challenges for Its Operational Management}', {\em Statistical Science} {\bf
+  28}(4),~564--585.
+\newline\harvardurl{http://projecteuclid.org/euclid.ss/1386078879}
+
+\harvarditem[Pinson et~al.]{Pinson, Madsen, Papaefthymiou \harvardand\
+  Kl{\"{o}}ckl}{2009}{Pinson2009}
+Pinson, P., Madsen, H., Papaefthymiou, G. \harvardand\ Kl{\"{o}}ckl, B.
+  \harvardyearleft 2009\harvardyearright , `{From Probabilistic Forecasts to
+  Wind Power Production}', {\em Wind Energy} {\bf 12}(1),~51--62.
+
+\harvarditem{Sch{\"{a}}fer \harvardand\ Strimmer}{2005}{schafer2005}
+Sch{\"{a}}fer, J. \harvardand\ Strimmer, K.  \harvardyearleft
+  2005\harvardyearright , `{A Shrinkage Approach to Large-Scale Covariance
+  Matrix Estimation and Implications for Functional Genomics}', {\em
+  Statistical Applications in Genetics and Molecular Biology} {\bf 4}(1).
+\newline\harvardurl{https://www.degruyter.com/view/j/sagmb.2005.4.issue-1/sagmb.2005.4.1.1175/sagmb.2005.4.1.1175.xml}
+
+\harvarditem[Taieb et~al.]{Taieb, Taylor \harvardand\ Hyndman}{2017}{Taieb2017}
+Taieb, S.~B., Taylor, J.~W. \harvardand\ Hyndman, R.~J.  \harvardyearleft
+  2017\harvardyearright , `{Hierarchical Probabilistic Forecasting of
+  Electricity Demand with Smart Meter Data}',  pp.~1--30.
+
+\harvarditem{van Erven \harvardand\ Cugliari}{2014}{VanErven2015a}
+van Erven, T. \harvardand\ Cugliari, J.  \harvardyearleft 2014\harvardyearright
+  , {\em {Game-Theoretically Optimal reconciliation of contemporaneous
+  hierarchical time series forecasts}}.
+
+\harvarditem[Wickramasuriya et~al.]{Wickramasuriya, Athanasopoulos \harvardand\
+  Hyndman}{2018}{Wickramasuriya2018}
+Wickramasuriya, S.~L., Athanasopoulos, G. \harvardand\ Hyndman, R.~J.
+  \harvardyearleft 2018\harvardyearright , `{Optimal forecast reconciliation
+  for hierarchical and grouped time series through trace minimization}', {\em
+  Journal of the American Statistical Association} {\bf 1459},~1--45.
+\newline\harvardurl{https://www.tandfonline.com/doi/full/10.1080/01621459.2018.1448825}
+
+\end{thebibliography}
