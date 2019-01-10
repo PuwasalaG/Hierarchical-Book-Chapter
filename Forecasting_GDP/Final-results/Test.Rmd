@@ -1,0 +1,108 @@
+---
+title: "Forecasting Australian GDP"
+output: 
+  pdf_document: 
+    keep_tex: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tidyverse)
+require(fpp2)
+require(readxl)
+require(hts)
+library(zoo)
+library(magrittr)
+library(Matrix)
+library(seasonal)
+library(gridExtra)
+library(ggplot2)
+library(kableExtra)
+library(webshot)
+setwd("C:/Puwasala/PhD_Monash/Research/Hierarchical-Book-Chapter/Forecasting_GDP/Final-results")
+```
+
+# Income Approach - Point forecasting
+
+```{r echo=FALSE}
+load("Income-approach/PointForecasts-ExpandingW.RData")
+```
+
+## Summary of GDP - The most aggregate series
+```{r echo=FALSE}
+Method_Order <- c("Benchmark", "Base", "Bottom-up", "OLS", "WLS", "MinT Shrink")
+
+#For GDP
+
+#ETS
+GDPI_PointF_ets <- Score_ets %>% dplyr::filter(`Series`=="Gdpi") 
+
+GDPI_PointF_ets %>% dplyr::filter(`F-method`=="ETS", `R-method`=="Base") %>%
+  slice() %>% 
+  ungroup() %>%
+  dplyr::select(`MSE`) %>% as_vector() -> GDPI_ETS.base_MSE
+
+GDPI_PointF_ets %>% dplyr::filter(`F-method`=="ETS", `R-method`=="Base") %>%
+  slice() %>% 
+  ungroup() %>%
+  dplyr::select(`MASE`) %>% as_vector() -> GDPI_ETS.base_MASE
+
+GDPI_PointF_ets %>% mutate(SS_MSE = round((1-(`MSE`/GDPI_ETS.base_MSE))*100, digits = 2), 
+                           SS_MASE = round((1-(`MASE`/GDPI_ETS.base_MASE))*100, digits = 2)) -> Skill.Score_GDPI_ETS 
+
+SS.GDPI_ETS_MSE <- Skill.Score_GDPI_ETS %>% dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MSE` ) %>% 
+  spread(key = `Forecast Horizon`, value = `SS_MSE`) %>% 
+  mutate(`R-method` = replace(`R-method`, 1, "Benchmark")) %>%
+  dplyr::select(-`F-method`) %>%  
+  rename("Method" = "R-method") %>%
+  slice(match(Method_Order, `Method`)) 
+
+
+SS.GDPI_ETS_MASE <- Skill.Score_GDPI_ETS %>% dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MASE` ) %>% 
+  spread(key = `Forecast Horizon`, value = `SS_MASE`) %>% 
+  mutate(`R-method` = replace(`R-method`, 1, "Benchmark")) %>%
+  dplyr::select(-`F-method`) %>%  
+  rename("Method" = "R-method") %>%
+  slice(match(Method_Order, `Method`)) 
+
+
+#ARIMA
+GDPI_PointF_arima <- Score_arima %>% dplyr::filter(`Series`=="Gdpi") 
+
+GDPI_PointF_arima %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
+  slice() %>% 
+  ungroup() %>%
+  dplyr::select(`MSE`) %>% as_vector() -> GDPI_ARIMA.base_MSE
+
+GDPI_PointF_arima %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
+  slice() %>% 
+  ungroup() %>%
+  dplyr::select(`MASE`) %>% as_vector() -> GDPI_ARIMA.base_MASE
+
+GDPI_PointF_arima %>% mutate(SS_MSE = round((1-(`MSE`/GDPI_ARIMA.base_MSE))*100, digits = 2), 
+                           SS_MASE = round((1-(`MASE`/GDPI_ARIMA.base_MASE))*100, digits = 2)) -> Skill.Score_GDPI_ARIMA 
+
+SS.GDPI_ARIMA_MSE <- Skill.Score_GDPI_ARIMA %>% dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MSE` ) %>% 
+  spread(key = `Forecast Horizon`, value = `SS_MSE`) %>% 
+  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>%
+  dplyr::select(-`F-method`) %>%  
+  rename("Method" = "R-method") %>%
+  slice(match(Method_Order, `Method`)) 
+
+
+SS.GDPI_ARIMA_MASE <- Skill.Score_GDPI_ARIMA %>% 
+  dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MASE` ) %>% 
+  spread(key = `Forecast Horizon`, value = `SS_MASE`) %>% 
+  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>%
+  dplyr::select(-`F-method`) %>%  
+  rename("Method" = "R-method") %>%
+  slice(match(Method_Order, `Method`)) 
+
+
+GDPI_PointF <- cbind(SS.GDPI_ETS_MSE, SS.GDPI_ETS_MASE[,-1], SS.GDPI_ARIMA_MSE[,-1], SS.GDPI_ARIMA_MASE[,-1]) %>% 
+  kable(format = "latex") %>% kable_styling("striped") %>% 
+  kableExtra::add_header_above(c(" " = 1, "MSE" = 4, "MASE" = 4, "MSE" = 4, "MASE" = 4)) %>%
+  kableExtra::add_header_above(c(" " = 1, "ETS" = 8, "ARIMA" = 8))
+
+GDPI_PointF
+```
