@@ -186,7 +186,7 @@ Let us consider the smallest possible hierarchy with two bottom level series, $A
 \subsection{Bottom-up, top-down and middle-out approaches}
 \textcolor{red}{Traditionally hierarchical structures were forecasted using these. We briefly present these here. For more details - give references.}
 
-Traditional approaches involve selecting a level of aggregation, generating forecasts at the level and then linearly combining these to generate a set of coherent forecasts the rest of the structure. 
+Traditional approaches involve selecting a level of aggregation, generating forecasts at the level and then linearly combining these to generate a set of coherent forecasts the rest of the structure.
 
 \subsubsection*{Bottom-up approach}
 \textcolor{red}{Maybe we add these here.}
@@ -196,7 +196,7 @@ In the \textit{bottom-up} approach, forecasts for the lowest level series are fi
 \tilde{\vec{y}}^{BU}_{t+h|t}=\vec{S\hat{\vec{b}}}_{t+h|t}.
 \end{equation*}
 
-Generating bottom-up forecasts has the advantage of no information being lost due to aggregation. However, bottom-level data can potentially be highly volatile or very noisy and therefore challenging to forecast. 
+Generating bottom-up forecasts has the advantage of no information being lost due to aggregation. However, bottom-level data can potentially be highly volatile or very noisy and therefore challenging to forecast.
 
 In contrast to bottom-up, \textit{top-down} approaches involve forecasting the most aggregated series first and then disaggregating these forecasts down the hierarchy. In general, coherent forecasts generated from top-down approaches can be written as,
 
@@ -213,7 +213,7 @@ for $j=1,\ldots,m$, where each $p_j$ reflects the average of the historical prop
 \begin{equation}
 p_j = \frac{\frac{1}{T}\sum_{t=1}^{T}y_{j,t}}{\frac{1}{T}\sum_{t=1}^{T}y_{Tot,t}},
 \end{equation}
-where each proportion $p_j$ captures the average historical value of the bottom-level series $y_{j,t}$ relative to the average value of the total aggregate $y_{tot,t}$ and hence referred to as \textit{proportions of the historical averages}. 
+where each proportion $p_j$ captures the average historical value of the bottom-level series $y_{j,t}$ relative to the average value of the total aggregate $y_{tot,t}$ and hence referred to as \textit{proportions of the historical averages}.
 
 Both these approaches performed well in \cite{gross1990}. Their most convenient attribute is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregated top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. Using such top-down approaches, is limited as does not allow to capture and model individual series characteristics such as time dynamics, special events, etc.
 
@@ -238,9 +238,9 @@ As shown by \cite{hyndman2011}, top-down methods are adding a bias component to 
 A compromise between these two approaches is the middle-out method which entails forecasting each series of a selected middle level in the hierarchy and then forecasting upper levels by the bottom-up method and lower levels by the top-down method.\\
 Since this is a hybrid approach of bottom-up and top-down approaches it still remains the limitations of those two.
 
-\subsection{Forecast reconciliation}
+\subsection{Forecast reconciliation approaches}
 
-The common limitation of traditional hierarchical forecasting methods is that the loss of structural information of individual series, as it precisely forecasting only one level of series in the hierarchy.
+The common limitation of all traditional hierarchical forecasting methods is that the loss of structural information of individual series, as it precisely forecasting only one level of series in the hierarchy.
 
 As an alternative to these traditional methods, \citet{hyndman2011} proposed to utilize the information from all levels of the hierarchy to obtain coherent point forecasts in  a two stage process. In the first stage, the forecasts of all series are independently obtained by fitting univariate models for individual series in the hierarchy. It is very unlikely that these forecasts are coherent. Thus in the second stage, these forecasts are optimally combined through a regression model to obtain coherent forecasts. This second step is referred to as ``reconciliation'' since it takes a set of incoherent forecasts and revises them to be coherent.
 
