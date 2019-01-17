@@ -106,7 +106,7 @@ Obtaining coherent forecasts are independent from the forecasting models. That m
 \newpage
 \section{Point forecasting}
 
-Figure \ref{fig:simple tree} represents a simple $k=2$ level hierarchical structure. We use this example for simplicity in what follows. We denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, we denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
+Figure \ref{fig:simple tree} represents a simple 2-level hierarchical structure. We use this example for simplicity in what follows. Denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
 
 \begin{figure}[!hbt]  \center
   \begin{tikzpicture}
@@ -155,7 +155,7 @@ Figure \ref{fig:simple tree} represents a simple $k=2$ level hierarchical struct
 
 
 
-Let $\vec{y}_t = (y_{Tot,t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$, a vector containing observations across the whole hierarchy at $t$. Similarly let $\vec{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level. In general, $\vec{y}_t\in \mathbb{R}^n$ and $\vec{b}_t \in \mathbb{R}^m$ where $n$ denotes the number of total series in a hierarchy, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of Figure \ref{fig:simple tree}, $n=8$ and $m=5$.
+Let $\vec{y}_t = (y_{Tot,t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$, a vector containing observations across all series of the hierarchy at $t$. Similarly let $\vec{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level series. In general, $\vec{y}_t\in \mathbb{R}^n$ and $\vec{b}_t \in \mathbb{R}^m$ where $n$ denotes the number of total series in a hierarchy, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of Figure \ref{fig:simple tree}, $n=8$ and $m=5$.
 
 Aggregation constraints dictate that $y_{Tot}=y_{A,t}+y_{B,t}=y_{AA,t}+y_{AB,t}+y_{BA,t}+y_{BB,t}+y_{BC,t}$,~ $y_{A,t}=y_{AA,t}+y_{AB,t}$ and $y_{B}=y_{BA,t}+y_{BB,t}+y_{BC,t}$. Hence we can write
 \begin{equation}\label{eq:summing matrix}
@@ -167,14 +167,14 @@ where \begin{equation*}
 1& 1& 0& 0 & 0\\
 0& 0& 1& 1 & 1\\
 & \multicolumn{3}{c}{\vec{I}_5} &
-\end{pmatrix},
+\end{pmatrix}
 \end{equation*}
 an $n\times m$ matrix referred to as the \textit{summing matrix} and $\vec{I}_m$ is an $m$-dimensional identity matrix. $\vec{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\vec{S}$ span the linear subspace of $\mathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\mathbb{R}^m$ by $\vec{S}$ will result to an $n$-dimensional vector that lies in $\mathfrak{s}$.
 
 \textcolor{red}{Add something to jump to coherent forecasts depending on the intro.}
 
 \begin{definition}
-A set of $h$-step ahead forecasts $\tilde{\vec{y}}_{t+h|t}$, stacked in the same order as $\vec{y}_{t+h|t}$ and generated using information up to and including time $t$,
+A set of $h$-step ahead forecasts $\tilde{\vec{y}}_{t+h|t}$, stacked in the same order as $\vec{y}_{t}$ and generated using information up to and including time $t$,
 are said to be coherent if $\tilde{\vec{y}}_{t+h|t} \in \mathfrak{s}$.
   \label{def:coherence}
 \end{definition}
@@ -241,9 +241,9 @@ As shown by \cite{HynEtAl2011}, top-down methods are adding a bias component to 
 A compromise between these two approaches is the middle-out method which entails forecasting each series of a selected middle level in the hierarchy and then forecasting upper levels by the bottom-up method and lower levels by the top-down method.\\
 Since this is a hybrid approach of bottom-up and top-down approaches it still remains the limitations of those two.
 
-\subsection{Forecast reconciliation}
+\subsection{Forecast reconciliation approaches}
 
-A common theme of the traditional approaches discussed so far is that a single level of aggregation is first selected and then forecasts for that level are either aggregated-up, disaggregated-down or a combination of the two is used, in order to generate coherent forecasts for the whole hierarchy. Hence, these approaches are limited in only using information from a single level of aggregation and furthermore ignoring any correlations across levels.
+A common theme of the traditional approaches discussed so far is that a single level of aggregation is first selected and then forecasts for that level are either aggregated-up, disaggregated-down or a combination of the two is used, in order to generate coherent forecasts for the whole hierarchy. Hence, these approaches are limited in only using information from a sinlge level of aggregation and furthermore ignoring any correlations across levels.
 
 An alternative framework that overcomes these limitations, first proposed by \citet{HynEtAl2011} and implemented by \citet{AthEtAl2009}, is one that involves \textit{forecast reconciliation}. In a first step forecasts for all the series across the hierarchical structure are generated. We refer to these as \textit{base} forecasts and denote them as $\hat{\vec{y}}_{t+h|t}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as \naive is used to generate all base forecasts so that the coherent nature of the data is extended to the forecasts.
 
