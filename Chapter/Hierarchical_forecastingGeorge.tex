@@ -89,7 +89,7 @@
 	\item Probabilistic forecasting
 \end{itemize}
 
-\section{Hierarchical forecasting in macroeconomic data}
+\section{Hierarchical forecasting in macroeconomic data} \label{sec:macro data}
 
 The key macroeconomic indicators such as Gross Domestic Product (GDP), inflation and monetary policies which are used to study the behavior and performance of an economy as a whole are it self aggregates of various other components.
 For example, if we take the GDP growth, it is the aggregate of consumption, government expenditure, investments and net exports. These four components are again aggregates of some sub components. When we collect data for each of these individual variables over some time period, we will observe a collection of multiple time series that are bounded with some aggregation constraints. Thus the macroeconomic data are naturally forming cross sectional hierarchical time series.
@@ -104,9 +104,11 @@ Obtaining coherent forecasts are independent from the forecasting models. That m
 \textcolor{red}{briefly discuss the point forecasts as well as probabilistic forecasts in the sense of macroeconomic data  }
 
 \newpage
-\section{Point forecasting}
+\section{Point forecasting}\label{sec:point forecasting}
 
-Figure \ref{fig:simple tree} represents a simple two-level hierarchical structure. We use this example for simplicity in what follows. Denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
+\textcolor{red}{Fix this depending on Section 2} We first introduce some general notation which can be used to capture general macroeconomic variables that are formed by hierarchical structures as discussed in 2. 
+
+To simplify the notation we use the simple two-level hierarchical structure shown in Figure \ref{fig:simple tree}. Denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
 
 \begin{figure}[!hbt]  \center
   \begin{tikzpicture}
@@ -131,7 +133,29 @@ Figure \ref{fig:simple tree} represents a simple two-level hierarchical structur
   \label{fig:simple tree}
 \end{figure}
 
-\textcolor{red}{Need to say something about this. An alternative structure is grouped. In what follows we only use hierarchical reflecting also grouped unless there is a need to distinguish between them}.
+Let $\vec{y}_t = (y_{Tot,t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$, a vector containing observations across all series of the hierarchy at $t$. Similarly denote as $\vec{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level series. In general, $\vec{y}_t\in \mathbb{R}^n$ and $\vec{b}_t \in \mathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of Figure \ref{fig:simple tree}, $n=8$ and $m=5$.
+
+Aggregation constraints dictate that $y_{Tot}=y_{A,t}+y_{B,t}=y_{AA,t}+y_{AB,t}+y_{BA,t}+y_{BB,t}+y_{BC,t}$,~ $y_{A,t}=y_{AA,t}+y_{AB,t}$ and $y_{B}=y_{BA,t}+y_{BB,t}+y_{BC,t}$. Hence we can write
+\begin{equation}\label{eq:summing matrix}
+\vec{y}_t = \vec{Sb}_t,
+\end{equation}
+where \begin{equation*}
+\vec{S} = \begin{pmatrix}
+1& 1& 1& 1 & 1 \\
+1& 1& 0& 0 & 0\\
+0& 0& 1& 1 & 1\\
+& \multicolumn{3}{c}{\vec{I}_5} &
+\end{pmatrix}
+\end{equation*}
+an $n\times m$ matrix referred to as the \textit{summing matrix} and $\vec{I}_m$ is an $m$-dimensional identity matrix. $\vec{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\vec{S}$ span the linear subspace of $\mathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\mathbb{R}^m$ by $\vec{S}$ will result to an $n$-dimensional vector that lies in $\mathfrak{s}$.
+
+The notation introduced here is very general and can capture any form of linear constraints useful for forecasting economic variables. GDP which we discussed in Section \ref{sec:macro data} is an example a hierarchy where variables at lower levels of aggregation are simply summed to form variables at higher levels.
+
+Examples of diverse types of constraints include trade balance, which equals exports minus imports, or inflation measures such are the consumer price index which is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on. 
+
+A commonly found aggregation structure is the one shown in Figure \ref{fig:simple grouped tree} referred to as a grouped structure. In this simple example we have two groupings or attributes of the Total series which we are interested in. The Total series can be alternatively disaggregated into, A and B, or X and Y. Hence with grouped time series, the structure does not naturally disaggregate in a unique hierarchical manner, as the disaggregating factors are both nested and crossed.
+
+\textcolor{red}{TALK TO TAS ABOUT THIS ONE. An example is state domestic product of a country versus gross domestic product where the economic variables interact with geographical location.}
 
 \begin{figure}[!hbt]
 \center
@@ -153,23 +177,24 @@ Figure \ref{fig:simple tree} represents a simple two-level hierarchical structur
   \label{fig:simple grouped tree}
 \end{figure}
 
+An interesting case of grouped structures are temporal hierarchies introduced by \cite{AthEtAl2017}. In this case the structure spans the time dimension and we interested in temporal aggregation. 
+
+\cite{RosSea1995} study the effect of aggregation on several key macroeconomic variables and conclude that temporal aggregation to the annual level greatly simplifies the complex low-frequency cyclical ARIMA dynamics found in monthly and quarterly data. 
+
+They state that ``quarterly data may be the best compromise among frequency of observation, measurement error, and temporal aggregation distortion''. A similar conclusion is reached by \cite{NijPal1990}.
 
 
-Let $\vec{y}_t = (y_{Tot,t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$, a vector containing observations across all series of the hierarchy at $t$. Similarly let $\vec{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level series. In general, $\vec{y}_t\in \mathbb{R}^n$ and $\vec{b}_t \in \mathbb{R}^m$ where $n$ denotes the number of total series in a hierarchy, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of Figure \ref{fig:simple tree}, $n=8$ and $m=5$.
+To demonstrate the grouping nature of the data consider a monthly series, such as industrial production. An example is monthly data which
 
-Aggregation constraints dictate that $y_{Tot}=y_{A,t}+y_{B,t}=y_{AA,t}+y_{AB,t}+y_{BA,t}+y_{BB,t}+y_{BC,t}$,~ $y_{A,t}=y_{AA,t}+y_{AB,t}$ and $y_{B}=y_{BA,t}+y_{BB,t}+y_{BC,t}$. Hence we can write
-\begin{equation}\label{eq:summing matrix}
-\vec{y}_t = \vec{Sb}_t,
-\end{equation}
-where \begin{equation*}
-\vec{S} = \begin{pmatrix}
-1& 1& 1& 1 & 1 \\
-1& 1& 0& 0 & 0\\
-0& 0& 1& 1 & 1\\
-& \multicolumn{3}{c}{\vec{I}_5} &
-\end{pmatrix}
-\end{equation*}
-an $n\times m$ matrix referred to as the \textit{summing matrix} and $\vec{I}_m$ is an $m$-dimensional identity matrix. $\vec{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\vec{S}$ span the linear subspace of $\mathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\mathbb{R}^m$ by $\vec{S}$ will result to an $n$-dimensional vector that lies in $\mathfrak{s}$.
+There is a huge related 
+
+\citet{AmeWu1972, Tia1972, Bre1973, Wei1979, RosSea1995, SilVer2008}
+
+
+ and hence we are interested on the effects of temporal aggregation on forecasting economic variables.
+
+
+
 
 \textcolor{red}{Add something to jump to coherent forecasts depending on the intro.}
 
@@ -329,10 +354,10 @@ Point forecasts are limited since they provide no indication of uncertainty arou
 %For example, \citet{McSharry2005} produced probabilistic forecasts for electricity demand, \citet{BenTaieb2017} for smart meter data, \citet{Pinson2009} for wind power generation, and \citet{Gel2004}, \citet{Gneiting2005a} and \citet{Gneiting2005} for various weather variables.
 
 The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\vec{y}_{t+h|t}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
-To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \cite{Taieb2017} who define a coherent forecast in terms of a convolution.  An equivalent definition, provided by \cite{Gamakumara2018} defines a  coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$.  \cite{Gamakumara2018} also generalise the concept of forecast reconciliation to the probabilistic setting.  In brief, let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\mathbb{R}^n$ that are mapped onto  $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$.  Letting $\hat{\nu}$ be a `base' probabilistic forecast for the full hierarchy, 
+To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \cite{Taieb2017} who define a coherent forecast in terms of a convolution.  An equivalent definition, provided by \cite{Gamakumara2018} defines a  coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$.  \cite{Gamakumara2018} also generalise the concept of forecast reconciliation to the probabilistic setting.  In brief, let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\mathbb{R}^n$ that are mapped onto  $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$.  Letting $\hat{\nu}$ be a `base' probabilistic forecast for the full hierarchy,
 the coherent measure $\tilde{\nu}$ `reconciles' $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 
-In practice this definition suggests two approaches.  For some parametric distributions, for instance the multivariate normal, it may be possible to derive a reconciled probabilistic forecast analytically.  However, in macroeconomic forecasting, non-standard distributions such as bimodal distribution are often required to take different policy regimes into account {\color{red} worth checking if any (marginal) predictives are bimodal before we include this statement}.  In such cases a non-parametric approach based on bootstrapping in-sample errors proposed $\cite{Gamakumara2018}$ can be used as long as a sample from the predictive distribution is available.  Each of these scenarios is now covered in detail.
+In practice this definition suggests two approaches.  For some parametric distributions, for instance the multivariate normal, it may be possible to derive a reconciled probabilistic forecast analytically.  However, in macroeconomic forecasting, non-standard distributions such as bimodal distribution are often required to take different policy regimes into account {\color{red} worth checking if any (marginal) predictives are bimodal before we include this statement}.  In such cases a non-parametric approach based on bootstrapping in-sample errors proposed \cite{Gamakumara2018} can be used as long as a sample from the predictive distribution is available.  Each of these scenarios is now covered in detail.
 
 \subsection{Probabilistic forecast reconciliation in the Gaussian framework}
 
