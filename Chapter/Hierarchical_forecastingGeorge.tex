@@ -387,20 +387,33 @@ In many applications, including macroeconomic forecasting, it may not reasonable
 
 %\cite{Jeon2018} is the only existing study that does reconciliation in probabilistic hierarchical forecasts. This method is based on cross-validation and it also does not assume any parametric distributions for predictive densities. However they applied this method particularly for temporal hierarchies.
 
-Due to these concerns, we employ a reconciliation method proposed by \cite{Gamakumara2018} that does not make parametric assumptions about the predictive distribution.  An important result that this method exploits is that applying methods for point forecast reconciliation to the draws from incoherent base predictive distribution results in a sample from the reconciled predictive distribution. This involves a two step process, which is summarised below
+Due to these concerns, we employ a reconciliation method proposed by \cite{Gamakumara2018} that does not make parametric assumptions about the predictive distribution.  An important result that this method exploits is that applying methods for point forecast reconciliation to the draws from incoherent base predictive distribution results in a sample from the reconciled predictive distribution. This process, is summarised
 
 %In the first step we obtain possible sample paths from the incoherent forecast distributions. This follows by the reconciliation step which projects each sample path to the coherent subspace. These steps will be discussed in detail below.
 
-The first step is to fit univariate models to each series in the hierarchy over a training set from ${\bm y}_1,\ldots,{\bm y}_T$.  Any model can be used as long as it is straightforward to produce h-step ahead point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$ and a matrix of one-step ahead in-sample forecasting errors $\varGamma_{(T \times n)}=(\vec{e}_1,\vec{e}_2,.....,\vec{e}_T)'$. We then block bootstrap a sample of size $h$ from $\varGamma$, and add these to the point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$.  Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
+\begin{enumerate}
+	\item Fit univariate models to each series in the hierarchy over a training set from ${\bm y}_1,\ldots,{\bm y}_T$.
+	\item For each series compute $h$-step ahead point forecasts, for all $h$ up to $H$. Collect these into a $n\times H$ matrix $\hat{\bm M}:=(\hat{\bm{\mu}}_{T+1|T},\ldots,\hat{\bm{\mu}}_{T+H|T})$, where $\hat{\bm{\mu}}_{T+h|T}$ is a $n\times 1$ vector of $h$-step point forecasts for all series in the hierarchy.
+	\item Compute one-step ahead in-sample forecasting errors. Collect these into an $n \times T$ matrix ${\bm E}=(\vec{e}_1,\vec{e}_3,.....,\vec{e}_T)$, where the $n\times 1$ vector $\vec{e}_t={\bm y}_t-\hat{\bm {\mu}}_{t|t-1}$.  Here, $\hat{\bm {\mu}}_{t|t-1}$ is a vector of forecasts made for time $t$ using information up to and including $t-1$. Information from $t=1,\dots,T$ will be used to train the model used to form these forecasts.  
+	\item Block bootstrap from $\bm{E}$, that is choose $H$ consecutive columns of ${\bm E}$ at random, repeating this process $B$ times.  Denote the $n\times H$ matrix obtained at iteration $b$ as ${\bm E}^b$ for b=1,\ldots,B.  
+	\item For all $b$, compute $\hat{\bm Y}^b:=\hat{\bm M}+{\bm E}^b$. Each row of $\hat{\bm Y}^b$ is a sample path of $h$ forecasts for a single series.  Each column of $\hat{\bm Y}^b$ is a realisation from the joint predictive distribution at a particular horizon.
+	\item For each $b=1,\ldots,B$ select the $h^{th}$ column of $\hat{\bm Y}^b$ and stack these to form a $n\times B$ matrix $\hat{\bm{Y}}_{T+h|T}$
+	\item For a given ${\bm G}$ matrix and for each $h=1,\ldots,H$ compute $\tilde{\bm{Y}}_{T+h|T}={\bm S}{\bm G}\hat{\bm{Y}}_{T+h|T}$.   Each column of $\tilde{\bm Y}_{T+h|T}$ is a realisation from the joint $h$-step ahead reconciled predictive distribution.
+\end{enumerate}
 
-\begin{equation} \label{eq:19}
-\hat{\vec{Y}}^b_{T+h|T}=\begin{pmatrix}
-\hat{\vec{y}}_{1,T+h|T}^b\\
-\hat{\vec{y}}_{2,T+h|T}^b\\
-\vdots\\
-\hat{\vec{y}}_{N,T+h|T}^b
-\end{pmatrix}.
-\end{equation}
+
+{\color{red}Check with Puwasala that this is exactly what she has done.  Notation may need work to bring in line with previous sections.}
+
+%For a given forecast horizon and add these to the point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$.  Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
+
+%\begin{equation} \label{eq:19}
+%\hat{\vec{Y}}^b_{T+h|T}=\begin{pmatrix}
+%\hat{\vec{y}}_{1,T+h|T}^b\\
+%\hat{\vec{y}}_{2,T+h|T}^b\\
+%\vdots\\
+%\hat{\vec{y}}_{N,T+h|T}^b
+%\end{pmatrix}.
+%\end{equation}
 
 
 
@@ -415,25 +428,25 @@ The first step is to fit univariate models to each series in the hierarchy over 
 %\end{pmatrix}.
 %\end{equation}
 
-An advantage to this approach is that the dependence structure of the hierarchy as well as serial correlation, are captured through the bootstrapping.  However future paths constructed in this way will not be coherent and thus require reconciliation.
+%An advantage to this approach is that the dependence structure of the hierarchy as well as serial correlation, are captured through the bootstrapping.  However future paths constructed in this way will not be coherent and thus require reconciliation.
 
-\subsection*{Step 2: Reconciling future sample paths}
+%\subsection*{Step 2: Reconciling future sample paths}
 
-The second step is to project these sample paths to the coherent subspace. Then we get a set of reconciled future paths which form a possible sample from the reconciled probabilistic forecast distribution. Similar to the projection used in the point forecast reconciliation, we project each sample path through the projection $\vec{SG}$. Then we get,
+%The second step is to project these sample paths to the coherent subspace. Then we get a set of reconciled future paths which form a possible sample from the reconciled probabilistic forecast distribution. Similar to the projection used in the point forecast reconciliation, we project each sample path through the projection $\vec{SG}$. Then we get,
 
-\begin{equation} \label{eq:20}
-\tilde{\vec{y}}_{i,T+h}^b = \vec{SG}\hat{\vec{y}}_{i,T+h}^b, \quad i = 1, ..., N
-\end{equation}
-and let
-\begin{equation}\label{eq:21}
-\tilde{\vec{Y}}^b_{T+h|T}=\begin{pmatrix}
-\tilde{\vec{y}}_{1,T+h|T}^b\\
-\tilde{\vec{y}}_{2,T+h|T}^b\\
-\vdots\\
-\tilde{\vec{y}}_{N,T+h|T}^b
-\end{pmatrix}
-\end{equation}
-where, $\tilde{\vec{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,...,N$. $\tilde{\vec{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\vec{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
+%\begin{equation} \label{eq:20}
+%\tilde{\vec{y}}_{i,T+h}^b = \vec{SG}\hat{\vec{y}}_{i,T+h}^b, \quad i = 1, ..., N
+%\end{equation}
+%and let
+%\begin{equation}\label{eq:21}
+%\tilde{\vec{Y}}^b_{T+h|T}=\begin{pmatrix}
+%\tilde{\vec{y}}_{1,T+h|T}^b\\
+%\tilde{\vec{y}}_{2,T+h|T}^b\\
+%\vdots\\
+%\tilde{\vec{y}}_{N,T+h|T}^b
+%\end{pmatrix}
+%\end{equation}
+%where, $\tilde{\vec{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,...,N$. $\tilde{\vec{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\vec{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
 
 
 \section{Evaluation}
