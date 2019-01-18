@@ -387,13 +387,11 @@ In many applications, including macroeconomic forecasting, it may not reasonable
 
 %\cite{Jeon2018} is the only existing study that does reconciliation in probabilistic hierarchical forecasts. This method is based on cross-validation and it also does not assume any parametric distributions for predictive densities. However they applied this method particularly for temporal hierarchies.
 
-Due to these concerns, we employ a reconciliation method proposed by \cite{Gamakumara2018} that does not make parametric assumptions about the predictive distribution.  An important result that this method exploits is that applying methods for point forecast reconciliation to the draws from incoherent base predictive distribution results in a sample from the reconciled predictive distribution. This involves a two steps process. Which is summarised below
+Due to these concerns, we employ a reconciliation method proposed by \cite{Gamakumara2018} that does not make parametric assumptions about the predictive distribution.  An important result that this method exploits is that applying methods for point forecast reconciliation to the draws from incoherent base predictive distribution results in a sample from the reconciled predictive distribution. This involves a two step process, which is summarised below
 
 %In the first step we obtain possible sample paths from the incoherent forecast distributions. This follows by the reconciliation step which projects each sample path to the coherent subspace. These steps will be discussed in detail below.
 
-\subsection*{Step 1: Obtaining incoherent probabilistic forecasts}
-
-Suppose we fit univariate time series models for the series at each node in the hierarchy, by using past observations up to time $T$. Using these fitted models, we can generate $h$ step ahead future sample paths for each node, by conditioning on past observations. In order to capture the dependency structure of the hierarchy, we incorporate bootstrapped training errors from the fitted models. That is, let $\varGamma_{(T \times n)}=(\vec{e}_1,\vec{e}_2,.....,\vec{e}_T)'$ denote the in-sample residual matrix where, $\vec{e}_t=\vec{y}_t-\hat{\vec{y}}_t$ is a vector that consists of residuals in each node at time $t$ and stacked in the same order as $\vec{y}_t$. $\varGamma$ is also referred to as the matrix of in-sample errors. Then we block bootstrap a sample of size $h$ from $\varGamma$, and these bootstrapped errors will be incorporated as the error series for simulating future paths. Taking block bootstrapped in-sample errors in generating future paths will implicitly model the dependency structure of the hierarchy. These simulated future sample paths will be then formed in a vector $\hat{\vec{y}}_{T+h|T}^b$ by stacking the sample paths of each node in the same order as $\vec{y}_t$. As such we generate a sample of $N$ future paths for the hierarchy. We can denote this sample by a $(N \times n)$ matrix $\hat{\vec{Y}}^b_{T+h|T}$ where,
+The first step is to fit univariate models to each series in the hierarchy over a training set from ${\bm y}_1,\ldots,{\bm y}_T$.  Any model can be used as long as it is straightforward to produce h-step ahead point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$ and a matrix of one-step ahead in-sample forecasting errors $\varGamma_{(T \times n)}=(\vec{e}_1,\vec{e}_2,.....,\vec{e}_T)'$. We then block bootstrap a sample of size $h$ from $\varGamma$, and add these to the point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$.  Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
 
 \begin{equation} \label{eq:19}
 \hat{\vec{Y}}^b_{T+h|T}=\begin{pmatrix}
@@ -404,7 +402,20 @@ Suppose we fit univariate time series models for the series at each node in the 
 \end{pmatrix}.
 \end{equation}
 
-Although the dependency structure of the hierarchy is captured through the bootstrap in-sample errors, the aggregation structure will not be reflected through these sample paths. Therefore, these future paths are incoherent and thus considered as a possible sample from the incoherent probabilistic forecast distribution of the hierarchy.
+
+
+%bootstrapped errors will be incorporated as the error series for simulating future paths. Taking block bootstrapped in-sample errors in generating future paths will implicitly model the dependency structure of the hierarchy. These simulated future sample paths will be then formed in a vector $\hat{\vec{y}}_{T+h|T}^b$ by stacking the sample paths of each node in the same order as $\vec{y}_t$. As such we generate a sample of $N$ future paths for the hierarchy. We can denote this sample by a $(N \times n)$ matrix $\hat{\vec{Y}}^b_{T+h|T}$ where,
+
+%\begin{equation} \label{eq:19}
+%\hat{\vec{Y}}^b_{T+h|T}=\begin{pmatrix}
+%\hat{\vec{y}}_{1,T+h|T}^b\\
+%\hat{\vec{y}}_{2,T+h|T}^b\\
+%\vdots\\
+%\hat{\vec{y}}_{N,T+h|T}^b
+%\end{pmatrix}.
+%\end{equation}
+
+An advantage to this approach is that the dependence structure of the hierarchy as well as serial correlation, are captured through the bootstrapping.  However future paths constructed in this way will not be coherent and thus require reconciliation.
 
 \subsection*{Step 2: Reconciling future sample paths}
 
