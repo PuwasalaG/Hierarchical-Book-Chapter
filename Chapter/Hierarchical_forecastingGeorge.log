@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  17 JAN 2019 22:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  18 JAN 2019 19:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1415,81 +1415,118 @@ Underfull \hbox (badness 10000) in paragraph at lines 101--102
  []
 
 [2]
-Overfull \hbox (30.23714pt too wide) in paragraph at lines 158--159
+Overfull \hbox (57.12704pt too wide) in paragraph at lines 136--137
 \OT1/ptm/m/n/10 va-tions across all se-ries of the hi-er-ar-chy at $\OML/ztmcm/
-m/it/10 t$\OT1/ptm/m/n/10 . Sim-i-larly let $[][] \OT1/ztmcm/m/n/10 = (\OML/ztm
-cm/m/it/10 y[]; y[]; y[]; y[]; y[]\OT1/ztmcm/m/n/10 )[]$
+m/it/10 t$\OT1/ptm/m/n/10 . Sim-i-larly de-note as $[][] \OT1/ztmcm/m/n/10 = (\
+OML/ztmcm/m/it/10 y[]; y[]; y[]; y[]; y[]\OT1/ztmcm/m/n/10 )[]$
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 182--184
+
+Package natbib Warning: Citation `AthEtAl2017' on page 4 undefined on input lin
+e 180.
+
+
+Package natbib Warning: Citation `RosSea1995' on page 4 undefined on input line
+ 182.
+
+
+Package natbib Warning: Citation `NijPal1990' on page 4 undefined on input line
+ 184.
+
+
+Package natbib Warning: Citation `AmeWu1972' on page 4 undefined on input line 
+191.
+
+
+Package natbib Warning: Citation `Tia1972' on page 4 undefined on input line 19
+1.
+
+
+Package natbib Warning: Citation `Bre1973' on page 4 undefined on input line 19
+1.
+
+
+Package natbib Warning: Citation `Wei1979' on page 4 undefined on input line 19
+1.
+
+
+Package natbib Warning: Citation `RosSea1995' on page 4 undefined on input line
+ 191.
+
+
+Package natbib Warning: Citation `SilVer2008' on page 4 undefined on input line
+ 191.
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 207--209
 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 191.
-[4] [5]
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 216.
+[5]
 
 Package natbib Warning: Citation `AthEtAl2009' on page 6 undefined on input lin
-e 228.
-
-
-Package natbib Warning: Citation `HynEtAl2011' on page 6 undefined on input lin
-e 243.
+e 253.
 
 [6]
 
 Package natbib Warning: Citation `HynEtAl2011' on page 7 undefined on input lin
-e 252.
+e 268.
+
+
+Package natbib Warning: Citation `HynEtAl2011' on page 7 undefined on input lin
+e 277.
 
 
 Package natbib Warning: Citation `AthEtAl2009' on page 7 undefined on input lin
-e 252.
+e 277.
 
-LaTeX Font Info:    Try loading font information for U+psy on input line 267.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/upsy.fd
+[7]
+LaTeX Font Info:    Try loading font information for U+psy on input line 292.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/upsy.fd
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 )
 
-Package natbib Warning: Citation `HynEtAl2011' on page 7 undefined on input lin
-e 271.
-
-[7]
-
-Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
-e 283.
+Package natbib Warning: Citation `HynEtAl2011' on page 8 undefined on input lin
+e 296.
 
 
 Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
-e 288.
+e 308.
+
+
+Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
+e 313.
 
 
 Package natbib Warning: Citation `HynEtAl2011' on page 8 undefined on input lin
-e 288.
+e 313.
 
-
-Overfull \hbox (4.34601pt too wide) in paragraph at lines 293--294
+[8]
+Overfull \hbox (4.34601pt too wide) in paragraph at lines 318--319
 \OT1/ptm/m/n/10 denote the fore-cast er-rors for a set of un-bi-ased base fore-
 casts $[][]$, with Var$\OT1/ztmcm/m/n/10 ([][]) =
  []
 
 
-Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
-e 296.
+Package natbib Warning: Citation `WicEtAl2019' on page 9 undefined on input lin
+e 321.
 
 
-Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
-e 303.
+Package natbib Warning: Citation `WicEtAl2019' on page 9 undefined on input lin
+e 328.
 
 
-Package natbib Warning: Citation `HynEtAl2011' on page 8 undefined on input lin
-e 305.
+Package natbib Warning: Citation `HynEtAl2011' on page 9 undefined on input lin
+e 330.
 
 
-Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
-e 307.
+Package natbib Warning: Citation `WicEtAl2019' on page 9 undefined on input lin
+e 332.
 
-[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
+[9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21]
 (./Hierarchical_forecastingGeorge.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 100--105
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 https://www.degruyter.com/view/j/sagmb.20
@@ -1507,10 +1544,10 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 27472 strings out of 492982
- 575850 string characters out of 6134895
- 828864 words of memory out of 5000000
- 30545 multiletter control sequences out of 15000+600000
+ 27482 strings out of 492982
+ 575976 string characters out of 6134895
+ 795127 words of memory out of 5000000
+ 30555 multiletter control sequences out of 15000+600000
  588407 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,73p,10410b,1107s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1527,7 +1564,7 @@ ist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/boondox/zxxrl8a.pfb>
 
-Output written on Hierarchical_forecastingGeorge.pdf (23 pages, 187230 bytes).
+Output written on Hierarchical_forecastingGeorge.pdf (23 pages, 186376 bytes).
 PDF statistics:
  134 PDF objects out of 1000 (max. 8388607)
  95 compressed objects within 1 object stream
