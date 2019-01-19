@@ -106,9 +106,7 @@ Obtaining coherent forecasts are independent from the forecasting models. That m
 \newpage
 \section{Point forecasting}\label{sec:point forecasting}
 
-\textcolor{red}{Fix this depending on Section 2} We first introduce some general notation which can be used to capture general macroeconomic variables that are formed by hierarchical structures as discussed in 2. 
-
-To simplify the notation we use the simple two-level hierarchical structure shown in Figure \ref{fig:simple tree}. Denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
+\textcolor{red}{Fix this depending on Section 2} To simplify the introduction of some notation we use the simple two-level hierarchical structure shown in Figure \ref{fig:simple tree}. Denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
 
 \begin{figure}[!hbt]  \center
   \begin{tikzpicture}
@@ -149,13 +147,20 @@ where \begin{equation*}
 \end{equation*}
 an $n\times m$ matrix referred to as the \textit{summing matrix} and $\vec{I}_m$ is an $m$-dimensional identity matrix. $\vec{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\vec{S}$ span the linear subspace of $\mathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\mathbb{R}^m$ by $\vec{S}$ will result to an $n$-dimensional vector that lies in $\mathfrak{s}$.
 
-The notation introduced here is very general and can capture any form of linear constraints useful for forecasting economic variables. GDP which we discussed in Section \ref{sec:macro data} is an example a hierarchy where variables at lower levels of aggregation are simply summed to form variables at higher levels.
+\begin{definition}
+A set of $h$-step ahead forecasts $\tilde{\vec{y}}_{T+h|T}$, stacked in the same order as $\vec{y}_{t}$ and generated using information up to and including time $t$,
+are said to be \textit{coherent} if $\tilde{\vec{y}}_{T+h|T} \in \mathfrak{s}$.
+  \label{def:coherence}
+\end{definition}
 
-Examples of diverse types of constraints include trade balance, which equals exports minus imports, or inflation measures such are the consumer price index which is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on. 
+A set of coherent forecasts respect the aggregation constraints across the hierarchy. That is the forecasts of lower level series aggregate up to their corresponding upper level series of the hierarchy and vice versa.
 
-A commonly found aggregation structure is the one shown in Figure \ref{fig:simple grouped tree} referred to as a grouped structure. In this simple example we have two groupings or attributes of the Total series which we are interested in. The Total series can be alternatively disaggregated into, A and B, or X and Y. Hence with grouped time series, the structure does not naturally disaggregate in a unique hierarchical manner, as the disaggregating factors are both nested and crossed.
+\textcolor{red}{Add the picture here.}
+Let us consider the smallest possible hierarchy with two bottom level series, $A$ and $B$ that add up to the top level $Tot$. Suppose $\breve{\vec{y}}_{T+h|T}$ of this hierarchy is given by $\breve{\vec{y}}_{T+h|T} = [\breve{y}_{Tot,T+h|T},\breve{y}_{A,T+h|T}, \breve{y}_{B,T+h|T}]$. Due to the aggregation structure we have $\breve{y}_{Tot,T+h|T}=\breve{y}_{A,T+h|T}+\breve{y}_{B,T+h|T}$. This implies that, even though  $\breve{\vec{y}}_{Tot,T+h|T} \in \mathbb{R}^3$, the points actually lie in $\mathfrak{s}\subset \mathbb{R}^3$, which is a two dimensional subspace within $\mathbb{R}^3$ space.
 
-\textcolor{red}{TALK TO TAS ABOUT THIS ONE. An example is state domestic product of a country versus gross domestic product where the economic variables interact with geographical location.}
+The notation introduced in \eqref{eq:summing matrix} is very general and can capture any form of linear aggregation constraints of economic variables. GDP and its components is an example of a hierarchical structure where variables at lower levels are simply aggregated to form variables at higher levels. Constraints for variables such as trade balance, computed as exports minus imports, or inflation measures such as the consumer price index computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on, can be also captured by an appropriately designed $\vec{S}$ matrix.
+
+An important and also commonly found aggregation structure, is the one shown in Figure \ref{fig:simple grouped tree} and referred to as a grouped structure. In this simple example there are two groupings or attributes of interest. The Total series is disaggregated into A and B, but also into X and Y, at level 1 of the structure, and then into the bottom-level series: AX, AY, BX, BY. Hence, grouped time series do not naturally disaggregate in a unique hierarchical manner. The disaggregating factors are both nested, as was the case with hierarchical time series, but also crossed. An example, is considering GDP both in terms of its components but also in terms of geographical location, for example state domestic product. \textcolor{red}{MAYBE THIS IS TOO MUCH Each of GDP components and geographical locations are nested factors, but when considered simultaneously they are crossed forming a grouped structure.}
 
 \begin{figure}[!hbt]
 \center
@@ -177,74 +182,38 @@ A commonly found aggregation structure is the one shown in Figure \ref{fig:simpl
   \label{fig:simple grouped tree}
 \end{figure}
 
-An interesting case of grouped structures are temporal hierarchies introduced by \cite{AthEtAl2017}. In this case the structure spans the time dimension and we interested in temporal aggregation. 
+Another important application use of hierarchical structures are temporal hierarchies introduced by \cite{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies. There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \cite{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and many others such as, \cite{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. This work searches for the single optimum level of aggregation for modelling and forecasting. The analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous, making it very challenging to reach a consensus or some concrete conclusions. For example, \cite{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state, ``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.'' A similar conclusion is reached by \cite{NijPal1990}. \cite{SilEtAl2008} consider forecasting French cash state deficit and provide empirical evidence of forecast accuracy gains from forecasting with the aggregate model rather than aggregating forecasts from the disaggregate model.
 
-\cite{RosSea1995} study the effect of aggregation on several key macroeconomic variables and conclude that temporal aggregation to the annual level greatly simplifies the complex low-frequency cyclical ARIMA dynamics found in monthly and quarterly data. 
+The vast majority of this literature concentrates on a single level of temporal aggregation \citep[there are some notable exceptions such as,][]{AndEtAl2011,KouEtAl2014}. \cite{AthEtAl2017} show that considering multiple levels of aggregation via temporal hierarchies and implementing reconciliation approaches that follow rather than single level approaches results in substantial gains in forecast accuracy across all levels of temporal aggregation.
 
-They state that ``quarterly data may be the best compromise among frequency of observation, measurement error, and temporal aggregation distortion''. A similar conclusion is reached by \cite{NijPal1990}.
-
-
-To demonstrate the grouping nature of the data consider a monthly series, such as industrial production. An example is monthly data which
-
-There is a huge related 
-
-\citet{AmeWu1972, Tia1972, Bre1973, Wei1979, RosSea1995, SilVer2008}
-
-
- and hence we are interested on the effects of temporal aggregation on forecasting economic variables.
-
-
-
-
-\textcolor{red}{Add something to jump to coherent forecasts depending on the intro.}
-
-\begin{definition}
-A set of $h$-step ahead forecasts $\tilde{\vec{y}}_{t+h|t}$, stacked in the same order as $\vec{y}_{t}$ and generated using information up to and including time $t$,
-are said to be coherent if $\tilde{\vec{y}}_{t+h|t} \in \mathfrak{s}$.
-  \label{def:coherence}
-\end{definition}
-
-Hence a set of coherent forecasts respect the aggregation constraints across the hierarchy. That is the forecasts of lower level series aggregate up to their corresponding upper level series of the hierarchy and vice versa.
-\\
-
-\textcolor{red}{Do we need the following?}
-Let us consider the smallest possible hierarchy with two bottom level series, $A$ and $B$ that add up to the top level $Tot$. Suppose $\breve{\vec{y}}_{t+h|t}$ of this hierarchy is given by $\breve{\vec{y}}_{t+h|t} = [\breve{y}_{Tot,t+h|t},\breve{y}_{A,t+h|t}, \breve{y}_{B,t+h|t}]$. Due to the aggregation structure we have $\breve{y}_{Tot,t+h|t}=\breve{y}_{A,t+h|t}+\breve{y}_{B,t+h|t}$. This implies that, even though  $\breve{\vec{y}}_{Tot,t+h|t} \in \mathbb{R}^3$, the points actually lie in $\mathfrak{s}\subset \mathbb{R}^3$, which is a two dimensional subspace within $\mathbb{R}^3$ space.
-
-\textcolor{red}{I think the 3-series example talking about \textit{basis series} in the Prob Fore paper is useful here. Should we add?}
-
-
-\subsection{Traditional forecasting approaches}
-\textcolor{red}{Traditionally hierarchical structures were forecasted using these. We briefly present these here. For more details - give references.}
-
-Traditional approaches involve selecting a level of aggregation, generating forecasts at the level and then linearly combining these to generate a set of coherent forecasts the rest of the structure.
+\subsection{Single-level approaches}\label{sec:single level approaches}
+The common theme across traditional approaches for forecasting hierarchical structures is that they first selecting a single-level of aggregation, generating forecasts at that level and then linearly combining these to generate a set of coherent forecasts the rest of the structure.
 
 \subsubsection{Bottom-up}
-\textcolor{red}{Maybe we add these section headings here.}
 
-In the \textit{bottom-up} approach, forecasts for the lowest level series are first generated. These are then aggregated to obtain forecasts for all the other levels of the hierarchy \citep{dunn1976}. In general this consists of first generating $\hat{\vec{b}}_{t+h|t} \in \mathbb{R}^m$, a set of $h$-step ahead forecasts for the bottom-level series. For the simple hierarchical structure of Figure \ref{fig:simple tree}, $\hat{\vec{b}}_{t+h|t} = (\hat{{y}}_{AA,t+h|t}, \hat{{y}}_{AB,t+h|t}, \hat{{y}}_{BA,t+h|t}, \hat{{y}}_{BB,t+h|t},\hat{{y}}_{BC,t+h|t}),$ where, $\hat{{y}}_{i,t+h|t}$ is the $h$-step ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is given by,
+In the \textit{bottom-up} approach, forecasts for the lowest level series are first generated. These are then aggregated to obtain forecasts for all the other levels of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\vec{b}}_{T+h|T} \in \mathbb{R}^m$, a set of $h$-step ahead forecasts for the bottom-level series. For the simple hierarchical structure of Figure \ref{fig:simple tree}, $\hat{\vec{b}}_{T+h|T} = (\hat{{y}}_{AA,T+h|T}, \hat{{y}}_{AB,T+h|T}, \hat{{y}}_{BA,T+h|T}, \hat{{y}}_{BB,T+h|T},\hat{{y}}_{BC,T+h|T}),$ where, $\hat{{y}}_{i,T+h|T}$ is the $h$-step ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by,
 \begin{equation*}\label{eq:BU}
-\tilde{\vec{y}}^{BU}_{t+h|t}=\vec{S\hat{\vec{b}}}_{t+h|t}.
+\tilde{\vec{y}}^{BU}_{T+h|T}=\vec{S\hat{\vec{b}}}_{T+h|T}.
 \end{equation*}
 Generating bottom-up forecasts has the advantage of no information being lost due to aggregation. However, bottom-level data can potentially be highly volatile or very noisy and therefore challenging to forecast.
 
 \subsubsection{Top-down}
 
-In contrast to bottom-up, \textit{top-down} approaches involve first generating forecasts for the most aggregated series and then disaggregating these down the hierarchy. In general, coherent forecasts generated from top-down approaches can be written as,
-
+In contrast to bottom-up, \textit{top-down} approaches involve first generating forecasts for the most aggregated series and then disaggregating these down the hierarchy. In general, coherent forecasts generated from top-down approaches are given by,
 \begin{equation*}
-\tilde{\vec{y}}^{TD}_{t+h|t}=\vec{S}\vec{p}\hat{y}_{Tot, t+h|t},
+\tilde{\vec{y}}^{TD}_{T+h|T}=\vec{S}\vec{p}\hat{y}_{Tot, T+h|T},
 \end{equation*}
-where $\vec{p} = (p_1,...,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{Tot, t+h|t}$ to forecasts for the bottom-level series. These are then aggregated up by the summing matrix.
+where $\vec{p} = (p_1,...,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{Tot, T+h|T}$ to forecasts for the bottom-level series, hence $\vec{p}\hat{y}_{Tot, T+h|T}=\vec{\hat{\vec{b}}}_{T+h|T}$. These are then aggregated up by the summing matrix $\vec{S}$.
 
-Two commonly used sets of proportions are:
+Two commonly used sets of proportions are the \textit{average historical proportions}:
 \begin{equation*}
-p_j = \frac{1}{T} \sum_{t=1}^{T}\frac{y_{j,t}}{y_{tot,t}},
+p_j = \frac{1}{T} \sum_{t=1}^{T}\frac{y_{j,t}}{y_{Tot,t}},
 \end{equation*}
-for $j=1,\ldots,m$, where each $p_j$ reflects the average of the historical proportions of the bottom-level series $y_{j,t}$ over the period $t=1,\ldots,T$ relative to the total aggregate $y_{tot,t}$ and hence referred to as \textit{average historical proportions}, and
+for $j=1,\ldots,m$, where each $p_j$ reflects the average of the historical proportions of the bottom-level series $y_{j,t}$ over the period $t=1,\ldots,T$ relative to the total aggregate $y_{Tot,t}$, and the \textit{proportions of the historical averages}:
 \begin{equation}
 p_j = \frac{\frac{1}{T}\sum_{t=1}^{T}y_{j,t}}{\frac{1}{T}\sum_{t=1}^{T}y_{Tot,t}},
 \end{equation}
-where each proportion $p_j$ captures the average historical value of the bottom-level series $y_{j,t}$ relative to the average value of the total aggregate $y_{tot,t}$ and hence referred to as \textit{proportions of the historical averages}.
+where each proportion $p_j$ captures the average historical value of the bottom-level series $y_{j,t}$ relative to the average value of the total aggregate $y_{Tot,t}$.
 
 Both these approaches performed well in \cite{gross1990}. Their most convenient attribute is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregated top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. Using such top-down approaches, is limited as does not allow to capture and model individual series characteristics such as time dynamics, special events, etc.
 
@@ -270,38 +239,34 @@ As shown by \cite{HynEtAl2011}, top-down methods are adding a bias component to 
 A compromise between these two approaches is the middle-out method which entails forecasting each series of a selected middle level in the hierarchy and then forecasting upper levels by the bottom-up method and lower levels by the top-down method.\\
 Since this is a hybrid approach of bottom-up and top-down approaches it still remains the limitations of those two.
 
-\subsection{Forecast reconciliation approaches}
+\subsection{Forecast reconciliation approaches}\label{sec:reconciliation approaches}
 
-A common theme of the traditional approaches discussed so far is that a single level of aggregation is first selected and then forecasts for that level are either aggregated-up, disaggregated-down or a combination of the two is used, in order to generate coherent forecasts for the whole hierarchy. Hence, these approaches are limited in only using information from a single level of aggregation and furthermore ignoring any correlations across levels.
+All the traditional approaches discussed so far are limited in only using information from a single-level of aggregation and furthermore ignoring any correlations across levels. An alternative framework that overcomes these limitations, first proposed by \citet{HynEtAl2011} and implemented by \citet{AthEtAl2009}, is one that involves forecast reconciliation. In a first step forecasts for all the series across all levels of the hierarchy are generated, ignoring any aggregation constraints. We refer to these as \textit{base} forecasts and denote them as $\hat{\vec{y}}_{T+h|T}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate all base forecasts so that the coherent nature of the data is extended to the forecasts.
 
-An alternative framework that overcomes these limitations, first proposed by \citet{HynEtAl2011} and implemented by \citet{AthEtAl2009}, is one that involves forecast reconciliation. In a first step forecasts for all the series across all levels of the hierarchy are generated, ignoring the aggregation. We refer to these as \textit{base} forecasts and denote them as $\hat{\vec{y}}_{t+h|t}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate all base forecasts so that the coherent nature of the data is extended to the forecasts.
-
-In a second step, base forecasts are revised and reconciled so that they become coherent. This is achieved by projecting the base forecasts $\hat{\vec{y}}_{t+h|t}$ onto the coherent subspace $\mathfrak{s}$, via a projection matrix $\vec{SG}$, resulting in a set of coherent forecasts $\tilde{\vec{y}}_{t+h|t}$. More specifically,
+In a second step, base forecasts are revised and reconciled so that they become coherent. This is achieved by projecting the base forecasts $\hat{\vec{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, via a projection matrix $\vec{SG}$, resulting in a set of coherent forecasts $\tilde{\vec{y}}_{T+h|T}$. More specifically,
 \begin{equation}\label{eq:recon}
-\tilde{\vec{y}}_{t+h|t}=\vec{S}\vec{G}\hat{\vec{y}}_{t+h|t},
+\tilde{\vec{y}}_{T+h|T}=\vec{S}\vec{G}\hat{\vec{y}}_{T+h|T},
 \end{equation}
-where $\vec{G}$ is an $m\times n$ matrix that maps $\hat{\vec{y}}_{t+h|t}$ to the $\mathbb{R}^m$ space, producing a set of coherent forecasts for the bottom-level series, which are in turn mapped to the coherent subspace by the summing matrix $\vec{S}$ as defined in \eqref{eq:summing matrix}.
+where $\vec{G}$ is an $m\times n$ matrix that maps $\hat{\vec{y}}_{T+h|T}$ to the $\mathbb{R}^m$ space, producing a set of coherent forecasts for the bottom-level which are in turn mapped to the coherent subspace by the summing matrix $\vec{S}$ as defined in \eqref{eq:summing matrix}.
 
-Note that all traditional approaches discussed so far can also be represented by \eqref{eq:recon} using an appropriately designed \vec{G}. For example, for the bottom-up approach, $\vec{G}=\begin{pmatrix}
+Note that all single-level approaches discussed so far can also be represented by \eqref{eq:recon} using appropriately designed \vec{G} matrices. For example, for the bottom-up approach, $\vec{G}=\begin{pmatrix}
 \vec{0}_{(m \times n-m)} & \vec{I}_m
 \end{pmatrix}$. We do not define these as reconciliation approaches as only forecasts from a single level of the hierarchy are used and subsequently these are either aggregated or disaggregated with no revision or reconciliation taking place.
 
 \textcolor{red}{Revisit the following:}
 It is worth discussing the unbiased property of these reconciled point forecasts.
 
-Assume that the base forecasts are unbiased. That is, $E_{1:t}(\hat{\vec{y}}_{t+h|t})=\umu_{t+h|t}$ where $\umu_{t+h|t} = E_{1:t}[\vec{y}_{t+h}|\vec{y}_1,...,\vec{y}_t]$ is the true mean with the expectation taken over the observed sample up to time $t$. Then for any $\vec{G}$ such that $\vec{SGS}=\vec{S}$ or equivalently $\vec{SG}=\vec{I}_m$ the resulting coherent forecasts are also unbiased. \textcolor{red}{Can we tie in here this? Can we say: More generally \citep{Gamakumara2018} show that any $\vec{SG}$ that is a projection matrix will result to unbiased coherent forecasts}.
-
 \subsubsection{OLS reconciliation}
 
 \cite{HynEtAl2011} proposed to ``optimally'' reconcile the base forecasts through the following regression model:
 \begin{equation}\label{eq:OLS}
-\hat{\vec{y}}_{t+h|t} = \vec{S\ubeta}_{t+h|t} + \vec{\varepsilon}_{t+h|t},
+\hat{\vec{y}}_{T+h|T} = \vec{S\ubeta}_{T+h|T} + \vec{\varepsilon}_{T+h|T},
 \end{equation}
-where $\vec{\ubeta}_{t+h|t}=E[\vec{b}_{t+h}|\vec{b}_1,.....,\vec{b}_t]$ is the unknown conditional mean of the bottom-level series and $\vec{\varepsilon}_{t+h|t}$ is the coherence or reconciliation error with mean zero and variance $\vec{V}$. The ordinary least squares (OLS) solution leads to the usual projection matrix $\vec{S}(\vec{S}'\vec{S})^{-1}\vec{S}'$, so that a set of coherent forecasts are obtained by,
+where $\vec{\ubeta}_{T+h|T}=E[\vec{b}_{t+h}|\vec{b}_1,.....,\vec{b}_t]$ is the unknown conditional mean of the bottom-level series and $\vec{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\vec{V}$. The ordinary least squares (OLS) solution leads to the usual projection matrix $\vec{S}(\vec{S}'\vec{S})^{-1}\vec{S}'$, so that a set of coherent forecasts are obtained by,
 \begin{equation*}
-\tilde{\vec{y}}_{t+h|t}^{\text{OLS}} = \vec{S}(\vec{S}'\vec{S})^{-1}\vec{S}'\hat{\vec{y}}_{t+h|t}.
+\tilde{\vec{y}}_{T+h|T}^{\text{OLS}} = \vec{S}(\vec{S}'\vec{S})^{-1}\vec{S}'\hat{\vec{y}}_{T+h|T}.
 \end{equation*}
-In this reconciliation, the incoherent forecasts are orthogonally projected to the coherent subspace $\mathfrak{s}$. Hence the OLS projection minimises the Euclidean distance between $\hat{\vec{y}}_{t+h|t}$ and $\tilde{\vec{y}}_{t+h|t}$.
+In this reconciliation, the incoherent forecasts are orthogonally projected to the coherent subspace $\mathfrak{s}$. Hence the OLS projection minimises the Euclidean distance between $\hat{\vec{y}}_{T+h|T}$ and $\tilde{\vec{y}}_{T+h|T}$.
 
 \textcolor{red}{Can we add Tas's picture and talk about optimality in this sense.}
 
@@ -310,24 +275,22 @@ We should note that using the GLS solution in this context is not possible as \c
 
 \subsubsection{Optimal MinT reconciliation}
 
-\cite{WicEtAl2019} build on the work of \citet{HynEtAl2011} on forecast reconciliation and introduce the MinT approach. MinT is optimal in the sense that given a set of unbiased base forecasts, MinT returns a set of best linear unbiased coherent forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the coherent forecasts.
-
+\cite{WicEtAl2019} build on the work of \citet{HynEtAl2011} on forecast reconciliation and introduce the MinT approach. Assume that we generate a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\vec{y}}_{T+h|T})= E_{1:t}[\vec{y}_{T+h}|\vec{y}_1,...,\vec{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$. Then for any $\vec{G}$ such that $\vec{SGS}=\vec{S}$ or equivalently $\vec{SG}=\vec{I}_m$ the resulting coherent forecasts are also unbiased. \textcolor{red}{Can we tie in here this? Can we say: More generally \citep{Gamakumara2018} show that any $\vec{SG}$ that is a projection matrix will result to unbiased coherent forecasts}.
 Let
 \begin{equation}\label{eq:base errors}
-\hat{\vec{e}}_{t+h|t} = \vec{y}_{t+h|t}-\hat{\vec{y}}_{t+h|t}
+\hat{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\hat{\vec{y}}_{T+h|T}
 \end{equation}
-denote the forecast errors for a set of unbiased base forecasts $\hat{\vec{y}}_{t+h|t}$, with Var$(\hat{\vec{e}}_{t+h|t})=\vec{W}_h$. Also let \begin{equation*}
-\tilde{\vec{e}}_{t+h|t} = \vec{y}_{t+h|t}-\tilde{\vec{y}}_{t+h|t}
-\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\vec{G}$ such that $\vec{S}\vec{G}\vec{S}=\vec{S}$, $\text{Var}(\tilde{\vec{e}}_{t+h|t})=\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}'
+denote a set of base forecast errors, with Var$(\hat{\vec{e}}_{T+h|T})=\vec{W}_h$, and 
+\begin{equation*}
+\tilde{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\tilde{\vec{y}}_{T+h|T}
+\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\vec{G}$ such that $\vec{S}\vec{G}\vec{S}=\vec{S}$, $\text{Var}(\tilde{\vec{e}}_{T+h|T})=\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}'
 $. Furthermore Theorem 1 shows that
 \begin{equation} \label{eq:MinT}
 \vec{G} = (\vec{S}'{\vec{W}}^{-1}_h\vec{S})^{-1}\vec{S}'{\vec{W}}^{-1}_h
 \end{equation}
-is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. The unbiasedness constraint ensures that for a set of unbiased base forecasts the resulting reconciled forecasts are also unbiased. Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors.
+is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased coherent forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the coherent forecasts. \textcolor{red}{WHERE DO WE SHOW THIS: As shown by \cite{WicEtAl2019} the MinT solution is an oblique projection of $\hat{\vec{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, and it minimises the Mahalonobis distance between $\hat{\vec{y}}_{T+h|T}$ and $\tilde{\vec{y}}_{T+h|T}$.}
 
-The MinT solution is an oblique projection of $\hat{\vec{y}}_{t+h|t}$ onto the coherent subspace $\mathfrak{s}$ and as shown by \cite{WicEtAl2019}, it minimises the Mahalonobis distance between $\hat{\vec{y}}_{t+h|t}$ and $\tilde{\vec{y}}_{t+h|t}$.
-
-A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal does not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
+A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
 
 \citet{WicEtAl2019} present possible alternative estimators for ${\vec{W}}_{h}$ and show that these lead to different $\vec{G}$ matrices. We summarise these below.
 
@@ -353,7 +316,7 @@ Point forecasts are limited since they provide no indication of uncertainty arou
 
 %For example, \citet{McSharry2005} produced probabilistic forecasts for electricity demand, \citet{BenTaieb2017} for smart meter data, \citet{Pinson2009} for wind power generation, and \citet{Gel2004}, \citet{Gneiting2005a} and \citet{Gneiting2005} for various weather variables.
 
-The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\vec{y}_{t+h|t}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
+The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\vec{y}_{T+h|T}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
 To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \cite{Taieb2017} who define a coherent forecast in terms of a convolution.  An equivalent definition, provided by \cite{Gamakumara2018} defines a  coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$.  \cite{Gamakumara2018} also generalise the concept of forecast reconciliation to the probabilistic setting.  In brief, let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\mathbb{R}^n$ that are mapped onto  $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$.  Letting $\hat{\nu}$ be a `base' probabilistic forecast for the full hierarchy,
 the coherent measure $\tilde{\nu}$ `reconciles' $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 
