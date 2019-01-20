@@ -473,6 +473,152 @@ Ss[S_B(\cdot)] = \frac{S_B(\bm{Y},\bm{y})^{\text{ref}} - S_B(\breve{\bm{Y}},\bm{
 \end{equation}
 where $S_B(\cdot)$ is average score over $B$ replicates and $S_B(\bm{Y},\bm{y})^{\text{ref}}$ is the average score of the reference forecasting methods. Thus $Ss[S_B(\cdot)]$ gives the percentage improvement of the preferred forecasting method relative to the reference method. Any positive value indicates that method is superior to the reference method, whereas any negative value of $Ss[S_B(\cdot)]$ indicate that the method we compared is poor than the reference method. 
 
+\section{Empirical study}
+
+In this empirical study we apply above discussed hierarchical methods to obtain coherent point as well as probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components. 
+
+Let us first observe the time series plots for each approach. Figure \ref{TS-Inc} and \ref{TS-Exp} depicts these plots for income and expenditure hierarchies respectively. The upper panel of each figure shows the time series of all aggregate level series whereas lower panel shows the bottom level series. We can see that different series reflect different characteristics. For example, in the expenditure hierarchy, some series reflects an upward trend while some others reflect a downward trend or no trend at all. Further some series are having seasonal pattern whereas some does not have any seasonality. Moreover the bottom level series reflects some noise level compared to aggregate series in both hierarchies. Therefore, coherent forecasts through traditional methods such as top-down or bottom-up methods would not be accurate as they will ignore part of the information in generating forecasts. Thus forecast reconciliation is important in this empirical study. 
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.65]{Figs/TS-Inc.PNG}
+	\caption{Time series plots for each series of income hierarchy.}\label{TS-Inc}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/TS-Exp.PNG}
+	\caption{Time series plots for each series of expenditure hierarchy.}\label{TS-Exp}
+\end{figure}
+
+First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark and these are always coherent. 
+
+\subsection{Point forecasts and evaluation}
+
+Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecasts. Then these forecasts were reconciled using alternative methods discussed in section (?). We initially use a training set of 40 observations corresponds to the period 1984, Q1 to 1994, Q3 and generate forecasts for next four quarters. Then the process was repeated by expanding the training window by adding one observation ahead. MSE and MASE were calculated over the replications for each series. Skill scores were then calculated by considering the base forecasts as reference method to compare the incoherent vs coherent forecasts. Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
+
+\textcolor{red}{Discuss results}
+
+\subsubsection*{Income approach}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/INC-PointF.PNG}
+	\caption{Summary of point forecast in income approach}\label{Exp-PointF}
+\end{figure}
+
+
+\subsubsection*{Expenditure approach}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/EXP-PointF.PNG}
+	\caption{Summary of point forecast in expenditure approach}\label{Inc-PointF}
+\end{figure}
+
+
+
+
+\subsection{Probabilistic forecasts and evaluation}
+
+We are also interested to estimate the forecast distributions of GDP and its disaggregate components. For that we use the probabilistic forecasting methods described in section (?). 
+
+\subsubsection{Gaussian probabilistic forecasts for Australian GDP}
+
+Under Gaussian assumption, forecast distribution of GDP is limited to estimating means and variances. First we estimate the mean and variance of 4-step ahead incoherent forecast distributions and then these will be reconciled following \ref{eq:17} and \ref{eq:18} using alternative estimates for $\vec{G}$. Incoherent point forecasts will be taken as an estimate for the mean of incoherent Gaussian forecast distribution $\hat{\mu}_{T+h}$, where as the covariance of incoherent forecast errors will be taken as an estimate of the incoherent variance $\hat{\Sigma}_{T+h}$. Using an expanding window we repeat the process. 
+
+To evaluate the predictive ability of the multivariate Gaussian forecast distributions, we calculate energy score (ES), Variogram score (VS) and multivariate log score (LS) for each replication. Further to see the predictive ability of univariate series, we calculate the CRPS and univariate log scores for marginal Gaussian forecast distributions. Skill scores were then calculated using average scores over replications by taking the scores for incoherent forecasts as reference method. Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
+
+\textcolor{red}{Discuss results}
+
+
+\subsection*{Income approach}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG}
+	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbGaus_ES_VS}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG}
+	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbGaus_UnivS}
+\end{figure}
+
+
+\subsection*{Expenditure approach}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG}
+	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbGaus_ES_VS}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG}
+	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbGaus_UnivS}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Non-parametric probabilistic forecasts for Australian GDP}
+
+We also estimate the coherent probabilistic forecasts for GDP and its disaggregate components by using the non-parametric bootstrap approach explained in the section (?).  
+
+\subsection*{Income approach}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG}
+	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbNonParF_ES_VS}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG}
+	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbNonParF_UnivS}
+\end{figure}
+
+
+
+
+
+
+\subsection*{Expenditure approach}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG}
+	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbNonParF_ES_VS}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG}
+	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbNonParF_UnivS}
+\end{figure}
+
 
 
 
