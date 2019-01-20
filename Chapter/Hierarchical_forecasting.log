@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  10 JAN 2019 15:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  21 JAN 2019 00:05
 entering extended mode
 **./Hierarchical_forecasting.tex
 (Hierarchical_forecasting.tex
@@ -805,6 +805,46 @@ LaTeX Info: Redefining \cite on input line 694.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\setspace\setspace.sty"
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pdfpages.sty"
+Package: pdfpages 2017/01/14 v0.5h Insert pages of external PDF documents (AM)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count269
+\calc@Bcount=\count270
+\calc@Adimen=\dimen273
+\calc@Bdimen=\dimen274
+\calc@Askip=\skip140
+\calc@Bskip=\skip141
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count271
+\calc@Cskip=\skip142
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2015/07/21 v2.0g eso-pic (RN)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)))
+\AM@pagewidth=\dimen275
+\AM@pageheight=\dimen276
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdfpages\pppdftex.def"
+File: pppdftex.def 2017/01/14 v0.5h Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box105
+\AM@global@opts=\toks36
+\AM@toc@title=\toks37
+\c@AM@survey=\count272
+\AM@templatesizebox=\box106
+)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\mathalfa\mathalfa.sty"
 Package: mathalfa 2017/02/23 - 1.09mathalfa (License LPPL) Michael Sharpe
 
@@ -813,10 +853,10 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
-\XKV@toks=\toks36
-\XKV@tempa@toks=\toks37
+\XKV@toks=\toks38
+\XKV@tempa@toks=\toks39
 )
-\XKV@depth=\count269
+\XKV@depth=\count273
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 LaTeX Font Info:    Redeclaring math alphabet \mathbb on input line 140.
@@ -828,13 +868,13 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\basiclayer\pgf.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\utilities\pgfrcs.sty"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common.tex"
-\pgfutil@everybye=\toks38
-\pgfutil@tempdima=\dimen273
-\pgfutil@tempdimb=\dimen274
+\pgfutil@everybye=\toks40
+\pgfutil@tempdima=\dimen277
+\pgfutil@tempdimb=\dimen278
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-common-lists.te
 x")) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfutil-latex.def"
-\pgfutil@abb=\box105
+\pgfutil@abb=\box107
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ms\everyshi.sty"
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -849,30 +889,30 @@ Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
 Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks39
-\pgfkeys@temptoks=\toks40
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.te
 x"
-\pgfkeys@tmptoks=\toks41
+\pgfkeys@tmptoks=\toks43
 ))
-\pgf@x=\dimen275
-\pgf@y=\dimen276
-\pgf@xa=\dimen277
-\pgf@ya=\dimen278
-\pgf@xb=\dimen279
-\pgf@yb=\dimen280
-\pgf@xc=\dimen281
-\pgf@yc=\dimen282
+\pgf@x=\dimen279
+\pgf@y=\dimen280
+\pgf@xa=\dimen281
+\pgf@ya=\dimen282
+\pgf@xb=\dimen283
+\pgf@yb=\dimen284
+\pgf@xc=\dimen285
+\pgf@yc=\dimen286
 \w@pgf@writea=\write4
 \r@pgf@reada=\read2
-\c@pgf@counta=\count270
-\c@pgf@countb=\count271
-\c@pgf@countc=\count272
-\c@pgf@countd=\count273
-\t@pgf@toka=\toks42
-\t@pgf@tokb=\toks43
-\t@pgf@tokc=\toks44
+\c@pgf@counta=\count274
+\c@pgf@countb=\count275
+\c@pgf@countc=\count276
+\c@pgf@countd=\count277
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
  ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgf.cfg"
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
@@ -888,8 +928,8 @@ File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.t
 ex"
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count274
-\pgfsyssoftpath@bigbuffer@items=\count275
+\pgfsyssoftpath@smallbuffer@items=\count278
+\pgfsyssoftpath@bigbuffer@items=\count279
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\systemlayer\pgfsysprotocol.code.t
 ex"
@@ -919,12 +959,12 @@ Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathcalc.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathutil.code.tex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathparser.code.tex"
-\pgfmath@dimen=\dimen283
-\pgfmath@count=\count276
-\pgfmath@box=\box106
-\pgfmath@toks=\toks45
-\pgfmath@stack@operand=\toks46
-\pgfmath@stack@operation=\toks47
+\pgfmath@dimen=\dimen287
+\pgfmath@count=\count280
+\pgfmath@box=\box108
+\pgfmath@toks=\toks47
+\pgfmath@stack@operand=\toks48
+\pgfmath@stack@operation=\toks49
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.code.tex"
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.basic.code.
@@ -944,57 +984,57 @@ ex")
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfunctions.integerarit
 hmetics.code.tex")))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count277
+\c@pgfmathroundto@lastzeros=\count281
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex
 "
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen284
-\pgf@picmaxx=\dimen285
-\pgf@picminy=\dimen286
-\pgf@picmaxy=\dimen287
-\pgf@pathminx=\dimen288
-\pgf@pathmaxx=\dimen289
-\pgf@pathminy=\dimen290
-\pgf@pathmaxy=\dimen291
-\pgf@xx=\dimen292
-\pgf@xy=\dimen293
-\pgf@yx=\dimen294
-\pgf@yy=\dimen295
-\pgf@zx=\dimen296
-\pgf@zy=\dimen297
+\pgf@picminx=\dimen288
+\pgf@picmaxx=\dimen289
+\pgf@picminy=\dimen290
+\pgf@picmaxy=\dimen291
+\pgf@pathminx=\dimen292
+\pgf@pathmaxx=\dimen293
+\pgf@pathminy=\dimen294
+\pgf@pathmaxy=\dimen295
+\pgf@xx=\dimen296
+\pgf@xy=\dimen297
+\pgf@yx=\dimen298
+\pgf@yy=\dimen299
+\pgf@zx=\dimen300
+\pgf@zy=\dimen301
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathconstruct.c
 ode.tex"
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen298
-\pgf@path@lasty=\dimen299
+\pgf@path@lastx=\dimen302
+\pgf@path@lasty=\dimen303
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorepathusage.code.
 tex"
 File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
-\pgf@shorten@end@additional=\dimen300
-\pgf@shorten@start@additional=\dimen301
+\pgf@shorten@end@additional=\dimen304
+\pgf@shorten@start@additional=\dimen305
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex
 "
 File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
-\pgfpic=\box107
-\pgf@hbox=\box108
-\pgf@layerbox@main=\box109
-\pgf@picture@serial@count=\count278
+\pgfpic=\box109
+\pgf@hbox=\box110
+\pgf@layerbox@main=\box111
+\pgf@picture@serial@count=\count282
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoregraphicstate.co
 de.tex"
 File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
-\pgflinewidth=\dimen302
+\pgflinewidth=\dimen306
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoretransformations
 .code.tex"
 File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
-\pgf@pt@x=\dimen303
-\pgf@pt@y=\dimen304
-\pgf@pt@temp=\dimen305
+\pgf@pt@x=\dimen307
+\pgf@pt@y=\dimen308
+\pgf@pt@temp=\dimen309
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorequick.code.tex"
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
@@ -1010,12 +1050,12 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex
 "
 File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
-\pgfarrowsep=\dimen306
+\pgfarrowsep=\dimen310
 )
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen307
-\pgf@sys@shading@range@num=\count279
+\pgf@max=\dimen311
+\pgf@sys@shading@range@num=\count283
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreimage.code.te
 x"
 File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
@@ -1023,7 +1063,7 @@ File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcoreexternal.code.t
 ex"
 File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
-\pgfexternal@startupbox=\box110
+\pgfexternal@startupbox=\box112
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex
 "
@@ -1039,15 +1079,15 @@ File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 )))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleshapes.code.tex"
 File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
-\pgfnodeparttextbox=\box111
+\pgfnodeparttextbox=\box113
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
 File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-0-65.
 sty"
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen308
-\pgf@nodesepend=\dimen309
+\pgf@nodesepstart=\dimen312
+\pgf@nodesepend=\dimen313
 )
 ("C:\Program Files\MiKTeX 2.9\tex\latex\pgf\compatibility\pgfcomp-version-1-18.
 sty"
@@ -1061,10 +1101,10 @@ Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
 Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\math\pgfmath.code.tex")
-\pgffor@iter=\dimen310
-\pgffor@skip=\dimen311
-\pgffor@stack=\toks48
-\pgffor@toks=\toks49
+\pgffor@iter=\dimen314
+\pgffor@skip=\dimen315
+\pgffor@stack=\toks50
+\pgffor@toks=\toks51
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex"
 Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
@@ -1072,31 +1112,31 @@ Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryplothandlers.
 code.tex"
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
-\pgf@plot@mark@count=\count280
-\pgfplotmarksize=\dimen312
+\pgf@plot@mark@count=\count284
+\pgfplotmarksize=\dimen316
 )
-\tikz@lastx=\dimen313
-\tikz@lasty=\dimen314
-\tikz@lastxsaved=\dimen315
-\tikz@lastysaved=\dimen316
-\tikzleveldistance=\dimen317
-\tikzsiblingdistance=\dimen318
-\tikz@figbox=\box112
-\tikz@figbox@bg=\box113
-\tikz@tempbox=\box114
-\tikz@tempbox@bg=\box115
-\tikztreelevel=\count281
-\tikznumberofchildren=\count282
-\tikznumberofcurrentchild=\count283
-\tikz@fig@count=\count284
+\tikz@lastx=\dimen317
+\tikz@lasty=\dimen318
+\tikz@lastxsaved=\dimen319
+\tikz@lastysaved=\dimen320
+\tikzleveldistance=\dimen321
+\tikzsiblingdistance=\dimen322
+\tikz@figbox=\box114
+\tikz@figbox@bg=\box115
+\tikz@tempbox=\box116
+\tikz@tempbox@bg=\box117
+\tikztreelevel=\count285
+\tikznumberofchildren=\count286
+\tikznumberofcurrentchild=\count287
+\tikz@fig@count=\count288
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\modules\pgfmodulematrix.code.tex"
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count285
-\pgfmatrixcurrentcolumn=\count286
-\pgf@matrix@numberofcolumns=\count287
+\pgfmatrixcurrentrow=\count289
+\pgfmatrixcurrentcolumn=\count290
+\pgf@matrix@numberofcolumns=\count291
 )
-\tikz@expandcount=\count288
+\tikz@expandcount=\count292
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
 librarytopaths.code.tex"
@@ -1110,36 +1150,36 @@ Writing index file Hierarchical_forecasting.idx
 (Hierarchical_forecasting.aux)
 \openout1 = `Hierarchical_forecasting.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count289
-\scratchdimen=\dimen319
-\scratchbox=\box116
-\nofMPsegments=\count290
-\nofMParguments=\count291
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count292
-\MPscratchDim=\dimen320
-\MPnumerator=\count293
-\makeMPintoPDFobject=\count294
-\everyMPtoPDFconversion=\toks51
+\scratchcounter=\count293
+\scratchdimen=\dimen323
+\scratchbox=\box118
+\nofMPsegments=\count294
+\nofMParguments=\count295
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count296
+\MPscratchDim=\dimen324
+\MPnumerator=\count297
+\makeMPintoPDFobject=\count298
+\everyMPtoPDFconversion=\toks53
 ) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -1147,9 +1187,6 @@ Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -1192,138 +1229,371 @@ Dictionary: translator-basic-dictionary, Language: English
 ("C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/03/23 v2.7f siunitx: Abbreviated units
 )
+\AtBeginShipoutBox=\box119
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+))
 ABD: EveryShipout initializing macros
-\c__siunitx_mathsf_int=\count295
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 47
+\c__siunitx_mathsf_int=\count299
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 48
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 47
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 48
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd"
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 47
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 48
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd"
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 47
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 48
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd"
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 47.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 48.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-\c__siunitx_mathtt_int=\count296
+\c__siunitx_mathtt_int=\count300
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 
 
-Package mathptmx Warning: There are no bold math fonts on input line 62.
+Package mathptmx Warning: There are no bold math fonts on input line 63.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 63.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.29004> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.10005> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 62.
+(Font)              size <8> substituted on input line 63.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 67.
-
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 73--74
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 76.
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
- [1
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
+[1
 
 
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
 
  []
 
-[2]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 83.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
+ [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 136.
- [3] [4] [5] [6]
-LaTeX Font Info:    Try loading font information for U+psy on input line 218.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 100.
+
+Overfull \hbox (15.3549pt too wide) in paragraph at lines 117--117
+[] 
+ []
+
+[3] [4] [5] [6] [7]
+LaTeX Font Info:    Try loading font information for U+psy on input line 245.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
 File: upsy.fd 2001/06/04 font definitions for U/psy.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 261--262
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 288--289
 
  []
 
-[8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 297--298
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
 
  []
 
-[10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
-(Hierarchical_forecasting.bbl [23]
-Underfull \hbox (badness 10000) in paragraph at lines 120--125
+[11] [12] [13] [14] [15]
+
+Package natbib Warning: Citation `hyndman2018forecasting' on page 16 undefined 
+on input line 423.
+
+[16] [17] <Figs/TS-Inc.PNG, id=71, 481.04718pt x 364.36125pt>
+File: Figs/TS-Inc.PNG Graphic file (type png)
+
+<use Figs/TS-Inc.PNG>
+Package pdftex.def Info: Figs/TS-Inc.PNG used on input line 485.
+(pdftex.def)             Requested size: 312.67696pt x 236.832pt.
+ <Figs/TS-Exp.PNG, id=72, 903.375pt x 683.55376pt>
+File: Figs/TS-Exp.PNG Graphic file (type png)
+
+<use Figs/TS-Exp.PNG>
+Package pdftex.def Info: Figs/TS-Exp.PNG used on input line 492.
+(pdftex.def)             Requested size: 451.6864pt x 341.77605pt.
+
+Overfull \hbox (118.78917pt too wide) in paragraph at lines 492--493
+ [][] 
+ []
+
+[18 <./Figs/TS-Inc.PNG>]
+
+LaTeX Warning: Reference `Tab: Inc_PointF' on page 19 undefined on input line 5
+00.
+
+
+LaTeX Warning: Reference `Tab: Exp_PointF' on page 19 undefined on input line 5
+00.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--501
+
+ []
+
+[19 <./Figs/TS-Exp.PNG (PNG copy)>]
+<Figs/Results/INC-PointF.PNG, id=81, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-PointF.PNG Graphic file (type png)
+
+<use Figs/Results/INC-PointF.PNG>
+Package pdftex.def Info: Figs/Results/INC-PointF.PNG used on input line 509.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/Results/EXP-PointF.PNG, id=82, 602.25pt x 455.45157pt>
+File: Figs/Results/EXP-PointF.PNG Graphic file (type png)
+
+<use Figs/Results/EXP-PointF.PNG>
+Package pdftex.def Info: Figs/Results/EXP-PointF.PNG used on input line 519.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [20 <./Figs/Results/INC-PointF.PNG>]
+
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_ES_VS' on page 21 undefined on inpu
+t line 534.
+
+
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_LS' on page 21 undefined on input l
+ine 534.
+
+
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_UnivS' on page 21 undefined on inpu
+t line 534.
+
+
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_ES_VS' on page 21 undefined on inpu
+t line 534.
+
+
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_LS' on page 21 undefined on input l
+ine 534.
+
+
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_UnivS' on page 21 undefined on inpu
+t line 534.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 534--535
+
+ []
+
+[21 <./Figs/Results/EXP-PointF.PNG>]
+<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG, id=91, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG Graphic file (type png)
+
+<use Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG>
+Package pdftex.def Info: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG used on 
+input line 544.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG, id=92, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG Graphic file (type png)
+
+<use Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG>
+Package pdftex.def Info: Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG used on inp
+ut line 551.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [22 <./Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG>]
+<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG, id=97, 481.8pt x 364.36125pt>
+File: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG Graphic file (type png)
+
+<use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG>
+Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG used on 
+input line 561.
+(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+
+<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG, id=98, 481.8pt x 364.36125pt>
+File: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG Graphic file (type png)
+
+<use Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG>
+Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG used on inp
+ut line 568.
+(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+ [23 <./Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG> <./Figs/Results/EXP-ProbGau
+ssF-MultivS_ES_VS.PNG>]
+<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG, id=104, 481.8pt x 364.36125pt
+>
+File: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG Graphic file (type png)
+ <use Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG>
+Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG used o
+n input line 590.
+(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+ [24 <./Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG>]
+<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG, id=109, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG Graphic file (type png)
+
+<use Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG>
+Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG used on i
+nput line 597.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [25 <./Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG>]
+<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG, id=115, 602.25pt x 455.45157p
+t>
+File: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG Graphic file (type png)
+ <use Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG>
+Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG used o
+n input line 611.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [26 <./Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG>]
+<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG, id=120, 602.25pt x 455.45157pt>
+File: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG Graphic file (type png)
+
+<use Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG>
+Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG used on i
+nput line 618.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [27 <./Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG>] [28 <./Figs/Results/E
+XP-ProbNonParaF-UnivS_CRPS.PNG>] <Figs/GDP_P_fig1.PNG, id=129, 463.7325pt x 299
+.31825pt>
+File: Figs/GDP_P_fig1.PNG Graphic file (type png)
+
+<use Figs/GDP_P_fig1.PNG>
+Package pdftex.def Info: Figs/GDP_P_fig1.PNG used on input line 635.
+(pdftex.def)             Requested size: 301.42255pt x 194.55455pt.
+
+<Figs/GDP_P_fig2.PNG, id=131, 348.70274pt x 261.3765pt>
+File: Figs/GDP_P_fig2.PNG Graphic file (type png)
+
+<use Figs/GDP_P_fig2.PNG>
+Package pdftex.def Info: Figs/GDP_P_fig2.PNG used on input line 642.
+(pdftex.def)             Requested size: 348.70187pt x 261.37584pt.
+
+Overfull \hbox (15.80464pt too wide) in paragraph at lines 642--643
+ [][] 
+ []
+
+[29 <./Figs/GDP_P_fig1.PNG>]
+<Figs/GDP_I_fig1.PNG, id=136, 554.07pt x 330.033pt>
+File: Figs/GDP_I_fig1.PNG Graphic file (type png)
+ <use Figs/GDP_I_fig1.PNG>
+Package pdftex.def Info: Figs/GDP_I_fig1.PNG used on input line 649.
+(pdftex.def)             Requested size: 360.14124pt x 214.51889pt.
+
+Overfull \hbox (27.244pt too wide) in paragraph at lines 649--650
+ [][] 
+ []
+
+[30 <./Figs/GDP_P_fig2.PNG>]
+Overfull \hbox (76.06836pt too wide) in paragraph at lines 655--655
+[] 
+ []
+
+<Figs/GDP_E_fig1.PNG, id=141, 449.88075pt x 376.40625pt>
+File: Figs/GDP_E_fig1.PNG Graphic file (type png)
+
+<use Figs/GDP_E_fig1.PNG>
+Package pdftex.def Info: Figs/GDP_E_fig1.PNG used on input line 661.
+(pdftex.def)             Requested size: 292.41902pt x 244.66115pt.
+ [31 <./Figs/GDP_I_fig1.PNG>]
+<Figs/GDP_E_fig2.PNG, id=147, 338.4645pt x 298.11375pt>
+File: Figs/GDP_E_fig2.PNG Graphic file (type png)
+
+<use Figs/GDP_E_fig2.PNG>
+Package pdftex.def Info: Figs/GDP_E_fig2.PNG used on input line 668.
+(pdftex.def)             Requested size: 338.46367pt x 298.11302pt.
+
+Overfull \hbox (5.56644pt too wide) in paragraph at lines 668--669
+ [][] 
+ []
+
+[32 <./Figs/GDP_E_fig1.PNG>]
+<Figs/GDP_E_fig3.PNG, id=152, 590.80725pt x 351.714pt>
+File: Figs/GDP_E_fig3.PNG Graphic file (type png)
+
+<use Figs/GDP_E_fig3.PNG>
+Package pdftex.def Info: Figs/GDP_E_fig3.PNG used on input line 675.
+(pdftex.def)             Requested size: 384.02016pt x 228.61139pt.
+
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 675--676
+ [][] 
+ []
+
+[33 <./Figs/GDP_E_fig2.PNG>] [34 <./Figs/GDP_E_fig3.PNG>] [35] [36] [37]
+(Hierarchical_forecasting.bbl
+Overfull \hbox (48.59975pt too wide) in paragraph at lines 10--14
+\OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
+etailsPage/5216.02015?OpenDocument 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--21
+\OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
+etailsPage/5206.0Sep
+ []
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 136--141
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 https://www.degruyter.com/view/j/sagmb.20
 05.4.issue-
  []
 
-) [24] (Hierarchical_forecasting.aux)
+)
+
+Package natbib Warning: There were undefined citations.
+
+[39] (Hierarchical_forecasting.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 24505 strings out of 493320
- 492493 string characters out of 3138947
- 718932 words of memory out of 3000000
- 27595 multiletter control sequences out of 15000+200000
+ 25458 strings out of 493320
+ 509436 string characters out of 3138947
+ 535116 words of memory out of 3000000
+ 28496 multiletter control sequences out of 15000+200000
  61775 words of font info for 154 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,10406b,498s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,18n,54p,10406b,506s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
@@ -1336,9 +1606,9 @@ onts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/boondox/zxxrl8a.pfb>
-Output written on Hierarchical_forecasting.pdf (24 pages, 204081 bytes).
+Output written on Hierarchical_forecasting.pdf (39 pages, 529608 bytes).
 PDF statistics:
- 135 PDF objects out of 1000 (max. 8388607)
+ 221 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 103 words of extra memory for PDF output out of 10000 (max. 10000000)
 

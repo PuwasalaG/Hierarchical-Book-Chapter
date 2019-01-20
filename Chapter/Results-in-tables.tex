@@ -1,0 +1,700 @@
+%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for your "contribution" to a contributed volume
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[graybox]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{mathptmx}       % selects Times Roman as basic font
+\usepackage{helvet}         % selects Helvetica as sans-serif font
+\usepackage{courier}        % selects Courier as typewriter font
+\usepackage{type1cm}        % activate if the above 3 fonts are
+                            % not available on your system
+%
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+\usepackage{qtree, bm, amsmath, amssymb, qtree, bm, multirow, textcmds, siunitx, mathrsfs, float, booktabs, color, soul}
+\usepackage{natbib, setspace}
+\usepackage{pdfpages} %To insert pdf pages
+\usepackage[bb=boondox]{mathalfa}
+\usepackage{tikz}
+% see the list of further useful packages
+% in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\textsc{\textsc{\bibliographystyle{natbb}
+%
+%\bibliography{References_HTSF}
+
+\def\ba{\begin{pmatrix}\tilde{\vec{b}}\\ \tilde{\vec{a}}\end{pmatrix}}
+\def\GH{\begin{pmatrix}\vec{G}\\ \vec{F}\end{pmatrix}}
+
+\begin{document}
+
+\title*{Hierarchical Forecasting}
+% Use \titlerunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\author{Name of First Author and Name of Second Author}
+% Use \authorrunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\institute{Name of First Author \at Name, Address of Institute, \email{name@email.address}
+\and Name of Second Author \at Name, Address of Institute \email{name@email.address}}
+%
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+%
+\maketitle
+
+\section{Results in tables}
+
+\subsection{Point forecasting}
+
+\subsubsection*{Income approach}
+
+
+\begin{table}[H] 
+	\caption{Summary of point forecast in income approach}
+	\centering 
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{MSE} & \multicolumn{4}{c}{MASE} & \multicolumn{4}{c}{MSE} & \multicolumn{4}{c}{MASE} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			&&&&&&&\multicolumn{3}{c}{Most aggregate level}&&&&&&&\\
+			\midrule
+			Benchmark & -418.74 & -135.45 & -36.30 & -3.10 & -127.28 & -69.39 & -28.70 & -21.03 & -420.06 & -128.25 & -39.11 & -15.49 & -140.89 & -67.24 & -38.84 & -28.69\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -17.93 & -3.68 & 7.80 & 9.35 & -5.62 & -3.49 & -4.36 & -15.49 & -9.15 & 7.01 & 10.74 & 13.18 & -13.13 & -1.12 & -6.25 & -9.78\\
+			
+			OLS & -0.18 & 3.45 & 6.05 & 6.70 & 0.05 & 0.96 & 3.47 & 1.50 & 2.12 & 2.46 & 2.54 & 1.92 & -0.83 & 1.84 & 0.75 & 0.62\\
+			
+			WLS & -4.05 & 5.59 & 11.57 & 13.09 & -0.67 & 2.96 & 3.32 & -2.27 & 2.41 & 6.80 & 9.35 & 9.71 & -4.14 & 1.41 & 1.05 & -1.78\\
+			
+			MinT Shrink & -0.72 & 5.86 & 9.33 & 9.70 & 3.25 & 5.14 & 4.63 & -1.15 & 7.06 & 9.05 & 8.63 & 9.73 & -0.14 & 0.93 & 1.23 & 0.39\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all aggregate levels}&&&&&&\\
+			\midrule
+			Benchmark & -320.17 & -101.63 & -29.68 & -2.32 & -96.0 & -40.28 & -11.83 & -1.92 & -298.21 & -86.44 & -19.78 & 0.71 & -78.18 & -36.49 & -11.83 & -2.91\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -7.64 & -2.49 & 0.73 & 1.55 & -2.00 & 0.00 & -2.15 & -1.92 & 1.61 & 8.32 & 5.18 & 9.05 & 1.82 & 1.35 & -1.08 & 0.00\\
+			
+			OLS & 3.16 & 3.29 & 2.91 & 2.92 & 2.00 & 2.78 & 2.15 & 1.92 & 4.79 & 4.33 & 3.05 & 3.37 & 1.82 & 1.35 & 1.08 & 1.94\\
+			
+			WLS & 3.61 & 4.84 & 4.39 & 4.45 & 4 & 4.17 & 2.15 & 1.92 & 7.89 & 8.49 & 6.94 & 8.15 & 3.64 & 2.70 & 1.08 & 1.94\\
+			
+			MinT Shrink & 6.46 & 5.18 & 2.39 & 1.54 & 6.00 & 4.17 & 3.23 & 2.88 & 12.69 & 11.96 & 6.76 & 8.69 & 7.27 & 5.41 & 2.15 & 4.85\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across bottom level}&&&&&&\\
+			\midrule
+			Benchmark & -200.06 & -71.72 & -21.93 & -0.40 & -61.02 & -30.67 & -11.11 & -2.02 & -191.76 & -64.02 & -7.71 & 6.65 & -63.79 & -32.43 & -13.64 & -4.12\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 0.66 & -2.57 & -3.50 & -3.73 & -23.73 & -26.67 & -18.89 & -12.12 & -2.88 & -5.33 & -2.55 & -4.91 & -20.69 & -24.32 & -22.73 & -20.62\\
+			
+			WLS & 6.18 & 3.62 & 1.38 & 0.28 & 1.69 & 0.00 & -1.11 & 0.00 & 2.43 & -0.25 & 2.93 & 0.29 & 0.00 & -1.35 & -1.14 & 0.00\\
+			
+			MinT Shrink & 8.78 & 4.34 & 0.58 & -1.43 & 3.39 & 1.33 & 1.11 & 1.01 & 4.81 & 1.57 & 2.15 & 0.47 & 0.00 & -1.35 & -1.14 & 0.00\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all levels}&&&&&&\\
+			\midrule
+			Benchmark & -295.40 & -96.29 & -28.41 & -2.01 & -71.43 & -33.78 & -10.99 & -1.98 & -276.70 & -82.54 & -17.73 & 1.68 & -68.42 & -33.78 & -12.22 & -4.04\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -6.06 & -2.05 & 0.61 & 1.31 & 0.00 & 0.00 & -1.10 & 0.00 & 1.28 & 6.88 & 4.30 & 7.57 & 1.75 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 2.64 & 2.24 & 1.86 & 1.87 & -14.29 & -14.86 & -10.99 & -6.93 & 3.24 & 2.65 & 2.09 & 2.01 & -12.28 & -14.86 & -13.33 & -12.12\\
+			
+			WLS & 4.14 & 4.62 & 3.89 & 3.79 & 3.57 & 1.35 & 0.00 & 0.99 & 6.79 & 6.97 & 6.25 & 6.86 & 1.75 & 0.00 & 0.00 & 1.01\\
+			
+			MinT Shrink & 6.94 & 5.03 & 2.09 & 1.07 & 5.36 & 2.70 & 2.20 & 1.98 & 11.10 & 10.15 & 5.98 & 7.34 & 3.51 & 1.35 & 0.00 & 1.01\\
+			\bottomrule
+		\end{tabular}
+		\label{Tab: Inc_PointF}
+	}
+\end{table}
+
+\subsubsection*{Expenditure approach}
+
+\begin{table}[H] 
+	\caption{Summary of point forecast in expenditure approach}
+	\centering 
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{MSE} & \multicolumn{4}{c}{MASE} & \multicolumn{4}{c}{MSE} & \multicolumn{4}{c}{MASE} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			&&&&&&&\multicolumn{3}{c}{Most aggregate level}&&&&&&&\\
+			\midrule
+			Benchmark & -418.74 & -135.45 & -36.30 & -3.10 & -127.28 & -69.39 & -28.70 & -21.03 & -420.06 & -128.25 & -39.11 & -15.49 & -140.89 & -67.24 & -38.84 & -28.69\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -24.62 & -6.94 & 13.89 & 19.17 & -6.68 & -2.54 & 3.99 & -2.73 & -44.70 & -16.08 & 0.96 & 7.78 & -18.84 & -1.99 & -6.89 & -8.10\\
+			
+			OLS & 8.32 & 8.19 & 11.30 & 11.18 & 6.06 & 5.67 & 6.74 & 4.30 & 5.37 & 5.72 & 7.59 & 7.70 & 0.43 & 3.56 & 3.38 & 4.25\\
+			
+			WLS & 8.75 & 10.69 & 17.96 & 18.90 & 8.48 & 7.91 & 9.37 & 4.83 & 0.97 & 5.08 & 10.24 & 11.50 & 0.15 & 2.91 & 2.11 & 3.12\\
+			
+			MinT Shrink & 9.80 & 10.20 & 16.71 & 18.44 & 9.02 & 6.77 & 9.30 & 5.88 & 2.45 & 3.64 & 8.33 & 8.62 & 0.42 & 0.89 & 0.94 & 1.78\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all aggregate levels}&&&&&&\\
+			\midrule
+			Benchmark & -342.16 & -149.39 & -58.77 & -21.04 & -56.72 & -32.10 & -14.58 & -2.78 & -311.20 & -147.72 & -57.31 & -28.38 & -50.00 & -30.49 & -14.58 & -5.71\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -9.67 & 1.15 & 6.67 & 10.92 & 2.99 & 4.94 & 4.17 & 5.56 & -28.47 & -15.65 & -8.36 & -2.91 & -1.43 & -1.22 & 1.04 & 0.00\\
+			
+			OLS & 9.39 & 9.12 & 9.29 & 8.96 & 1.49 & 1.23 & 1.04 & 0.93 & 7.67 & 5.77 & 6.24 & 6.01 & 2.86 & 1.22 & 2.08 & 1.90\\
+			
+			WLS & 12.33 & 14.06 & 13.73 & 14.24 & 5.97 & 6.17 & 5.21 & 5.56 & 5.56 & 5.02 & 7.25 & 8.18 & 4.29 & 3.66 & 4.17 & 3.81\\
+			
+			MinT Shrink & 13.99 & 16.04 & 14.26 & 14.47 & 7.46 & 7.41 & 6.25 & 5.56 & 7.71 & 4.56 & 7.32 & 7.20 & 5.71 & 3.66 & 5.21 & 3.81\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across bottom level}&&&&&&\\
+			\midrule
+			Benchmark & -167.10 & -69.04 & -24.00 & -3.48 & -53.01 & -27.45 & -11.76 & -2.27 & -136.49 & -43.61 & -10.04 & 6.21 & -49.41 & -26.21 & -12.71 & -2.27\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -1.06 & -5.53 & -11.11 & -15.14 & -14.46 & -13.73 & -16.81 & -17.42 & 3.40 & 2.61 & -3.02 & -4.06 & -15.29 & -11.65 & -11.86 & -9.85\\
+			
+			WLS & 1.91 & -0.99 & -4.84 & -7.77 & 0.00 & 0.00 & 0.00 & -1.52 & 6.53 & 7.03 & 1.43 & 0.90 & 1.18 & 0.00 & 0.00 & 0.00\\
+			
+			MinT Shrink & 2.36 & -2.43 & -6.15 & -8.77 & 1.20 & 0.00 & 0.00 & -1.52 & 5.37 & 7.14 & 0.48 & -0.96 & 1.18 & 0.00 & 0.00 & 0.00\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all levels}&&&&&&\\
+			\midrule
+			Benchmark & -301.11 & -132.24 & -52.19 & -17.98 & -55.84 & -28.42 & -12.61 & -2.42 & -268.67 & -122.65 & -47.54 & -21.54 & -50.0 & -27.08 & -12.61 & -3.25\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.0 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -7.41 & 0.91 & 5.41 & 9.02 & 0.00 & 1.05 & 0.90 & 1.61 & -21.54 & -11.88 & -6.64 & -2.34 & 0.0 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 6.94 & 5.99 & 5.43 & 4.77 & -10.39 & -9.47 & -11.71 & -12.10 & 6.63 & 5.01 & 4.33 & 4.02 & -10.0 & -8.33 & -7.21 & -6.50\\
+			
+			WLS & 9.89 & 10.84 & 10.22 & 10.41 & 1.30 & 2.11 & 0.90 & 0.81 & 5.79 & 5.50 & 6.05 & 6.74 & 2.5 & 1.04 & 1.80 & 0.81\\
+			
+			MinT Shrink & 11.26 & 12.10 & 10.40 & 10.42 & 2.60 & 2.11 & 1.80 & 0.81 & 7.14 & 5.18 & 5.91 & 5.58 & 2.5 & 2.08 & 1.80 & 0.81\\
+			\bottomrule
+		\end{tabular}
+		\label{Tab: Exp_PointF}
+	}
+\end{table}
+
+
+\subsection{Probabilistic forecasting - Gaussian approach}
+
+
+\subsection*{Income approach}
+
+\begin{table}[H] 
+	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			Benchmark & -96.14 & -36.28 & -6.59 & 5.26 & -156.30 & -50.32 & -9.15 & 6.00 & -88.32 & -32.30 & -3.07 & 6.61 & -145.36 & -40.81 & 0.21 & 13.59\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -0.09 & 0.84 & -1.11 & -2.53 & 1.08 & 2.99 & 2.51 & 2.44 & 2.24 & 3.06 & 0.81 & 1.09 & 4.11 & 6.63 & 3.45 & 4.93\\
+			
+			OLS & 1.87 & 1.93 & 1.33 & 1.41 & 1.01 & -0.62 & -0.60 & 0.00 & 1.62 & 1.63 & 1.18 & 1.06 & -0.68 & -0.31 & 0.02 & -0.31\\
+			
+			WLS & 3.85 & 4.00 & 2.05 & 1.16 & 7.41 & 5.61 & 3.62 & 2.64 & 3.51 & 3.77 & 2.62 & 2.68 & 6.31 & 6.69 & 5.86 & 5.54\\
+			
+			MinT Sample & 4.58 & -0.14 & -2.41 & -2.78 & 8.48 & -1.36 & -8.09 & -13.39 & -0.44 & -4.27 & -5.78 & -2.11 & -0.65 & -0.55 & -6.82 & -4.65\\
+			
+			MinT Shrink & 5.43 & 4.54 & 2.40 & 1.61 & 9.84 & 6.16 & 3.39 & 1.13 & 5.59 & 3.93 & 2.67 & 4.20 & 8.83 & 9.20 & 6.28 & 6.62\\
+			\bottomrule
+		\end{tabular}
+		\label{Tab: Inc_ProbGaus_ES_VS}
+	}
+\end{table}
+
+\begin{table}[H] 
+	\caption{Skill scores with respect to log score for multivariate Gaussian forecast distribution}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ETS} & \multicolumn{4}{c}{ARIMA} \\
+			\cmidrule(lr){2-5} \cmidrule(l){6-9}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			Bottom-up & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -2.62 & 5.65 & 20.17 & 34.21 & -1.71 & 7.24 & 21.16 & 34.33\\
+			
+			WLS & -0.26 & -1.22 & -1.60 & -1.81 & -0.40 & -1.52 & -1.70 & -2.04\\
+			
+			MinT Sample & -3.43 & -10.18 & -15.72 & -20.50 & -4.98 & -11.25 & -15.98 & -18.74\\
+			
+			MinT Shrink & -0.16 & -1.60 & -2.40 & -2.91 & -0.82 & -2.35 & -2.91 & -3.31\\
+			
+		\end{tabular}
+	\label{Tab: Inc_ProbGaus_LS}
+	}
+\end{table}
+
+
+\begin{table}[H]
+	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of the hierarchy}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{CRPS} & \multicolumn{4}{c}{LS} & \multicolumn{4}{c}{CRPS} & \multicolumn{4}{c}{LS} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			&&&&&&&\multicolumn{3}{c}{Most aggregate level}&&&&&&&\\
+			\midrule
+			Benchmark & -129.45 & -55.66 & -14.67 & -4.17 & -5.53 & 11.47 & 28.94 & 36.32 & -133.77 & -50.95 & -19.67 & -7.94 & -4.15 & 15.67 & 31.67 & 37.55\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -0.82 & 1.61 & 2.64 & 1.09 & -1.27 & -1.57 & -1.10 & -1.18 & -0.25 & 1.11 & 0.15 & -0.06 & -0.73 & -1.07 & -1.37 & -1.82\\
+			
+			WLS & -1.80 & 2.88 & 2.92 & -2.21 & -2.55 & -2.78 & -1.76 & -2.72 & -1.39 & 2.32 & 0.65 & -0.41 & -1.18 & -0.27 & 1.27 & 1.40\\
+			
+			MinT Sample & 2.88 & 0.92 & -0.49 & -4.32 & -2.22 & -5.82 & -12.33 & -17.64 & -4.91 & -9.54 & -9.82 & -6.08 & -3.92 & -10.06 & -13.91 & -13.34\\
+			
+			MinT Shrink & 1.01 & 4.31 & 3.22 & -1.83 & -1.95 & -2.81 & -3.96 & -6.27 & 0.89 & 1.17 & 0.43 & 0.78 & -1.11 & -1.45 & -1.69 & -1.87\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all aggregate levels}&&&&&&\\
+			\midrule
+			Benchmark & -108.81 & -41.06 & -7.27 & 4.76 & -6.09 & 10.39 & 23.15 & 30.46 & -97.82 & -37.19 & -5.84 & 4.74 & -5.03 & 11.88 & 24.56 & 30.37\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 1.43 & 1.86 & 1.48 & 1.33 & -1.12 & -2.70 & -4.01 & -4.50 & 1.29 & 1.27 & 0.53 & 1.15 & -1.21 & -2.91 & -4.50 & -5.15\\
+			
+			WLS & 2.47 & 2.69 & 0.97 & -0.11 & -1.73 & -3.80 & -6.31 & -7.52 & 2.45 & 2.07 & 0.50 & 1.49 & -1.61 & -3.65 & -5.77 & -6.11\\
+			
+			MinT Sample & 3.19 & -2.24 & -3.30 & -3.63 & -1.73 & -7.01 & -14.84 & -18.70 & -1.34 & -6.29 & -8.33 & -3.23 & -4.72 & -10.96 & -18.30 & -18.60\\
+			
+			MinT Shrink & 4.02 & 3.13 & 1.40 & 0.59 & -1.52 & -4.22 & -8.03 & -9.58 & 5.22 & 2.49 & 0.51 & 3.26 & -1.61 & -4.40 & -8.44 & -8.88\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all bottom level}&&&&&&\\
+			\midrule
+			Benchmark & -74.79 & -29.85 & -4.80 & 5.13 & -8.12 & 9.06 & 28.41 & 43.29 & -72.44 & -28.79 & -4.24 & 4.85 & -7.85 & 10.01 & 29.56 & 44.08\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -6.37 & -7.66 & -5.73 & -3.82 & -2.79 & 6.22 & 21.18 & 34.84 & -7.87 & -9.25 & -7.89 & -8.12 & -2.28 & 6.57 & 19.63 & 32.19\\
+			
+			WLS & 1.64 & 0.61 & 0.28 & 0.20 & -0.13 & -0.84 & -1.07 & -0.90 & -0.31 & -0.35 & 0.24 & 0.26 & -0.25 & -0.94 & -1.05 & -1.15\\
+			
+			MinT Sample & 0.72 & -3.14 & -2.34 & -4.16 & -1.65 & -5.48 & -8.13 & -10.65 & -6.11 & -8.48 & -9.33 & -6.84 & -3.54 & -7.92 & -10.66 & -10.88\\
+			
+			MinT Shrink & 3.45 & 1.61 & 1.58 & 1.00 & 0.13 & -1.05 & -1.72 & -2.13 & 0.20 & -0.86 & -0.39 & 0.78 & -0.76 & -2.09 & -2.75 & -2.80\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all levels}&&&&&&\\
+			\midrule
+			Benchmark & -97.58 & -37.60 & -6.54 & 4.87 & -7.31 & 9.64 & 26.30 & 38.47 & -89.67 & -34.63 & -5.37 & 4.77 & -6.69 & 10.85 & 27.54 & 38.98\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -1.15 & -1.08 & -0.65 & -0.17 & -2.09 & 2.41 & 10.97 & 20.04 & -1.65 & -1.94 & -1.95 & -1.54 & -1.73 & 2.47 & 9.79 & 18.27\\
+			
+			WLS & 2.20 & 2.04 & 0.77 & -0.02 & -0.81 & -2.12 & -3.11 & -3.41 & 1.56 & 1.33 & 0.42 & 1.13 & -0.81 & -2.09 & -2.91 & -3.00\\
+			
+			MinT Sample & 2.38 & -2.52 & -3.02 & -3.78 & -1.74 & -6.17 & -10.82 & -13.66 & -2.87 & -6.96 & -8.63 & -4.28 & -4.04 & -9.23 & -13.70 & -13.74\\
+			
+			MinT Shrink & 3.83 & 2.66 & 1.46 & 0.71 & -0.58 & -2.41 & -4.20 & -4.96 & 3.60 & 1.47 & 0.24 & 2.54 & -1.04 & -3.04 & -5.05 & -5.05\\
+			\bottomrule
+			
+		\end{tabular}
+	 \label{Tab: Inc_ProbGaus_UnivS}
+	}
+\end{table}
+
+\subsection*{Expenditure approach}
+
+\begin{table}[H] 
+	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			Benchmark & -93.6361 & -44.9789 & -13.7444 & 1.0137 & -91.7685 & -44.2491 & -12.5531 & 4.1985 & -84.6833 & -43.3660 & -14.8151 & -2.6141 & -79.4035 & -38.5125 & -11.4300 & 2.2691\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -1.05 & 1.81 & 3.01 & 2.92 & 1.81 & 4.10 & 5.14 & 7.08 & -6.37 & -3.76 & -2.32 & -1.36 & -2.25 & -1.35 & 0.57 & 1.21\\
+			
+			OLS & 2.63 & 2.00 & 1.59 & 1.16 & -0.41 & -2.42 & -3.94 & -5.01 & 2.34 & 1.32 & 0.91 & 0.83 & 0.77 & -0.27 & -2.16 & -2.43\\
+			
+			WLS & 3.93 & 3.66 & 2.84 & 1.91 & 3.89 & 3.38 & 3.06 & 2.37 & 1.56 & 0.67 & 0.64 & 0.39 & 4.55 & 3.89 & 2.87 & 2.76\\
+			
+			MinT Shrink & 4.37 & 4.02 & 2.88 & 1.85 & 5.00 & 2.88 & 2.23 & 0.73 & 1.91 & 0.17 & 0.11 & -0.57 & 4.23 & 3.81 & 2.82 & 2.17\\
+			\bottomrule
+		\end{tabular}
+		\label{Tab: Exp_ProbGaus_ES_VS}
+	}
+\end{table}
+
+\begin{table}[H] 
+	\caption{Skill scores with respect to log score for multivariate Gaussian forecast distribution}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ETS} & \multicolumn{4}{c}{ARIMA} \\
+			\cmidrule(lr){2-5} \cmidrule(l){6-9}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			Bottom-up & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 0.12 & 2.92 & 6.09 & 9.12 & 0.53 & 4.69 & 9.20 & 13.10\\
+			
+			WLS & -3.26 & -5.20 & -6.58 & -6.95 & -3.05 & -4.56 & -5.51 & -5.90\\
+			
+			MinT Shrink & -3.47 & -5.80 & -7.59 & -8.22 & -3.48 & -5.33 & -6.47 & -7.06\\
+			\bottomrule
+			
+		\end{tabular}
+		\label{Tab: Exp_ProbGaus_LS}
+	}
+\end{table}
+
+
+\begin{table}[H] 
+	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of the hierarchy}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{CRPS} & \multicolumn{4}{c}{LS} & \multicolumn{4}{c}{CRPS} & \multicolumn{4}{c}{LS} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			&&&&&&&\multicolumn{3}{c}{Most aggregate level}&&&&&&&\\
+			\midrule
+			Benchmark & -130.00 & -58.82 & -12.94 & -4.28 & -5.53 & 11.24 & 29.09 & 36.32 & -133.49 & -49.65 & -20.19 & -8.14 & -4.15 & 15.78 & 31.60 & 37.55\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 4.24 & 3.26 & 4.98 & 3.17 & -1.44 & -4.49 & -5.58 & -7.27 & 1.39 & 2.29 & 2.09 & 3.08 & -2.14 & -4.19 & -5.14 & -5.59\\
+			
+			WLS & 5.87 & 3.75 & 7.82 & 2.85 & -2.85 & -7.56 & -7.39 & -9.31 & -0.22 & 1.83 & 1.00 & 2.05 & -3.73 & -5.77 & -5.50 & -5.18\\
+			
+			MinT Shrink & 5.72 & 2.98 & 7.43 & 4.21 & -3.36 & -9.06 & -10.51 & -12.34 & -0.87 & -0.69 & -0.46 & 0.31 & -4.19 & -8.94 & -10.48 & -11.27\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all aggregate levels}&&&&&&\\
+			\midrule
+			Benchmark & -70.80 & -55.79 & -22.73 & -5.75 & 11.95 & 1.74 & 12.44 & 22.13 & -66.95 & -55.09 & -23.68 & -9.08 & 11.26 & 1.09 & 11.34 & 19.55\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 2.25 & 1.65 & 1.12 & 0.74 & -1.35 & -3.26 & -4.78 & -4.81 & 2.07 & 0.52 & 0.47 & 0.11 & -0.68 & -3.28 & -4.07 & -4.36\\
+			
+			WLS & 4.13 & 3.80 & 2.27 & 0.97 & -11.85 & -8.79 & -13.68 & -17.23 & 0.89 & -0.62 & 0.29 & -0.41 & -12.82 & -8.85 & -12.79 & -16.23\\
+			
+			MinT Shrink & 4.78 & 4.90 & 2.65 & 1.15 & -12.91 & -9.45 & -15.31 & -19.68 & 1.54 & -0.96 & 0.19 & -0.98 & -14.56 & -10.49 & -15.12 & -19.28\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all bottom level}&&&&&&\\
+			\midrule
+			Benchmark & -21.37 & -6.39 & -22.58 & -19.45 & 21.03 & 36.61 & 17.12 & 12.00 & -18.89 & -3.17 & -18.96 & -16.45 & 27.52 & 45.46 & 18.07 & 14.67\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -4.64 & -6.43 & -6.11 & -7.67 & 12.98 & 21.02 & 3.57 & 6.95 & -3.16 & -3.09 & -4.04 & -4.66 & 21.14 & 33.84 & 4.57 & 10.33\\
+			
+			WLS & -0.06 & -1.30 & -1.58 & -3.08 & -3.02 & -3.76 & -2.94 & -2.91 & 0.44 & 0.13 & -0.36 & -0.65 & -2.22 & -2.34 & -2.39 & -2.07\\
+			
+			MinT Shrink & 0.64 & -1.56 & -2.05 & -3.54 & -4.12 & -5.36 & -4.20 & -3.92 & 0.54 & 0.19 & -0.79 & -1.52 & -3.60 & -4.06 & -3.84 & -3.37\\
+			\midrule
+			&&&&&&\multicolumn{5}{c}{Average across all levels}&&&&&&\\
+			\midrule
+			Benchmark & -50.77 & -35.31 & -22.68 & -9.74 & 17.94 & 27.04 & 15.46 & 16.15 & -47.50 & -33.24 & -22.13 & -11.32 & 22.25 & 34.67 & 15.72 & 16.57\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -0.54 & -1.70 & -1.20 & -1.71 & 8.03 & 14.31 & 0.51 & 2.22 & -0.05 & -1.00 & -1.01 & -1.33 & 13.99 & 24.84 & 1.52 & 4.62\\
+			
+			WLS & 2.43 & 1.69 & 1.03 & -0.21 & -6.14 & -5.18 & -6.82 & -8.58 & 0.71 & -0.30 & 0.08 & -0.48 & -5.63 & -3.93 & -6.09 & -7.63\\
+			
+			MinT Shrink & 3.10 & 2.22 & 1.14 & -0.22 & -7.14 & -6.50 & -8.24 & -10.19 & 1.14 & -0.48 & -0.13 & -1.14 & -7.14 & -5.58 & -7.81 & -9.54\\
+			\bottomrule
+			
+		\end{tabular}
+		\label{Tab: Exp_ProbGaus_UnivS}
+	}
+\end{table}
+
+
+\subsection{Non-parametric probabilistic forecasts for Australian GDP}
+
+\subsection*{Income approach}
+
+\begin{table}[H] 
+	\caption{Skill scores with respect to energy score and variogram score for multivariate forecast distribution}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			Benchmark & -103.31 & -39.64 & -8.52 & 3.84 & -164.35 & -52.47 & -9.68 & 6.05 & -95.27 & -36.15 & -5.41 & 4.93 & -150.24 & -41.37 & 0.33 & 14.06\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & 0.44 & 1.11 & -0.99 & -2.29 & 1.38 & 3.24 & 2.69 & 2.65 & 2.21 & 3.09 & 0.98 & 1.26 & 4.13 & 6.66 & 3.67 & 5.20\\
+			
+			OLS & 2.35 & 2.25 & 1.77 & 1.85 & 0.72 & -1.08 & -0.74 & -0.11 & 2.29 & 2.02 & 1.61 & 1.55 & -0.91 & -0.43 & -0.14 & -0.37\\
+			
+			WLS & 4.63 & 4.69 & 2.90 & 2.03 & 7.26 & 5.43 & 3.72 & 2.66 & 4.35 & 4.59 & 3.51 & 3.55 & 6.52 & 6.76 & 6.01 & 5.61\\
+			
+			MinT Sample & 5.52 & 0.75 & -1.62 & -2.32 & 8.63 & -1.24 & -8.06 & -13.44 & 0.20 & -3.64 & -5.26 & -1.72 & -0.49 & -0.43 & -6.76 & -4.58\\
+			
+			MinT Shrink & 6.34 & 5.16 & 3.18 & 2.27 & 9.84 & 6.06 & 3.34 & 1.05 & 6.32 & 4.61 & 3.34 & 4.88 & 8.79 & 9.20 & 6.34 & 6.79\\
+			\bottomrule
+			
+		\end{tabular}
+		\label{Tab: Inc_NonPara_MultivS}
+		
+	}
+\end{table}
+
+\begin{table}[H] 
+	\caption{Skill scores for univariate forecast distributions of individual series of the hierarchy}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{lSSSSSSSS}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ETS (CRPS)} & \multicolumn{4}{c}{ARIMA (CRPS)} \\
+			\cmidrule(lr){2-5} \cmidrule(l){6-9}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			&&&\multicolumn{3}{c}{Most aggregate level}&&&\\
+			\midrule
+			Benchmark & -139.03 & -60.56 & -17.03 & -5.22 & -144.75 & -56.38 & -22.61 & -9.99\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -6.01 & -2.62 & -2.92 & -12.05 & -7.99 & 1.29 & -2.93 & -4.41\\
+			
+			OLS & -0.13 & 1.60 & 3.20 & 1.62 & 0.59 & 1.55 & 0.67 & 0.36\\
+			
+			WLS & -0.95 & 3.20 & 3.80 & -0.75 & -0.63 & 2.79 & 1.46 & 0.27\\
+			
+			MinT Sample & 3.29 & 1.26 & -0.09 & -4.15 & -4.68 & -9.35 & -9.40 & -5.79\\
+			
+			MinT Shrink & 1.61 & 4.31 & 3.91 & -0.74 & 1.28 & 1.43 & 1.04 & 1.28\\
+			\midrule
+			&&\multicolumn{5}{c}{Average across all aggregate levels}&&\\
+			\midrule
+			Benchmark & -116.05 & -44.38 & -8.96 & 3.46 & -104.93 & -41.23 & -8.22 & 3.04\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & 2.12 & 2.22 & 1.99 & 1.84 & 2.18 & 1.75 & 0.99 & 1.69\\
+			
+			WLS & 3.28 & 3.20 & 1.68 & 0.71 & 3.22 & 2.75 & 1.30 & 2.20\\
+			
+			MinT Sample & 4.02 & -1.54 & -2.53 & -3.34 & -0.69 & -5.80 & -7.97 & -3.03\\
+			
+			MinT Shrink & 4.84 & 3.53 & 2.07 & 1.09 & 5.93 & 3.13 & 1.02 & 3.81\\
+			\midrule
+			&&\multicolumn{5}{c}{Average across all bottom level}&&\\
+			\midrule
+			Benchmark & -81.67 & -32.82 & -6.70 & 3.68 & -78.46 & -31.91 & -6.22 & 3.38\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -6.79 & -8.46 & -6.40 & -4.31 & -8.31 & -10.13 & -8.85 & -8.94\\
+			
+			WLS & 1.91 & 1.17 & 0.80 & 0.74 & 0.05 & 0.17 & 0.68 & 0.65\\
+			
+			MinT Sample & 1.32 & -2.31 & -1.66 & -3.82 & -5.67 & -7.72 & -8.88 & -6.51\\
+			
+			MinT Shrink & 3.91 & 2.19 & 1.99 & 1.30 & 0.36 & -0.37 & -0.04 & 1.06\\
+			
+			\midrule
+			&&\multicolumn{5}{c}{Average across all levels}&&\\
+			\midrule
+			Benchmark & -104.77 & -40.82 & -8.29 & 3.52 & -96.44 & -38.38 & -7.63 & 3.14\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			OLS & -0.81 & -1.07 & -0.48 & 0.05 & -1.18 & -1.88 & -1.91 & -1.40\\
+			
+			WLS & 2.83 & 2.58 & 1.42 & 0.72 & 2.20 & 1.96 & 1.12 & 1.75\\
+			
+			MinT Sample & 3.13 & -1.78 & -2.27 & -3.48 & -2.29 & -6.38 & -8.24 & -4.04\\
+			
+			MinT Shrink & 4.53 & 3.11 & 2.05 & 1.15 & 4.14 & 2.06 & 0.71 & 3.01\\
+			\bottomrule
+			
+		\end{tabular}
+		\label{Tab: Inc_NonPara_UnivS}
+	}
+\end{table}
+
+
+\subsection*{Expenditure approach}
+
+\begin{table}[H] 
+	\caption{Skill scores with respect to energy score and variogram score for multivariate forecast distribution}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{@{}lSSSSSSSSSSSSSSSS@{}}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{8}{c}{ETS} & \multicolumn{8}{c}{ARIMA} \\
+			\cmidrule(lr){2-9} \cmidrule(l){10-17}
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} & \multicolumn{4}{c}{ES} & \multicolumn{4}{c}{VS} \\
+			\cmidrule(lr){2-5} \cmidrule(lr){6-9} \cmidrule(lr){10-13} \cmidrule(l){14-17}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			Benchmark & -103.71 & -50.21 & -16.69 & -1.06 & -95.71 & -45.37 & -12.23 & 4.58 & -93.65 & -48.12 & -17.52 & -4.58 & -84.33 & -40.65 & -11.04 & 2.55\\
+			
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			
+			Bottom-up & -1.16 & 1.74 & 3.00 & 3.23 & 1.49 & 3.84 & 4.86 & 7.07 & -5.24 & -2.23 & -0.85 & 0.23 & -2.22 & -1.27 & 1.00 & 1.54\\
+			
+			OLS & 4.42 & 3.79 & 3.35 & 2.90 & 0.44 & -1.80 & -3.56 & -4.66 & 3.92 & 3.04 & 2.65 & 2.54 & 0.90 & -0.28 & -1.93 & -2.19\\
+			
+			WLS & 6.58 & 6.36 & 5.37 & 4.40 & 5.09 & 4.29 & 3.66 & 2.91 & 4.25 & 3.50 & 3.31 & 3.24 & 5.18 & 4.26 & 3.53 & 3.31\\
+			
+			MinT Shrink & 6.73 & 6.31 & 4.89 & 4.05 & 6.12 & 3.63 & 2.66 & 1.28 & 4.34 & 2.62 & 2.42 & 1.84 & 4.82 & 4.11 & 3.28 & 2.54\\
+			\bottomrule
+			
+		\end{tabular}
+		\label{Tab: Exp_NonPara_MultivS}
+	}
+\end{table}
+
+\begin{table}[H] 
+	\caption{Skill scores for univariate forecast distributions of individual series of the hierarchy}
+	\centering
+	\resizebox{\linewidth}{!}{
+		\begin{tabular}{lSSSSSSSS}
+			\toprule
+			\multicolumn{1}{c}{ } & \multicolumn{4}{c}{ETS (CRPS)} & \multicolumn{4}{c}{ARIMA (CRPS)} \\
+			\cmidrule(lr){2-5} \cmidrule(l){6-9}
+			Method & h=1 & h=2 & h=3 & h=4 & h=1 & h=2 & h=3 & h=4\\
+			\midrule
+			&&&\multicolumn{3}{c}{Most aggregate level}&&&\\
+			\midrule
+			Benchmark & -145.58 & -62.25 & -15.91 & -5.28 & -146.33 & -54.60 & -22.52 & -9.98\\
+			\hline
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			\hline
+			Bottom-up & -9.78 & -4.06 & 4.99 & -0.41 & -15.96 & 1.99 & -2.61 & -0.23\\
+			\hline
+			OLS & 5.54 & 4.93 & 5.94 & 4.29 & 2.18 & 3.60 & 3.17 & 4.03\\
+			\hline
+			WLS & 6.86 & 5.91 & 8.71 & 4.73 & 0.75 & 3.38 & 2.41 & 3.65\\
+			\hline
+			MinT Shrink & 6.86 & 4.51 & 8.15 & 5.67 & 0.38 & 0.87 & 0.75 & 1.59\\
+			\midrule
+			&&\multicolumn{5}{c}{Average across all aggregate levels}&&\\
+			\midrule
+			Benchmark & -78.02 & -61.91 & -26.48 & -7.91 & -73.77 & -60.75 & -26.93 & -11.29\\
+			\hline
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			\hline
+			OLS & 3.96 & 3.77 & 3.28 & 2.87 & 3.66 & 2.39 & 2.54 & 1.96\\
+			\hline
+			WLS & 6.72 & 6.84 & 5.29 & 3.96 & 3.61 & 2.45 & 3.50 & 2.75\\
+			\hline
+			MinT Shrink & 7.07 & 7.35 & 5.21 & 3.84 & 3.92 & 1.72 & 2.90 & 1.66\\
+			\midrule
+			&&\multicolumn{5}{c}{Average across all bottom level}&&\\
+			\midrule
+			Benchmark & -21.66 & -6.40 & -23.56 & -20.25 & -19.81 & -3.71 & -20.12 & -17.64\\
+			\hline
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			\hline
+			OLS & -4.76 & -6.87 & -6.02 & -7.84 & -3.47 & -3.37 & -3.99 & -4.75\\
+			\hline
+			WLS & 1.17 & -0.43 & -0.73 & -2.24 & 1.18 & 0.81 & 0.43 & 0.07\\
+			\hline
+			MinT Shrink & 1.68 & -0.89 & -1.40 & -2.87 & 1.05 & 0.61 & -0.25 & -1.03\\
+			\midrule
+			&&\multicolumn{5}{c}{Average across all levels}&&\\
+			\midrule
+			Benchmark & -55.07 & -38.75 & -25.54 & -11.54 & -51.91 & -36.69 & -24.68 & -13.23\\
+			\hline
+			Base & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\
+			\hline
+			OLS & 0.41 & -0.67 & 0.27 & -0.28 & 0.78 & -0.04 & 0.39 & -0.08\\
+			\hline
+			WLS & 4.46 & 3.81 & 3.35 & 2.14 & 2.63 & 1.76 & 2.49 & 1.93\\
+			\hline
+			MinT Shrink & 4.87 & 3.91 & 3.08 & 1.87 & 2.76 & 1.25 & 1.86 & 0.84\\
+			\bottomrule
+			
+		\end{tabular}
+		\label{Tab: Exp_NonPara_UnivS}
+	}
+\end{table}
+
+
+
+\pagebreak
+
+
+
+
+	
+	
+\end{document}

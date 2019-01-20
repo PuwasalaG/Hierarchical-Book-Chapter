@@ -6,6 +6,19 @@ Athanasopoulos, G., Ahmed, R.~A. \harvardand\ Hyndman, R.~J.  \harvardyearleft
   2009\harvardyearright , `{Hierarchical forecasts for Australian domestic
   tourism}', {\em International Journal of Forecasting} {\bf 25}(1),~146--166.
 
+\harvarditem{{Australian Bureau of Statistics}}{2015}{ABS2015}
+{Australian Bureau of Statistics}  \harvardyearleft 2015\harvardyearright ,
+  {Australian System of National Accounts: Concepts, Sources and Methods},
+  Technical report.
+\newline\harvardurl{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/5216.02015?OpenDocument}
+
+\harvarditem{{Australian Bureau of Statistics}}{2018}{ABS2018}
+{Australian Bureau of Statistics}  \harvardyearleft 2018\harvardyearright ,
+  {Australian National Accounts : National Income, Expenditure and Product},
+  Technical report.
+\newline\harvardurl{http://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/5206.0Sep
+  2018?OpenDocument}
+
 \harvarditem[{Ben Taieb} et~al.]{{Ben Taieb}, Huser, Hyndman \harvardand\
   Genton}{2017}{BenTaieb2017}
 {Ben Taieb}, S., Huser, R., Hyndman, R.~J. \harvardand\ Genton, M.~G.
@@ -73,16 +86,19 @@ Hyndman, R.~J., Ahmed, R.~A., Athanasopoulos, G. \harvardand\ Shang, H.~L.
   hierarchical time series}', {\em Computational Statistics and Data Analysis}
   {\bf 55}(9),~2579--2589.
 
-\harvarditem{Hyndman \harvardand\ Athanasopoulos}{2018}{hyndman2018forecasting}
-Hyndman, R.~J. \harvardand\ Athanasopoulos, G.  \harvardyearleft
-  2018\harvardyearright , {\em Forecasting: principles and practice}, OTexts.
-
 \harvarditem[Hyndman et~al.]{Hyndman, Lee \harvardand\ Wang}{2016}{Hyndman2016}
 Hyndman, R.~J., Lee, A.~J. \harvardand\ Wang, E.  \harvardyearleft
   2016\harvardyearright , `{Fast computation of reconciled forecasts for
   hierarchical and grouped time series}', {\em Computational Statistics and
   Data Analysis} {\bf 97},~16--32.
 \newline\harvardurl{http://dx.doi.org/10.1016/j.csda.2015.11.007}
+
+\harvarditem[Hyndman et~al.]{Hyndman, Yasmeen, Ihaka, Reid \harvardand\
+  Shaub}{2018}{Hyndman2018}
+Hyndman, R., Yasmeen, F., Ihaka, R., Reid, D. \harvardand\ Shaub, D.
+  \harvardyearleft 2018\harvardyearright , `{forecast: Forecasting Function for
+  Time Series and Linear Models}'.
+\newline\harvardurl{https://pkg.robjhyndman.com/forecast}
 
 \harvarditem[Jeon et~al.]{Jeon, Panagiotelis \harvardand\
   Petropoulos}{2018}{Jeon2018}

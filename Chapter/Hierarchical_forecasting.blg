@@ -1,10 +1,13 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Hierarchical_forecasting.aux
 The style file: agsm.bst
 Database file #1: References_BookChapter_HTS.bib
-Repeated entry---line 604 of file References_BookChapter_HTS.bib
+Repeated entry---line 484 of file References_BookChapter_HTS.bib
  : @book{VanErven2015a
  :                    ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "hyndman2018forecasting"
+Warning--empty institution in ABS2015
+Warning--empty institution in ABS2018
 Warning--empty note in Gamakumara2018
 Warning--empty note in Jeon2018
 Warning--can't use both author and editor fields in VanErven2015a
