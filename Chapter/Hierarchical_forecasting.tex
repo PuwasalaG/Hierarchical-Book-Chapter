@@ -153,14 +153,9 @@ A hierarchical time series has observations that are \textit{coherent}, i.e., $\
 \end{property}
 
 
-Structures similar to the one portrayed in Figure \ref{fig:simple tree} can be found in macroeconomics for instance in Section~\ref{XXX} we consider the case of GDP and its components.  However, while this motivating example involves aggregation constraints, the mathematical framework that we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on.  These structures can also be captured by an appropriately designed $\vec{S}$ matrix.
+Structures similar to the one portrayed in Figure \ref{fig:simple tree} can be found in macroeconomics. For instance in Section~\ref{XXX} we consider the case of GDP and its components.  However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on.  These structures can also be captured by an appropriately designed $\vec{S}$ matrix.
 
-Another commonly found aggregation structure is what is referred to as a \textit{grouped} structure. 
-
-Another common data structure which can be expressed as in Equation~ , but that is distinct from hierarchical times series is referred to as a grouped time series.
-
-Here there two or more attributes of interest via which the Total can be disaggregated by in a crossed fashion. For example, industrial production may be disaggregated along the lines of geography or sector or both. Figure \ref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1 of the structure, and then into the bottom-level series, $\vec{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$, and vice versa. Hence, grouped time series do not naturally disaggregate in a unique hierarchical manner. The disaggregating factors are both nested, as was the case with hierarchical time series, but also crossed.
-
+An alternative important aggregation structure also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. Figure \ref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\vec{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical, grouped time series do not naturally disaggregate in a unique manner.
 \begin{figure}[!hbt]
 \center
 \tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
@@ -181,14 +176,13 @@ Here there two or more attributes of interest via which the Total can be disaggr
   \label{fig:simple grouped tree}
 \end{figure}
 
-Another important implementation of hierarchical structures are \textit{temporal hierarchies} introduced by \cite{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies. There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \cite{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others such as, \cite{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single most optimum level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous, making it very challenging to reach a consensus or some concrete conclusions. For example, \cite{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state, ``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.'' A similar conclusion is reached by \cite{NijPal1990}. \cite{SilEtAl2008} consider forecasting French cash state deficit and provide empirical evidence of forecast accuracy gains from forecasting with the aggregate model rather than aggregating forecasts from the disaggregate model.
+An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \cite{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies. There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \cite{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others such as, \cite{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single most optimum level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous, making it very challenging to reach a consensus or some concrete conclusions. For example, \cite{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state, ``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.'' A similar conclusion is reached by \cite{NijPal1990}. \cite{SilEtAl2008} consider forecasting French cash state deficit and provide empirical evidence of forecast accuracy gains from forecasting with the aggregate model rather than aggregating forecasts from the disaggregate model.
 
-The vast majority of the literature concentrates on a single level of temporal aggregation \citep[there are some notable exceptions such as,][]{AndEtAl2011,KouEtAl2014}. \cite{AthEtAl2017} show that considering multiple levels of aggregation via temporal hierarchies and implementing forecast reconciliation approaches rather than single level approaches (we discuss these in Sections \ref{sec:single level approaches} and \ref{sec:reconciliation approaches} that follow) results in substantial gains in forecast accuracy across all levels of temporal aggregation.
-
-This is just on example of the benefit of forecast reconciliation to which we now turn out attention to.
-
+The overwhelming majority of the literature concentrates on a single level of temporal aggregation \citep[there are some notable exceptions such as,][]{AndEtAl2011,KouEtAl2014}. \cite{AthEtAl2017} show that considering multiple levels of aggregation via temporal hierarchies and implementing forecast reconciliation approaches rather than single level approaches results in substantial gains in forecast accuracy across all levels of temporal aggregation. This is an example of the benefits of forecast reconciliation to which we now turn out attention to.
 
 \section{Point forecasting}\label{sec:point forecasting}
+
+A requirement when forecasting hierarchial or grouped time series is that 
 
 \begin{definition}
 A set of $h$-step ahead forecasts $\tilde{\vec{y}}_{T+h|T}$, stacked in the same order as $\vec{y}_{t}$ and generated using information up to and including time $T$,
@@ -255,7 +249,7 @@ Since this is a hybrid approach of bottom-up and top-down approaches it still re
 
 All the traditional approaches discussed so far are limited to only using information from a single-level of aggregation and furthermore ignoring any cross-correlations across levels of a hierarchy. An alternative framework that overcomes these limitations, first proposed by \citet{HynEtAl2011} and implemented by \citet{AthEtAl2009}, is one that involves forecast reconciliation. In a first step ignoring any aggregation constraints, forecasts for all the series across all levels of the hierarchy are generated. We refer to these as \textit{base} forecasts and denote them by $\hat{\vec{y}}_{T+h|T}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate all base forecasts so that the coherent nature of the data is extended to the forecasts.
 
-In a second step, base forecasts are reconciled so that they become coherent. 
+In a second step, base forecasts are reconciled so that they become coherent.
 
 ex-post adjustment
 
@@ -294,7 +288,7 @@ In this reconciliation, the base forecasts are orthogonally projected to the coh
 \textcolor{red}{Can we add Tas's picture and talk about optimality in this sense.}
 \subsubsection{Optimal MinT reconciliation}
 
-\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation. 
+\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation.
 
  and introduce the MinT approach. Assume again that $\hat{\vec{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\vec{y}}_{T+h|T})= E_{1:t}[\vec{y}_{T+h}|\vec{y}_1,...,\vec{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
 Let
@@ -309,7 +303,7 @@ $. Furthermore Theorem 1 shows that
 \begin{equation} \label{eq:MinT}
 \vec{G} = (\vec{S}'{\vec{W}}^{-1}_h\vec{S})^{-1}\vec{S}'{\vec{W}}^{-1}_h
 \end{equation}
-is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts. 
+is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts.
 
 A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
 
@@ -338,7 +332,7 @@ Point forecasts are limited since they provide no indication of uncertainty arou
 %For example, \citet{McSharry2005} produced probabilistic forecasts for electricity demand, \citet{BenTaieb2017} for smart meter data, \citet{Pinson2009} for wind power generation, and \citet{Gel2004}, \citet{Gneiting2005a} and \citet{Gneiting2005} for various weather variables.
 
 The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\vec{y}_{T+h|T}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
-To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \cite{Taieb2017} who define a coherent forecast in terms of a convolution.  An equivalent definition, provided by \cite{Gamakumara2018} defines a  coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$.  \cite{Gamakumara2018} also generalise the concept of forecast reconciliation to the probabilistic setting.  
+To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \cite{Taieb2017} who define a coherent forecast in terms of a convolution.  An equivalent definition, provided by \cite{Gamakumara2018} defines a  coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$.  \cite{Gamakumara2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
 
 \begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\mathbb{R}^n$ that are mapped onto  $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a `base' probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ `reconciles' $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 \end{definition}
