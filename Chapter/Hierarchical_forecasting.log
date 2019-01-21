@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  21 JAN 2019 00:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  21 JAN 2019 16:58
 entering extended mode
 **./Hierarchical_forecasting.tex
 (Hierarchical_forecasting.tex
@@ -1348,24 +1348,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 324--325
 Package natbib Warning: Citation `hyndman2018forecasting' on page 16 undefined 
 on input line 423.
 
-[16] [17] <Figs/TS-Inc.PNG, id=71, 481.04718pt x 364.36125pt>
-File: Figs/TS-Inc.PNG Graphic file (type png)
+[16] [17]
+<Figs/TS-plots/INC-char-of-levels-TSplots.PNG, id=71, 602.25pt x 454.69875pt>
+File: Figs/TS-plots/INC-char-of-levels-TSplots.PNG Graphic file (type png)
 
-<use Figs/TS-Inc.PNG>
-Package pdftex.def Info: Figs/TS-Inc.PNG used on input line 485.
-(pdftex.def)             Requested size: 312.67696pt x 236.832pt.
- <Figs/TS-Exp.PNG, id=72, 903.375pt x 683.55376pt>
-File: Figs/TS-Exp.PNG Graphic file (type png)
+<use Figs/TS-plots/INC-char-of-levels-TSplots.PNG>
+Package pdftex.def Info: Figs/TS-plots/INC-char-of-levels-TSplots.PNG used on i
+nput line 485.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
 
-<use Figs/TS-Exp.PNG>
-Package pdftex.def Info: Figs/TS-Exp.PNG used on input line 492.
-(pdftex.def)             Requested size: 451.6864pt x 341.77605pt.
+<Figs/TS-plots/EXP-char-of-levels-TSplots.PNG, id=72, 602.25pt x 454.69875pt>
+File: Figs/TS-plots/EXP-char-of-levels-TSplots.PNG Graphic file (type png)
 
-Overfull \hbox (118.78917pt too wide) in paragraph at lines 492--493
- [][] 
- []
-
-[18 <./Figs/TS-Inc.PNG>]
+<use Figs/TS-plots/EXP-char-of-levels-TSplots.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-char-of-levels-TSplots.PNG used on i
+nput line 492.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [18 <./Figs/TS-plots/INC-char-of-levels-TSplots.PNG>]
 
 LaTeX Warning: Reference `Tab: Inc_PointF' on page 19 undefined on input line 5
 00.
@@ -1379,20 +1378,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 500--501
 
  []
 
-[19 <./Figs/TS-Exp.PNG (PNG copy)>]
-<Figs/Results/INC-PointF.PNG, id=81, 602.25pt x 455.45157pt>
+<Figs/Results/INC-PointF.PNG, id=77, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-PointF.PNG Graphic file (type png)
 
 <use Figs/Results/INC-PointF.PNG>
 Package pdftex.def Info: Figs/Results/INC-PointF.PNG used on input line 509.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
-
-<Figs/Results/EXP-PointF.PNG, id=82, 602.25pt x 455.45157pt>
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [19 <./Figs/TS-plots/EXP-char-of-levels-TSplots.PNG>] <Figs/Results/EXP-PointF
+.PNG, id=83, 602.25pt x 454.69875pt>
 File: Figs/Results/EXP-PointF.PNG Graphic file (type png)
 
 <use Figs/Results/EXP-PointF.PNG>
 Package pdftex.def Info: Figs/Results/EXP-PointF.PNG used on input line 519.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [20 <./Figs/Results/INC-PointF.PNG>]
 
 LaTeX Warning: Reference `Tab: Inc_ProbGaus_ES_VS' on page 21 undefined on inpu
@@ -1424,72 +1422,72 @@ Underfull \hbox (badness 10000) in paragraph at lines 534--535
  []
 
 [21 <./Figs/Results/EXP-PointF.PNG>]
-<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG, id=91, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG, id=92, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG Graphic file (type png)
 
 <use Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG used on 
 input line 544.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
 
-<Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG, id=92, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG, id=93, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG used on inp
 ut line 551.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [22 <./Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG>]
-<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG, id=97, 481.8pt x 364.36125pt>
+<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG, id=98, 481.04718pt x 363.60844p
+t>
 File: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG Graphic file (type png)
-
-<use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG>
+ <use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG used on 
 input line 561.
-(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+(pdftex.def)             Requested size: 240.523pt x 181.80377pt.
 
-<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG, id=98, 481.8pt x 364.36125pt>
+<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG, id=99, 602.25pt x 454.69875pt>
 File: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG used on inp
 ut line 568.
-(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [23 <./Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG> <./Figs/Results/EXP-ProbGau
 ssF-MultivS_ES_VS.PNG>]
-<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG, id=104, 481.8pt x 364.36125pt
->
+<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG, id=105, 602.25pt x 454.69875p
+t>
 File: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG Graphic file (type png)
  <use Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG used o
 n input line 590.
-(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [24 <./Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG>]
-<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG, id=109, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG, id=110, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG used on i
 nput line 597.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [25 <./Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG>]
-<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG, id=115, 602.25pt x 455.45157p
+<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG, id=116, 602.25pt x 454.69875p
 t>
 File: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG Graphic file (type png)
  <use Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG used o
 n input line 611.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [26 <./Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG>]
-<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG, id=120, 602.25pt x 455.45157pt>
+<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG, id=121, 602.25pt x 454.69875pt>
 File: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG used on i
 nput line 618.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [27 <./Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG>] [28 <./Figs/Results/E
-XP-ProbNonParaF-UnivS_CRPS.PNG>] <Figs/GDP_P_fig1.PNG, id=129, 463.7325pt x 299
+XP-ProbNonParaF-UnivS_CRPS.PNG>] <Figs/GDP_P_fig1.PNG, id=130, 463.7325pt x 299
 .31825pt>
 File: Figs/GDP_P_fig1.PNG Graphic file (type png)
 
@@ -1497,7 +1495,7 @@ File: Figs/GDP_P_fig1.PNG Graphic file (type png)
 Package pdftex.def Info: Figs/GDP_P_fig1.PNG used on input line 635.
 (pdftex.def)             Requested size: 301.42255pt x 194.55455pt.
 
-<Figs/GDP_P_fig2.PNG, id=131, 348.70274pt x 261.3765pt>
+<Figs/GDP_P_fig2.PNG, id=132, 348.70274pt x 261.3765pt>
 File: Figs/GDP_P_fig2.PNG Graphic file (type png)
 
 <use Figs/GDP_P_fig2.PNG>
@@ -1509,7 +1507,7 @@ Overfull \hbox (15.80464pt too wide) in paragraph at lines 642--643
  []
 
 [29 <./Figs/GDP_P_fig1.PNG>]
-<Figs/GDP_I_fig1.PNG, id=136, 554.07pt x 330.033pt>
+<Figs/GDP_I_fig1.PNG, id=137, 554.07pt x 330.033pt>
 File: Figs/GDP_I_fig1.PNG Graphic file (type png)
  <use Figs/GDP_I_fig1.PNG>
 Package pdftex.def Info: Figs/GDP_I_fig1.PNG used on input line 649.
@@ -1524,14 +1522,19 @@ Overfull \hbox (76.06836pt too wide) in paragraph at lines 655--655
 [] 
  []
 
-<Figs/GDP_E_fig1.PNG, id=141, 449.88075pt x 376.40625pt>
+<Figs/GDP_E_fig1.PNG, id=142, 590.80725pt x 366.77025pt>
 File: Figs/GDP_E_fig1.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig1.PNG>
 Package pdftex.def Info: Figs/GDP_E_fig1.PNG used on input line 661.
-(pdftex.def)             Requested size: 292.41902pt x 244.66115pt.
- [31 <./Figs/GDP_I_fig1.PNG>]
-<Figs/GDP_E_fig2.PNG, id=147, 338.4645pt x 298.11375pt>
+(pdftex.def)             Requested size: 384.02016pt x 238.39783pt.
+
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 661--662
+ [][] 
+ []
+
+[31 <./Figs/GDP_I_fig1.PNG>]
+<Figs/GDP_E_fig2.PNG, id=148, 338.4645pt x 298.11375pt>
 File: Figs/GDP_E_fig2.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig2.PNG>
@@ -1543,7 +1546,7 @@ Overfull \hbox (5.56644pt too wide) in paragraph at lines 668--669
  []
 
 [32 <./Figs/GDP_E_fig1.PNG>]
-<Figs/GDP_E_fig3.PNG, id=152, 590.80725pt x 351.714pt>
+<Figs/GDP_E_fig3.PNG, id=153, 590.80725pt x 351.714pt>
 File: Figs/GDP_E_fig3.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig3.PNG>
@@ -1587,9 +1590,9 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 25458 strings out of 493320
- 509436 string characters out of 3138947
- 535116 words of memory out of 3000000
+ 25459 strings out of 493320
+ 509722 string characters out of 3138947
+ 535119 words of memory out of 3000000
  28496 multiletter control sequences out of 15000+200000
  61775 words of font info for 154 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1606,9 +1609,9 @@ onts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/boondox/zxxrl8a.pfb>
-Output written on Hierarchical_forecasting.pdf (39 pages, 529608 bytes).
+Output written on Hierarchical_forecasting.pdf (39 pages, 445799 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
+ 222 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  103 words of extra memory for PDF output out of 10000 (max. 10000000)
 
