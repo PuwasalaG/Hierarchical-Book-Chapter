@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  21 JAN 2019 00:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  21 JAN 2019 22:34
 entering extended mode
 **./Hierarchical_forecasting.tex
 (Hierarchical_forecasting.tex
@@ -1142,36 +1142,119 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 librarytopaths.code.tex"
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+librarytrees.code.tex"
+File: tikzlibrarytrees.code.tex 2008/02/24 v3.0.1a (rcs-revision 1.2)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.code.tex"
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.geometric.code.tex"
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes
+.geometric.code.tex"
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.misc.code.tex"
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes
+.misc.code.tex"
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.symbols.code.tex"
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes
+.symbols.code.tex"
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.arrows.code.tex"
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes
+.arrows.code.tex"
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.callouts.code.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes
+.callouts.code.tex"))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+libraryshapes.multipart.code.tex"
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\shapes\pgflibraryshapes
+.multipart.code.tex"
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box118
+\pgfnodeparttwobox=\box119
+\pgfnodepartthreebox=\box120
+\pgfnodepartfourbox=\box121
+\pgfnodeparttwentybox=\box122
+\pgfnodepartnineteenbox=\box123
+\pgfnodeparteighteenbox=\box124
+\pgfnodepartseventeenbox=\box125
+\pgfnodepartsixteenbox=\box126
+\pgfnodepartfifteenbox=\box127
+\pgfnodepartfourteenbox=\box128
+\pgfnodepartthirteenbox=\box129
+\pgfnodeparttwelvebox=\box130
+\pgfnodepartelevenbox=\box131
+\pgfnodeparttenbox=\box132
+\pgfnodepartninebox=\box133
+\pgfnodeparteightbox=\box134
+\pgfnodepartsevenbox=\box135
+\pgfnodepartsixbox=\box136
+\pgfnodepartfivebox=\box137
+)))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikz
+librarymatrix.code.tex"
+File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
+)
 \@indexfile=\write5
 \openout5 = `Hierarchical_forecasting.idx'.
 
 
 Writing index file Hierarchical_forecasting.idx
-(Hierarchical_forecasting.aux)
+(Hierarchical_forecasting.aux
+
+LaTeX Warning: Label `def:coherence' multiply defined.
+
+)
 \openout1 = `Hierarchical_forecasting.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 48.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 58.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count293
 \scratchdimen=\dimen323
-\scratchbox=\box118
+\scratchbox=\box138
 \nofMPsegments=\count294
 \nofMParguments=\count295
 \everyMPshowfont=\toks52
@@ -1229,7 +1312,7 @@ Dictionary: translator-basic-dictionary, Language: English
 ("C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg"
 File: siunitx-abbreviations.cfg 2017/03/23 v2.7f siunitx: Abbreviated units
 )
-\AtBeginShipoutBox=\box119
+\AtBeginShipoutBox=\box139
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
@@ -1244,331 +1327,592 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ))
 ABD: EveryShipout initializing macros
 \c__siunitx_mathsf_int=\count299
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 58
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 58
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd"
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 58
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd"
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 48
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 58
 .
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd"
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 48.
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 48.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 58.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 \c__siunitx_mathtt_int=\count300
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 
 
-Package mathptmx Warning: There are no bold math fonts on input line 63.
+Package mathptmx Warning: There are no bold math fonts on input line 73.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 73.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.29004> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.10005> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <8.5> not available
-(Font)              size <8> substituted on input line 63.
+(Font)              size <8> substituted on input line 73.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 68.
-[1
-
-
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
-
- []
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 83.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 78.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 82.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
- [2]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 100.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
+ [1
 
-Overfull \hbox (15.3549pt too wide) in paragraph at lines 117--117
+
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 va-tions across all se-ries of the hi-er-ar-chy at $\OML/ztmcm/
+m/it/10 t$\OT1/ptm/m/n/10 . Sim-i-larly de-note as
+ []
+
+[3
+
+]
+
+LaTeX Warning: Reference `XXX' on page 4 undefined on input line 156.
+
+
+Package natbib Warning: Citation `AthEtAl2017' on page 4 undefined on input lin
+e 184.
+
+
+Package natbib Warning: Citation `ZelMon1971' on page 4 undefined on input line
+ 184.
+
+
+Package natbib Warning: Citation `AmeWu1972' on page 4 undefined on input line 
+184.
+
+
+Package natbib Warning: Citation `Tia1972' on page 4 undefined on input line 18
+4.
+
+
+Package natbib Warning: Citation `Bre1973' on page 4 undefined on input line 18
+4.
+
+
+Package natbib Warning: Citation `Hot1993' on page 4 undefined on input line 18
+4.
+
+
+Package natbib Warning: Citation `HotCar1993' on page 4 undefined on input line
+ 184.
+
+
+Package natbib Warning: Citation `Mar1999' on page 4 undefined on input line 18
+4.
+
+
+Package natbib Warning: Citation `SilEtAl2008' on page 4 undefined on input lin
+e 184.
+
+
+Package natbib Warning: Citation `RosSea1995' on page 4 undefined on input line
+ 184.
+
+
+Package natbib Warning: Citation `NijPal1990' on page 4 undefined on input line
+ 184.
+
+
+Package natbib Warning: Citation `SilEtAl2008' on page 4 undefined on input lin
+e 184.
+
+[4]
+
+Package natbib Warning: Citation `AndEtAl2011' on page 5 undefined on input lin
+e 186.
+
+
+Package natbib Warning: Citation `KouEtAl2014' on page 5 undefined on input lin
+e 186.
+
+
+Package natbib Warning: Citation `AthEtAl2017' on page 5 undefined on input lin
+e 186.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 204.
+[5] [6]
+
+Package natbib Warning: Citation `AthEtAl2009' on page 7 undefined on input lin
+e 237.
+
+
+Package natbib Warning: Citation `HynEtAl2011' on page 7 undefined on input lin
+e 249.
+
+
+Package natbib Warning: Citation `HynEtAl2011' on page 7 undefined on input lin
+e 256.
+
+
+Package natbib Warning: Citation `AthEtAl2009' on page 7 undefined on input lin
+e 256.
+
+[7]
+Overfull \hbox (41.0523pt too wide) in paragraph at lines 280--281
+\OT1/ptm/m/n/10 Assume that $[][]$ is a set of un-bi-ased base fore-casts, i.e.
+, $\OML/ztmcm/m/it/10 E[]\OT1/ztmcm/m/n/10 ([][]) = \OML/ztmcm/m/it/10 E[]\OT1/
+ztmcm/m/n/10 [[][]\OMS/ztmcm/m/n/10 j[][]\OML/ztmcm/m/it/10 ; :::; [][]\OT1/ztm
+cm/m/n/10 ]$\OT1/ptm/m/n/10 ,
+ []
+
+
+Package natbib Warning: Citation `HynEtAl2011' on page 8 undefined on input lin
+e 282.
+
+LaTeX Font Info:    Try loading font information for U+psy on input line 285.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+)
+
+Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
+e 292.
+
+
+Package natbib Warning: Citation `WicEtAl2019' on page 8 undefined on input lin
+e 297.
+
+[8]
+
+Package natbib Warning: Citation `WicEtAl2019' on page 9 undefined on input lin
+e 307.
+
+
+Package natbib Warning: Citation `HynEtAl2011' on page 9 undefined on input lin
+e 314.
+
+
+Package natbib Warning: Citation `WicEtAl2019' on page 9 undefined on input lin
+e 316.
+
+[9] [10] [11] [12]
+
+Package natbib Warning: Citation `hyndman2018forecasting' on page 13 undefined 
+on input line 457.
+
+[13] [14] [15]
+Overfull \hbox (15.3549pt too wide) in paragraph at lines 540--540
 [] 
  []
 
-[3] [4] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for U+psy on input line 245.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
-File: upsy.fd 2001/06/04 font definitions for U/psy.
-)
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
+[16] [17]
+<Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.PNG, id=71, 602.25pt x 
+454.69875pt>
+File: Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.PNG Graphic file (
+type png)
+ <use Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.PNG>
+Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots
+.PNG used on input line 594.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+
+<Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.PNG, id=72, 602.25pt x 
+454.69875pt>
+File: Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.PNG Graphic file (
+type png)
+ <use Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots
+.PNG used on input line 601.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+
+[18
+
+ <./Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.PNG>]
+
+LaTeX Warning: Reference `Tab: Inc_PointF' on page 19 undefined on input line 6
+10.
+
+
+LaTeX Warning: Reference `Tab: Exp_PointF' on page 19 undefined on input line 6
+10.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--611
 
  []
 
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 288--289
-
- []
-
-[9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 324--325
-
- []
-
-[11] [12] [13] [14] [15]
-
-Package natbib Warning: Citation `hyndman2018forecasting' on page 16 undefined 
-on input line 423.
-
-[16] [17] <Figs/TS-Inc.PNG, id=71, 481.04718pt x 364.36125pt>
-File: Figs/TS-Inc.PNG Graphic file (type png)
-
-<use Figs/TS-Inc.PNG>
-Package pdftex.def Info: Figs/TS-Inc.PNG used on input line 485.
-(pdftex.def)             Requested size: 312.67696pt x 236.832pt.
- <Figs/TS-Exp.PNG, id=72, 903.375pt x 683.55376pt>
-File: Figs/TS-Exp.PNG Graphic file (type png)
-
-<use Figs/TS-Exp.PNG>
-Package pdftex.def Info: Figs/TS-Exp.PNG used on input line 492.
-(pdftex.def)             Requested size: 451.6864pt x 341.77605pt.
-
-Overfull \hbox (118.78917pt too wide) in paragraph at lines 492--493
- [][] 
- []
-
-[18 <./Figs/TS-Inc.PNG>]
-
-LaTeX Warning: Reference `Tab: Inc_PointF' on page 19 undefined on input line 5
-00.
-
-
-LaTeX Warning: Reference `Tab: Exp_PointF' on page 19 undefined on input line 5
-00.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 500--501
-
- []
-
-[19 <./Figs/TS-Exp.PNG (PNG copy)>]
-<Figs/Results/INC-PointF.PNG, id=81, 602.25pt x 455.45157pt>
+<Figs/Results/INC-PointF.PNG, id=77, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-PointF.PNG Graphic file (type png)
 
 <use Figs/Results/INC-PointF.PNG>
-Package pdftex.def Info: Figs/Results/INC-PointF.PNG used on input line 509.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
-
-<Figs/Results/EXP-PointF.PNG, id=82, 602.25pt x 455.45157pt>
+Package pdftex.def Info: Figs/Results/INC-PointF.PNG used on input line 619.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [19 <./Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.PNG>]
+<Figs/Results/EXP-PointF.PNG, id=83, 602.25pt x 454.69875pt>
 File: Figs/Results/EXP-PointF.PNG Graphic file (type png)
 
 <use Figs/Results/EXP-PointF.PNG>
-Package pdftex.def Info: Figs/Results/EXP-PointF.PNG used on input line 519.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+Package pdftex.def Info: Figs/Results/EXP-PointF.PNG used on input line 629.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [20 <./Figs/Results/INC-PointF.PNG>]
 
 LaTeX Warning: Reference `Tab: Inc_ProbGaus_ES_VS' on page 21 undefined on inpu
-t line 534.
+t line 644.
 
 
 LaTeX Warning: Reference `Tab: Inc_ProbGaus_LS' on page 21 undefined on input l
-ine 534.
+ine 644.
 
 
 LaTeX Warning: Reference `Tab: Inc_ProbGaus_UnivS' on page 21 undefined on inpu
-t line 534.
+t line 644.
 
 
 LaTeX Warning: Reference `Tab: Exp_ProbGaus_ES_VS' on page 21 undefined on inpu
-t line 534.
+t line 644.
 
 
 LaTeX Warning: Reference `Tab: Exp_ProbGaus_LS' on page 21 undefined on input l
-ine 534.
+ine 644.
 
 
 LaTeX Warning: Reference `Tab: Exp_ProbGaus_UnivS' on page 21 undefined on inpu
-t line 534.
+t line 644.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 534--535
+Underfull \hbox (badness 10000) in paragraph at lines 644--645
 
  []
 
 [21 <./Figs/Results/EXP-PointF.PNG>]
-<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG, id=91, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG, id=92, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG Graphic file (type png)
 
 <use Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG used on 
-input line 544.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+input line 654.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
 
-<Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG, id=92, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG, id=93, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG used on inp
-ut line 551.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ut line 661.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [22 <./Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG>]
-<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG, id=97, 481.8pt x 364.36125pt>
+<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG, id=98, 481.04718pt x 363.60844p
+t>
 File: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG Graphic file (type png)
-
-<use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG>
+ <use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG used on 
-input line 561.
-(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+input line 671.
+(pdftex.def)             Requested size: 240.523pt x 181.80377pt.
 
-<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG, id=98, 481.8pt x 364.36125pt>
+<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG, id=99, 602.25pt x 454.69875pt>
 File: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG used on inp
-ut line 568.
-(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+ut line 678.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [23 <./Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG> <./Figs/Results/EXP-ProbGau
 ssF-MultivS_ES_VS.PNG>]
-<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG, id=104, 481.8pt x 364.36125pt
->
+<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG, id=105, 602.25pt x 454.69875p
+t>
 File: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG Graphic file (type png)
  <use Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG used o
-n input line 590.
-(pdftex.def)             Requested size: 240.8994pt x 182.18018pt.
+n input line 700.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [24 <./Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG>]
-<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG, id=109, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG, id=110, 602.25pt x 454.69875pt>
 File: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG used on i
-nput line 597.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+nput line 707.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [25 <./Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG>]
-<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG, id=115, 602.25pt x 455.45157p
+<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG, id=116, 602.25pt x 454.69875p
 t>
 File: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG Graphic file (type png)
  <use Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG used o
-n input line 611.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+n input line 721.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [26 <./Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG>]
-<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG, id=120, 602.25pt x 455.45157pt>
+<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG, id=121, 602.25pt x 454.69875pt>
 File: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG Graphic file (type png)
 
 <use Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG>
 Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG used on i
-nput line 618.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+nput line 728.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
  [27 <./Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG>] [28 <./Figs/Results/E
-XP-ProbNonParaF-UnivS_CRPS.PNG>] <Figs/GDP_P_fig1.PNG, id=129, 463.7325pt x 299
+XP-ProbNonParaF-UnivS_CRPS.PNG>] <Figs/GDP_P_fig1.PNG, id=130, 463.7325pt x 299
 .31825pt>
 File: Figs/GDP_P_fig1.PNG Graphic file (type png)
 
 <use Figs/GDP_P_fig1.PNG>
-Package pdftex.def Info: Figs/GDP_P_fig1.PNG used on input line 635.
+Package pdftex.def Info: Figs/GDP_P_fig1.PNG used on input line 745.
 (pdftex.def)             Requested size: 301.42255pt x 194.55455pt.
 
-<Figs/GDP_P_fig2.PNG, id=131, 348.70274pt x 261.3765pt>
+<Figs/GDP_P_fig2.PNG, id=132, 574.5465pt x 450.483pt>
 File: Figs/GDP_P_fig2.PNG Graphic file (type png)
 
 <use Figs/GDP_P_fig2.PNG>
-Package pdftex.def Info: Figs/GDP_P_fig2.PNG used on input line 642.
-(pdftex.def)             Requested size: 348.70187pt x 261.37584pt.
+Package pdftex.def Info: Figs/GDP_P_fig2.PNG used on input line 752.
+(pdftex.def)             Requested size: 574.54509pt x 450.48189pt.
 
-Overfull \hbox (15.80464pt too wide) in paragraph at lines 642--643
+Overfull \hbox (241.64786pt too wide) in paragraph at lines 752--753
  [][] 
  []
 
 [29 <./Figs/GDP_P_fig1.PNG>]
-<Figs/GDP_I_fig1.PNG, id=136, 554.07pt x 330.033pt>
+<Figs/GDP_I_fig1.PNG, id=137, 554.07pt x 330.033pt>
 File: Figs/GDP_I_fig1.PNG Graphic file (type png)
  <use Figs/GDP_I_fig1.PNG>
-Package pdftex.def Info: Figs/GDP_I_fig1.PNG used on input line 649.
+Package pdftex.def Info: Figs/GDP_I_fig1.PNG used on input line 759.
 (pdftex.def)             Requested size: 360.14124pt x 214.51889pt.
 
-Overfull \hbox (27.244pt too wide) in paragraph at lines 649--650
+Overfull \hbox (27.244pt too wide) in paragraph at lines 759--760
  [][] 
  []
 
 [30 <./Figs/GDP_P_fig2.PNG>]
-Overfull \hbox (76.06836pt too wide) in paragraph at lines 655--655
+Overfull \hbox (76.06836pt too wide) in paragraph at lines 765--765
 [] 
  []
 
-<Figs/GDP_E_fig1.PNG, id=141, 449.88075pt x 376.40625pt>
+<Figs/GDP_E_fig1.PNG, id=142, 590.80725pt x 366.77025pt>
 File: Figs/GDP_E_fig1.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig1.PNG>
-Package pdftex.def Info: Figs/GDP_E_fig1.PNG used on input line 661.
-(pdftex.def)             Requested size: 292.41902pt x 244.66115pt.
- [31 <./Figs/GDP_I_fig1.PNG>]
-<Figs/GDP_E_fig2.PNG, id=147, 338.4645pt x 298.11375pt>
+Package pdftex.def Info: Figs/GDP_E_fig1.PNG used on input line 771.
+(pdftex.def)             Requested size: 384.02016pt x 238.39783pt.
+
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 771--772
+ [][] 
+ []
+
+[31 <./Figs/GDP_I_fig1.PNG>]
+<Figs/GDP_E_fig2.PNG, id=148, 338.4645pt x 298.11375pt>
 File: Figs/GDP_E_fig2.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig2.PNG>
-Package pdftex.def Info: Figs/GDP_E_fig2.PNG used on input line 668.
+Package pdftex.def Info: Figs/GDP_E_fig2.PNG used on input line 778.
 (pdftex.def)             Requested size: 338.46367pt x 298.11302pt.
 
-Overfull \hbox (5.56644pt too wide) in paragraph at lines 668--669
+Overfull \hbox (5.56644pt too wide) in paragraph at lines 778--779
  [][] 
  []
 
 [32 <./Figs/GDP_E_fig1.PNG>]
-<Figs/GDP_E_fig3.PNG, id=152, 590.80725pt x 351.714pt>
+<Figs/GDP_E_fig3.PNG, id=153, 590.80725pt x 351.714pt>
 File: Figs/GDP_E_fig3.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig3.PNG>
-Package pdftex.def Info: Figs/GDP_E_fig3.PNG used on input line 675.
+Package pdftex.def Info: Figs/GDP_E_fig3.PNG used on input line 785.
 (pdftex.def)             Requested size: 384.02016pt x 228.61139pt.
 
-Overfull \hbox (51.12292pt too wide) in paragraph at lines 675--676
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 785--786
  [][] 
  []
 
-[33 <./Figs/GDP_E_fig2.PNG>] [34 <./Figs/GDP_E_fig3.PNG>] [35] [36] [37]
-(Hierarchical_forecasting.bbl
-Overfull \hbox (48.59975pt too wide) in paragraph at lines 10--14
+[33 <./Figs/GDP_E_fig2.PNG>] [34 <./Figs/GDP_E_fig3.PNG>] [35] [36]
+<Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG, id=168, 602.25pt x 454
+.69875pt>
+File: Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG Graphic file (type
+ png)
+ <use Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG>
+Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG
+ used on input line 972.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [37]
+<Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.PNG, id=173, 602.25pt x 45
+4.69875pt>
+File: Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.PNG Graphic file (typ
+e png)
+ <use Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.PNG>
+Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.PN
+G used on input line 979.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-1.PNG, id=174, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-1.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-1.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-1.PNG used on input li
+ne 986.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [38 <./Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG> <./Figs/TS-plot
+s/INC-hierarchy/INC-bottomlevel-TSplots.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-2.PNG, id=180, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-2.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-2.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-2.PNG used on input li
+ne 993.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-3.PNG, id=181, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-3.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-3.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-3.PNG used on input li
+ne 1000.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [39 <./Figs/TS-plots/EXP-hierarchy/set-1.PNG> <./Figs/TS-plots/EXP-hierarchy/s
+et-2.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-4.PNG, id=187, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-4.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-4.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-4.PNG used on input li
+ne 1007.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-5.PNG, id=188, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-5.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-5.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-5.PNG used on input li
+ne 1014.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [40 <./Figs/TS-plots/EXP-hierarchy/set-3.PNG> <./Figs/TS-plots/EXP-hierarchy/s
+et-4.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-6.PNG, id=194, 481.8pt x 364.36125pt>
+File: Figs/TS-plots/EXP-hierarchy/set-6.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-6.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-6.PNG used on input li
+ne 1021.
+(pdftex.def)             Requested size: 313.16628pt x 236.832pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-7.PNG, id=195, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-7.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-7.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-7.PNG used on input li
+ne 1028.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [41 <./Figs/TS-plots/EXP-hierarchy/set-5.PNG> <./Figs/TS-plots/EXP-hierarchy/s
+et-6.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-8.PNG, id=201, 481.8pt x 364.36125pt>
+File: Figs/TS-plots/EXP-hierarchy/set-8.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-8.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-8.PNG used on input li
+ne 1035.
+(pdftex.def)             Requested size: 313.16628pt x 236.832pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-9.PNG, id=202, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-9.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-9.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-9.PNG used on input li
+ne 1042.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [42 <./Figs/TS-plots/EXP-hierarchy/set-7.PNG> <./Figs/TS-plots/EXP-hierarchy/s
+et-8.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-10.PNG, id=208, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-10.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-10.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-10.PNG used on input l
+ine 1049.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-11.PNG, id=209, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-11.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-11.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-11.PNG used on input l
+ine 1056.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [43 <./Figs/TS-plots/EXP-hierarchy/set-9.PNG> <./Figs/TS-plots/EXP-hierarchy/s
+et-10.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-12.PNG, id=216, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-12.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-12.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-12.PNG used on input l
+ine 1063.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-13.PNG, id=217, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-13.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-13.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-13.PNG used on input l
+ine 1070.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [44 <./Figs/TS-plots/EXP-hierarchy/set-11.PNG> <./Figs/TS-plots/EXP-hierarchy/
+set-12.PNG>]
+<Figs/TS-plots/EXP-hierarchy/set-14.PNG, id=223, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-14.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-14.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-14.PNG used on input l
+ine 1077.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+<Figs/TS-plots/EXP-hierarchy/set-15.PNG, id=224, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-15.PNG Graphic file (type png)
+
+<use Figs/TS-plots/EXP-hierarchy/set-15.PNG>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-15.PNG used on input l
+ine 1084.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [45 <./Figs/TS-plots/EXP-hierarchy/set-13.PNG> <./Figs/TS-plots/EXP-hierarchy/
+set-14.PNG>] [46 <./Figs/TS-plots/EXP-hierarchy/set-15.PNG>] (Hierarchical_fore
+casting.bbl
+Overfull \hbox (48.59975pt too wide) in paragraph at lines 4--8
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
 etailsPage/5216.02015?OpenDocument 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--21
+Underfull \hbox (badness 10000) in paragraph at lines 10--15
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
 etailsPage/5206.0Sep
  []
 
-[38]
-Underfull \hbox (badness 10000) in paragraph at lines 136--141
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--74
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 https://www.degruyter.com/view/j/sagmb.20
 05.4.issue-
  []
@@ -1577,7 +1921,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 136--141
 
 Package natbib Warning: There were undefined citations.
 
-[39] (Hierarchical_forecasting.aux)
+[47] (Hierarchical_forecasting.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
@@ -1585,15 +1929,18 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 25458 strings out of 493320
- 509436 string characters out of 3138947
- 535116 words of memory out of 3000000
- 28496 multiletter control sequences out of 15000+200000
+ 27627 strings out of 493320
+ 573972 string characters out of 3138947
+ 620633 words of memory out of 3000000
+ 30600 multiletter control sequences out of 15000+200000
  61775 words of font info for 154 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,18n,54p,10406b,506s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,18n,73p,10406b,1107s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
@@ -1606,9 +1953,9 @@ onts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/boondox/zxxrl8a.pfb>
-Output written on Hierarchical_forecasting.pdf (39 pages, 529608 bytes).
+Output written on Hierarchical_forecasting.pdf (47 pages, 667319 bytes).
 PDF statistics:
- 221 PDF objects out of 1000 (max. 8388607)
+ 281 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 103 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 188 words of extra memory for PDF output out of 10000 (max. 10000000)
 

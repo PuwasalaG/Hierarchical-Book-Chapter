@@ -574,25 +574,30 @@ Income and expenditure hierarchies consist 16 and 81 series respectively. All qu
 
 \section{Empirical study}
 
+<<<<<<< HEAD
+In this empirical study we apply above discussed hierarchical methods to obtain coherent point and probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components. 
+=======
 In this empirical study we apply above discussed hierarchical methods to obtain coherent point as well as probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components.
+>>>>>>> 4b90e17079140fc46d38f14431d5d305d9f30cea
 
 Let us first observe the time series plots for each approach. Figure \ref{TS-Inc} and \ref{TS-Exp} depicts these plots for income and expenditure hierarchies respectively. The upper panel of each figure shows the time series of all aggregate level series whereas lower panel shows the bottom level series. We can see that different series reflect different characteristics. For example, in the expenditure hierarchy, some series reflects an upward trend while some others reflect a downward trend or no trend at all. Further some series are having seasonal pattern whereas some does not have any seasonality. Moreover the bottom level series reflects some noise level compared to aggregate series in both hierarchies. Therefore, coherent forecasts through traditional methods such as top-down or bottom-up methods would not be accurate as they will ignore part of the information in generating forecasts. Thus forecast reconciliation is important in this empirical study.
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.65]{Figs/TS-Inc.PNG}
-	\caption{Time series plots for each series of income hierarchy.}\label{TS-Inc}
+	\includegraphics[scale=0.50]{Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.PNG}
+	\caption{Time plots for series from different levels of income hierarchy.}\label{TS-Inc}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/TS-Exp.PNG}
-	\caption{Time series plots for each series of expenditure hierarchy.}\label{TS-Exp}
+	\includegraphics[scale=0.50]{Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.PNG}
+	\caption{Time plots for series from different levels of expenditure hierarchy.}\label{TS-Exp}
 \end{figure}
 
-First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark and these are always coherent.
+
+First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent. 
 
 \subsection{Point forecasts and evaluation}
 
@@ -606,7 +611,7 @@ Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecas
 	\centering
 	\small
 	\includegraphics[scale=0.50]{Figs/Results/INC-PointF.PNG}
-	\caption{Summary of point forecast in income approach}\label{Exp-PointF}
+	\caption{Summary of point forecasts in income approach}\label{Exp-PointF}
 \end{figure}
 
 
@@ -616,7 +621,7 @@ Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecas
 	\centering
 	\small
 	\includegraphics[scale=0.50]{Figs/Results/EXP-PointF.PNG}
-	\caption{Summary of point forecast in expenditure approach}\label{Inc-PointF}
+	\caption{Summary of point forecasts in expenditure approach}\label{Inc-PointF}
 \end{figure}
 
 
@@ -955,6 +960,124 @@ Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_
 	}
 \end{table}
 
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG}
+	\caption{All aggregate level series of income hierarchy.}\label{INC-aggregates_TSplot}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.PNG}
+	\caption{All bottom level series of income hierarchy.}\label{INC-bottomlevel_TSplot}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-1.PNG}
+	\caption{GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}\label{EXP-set-1}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-2.PNG}
+	\caption{Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}\label{EXP-set-2}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-3.PNG}
+	\caption{Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}\label{EXP-set-3}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-4.PNG}
+	\caption{Disaggregation of private non-farm in expenditure hierarchy.}\label{EXP-set-4}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-5.PNG}
+	\caption{Disaggregation of government final consumption expenditure.}\label{EXP-set-5}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-6.PNG}
+	\caption{Public, private and total fixed capital formations.}\label{EXP-set-6}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-7.PNG}
+	\caption{Disaggregation of general government of Gross fixed capital formations.}\label{EXP-set-7}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-8.PNG}
+	\caption{Disaggregation of public corporations of Gross fixed capital formations.}\label{EXP-set-8}
+\end{figure}
+
+\begin{figure}[H]
+ 	\centering
+ 	\small
+ 	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-9.PNG}
+ 	\caption{Disaggregation of total dwelling and ownership transfer.}\label{EXP-set-9}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-10.PNG}
+	\caption{Main disaggregation of total private business investments.}\label{EXP-set-10}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-11.PNG}
+	\caption{Remaining disaggregation of total private business investments.}\label{EXP-set-11}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-12.PNG}
+	\caption{Main disaggregation of household final consumption expenditure.}\label{EXP-set-12}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-13.PNG}
+	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-13}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-14.PNG}
+	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-14}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-15.PNG}
+	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-15}
+\end{figure}
 
 \pagebreak
 \bibliographystyle{agsm}

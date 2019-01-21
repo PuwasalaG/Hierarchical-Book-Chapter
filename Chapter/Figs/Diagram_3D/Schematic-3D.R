@@ -14,9 +14,12 @@ X[,3] <- X[,1] + X[,2]
 
 colnames(X) <- c("X1", "X2", "X3")
 
-s3d <- scatterplot3d(X, type = "h", color = "red",
+s3d <- scatterplot3d(X, type = "h", color = "blue",
                      angle=55, pch = 16, grid=TRUE, box=FALSE)
 
 # Add regression plane
 my.lm <- lm(X$X3 ~ X$X1 + X$X2)
 s3d$plane3d(my.lm, draw_lines = T, draw_polygon = T)
+
+# Add supplementary points
+s3d$points3d(-4, 2, 12, col = "red", type = "h", pch = 8)
