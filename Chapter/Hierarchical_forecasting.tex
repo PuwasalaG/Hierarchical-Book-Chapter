@@ -155,7 +155,7 @@ A hierarchical time series has observations that are \textit{coherent}, i.e., $\
 
 Structures similar to the one portrayed in Figure \ref{fig:simple tree} can be found in macroeconomics. For instance in Section~\ref{XXX} we consider the case of GDP and its components.  However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on.  These structures can also be captured by an appropriately designed $\vec{S}$ matrix.
 
-An alternative important aggregation structure also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. Figure \ref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\vec{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical, grouped time series do not naturally disaggregate in a unique manner.
+An important alternative aggregation structure also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. Figure \ref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\vec{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical, grouped time series do not naturally disaggregate in a unique manner.
 \begin{figure}[!hbt]
 \center
 \tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
@@ -182,7 +182,7 @@ The overwhelming majority of the literature concentrates on a single level of te
 
 \section{Point forecasting}\label{sec:point forecasting}
 
-A requirement when forecasting hierarchial or grouped time series is that 
+A requirement when forecasting hierarchial time series is that the forecasts adhere to the same aggregation constraints as the observed data, i.e., they are coherent.
 
 \begin{definition}
 A set of $h$-step ahead forecasts $\tilde{\vec{y}}_{T+h|T}$, stacked in the same order as $\vec{y}_{t}$ and generated using information up to and including time $T$,
@@ -190,17 +190,17 @@ are said to be \textit{coherent} if $\tilde{\vec{y}}_{T+h|T} \in \mathfrak{s}$.
   \label{def:coherence}
 \end{definition}
 
-A set of coherent forecasts respect the aggregation constraints across the hierarchy. That is the forecasts of lower level series aggregate up to their corresponding upper level series of the hierarchy and vice versa.
+Hence, coherent forecasts of lower level series aggregate up to their corresponding upper level series and vice versa.
 
 \textcolor{red}{Add the picture here.}
 Let us consider the smallest possible hierarchy with two bottom level series, $A$ and $B$ that add up to the top level $Tot$. Suppose $\breve{\vec{y}}_{T+h|T}$ of this hierarchy is given by $\breve{\vec{y}}_{T+h|T} = [\breve{y}_{Tot,T+h|T},\breve{y}_{A,T+h|T}, \breve{y}_{B,T+h|T}]$. Due to the aggregation structure we have $\breve{y}_{Tot,T+h|T}=\breve{y}_{A,T+h|T}+\breve{y}_{B,T+h|T}$. This implies that, even though  $\breve{\vec{y}}_{Tot,T+h|T} \in \mathbb{R}^3$, the points actually lie in $\mathfrak{s}\subset \mathbb{R}^3$, which is a two dimensional subspace within $\mathbb{R}^3$ space.
 
 \subsection{Single-level approaches}\label{sec:single level approaches}
-A common theme across all traditional approaches for forecasting hierarchical structures is that a single-level of aggregation is first selected and forecasts for that level are generated. These are then linearly combined to generate a set of coherent forecasts the rest of the structure.
+A common theme across all traditional approaches for forecasting hierarchical time series is that a single-level of aggregation is first selected and forecasts for that level are generated. These are then linearly combined to generate a set of coherent forecasts the rest of the structure.
 
 \subsubsection{Bottom-up}
 
-In the \textit{bottom-up} approach, forecasts for the lowest level series are first generated. These are then aggregated to obtain forecasts for all the other levels of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\vec{b}}_{T+h|T} \in \mathbb{R}^m$, a set of $h$-step ahead forecasts for the bottom-level series. For the simple hierarchical structure of Figure \ref{fig:simple tree}, $\hat{\vec{b}}_{T+h|T} = (\hat{{y}}_{AA,T+h|T}, \hat{{y}}_{AB,T+h|T}, \hat{{y}}_{BA,T+h|T}, \hat{{y}}_{BB,T+h|T},\hat{{y}}_{BC,T+h|T}),$ where, $\hat{{y}}_{i,T+h|T}$ is the $h$-step ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by,
+In the \textit{bottom-up} approach, forecasts for the most disaggregate are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\vec{b}}_{T+h|T} \in \mathbb{R}^m$, a set of $h$-step ahead forecasts for the bottom-level series. For the simple hierarchical structure of Figure \ref{fig:simple tree}, $\hat{\vec{b}}_{T+h|T} = (\hat{{y}}_{AA,T+h|T}, \hat{{y}}_{AB,T+h|T}, \hat{{y}}_{BA,T+h|T}, \hat{{y}}_{BB,T+h|T},\hat{{y}}_{BC,T+h|T}),$ where, $\hat{{y}}_{i,T+h|T}$ is the $h$-step ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by,
 \begin{equation*}\label{eq:BU}
 \tilde{\vec{y}}^{BU}_{T+h|T}=\vec{S\hat{\vec{b}}}_{T+h|T}.
 \end{equation*}
@@ -214,36 +214,13 @@ In contrast \textit{top-down} approaches involve first generating forecasts for 
 \end{equation*}
 where $\vec{p} = (p_1,...,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{Tot, T+h|T}$ to forecasts for the bottom-level series, hence $\vec{p}\hat{y}_{Tot, T+h|T}=\vec{\hat{\vec{b}}}_{T+h|T}$. These are then aggregated up by the summing matrix $\vec{S}$.
 
-Two commonly used sets of proportions are the \textit{average historical proportions}:
-\begin{equation*}
-p_j = \frac{1}{T} \sum_{t=1}^{T}\frac{y_{j,t}}{y_{Tot,t}},
-\end{equation*}
-for $j=1,\ldots,m$, where each $p_j$ reflects the average of the historical proportions of the bottom-level series $y_{j,t}$ over the period $t=1,\ldots,T$ relative to the total aggregate $y_{Tot,t}$, and the \textit{proportions of the historical averages}:
-\begin{equation}
-p_j = \frac{\frac{1}{T}\sum_{t=1}^{T}y_{j,t}}{\frac{1}{T}\sum_{t=1}^{T}y_{Tot,t}},
-\end{equation}
-where each proportion $p_j$ captures the average historical value of the bottom-level series $y_{j,t}$ relative to the average value of the total aggregate $y_{Tot,t}$.
-
-Both these approaches performed well in \cite{gross1990}. Their most convenient attribute is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregate top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. Using such top-down approaches, is limited as it does not allow to capture and model individual series characteristics.
-
-\textcolor{red}{Complete this if we decide to leave these in.}
-
-To overcome this limitation, \cite{AthEtAl2009} introduced a new top-down approach which disaggregates the top-level forecasts according to the proportions of forecasts rather than historical proportions and show evidence that this method outperforms the conventional top-down approaches.
-
-
-
-\textcolor{red}{This seems to be simply of combination of top and bottom level forecasts. We may drop it. }
-
-
-This approach is much reliable, since it calculates the proportions as a function of time, rather than using the simple averages in traditional top-down methods.
+Traditionally proportions have been calculated based on the observed historical data. \cite{gross1990} present and evaluate twenty-one alternative approaches. The most convenient attribute of these approaches is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregate top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. Using such top-down approaches, is limited as it does not allow to capture and model individual series characteristics. To overcome this limitation, \cite{AthEtAl2009} introduced a new top-down approach which disaggregates the top-level forecasts based on proportions of forecasts rather than the historical data and show evidence that this method outperforms the conventional top-down approaches. However, a limitation of all top-down and by implication middle-out approaches that follow next, is that they introduce bias to the forecasts. We discuss this in detail in Section \ref{sec:reconciliation approaches} that follows.
 
 \subsubsection{Middle-out}
-\textcolor{red}{Add middle-out}
 
-As shown by \cite{HynEtAl2011}, top-down methods are adding a bias component to each disaggregate level. Therefore, all these top-down approaches are producing biased forecasts even if the top level base forecasts are unbiased.
+A compromise between bottom-up and top-down approaches is the middle-out approach. It entails first forecasting the series of a selected middle-level. For series above the middle-level, coherent forecasts are generated using the bottom-up approach by aggregating the middle-level forecasts upwards. For series below the middle level, coherent forecasts are generated using a top-down approach by disaggregating the middle-level forecasts downwards. As mentioned above As the since the middle-out approach involves generating top-down forecasts, it also introduces bias to the forecasts. We discuss this in detail in Section \ref{sec:reconciliation approaches} that follows.
 
-A compromise between these two approaches is the middle-out method which entails forecasting each series of a selected middle level in the hierarchy and then forecasting upper levels by the bottom-up method and lower levels by the top-down method.\\
-Since this is a hybrid approach of bottom-up and top-down approaches it still remains the limitations of those two.
+
 
 \subsection{Point forecast reconciliation}\label{sec:reconciliation approaches}
 
@@ -575,7 +552,7 @@ Income and expenditure hierarchies consist 16 and 81 series respectively. All qu
 \section{Empirical study}
 
 <<<<<<< HEAD
-In this empirical study we apply above discussed hierarchical methods to obtain coherent point and probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components. 
+In this empirical study we apply above discussed hierarchical methods to obtain coherent point and probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components.
 =======
 In this empirical study we apply above discussed hierarchical methods to obtain coherent point as well as probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components.
 >>>>>>> 4b90e17079140fc46d38f14431d5d305d9f30cea
@@ -597,7 +574,7 @@ Let us first observe the time series plots for each approach. Figure \ref{TS-Inc
 \end{figure}
 
 
-First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent. 
+First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent.
 
 \subsection{Point forecasts and evaluation}
 
