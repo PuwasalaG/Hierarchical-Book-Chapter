@@ -505,70 +505,49 @@ Skill score.
 
 7. Results
 
-\section{Experimental Design and Results}\label{sec:results}
+\section{Methodology}\label{sec:meth} 
 
+We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP data.  We consider forecasts from $H=1$ quarter ahead forecasts up to $H=4$ quarter ahead using an {\em expanding} window.  First, the training sample is set to QX of XXXX to QX of XXXX and forecasts are produced for QX of XXXX to QX of XXXX. Then the training window is expanded one period ahead, i.e. from QX of XXXX to QX of XXXX with forecasts produces for QX of XXXX to QX of XXXX.  All up this leads to XX forecasts.
+
+{\color{red} Need to get these dates off Puwasala.  Also last section may need to be changed}
+
+\subsection{Models}
+
+Base
+
+Arim
 
 \subsection{Evaluation}
 
-In this section we briefly discuss the methods that we use to measure the forecast accuracy of hierarchical forecasts.
-
-\subsubsection{Point forecast evaluation}
-
-Any existing point forecast evaluation method can be used to evaluate the accuracy of hierarchical point forecast. We are mainly using Mean Squared Error (MSE) and Mean Absolute Scaled Error (MASE) in our empirical application. Mathematical expression for these measures are given below.
-
-\begin{equation}\label{eq:22}
-MSE = mean(e^2_{t+h}),
-\end{equation}
-and
-\begin{equation}\label{eq:23}
-MASE = mean(q_{t+h}),
-\end{equation}
-where $q_{t+h} = \frac{e_{t+h}}{\frac{1}{T-m}\sum_{j=m+1}^{T}|y_j - y_{j-m}|}$. Further $e_{t+h}$ is the forecast error, which is the difference between forecast and realisation.
-
-MSE is a scaled dependent measure. Therefore to compare series in different scales or with different units, MASE is preferred. For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
+For evaluating point forecasts we consider two metrics, the Root Mean Squared Error (RMSE) and the Mean Absolute Scaled Error (MASE).  The absolute scaled error is defined as
+\begin{equation*}
+q_{t+h} = \sum \frac{|\breve{e}_{t+h|t}|}{(T-m)^{-1}\sum_{j=m+1}^{T}|y_j - y_{j-m}|}\,,
+\end{equation*}
+where $\breve{e}_{t+h}$\footnote{breve is used intead of a hat or tilde to denote that this can be the error either a base or reconciled forecast} is the difference between any forecast and the realisation {\color{red} check m is and change since m is bottom level dimension}.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
 
 \subsubsection{Probabilistic forecast evaluation}
 
-Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}. Scoring rules provides a summary measurement based on the relationship between realisation and the forecast distribution. However, not all scoring rules are applicable for hierarchical probabilistic forecast evaluation. An comprehensive discussion on this can be found in \cite{Gamakumara2018}.
-
-Since the whole forecast distribution of the hierarchy is a multivariate distribution, the forecast accuracy should also be assessed in the multivariate framework. Therefore using multivariate scoring rules is helpful. Energy score \citep{Gneiting2008} and variogram scores \citep{SCHEUERER2015} are the mainly using multivariate scoring rules in hierarchical framework. Further, multivariate log score \citep{Gneiting2007} can also be used for evaluating parametric forecast distributions. The mathematical expressions for these are given table \ref{table:scoringrules}.
-
-\begin{table}[!b]
-	\caption{Scoring rules to evaluate multivariate forecast densities. $\breve{\vec{y}}_{T+h}$ and $\breve{\vec{y}}^*_{T+h}$ be two independent random vectors from the coherent forecast distribution $\breve{\vec{F}}$ with the density function $\breve{\vec{f}}(\cdot)$ at time $T+h$ and $\vec{y}_{T+h}$ is the vector of realizations. Further $\breve{Y}_{T+h,i}$ and $\breve{Y}_{T+h,j}$ are $i$th and $j$th components of the vector $\breve{\vec{Y}}_{T+h}$. Moreover, the variogram score is given for order $p$ where, $w_{ij}$ are non-negative weights.}\label{table:scoringrules}
-	\centering\small\setstretch{1.3}
-	\begin{tabular}{@{}lp{8.1cm}}
-		\toprule
-		\textbf{Scoring rule}  & \textbf{Expression}           \\
-		\midrule
-		\text{Log score}       &
-		$\text{LS}(\breve{\bm{F}},\bm{y}_{T+h}) = -\log {\breve{\bm{f}}(\bm{y}_{T+h})}$ \\\\[-0.2cm]
-		\text{Energy score}    &
-		$\text{eS}(\breve{\bm{Y}}_{T+h},\bm{y}_{T+h}) =
-		E_{\breve{\bm{F}}}
-		\|\breve{\bm{Y}}_{T+h}-\bm{y}_{T+h}\|^\alpha -$ \par\hfill
-		$\frac{1}{2}E_{\breve{\bm{F}}}\|\breve{\bm{Y}}_{T+h}-\breve{\bm{Y}}^*_{T+h}\|^\alpha$, \,\, $\alpha \in (0,2]$ \\\\[-0.2cm]
-		\text{Variogram score} &
-		$\text{VS}(\breve{\bm{F}}, \bm{y}_{T+h}) =
-		\sum\limits_{i=1}^{n}
-		\sum\limits_{j=1}^{n}
-		w_{ij}\Big(|y_{T+h,i} - y_{T+h,j}|^p -$ \par\hfill
-		$E_{\breve{\bm{F}}}|\breve{Y}_{T+h,i}-\breve{Y}_{T+h,j}|^p\Big)^2$ \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-Log score is easy to use if the parametric forecast distributions are available. However, \cite{Gamakumara2018} showed that the multivariate log scores are inappropriate for the comparisons between incoherent and coherent forecast distributions. This is due to the degeneracy of multivariate coherent forecast distributions.
-
-Energy score and variogram score can be used in any comparisons between multivariate hierarchical forecast distributions. The expectations in these scoring rules can be approximated by the sample means of simulated samples.
-
-It would be also interested to see the performance of forecast distributions of individual series in the hierarchy. To measure these we use univariate scoring rules such as Continuous Rank Probability Score (CRPS) and univariate log score \citep{Gneiting2008}. The mathematical expression for CRPS is given by,
+Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}.  Let $\breve{F}$ be a probabilistic forecast and let $\breve{\vec{y}}\sim \breve{F}$  where breve is used to denote that either base forecast or reconciled forecast can be evaluated.  The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
+\begin{equation*}
+eS(\breve{F}_{T+h|T},\vec{y}_{T+h}) =
+E_{\breve{F}}\|\breve{\vec{y}}_{T+h}-\vec{y}_{T+h}\|^\alpha
+-\frac{1}{2}E_{\breve{F}}\|\breve{\vec{y}}_{T+h}-\breve{\vec{y}}^*_{T+h}\|^\alpha\,,
+\end{equation*}
+where $\vec{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 
 \begin{equation} \label{eq:24}
-\text{CRPS}(\breve{F}_i,y_{T+h,i}) = E_{\breve{F}_i}|\breve{Y}_{T+h,i}-y_{T+h,i}| - \frac{1}{2}E_{\breve{F}_i}|\breve{Y}_{T+h,i}-\breve{Y}^*_{T+h,i}|,
+\text{CRPS}(\breve{F}_i,y_{i,T+h}) = E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
 \end{equation}
-where $\breve{Y}_{T+h,i}$ and $\breve{Y}^*_{T+h,i}$ are two independent copies from the $i$th reconciled marginal forecast distribution $\tilde{F}_i$ of the hierarchy and $y_{T+h,i}$ is the $i$th realization from the true marginal distribution $G_i$. As in multivariate scoring rules, the expectations can be approximated by the sample average.
+
+where the subscript $i$ is used to denote that CRPS measures forecast accuracy for a single variable in the hierarchy.
+
+As an alternative to the energy score, log score and variogram scores were also considered.  The log score was disregarded since \cite{Gamakumara2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent.  The variogram score gave similar results to the energy score; variogram score results are omitted for brevity but are available from the authors upon request. {\color{red} or we put them in an appendix}
+
+
 
 \subsubsection{Comparison between different forecasting methods}
+
+{\color{red}To be included in results section - and discussed much more briefly.}
 
 We are mainly interested to evaluate the hierarchical forecasts in two aspects. One is to examine whether the having coherent forecasts is improving the forecast accuracy. This can be evaluated by comparing the incoherent forecasts with any coherent forecasts in both point as well as probabilistic framework. Secondly we are interested in finding the best reconciliation method by comparing reconciled forecast from different reconciliation methods.
 
@@ -585,7 +564,7 @@ First step in the reconciliation process is to generate base forecasts in both p
 
 \subsection{Point forecasts and evaluation}
 
-Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecasts. Then these forecasts were reconciled using alternative methods discussed in section (?). We initially use a training set of 40 observations corresponds to the period 1984, Q1 to 1994, Q3 and generate forecasts for next four quarters. Then the process was repeated by expanding the training window by adding one observation ahead. MSE and MASE were calculated over the replications for each series. Skill scores were then calculated by considering the base forecasts as reference method to compare the incoherent vs coherent forecasts. Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
+MSE and MASE were calculated over the replications for each series. Skill scores were then calculated by considering the base forecasts as reference method to compare the incoherent vs coherent forecasts. Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
 
 \textcolor{red}{Discuss results}
 
@@ -611,18 +590,16 @@ Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecas
 
 
 
-\subsection{Probabilistic forecasts and evaluation}
+\section{Results}\label{sec:results}
 
-We are also interested to estimate the forecast distributions of GDP and its disaggregate components. For that we use the probabilistic forecasting methods described in section (?).
-
-\subsubsection{Gaussian probabilistic forecasts for Australian GDP}
-
-Under Gaussian assumption, forecast distribution of GDP is limited to estimating means and variances. First we estimate the mean and variance of 4-step ahead incoherent forecast distributions and then these will be reconciled following \ref{eq:rec mean} and \ref{eq:rec var} using alternative estimates for $\vec{G}$. Incoherent point forecasts will be taken as an estimate for the mean of incoherent Gaussian forecast distribution $\hat{\mu}_{T+h}$, where as the covariance of incoherent forecast errors will be taken as an estimate of the incoherent variance $\hat{\Sigma}_{T+h}$. Using an expanding window we repeat the process.
-
-To evaluate the predictive ability of the multivariate Gaussian forecast distributions, we calculate energy score (ES), Variogram score (VS) and multivariate log score (LS) for each replication. Further to see the predictive ability of univariate series, we calculate the CRPS and univariate log scores for marginal Gaussian forecast distributions. Skill scores were then calculated using average scores over replications by taking the scores for incoherent forecasts as reference method. Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
+Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
 
 \textcolor{red}{Discuss results}
 
+
+\textcolor{red}{Possible discuss skill scores}
+
+\textcolor{red}{Discuss breakdown into looking at different levels.}
 
 \subsection*{Income approach}
 
