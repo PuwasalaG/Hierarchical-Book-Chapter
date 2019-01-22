@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  22 JAN 2019 15:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  22 JAN 2019 15:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1929,7 +1929,7 @@ etailsPage/5206.0Sep
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 69--74
+Underfull \hbox (badness 10000) in paragraph at lines 56--61
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 https://www.degruyter.com/view/j/sagmb.20
 05.4.issue-
  []
@@ -1951,10 +1951,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 28507 strings out of 492982
- 596358 string characters out of 6134895
- 641732 words of memory out of 5000000
- 31525 multiletter control sequences out of 15000+600000
+ 28497 strings out of 492982
+ 596171 string characters out of 6134895
+ 641576 words of memory out of 5000000
+ 31515 multiletter control sequences out of 15000+600000
  582135 words of font info for 145 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,17n,73p,10404b,1107s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1971,7 +1971,7 @@ ist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/boondox/zxxrl8a.pfb>
 
-Output written on Hierarchical_forecasting.pdf (46 pages, 641022 bytes).
+Output written on Hierarchical_forecasting.pdf (46 pages, 640188 bytes).
 PDF statistics:
  281 PDF objects out of 1000 (max. 8388607)
  148 compressed objects within 2 object streams

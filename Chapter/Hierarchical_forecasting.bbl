@@ -35,12 +35,6 @@ Gneiting, T. \harvardand\ Raftery, A.~E.  \harvardyearleft
   2005\harvardyearright , `{Weather forecasting with ensemble methods}', {\em
   Science} {\bf 310.5746},~248--249.
 
-\harvarditem{Gneiting \harvardand\ Raftery}{2007}{Gneiting2007}
-Gneiting, T. \harvardand\ Raftery, A.~E.  \harvardyearleft
-  2007\harvardyearright , `{Strictly Proper Scoring Rules, Prediction, and
-  Estimation}', {\em Journal of the American Statistical Association} {\bf
-  102}(477),~359--378.
-
 \harvarditem[Gneiting et~al.]{Gneiting, Stanberry, Grimit, Held \harvardand\
   Johnson}{2008}{Gneiting2008}
 Gneiting, T., Stanberry, L.~I., Grimit, E.~P., Held, L. \harvardand\ Johnson,
@@ -53,13 +47,6 @@ Gross, C.~W. \harvardand\ Sohl, J.~E.  \harvardyearleft 1990\harvardyearright ,
   `{Disaggregation methods to expedite product line forecasting}', {\em Journal
   of Forecasting} {\bf 9}(3),~233--254.
 
-\harvarditem[Hyndman et~al.]{Hyndman, Yasmeen, Ihaka, Reid \harvardand\
-  Shaub}{2018}{Hyndman2018}
-Hyndman, R., Yasmeen, F., Ihaka, R., Reid, D. \harvardand\ Shaub, D.
-  \harvardyearleft 2018\harvardyearright , `{forecast: Forecasting Function for
-  Time Series and Linear Models}'.
-\newline\harvardurl{https://pkg.robjhyndman.com/forecast}
-
 \harvarditem{Manzan \harvardand\ Zerom}{2008}{Manzan2008}
 Manzan, S. \harvardand\ Zerom, D.  \harvardyearleft 2008\harvardyearright , `{A
   bootstrap-based non-parametric forecast density}', {\em International Journal
@@ -71,12 +58,6 @@ Sch{\"{a}}fer, J. \harvardand\ Strimmer, K.  \harvardyearleft
   Matrix Estimation and Implications for Functional Genomics}', {\em
   Statistical Applications in Genetics and Molecular Biology} {\bf 4}(1).
 \newline\harvardurl{https://www.degruyter.com/view/j/sagmb.2005.4.issue-1/sagmb.2005.4.1.1175/sagmb.2005.4.1.1175.xml}
-
-\harvarditem{Scheuerer \harvardand\ Hamill}{2015}{SCHEUERER2015}
-Scheuerer, M. \harvardand\ Hamill, T.~M.  \harvardyearleft
-  2015\harvardyearright , `{Variogram-Based Proper Scoring Rules for
-  Probabilistic Forecasts of Multivariate Quantities *}', {\em Monthly Weather
-  Review} {\bf 143}(4),~1321--1334.
 
 \harvarditem[Taieb et~al.]{Taieb, Taylor \harvardand\ Hyndman}{2017}{Taieb2017}
 Taieb, S.~B., Taylor, J.~W. \harvardand\ Hyndman, R.~J.  \harvardyearleft
