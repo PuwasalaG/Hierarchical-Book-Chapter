@@ -406,13 +406,102 @@ Due to these concerns, we employ a reconciliation method proposed by \cite{Gamak
 %where, $\tilde{\vec{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,...,N$. $\tilde{\vec{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\vec{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
 
 
+\section{Empirical Study: Australian GDP}\label{sec:data}
+
+According to the Australian Bureau of Statistics (ABS), GDP of Australia is measured in three main approaches namely, Production, Income and Expenditure. Each of the three approaches naturally form a hierarchy according to the way data are collected and aggregated. Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in gray whereas, the most disaggregate level is denoted in red. The intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
+.
+
+GDP and its associated components are generally measured in different price indexes. \textit{Current price value} is one such price index which measures the sum of individual transaction values - quantity produced or sold multiplied by the unit price of a particular period. Alternatively, the production growth irrespective to the price change is measured by holding the price constant at a base year - referred to as \textit{constant price index} or by linking the period-to-period price indexes via an index formula - referred to as \textit{chain volume index} \citep{ABS2015}. Although the current prices are subjective to the changes of price in period-to-period, unlike chain volume indexes, these estimates satisfy the coherency of observed data. Therefore we consider the current prices of all series as the coherency is important in this study.
+
+We use seasonally unadjusted quarterly data ranging from 1984-Q4 to 2018-Q1. Since the current prices of quarterly series are not available for production approach, we consider only the income and expenditure approaches in our study. Further, the current price estimates of GDP is calculated by reflating the average chain volume estimates over three approaches by the implicit price deflator derived from the expenditure-based estimate. As a result, there exist a statistical discrepancy for GDP estimates in each approach \citep{ABS2018}. These were also included in the hierarchy in order to align with the coherency conditions in observed data. Furthermore, adjusting for seasonality in each series will deviate the aggregate constraints of the hierarchy. Thus we use seasonally unadjusted data to preserve coherency.
 
 
-\section{Evaluation}
+Following subsections will give a brief description of income and expenditure hierarchies.
+
+\subsection{Income approach}
+
+In the income approach, the GDP is measured by the aggregation of all income flows. That is the aggregation of all factor incomes  and the taxes less subsidies on production and imports at purchaser's price \citep{ABS2015}. Underline equation is given as,
+\begin{small}
+	\begin{align*}
+	GDP(I) &= \textit{Compensation of employees} + \textit{Gross operating surplus} + \textit{Gross mixed income}\\ &+ \textit{Taxes on production and imports} - \textit{Subsidies on production and imports}\\ &+ \textit{Statistical decrepency (I)}\\
+	\end{align*}
+\end{small}
+Hierarchy shown in figure \ref{GDP_I_fig1} in appendix 1 reflects how these are further disaggregated.
+
+\subsection{Expenditure approach}
+
+In the expenditure approach, the GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. Underline equation is,
+
+\begin{small}
+	\begin{align*}
+	GDP(E) &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} + \textit{Changes in inventories}\\ &+ \textit{Exports of goods and services} - \textit{Imports of goods and services} + \textit{Statistical decrepency (E)}\\
+	\end{align*}
+\end{small}
+Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_E_fig2} and \ref{GDP_E_fig3} in appendix 1.
+
+Income and expenditure hierarchies consist 16 and 81 series respectively. All quarterly data for these series were obtained from the ABS and used to estimate coherent forecasts for Australian GDP along with its disaggregate components. In the following section we describe the hierarchical forecasting methods that we are using to get these forecasts.
+
+\begin{itemize}
+	\item GDP of Australia
+	\item []
+	\item How GDP is measured
+	\begin{itemize}
+		\item Production, Income and Expenditure approach
+		\item Explain the hierarchy
+	\end{itemize}
+	\item Issues with data
+	\begin{itemize}
+		\item Why use current price rather than constant price (This is why we ignores production approach)
+		\item What is statistical discrepancy
+		\item Frequency of data
+		\item Does the data satisfies coherency
+	\end{itemize}
+	
+	\item Forecasting methods
+	\begin{itemize}
+		\item Add a figure of all time series in income approach.
+		Explain why traditional methods might not work using these time series as forecasting one layer of the hierarchy will ignore the structural information of individual time series to be used in the forecasts.
+		
+		\item Explain ETS and ARIMA forecasting methods briefly
+		\item Hierarchical forecasting
+	\end{itemize}
+\end{itemize}
+
+In this empirical study we apply above discussed hierarchical methods to obtain coherent point and probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components.
+
+
+Let us first observe the time series plots for each approach. Figure \ref{TS-Inc} and \ref{TS-Exp} depicts these plots for income and expenditure hierarchies respectively. The upper panel of each figure shows the time series of all aggregate level series whereas lower panel shows the bottom level series. We can see that different series reflect different characteristics. For example, in the expenditure hierarchy, some series reflects an upward trend while some others reflect a downward trend or no trend at all. Further some series are having seasonal pattern whereas some does not have any seasonality. Moreover the bottom level series reflects some noise level compared to aggregate series in both hierarchies. Therefore, coherent forecasts through traditional methods such as top-down or bottom-up methods would not be accurate as they will ignore part of the information in generating forecasts. Thus forecast reconciliation is important in this empirical study.
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png}
+	\caption{Time plots for series from different levels of income hierarchy.}\label{TS-Inc}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png}
+	\caption{Time plots for series from different levels of expenditure hierarchy.}\label{TS-Exp}
+\end{figure}
+
+
+\clearpage	
+
+
+
+
+
+
+\section{Experimental Design and Results}\label{sec:results}
+
+
+\subsection{Evaluation}
 
 In this section we briefly discuss the methods that we use to measure the forecast accuracy of hierarchical forecasts.
 
-\subsection{Point forecast evaluation}
+\subsubsection{Point forecast evaluation}
 
 Any existing point forecast evaluation method can be used to evaluate the accuracy of hierarchical point forecast. We are mainly using Mean Squared Error (MSE) and Mean Absolute Scaled Error (MASE) in our empirical application. Mathematical expression for these measures are given below.
 
@@ -421,13 +510,13 @@ MSE = mean(e^2_{t+h}),
 \end{equation}
 and
 \begin{equation}\label{eq:23}
- MASE = mean(q_{t+h}),
+MASE = mean(q_{t+h}),
 \end{equation}
 where $q_{t+h} = \frac{e_{t+h}}{\frac{1}{T-m}\sum_{j=m+1}^{T}|y_j - y_{j-m}|}$. Further $e_{t+h}$ is the forecast error, which is the difference between forecast and realisation.
 
 MSE is a scaled dependent measure. Therefore to compare series in different scales or with different units, MASE is preferred. For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
 
-\subsection{Probabilistic forecast evaluation}
+\subsubsection{Probabilistic forecast evaluation}
 
 Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}. Scoring rules provides a summary measurement based on the relationship between realisation and the forecast distribution. However, not all scoring rules are applicable for hierarchical probabilistic forecast evaluation. An comprehensive discussion on this can be found in \cite{Gamakumara2018}.
 
@@ -468,7 +557,7 @@ It would be also interested to see the performance of forecast distributions of 
 \end{equation}
 where $\breve{Y}_{T+h,i}$ and $\breve{Y}^*_{T+h,i}$ are two independent copies from the $i$th reconciled marginal forecast distribution $\tilde{F}_i$ of the hierarchy and $y_{T+h,i}$ is the $i$th realization from the true marginal distribution $G_i$. As in multivariate scoring rules, the expectations can be approximated by the sample average.
 
-\subsection{Comparison between different forecasting methods}
+\subsubsection{Comparison between different forecasting methods}
 
 We are mainly interested to evaluate the hierarchical forecasts in two aspects. One is to examine whether the having coherent forecasts is improving the forecast accuracy. This can be evaluated by comparing the incoherent forecasts with any coherent forecasts in both point as well as probabilistic framework. Secondly we are interested in finding the best reconciliation method by comparing reconciled forecast from different reconciliation methods.
 
@@ -479,99 +568,6 @@ Ss[S_B(\cdot)] = \frac{S_B(\bm{Y},\bm{y})^{\text{ref}} - S_B(\breve{\bm{Y}},\bm{
 where $S_B(\cdot)$ is average score over $B$ replicates and $S_B(\bm{Y},\bm{y})^{\text{ref}}$ is the average score of the reference forecasting methods. Thus $Ss[S_B(\cdot)]$ gives the percentage improvement of the preferred forecasting method relative to the reference method. Any positive value indicates that method is superior to the reference method, whereas any negative value of $Ss[S_B(\cdot)]$ indicate that the method we compared is poor than the reference method.
 
 
-\section{GDP of Australia}
-
-According to the Australian Bureau of Statistics (ABS), GDP of Australia is measured in three main approaches namely, Production, Income and Expenditure. Each of the three approaches naturally form a hierarchy according to the way data are collected and aggregated. Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in gray whereas, the most disaggregate level is denoted in red. The intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
-.
-
-GDP and its associated components are generally measured in different price indexes. \textit{Current price value} is one such price index which measures the sum of individual transaction values - quantity produced or sold multiplied by the unit price of a particular period. Alternatively, the production growth irrespective to the price change is measured by holding the price constant at a base year - referred to as \textit{constant price index} or by linking the period-to-period price indexes via an index formula - referred to as \textit{chain volume index} \citep{ABS2015}. Although the current prices are subjective to the changes of price in period-to-period, unlike chain volume indexes, these estimates satisfy the coherency of observed data. Therefore we consider the current prices of all series as the coherency is important in this study.
-
-We use seasonally unadjusted quarterly data ranging from 1984-Q4 to 2018-Q1. Since the current prices of quarterly series are not available for production approach, we consider only the income and expenditure approaches in our study. Further, the current price estimates of GDP is calculated by reflating the average chain volume estimates over three approaches by the implicit price deflator derived from the expenditure-based estimate. As a result, there exist a statistical discrepancy for GDP estimates in each approach \citep{ABS2018}. These were also included in the hierarchy in order to align with the coherency conditions in observed data. Furthermore, adjusting for seasonality in each series will deviate the aggregate constraints of the hierarchy. Thus we use seasonally unadjusted data to preserve coherency.
-
-
-Following subsections will give a brief description of income and expenditure hierarchies.
-
-\subsection{Income approach}
-
-In the income approach, the GDP is measured by the aggregation of all income flows. That is the aggregation of all factor incomes  and the taxes less subsidies on production and imports at purchaser's price \citep{ABS2015}. Underline equation is given as,
-\begin{small}
-	\begin{align*}
-	GDP(I) &= \textit{Compensation of employees} + \textit{Gross operating surplus} + \textit{Gross mixed income}\\ &+ \textit{Taxes on production and imports} - \textit{Subsidies on production and imports}\\ &+ \textit{Statistical decrepency (I)}\\
-	\end{align*}
-\end{small}
-Hierarchy shown in figure \ref{GDP_I_fig1} in appendix 1 reflects how these are further disaggregated.
-
-\subsection{Expenditure approach}
-
-In the expenditure approach, the GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. Underline equation is,
-
-\begin{small}
-	\begin{align*}
-	GDP(E) &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} + \textit{Changes in inventories}\\ &+ \textit{Exports of goods and services} - \textit{Imports of goods and services} + \textit{Statistical decrepency (E)}\\
-	\end{align*}
-\end{small}
-Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_E_fig2} and \ref{GDP_E_fig3} in appendix 1.
-
-Income and expenditure hierarchies consist 16 and 81 series respectively. All quarterly data for these series were obtained from the ABS and used to estimate coherent forecasts for Australian GDP along with its disaggregate components. In the following section we describe the hierarchical forecasting methods that we are using to get these forecasts.
-
-\begin{itemize}
-	\item GDP of Australia
-	\item []
-	\item How GDP is measured
-		\begin{itemize}
-			\item Production, Income and Expenditure approach
-			\item Explain the hierarchy
-		\end{itemize}
-	\item Issues with data
-		\begin{itemize}
-			\item Why use current price rather than constant price (This is why we ignores production approach)
-			\item What is statistical discrepancy
-			\item Frequency of data
-			\item Does the data satisfies coherency
-		\end{itemize}
-	
-	\item Forecasting methods
-		\begin{itemize}
-			\item Add a figure of all time series in income approach.
-			Explain why traditional methods might not work using these time series as forecasting one layer of the hierarchy will ignore the structural information of individual time series to be used in the forecasts.
-			
-			\item Explain ETS and ARIMA forecasting methods briefly
-			\item Hierarchical forecasting
-		\end{itemize}
-\end{itemize}
-
-
-\clearpage	
-
-
-
-
-
-
-
-\section{Empirical study}
-
-<<<<<<< HEAD
-In this empirical study we apply above discussed hierarchical methods to obtain coherent point and probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components.
-=======
-In this empirical study we apply above discussed hierarchical methods to obtain coherent point as well as probabilistic forecasts for Australian GDP from income and expenditure approach along with the forecasts for its disaggregate components.
->>>>>>> 4b90e17079140fc46d38f14431d5d305d9f30cea
-
-Let us first observe the time series plots for each approach. Figure \ref{TS-Inc} and \ref{TS-Exp} depicts these plots for income and expenditure hierarchies respectively. The upper panel of each figure shows the time series of all aggregate level series whereas lower panel shows the bottom level series. We can see that different series reflect different characteristics. For example, in the expenditure hierarchy, some series reflects an upward trend while some others reflect a downward trend or no trend at all. Further some series are having seasonal pattern whereas some does not have any seasonality. Moreover the bottom level series reflects some noise level compared to aggregate series in both hierarchies. Therefore, coherent forecasts through traditional methods such as top-down or bottom-up methods would not be accurate as they will ignore part of the information in generating forecasts. Thus forecast reconciliation is important in this empirical study.
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.PNG}
-	\caption{Time plots for series from different levels of income hierarchy.}\label{TS-Inc}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.PNG}
-	\caption{Time plots for series from different levels of expenditure hierarchy.}\label{TS-Exp}
-\end{figure}
 
 
 First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent.
@@ -587,7 +583,7 @@ Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecas
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-PointF.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/INC-PointF.png}
 	\caption{Summary of point forecasts in income approach}\label{Exp-PointF}
 \end{figure}
 
@@ -597,7 +593,7 @@ Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecas
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-PointF.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/EXP-PointF.png}
 	\caption{Summary of point forecasts in expenditure approach}\label{Inc-PointF}
 \end{figure}
 
@@ -622,14 +618,14 @@ To evaluate the predictive ability of the multivariate Gaussian forecast distrib
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png}
 	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbGaus_ES_VS}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.png}
 	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbGaus_UnivS}
 \end{figure}
 
@@ -639,14 +635,14 @@ To evaluate the predictive ability of the multivariate Gaussian forecast distrib
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png}
 	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbGaus_ES_VS}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png}
 	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbGaus_UnivS}
 \end{figure}
 
@@ -668,14 +664,14 @@ We also estimate the coherent probabilistic forecasts for GDP and its disaggrega
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png}
 	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbNonParF_ES_VS}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png}
 	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbNonParF_UnivS}
 \end{figure}
 
@@ -689,14 +685,14 @@ We also estimate the coherent probabilistic forecasts for GDP and its disaggrega
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png}
 	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbNonParF_ES_VS}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.PNG}
+	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png}
 	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbNonParF_UnivS}
 \end{figure}
 
@@ -940,119 +936,119 @@ Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png}
 	\caption{All aggregate level series of income hierarchy.}\label{INC-aggregates_TSplot}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png}
 	\caption{All bottom level series of income hierarchy.}\label{INC-bottomlevel_TSplot}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-1.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-1.png}
 	\caption{GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}\label{EXP-set-1}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-2.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-2.png}
 	\caption{Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}\label{EXP-set-2}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-3.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-3.png}
 	\caption{Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}\label{EXP-set-3}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-4.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-4.png}
 	\caption{Disaggregation of private non-farm in expenditure hierarchy.}\label{EXP-set-4}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-5.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-5.png}
 	\caption{Disaggregation of government final consumption expenditure.}\label{EXP-set-5}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-6.PNG}
+	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-6.png}
 	\caption{Public, private and total fixed capital formations.}\label{EXP-set-6}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-7.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-7.png}
 	\caption{Disaggregation of general government of Gross fixed capital formations.}\label{EXP-set-7}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-8.PNG}
+	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-8.png}
 	\caption{Disaggregation of public corporations of Gross fixed capital formations.}\label{EXP-set-8}
 \end{figure}
 
 \begin{figure}[H]
  	\centering
  	\small
- 	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-9.PNG}
+ 	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-9.png}
  	\caption{Disaggregation of total dwelling and ownership transfer.}\label{EXP-set-9}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-10.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-10.png}
 	\caption{Main disaggregation of total private business investments.}\label{EXP-set-10}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-11.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-11.png}
 	\caption{Remaining disaggregation of total private business investments.}\label{EXP-set-11}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-12.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-12.png}
 	\caption{Main disaggregation of household final consumption expenditure.}\label{EXP-set-12}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-13.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-13.png}
 	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-13}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-14.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-14.png}
 	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-14}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-15.PNG}
+	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-15.png}
 	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-15}
 \end{figure}
 
