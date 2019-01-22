@@ -224,14 +224,9 @@ A compromise between bottom-up and top-down approaches is the middle-out approac
 
 \subsection{Point forecast reconciliation}\label{sec:reconciliation approaches}
 
-All the traditional approaches discussed so far are limited to only using information from a single-level of aggregation and furthermore ignoring any cross-correlations across levels of a hierarchy. An alternative framework that overcomes these limitations, first proposed by \citet{HynEtAl2011} and implemented by \citet{AthEtAl2009}, is one that involves forecast reconciliation. In a first step ignoring any aggregation constraints, forecasts for all the series across all levels of the hierarchy are generated. We refer to these as \textit{base} forecasts and denote them by $\hat{\vec{y}}_{T+h|T}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate all base forecasts so that the coherent nature of the data is extended to the forecasts.
+All approaches discussed so far are limited to only using information from a single-level of aggregation. Furthermore, these ignore any correlations across levels of a hierarchy. An alternative framework that overcomes these limitations is one that involves forecast \textit{reconciliation}. In a first step ignoring any aggregation constraints, forecasts for all the series across all levels of the hierarchy are generated. We refer to these as \textit{base} forecasts and denote them by $\hat{\vec{y}}_{T+h|T}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate \naive base forecasts for all the series in the hierarchy. In this case coherent nature of the data is extended to the forecasts.
 
-In a second step, base forecasts are reconciled so that they become coherent.
-
-ex-post adjustment
-
-
-This is achieved by projecting the base forecasts $\hat{\vec{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, via a projection matrix $\vec{SG}$, resulting in a set of coherent forecasts $\tilde{\vec{y}}_{T+h|T}$. More specifically,
+In a second step, base forecasts are reconciled, in an ex-post adjustment, so that they become coherent. This is achieved by projecting the base forecasts $\hat{\vec{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, via a projection matrix $\vec{SG}$, resulting in a set of coherent forecasts $\tilde{\vec{y}}_{T+h|T}$. More specifically,
 \begin{equation}\label{eq:recon}
 \tilde{\vec{y}}_{T+h|T}=\vec{S}\vec{G}\hat{\vec{y}}_{T+h|T},
 \end{equation}
@@ -241,8 +236,60 @@ where $\vec{G}$ is an $m\times n$ matrix that maps $\hat{\vec{y}}_{T+h|T}$ to th
 
 Note that all single-level approaches discussed so far can also be represented by \eqref{eq:recon} using appropriately designed \vec{G} matrices, however not all of these will be projections. For example, for the bottom-up approach, $\vec{G}=\begin{pmatrix}
 \vec{0}_{(m \times n-m)} & \vec{I}_m
-\end{pmatrix}$ in which case $\vec{SGS}=\vec{S}$. For the top-down approach $\vec{G}=(\vec{p}~\vec{0}_{(m \times n-1)})$, for which case $\vec{SGS}\ne\vec{S}$.
+\end{pmatrix}$ in which case $\vec{SGS}=\vec{S}$. For any top-down approach
+$\vec{G}=\begin{pmatrix}
+\vec{p} & \vec{0}_{(m \times n-1)}
+\end{pmatrix}$, for which case $\vec{SGS}\ne\vec{S}$.
 
+
+\subsubsection{Optimal MinT reconciliation}
+
+\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation. WE PRESENT THIS HERE AND LINK IT TO OTHER PAPERS
+
+Assume that $\hat{\vec{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\vec{y}}_{T+h|T})= E_{1:t}[\vec{y}_{T+h}|\vec{y}_1,...,\vec{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
+Let
+\begin{equation}\label{eq:base errors}
+\hat{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\hat{\vec{y}}_{T+h|T}
+\end{equation}
+denote a set of base forecast errors with Var$(\hat{\vec{e}}_{T+h|T})=\vec{W}_h$, and
+\begin{equation*}
+\tilde{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\tilde{\vec{y}}_{T+h|T}
+\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\vec{G}$ such that $\vec{S}\vec{G}\vec{S}=\vec{S}$, $\text{Var}(\tilde{\vec{e}}_{T+h|T})=\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}'
+$. Furthermore Theorem 1 shows that
+\begin{equation} \label{eq:MinT}
+\vec{G} = (\vec{S}'{\vec{W}}^{-1}_h\vec{S})^{-1}\vec{S}'{\vec{W}}^{-1}_h
+\end{equation}
+is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts. A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. \citet{WicEtAl2019} present possible alternative estimators for ${\vec{W}}_{h}$ and show that these lead to different $\vec{G}$ matrices. We summarise these below.
+
+
+Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors.
+
+
+Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
+
+
+\begin{itemize}
+    \item Set ${\vec{W}}_{h}=k_h\vec{I}_n$, for all $h$, where $k_{h} > 0$ is a proportionality constant. This is the most simplifying assumption to make, and returns $\vec{G}=(\vec{S}'\vec{S})^{-1}\vec{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$. Hence we refer to this as the OLS projection which minimises the Euclidean distance between $\hat{\vec{y}}_{T+h|T}$ and $\tilde{\vec{y}}_{T+h|T}$. The OLS reconciled forecasts are also unbiased since $\vec{SGS}=\vec{S}$. We should note that using a GLS estimator in this context is not possible since $\vec{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
+
+
+
+
+        the MinT estimator to the OLS estimator of \citet{HynEtAl2011}. This is optimal only under some special conditions, such as when the base forecast errors are uncorrelated and equivariant. However, these conditions are impossible to satisfy in applications of hierarchical and grouped time series.
+
+    \item Set ${\vec{W}}_{h}=\text{diag}(\hat{\vec{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
+        $$
+        \hat{\vec{W}}_{1} = \frac{1}{t}\sum_{k=1}^{t} \hat{\vec{e}}_{k}\hat{\vec{e}}_{k}'
+        $$
+        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. This estimator scales the base forecasts using the variance of the in-sample residuals and is therefore describes and referred to as a WLS estimator.
+    \item  Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results a $m$ grows compared to $t$. We refer to this a the MinT(Sample) estimator.
+    \item Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\vec{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\vec{W}}_{1}) + (1 - \lambda_{D})\hat{\vec{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
+
+        $$\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{Var}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},$$
+
+        %$$\hat{\lambda}_{D} = \frac{\sum_{i \neq j} \widehat{\var(\hat{r}_{ij})}} {\sum_{i \neq j} \hat{r}_{ij}^{2}},$$
+
+        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\vec{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. We refer to this as the MinT(Shrink) estimator.
+\end{itemize}
 
 
 
@@ -263,44 +310,7 @@ where $\vec{G}=(\vec{S}'\vec{S})^{-1}\vec{S}'$.
 In this reconciliation, the base forecasts are orthogonally projected to the coherent subspace $\mathfrak{s}$. Hence the OLS projection minimises the Euclidean distance between $\hat{\vec{y}}_{T+h|T}$ and $\tilde{\vec{y}}_{T+h|T}$. The OLS reconciled forecasts are also unbiased since $\vec{SGS}=\vec{S}$. We should note that using a GLS estimator in this context is not possible since $\vec{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
 
 \textcolor{red}{Can we add Tas's picture and talk about optimality in this sense.}
-\subsubsection{Optimal MinT reconciliation}
 
-\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation.
-
- and introduce the MinT approach. Assume again that $\hat{\vec{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\vec{y}}_{T+h|T})= E_{1:t}[\vec{y}_{T+h}|\vec{y}_1,...,\vec{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
-Let
-\begin{equation}\label{eq:base errors}
-\hat{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\hat{\vec{y}}_{T+h|T}
-\end{equation}
-denote a set of base forecast errors, with Var$(\hat{\vec{e}}_{T+h|T})=\vec{W}_h$, and
-\begin{equation*}
-\tilde{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\tilde{\vec{y}}_{T+h|T}
-\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\vec{G}$ such that $\vec{S}\vec{G}\vec{S}=\vec{S}$, $\text{Var}(\tilde{\vec{e}}_{T+h|T})=\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}'
-$. Furthermore Theorem 1 shows that
-\begin{equation} \label{eq:MinT}
-\vec{G} = (\vec{S}'{\vec{W}}^{-1}_h\vec{S})^{-1}\vec{S}'{\vec{W}}^{-1}_h
-\end{equation}
-is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts.
-
-A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
-
-\citet{WicEtAl2019} present possible alternative estimators for ${\vec{W}}_{h}$ and show that these lead to different $\vec{G}$ matrices. We summarise these below.
-
-\begin{itemize}
-    \item Set ${\vec{W}}_{h}=\text{diag}(\hat{\vec{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
-        $$
-        \hat{\vec{W}}_{1} = \frac{1}{t}\sum_{k=1}^{t} \hat{\vec{e}}_{k}\hat{\vec{e}}_{k}'
-        $$
-        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. This estimator scales the base forecasts using the variance of the in-sample residuals and is therefore describes and referred to as a WLS estimator.
-    \item  Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results a $m$ grows compared to $t$. We refer to this a the MinT(Sample) estimator.
-    \item Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\vec{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\vec{W}}_{1}) + (1 - \lambda_{D})\hat{\vec{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
-
-        $$\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{Var}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},$$
-
-        %$$\hat{\lambda}_{D} = \frac{\sum_{i \neq j} \widehat{\var(\hat{r}_{ij})}} {\sum_{i \neq j} \hat{r}_{ij}^{2}},$$
-
-        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\vec{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. We refer to this as the MinT(Shrink) estimator.
-\end{itemize}
 
 \section{Hierarchical probabilistic forecasting}
 
@@ -494,10 +504,10 @@ Let us first observe the time series plots for each approach. Figure \ref{TS-Inc
 \clearpage	
 
 
-6. Experimental Design and 
-- setup: Time frame of Rolling window, 
+6. Experimental Design and
+- setup: Time frame of Rolling window,
 - alternative methods: ARIMA/base vs \naive, BU, OLS, WLS, MinT(Shrink).
-- evaluation 
+- evaluation
 
 - Point: MASE, MASE
 - Probabilistic: CRPS, Energy Score
@@ -505,9 +515,9 @@ Skill score.
 
 7. Results
 
-\section{Methodology}\label{sec:meth} 
+\section{Methodology}\label{sec:meth}
 
-We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP data.  We consider forecasts from $H=1$ quarter ahead forecasts up to $H=4$ quarter ahead using an {\em expanding} window.  First, the training sample is set to QX of XXXX to QX of XXXX and forecasts are produced for QX of XXXX to QX of XXXX. Then the training window is expanded one period ahead, i.e. from QX of XXXX to QX of XXXX with forecasts produces for QX of XXXX to QX of XXXX.  All up this leads to XX forecasts.
+We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP data.  We consider forecasts from $h=1$ quarter ahead forecasts up to $h=4$ quarter ahead using an {\em expanding} window.  First, the training sample is set to QX of XXXX to QX of XXXX and forecasts are produced for QX of XXXX to QX of XXXX. Then the training window is expanded one period ahead, i.e. from QX of XXXX to QX of XXXX with forecasts produces for QX of XXXX to QX of XXXX.  All up this leads to XX forecasts.
 
 {\color{red} Need to get these dates off Puwasala.  Also last section may need to be changed}
 
@@ -521,19 +531,16 @@ The forecast reconciliation approaches that we consider are bottom up, OLS, WLS 
 
 For evaluating point forecasts we consider two metrics, the Root Mean Squared Error (RMSE) and the Mean Absolute Scaled Error (MASE).  The absolute scaled error is defined as
 \begin{equation*}
-q_{t+h} = \sum \frac{|\breve{e}_{t+h|t}|}{(T-m)^{-1}\sum_{j=m+1}^{T}|y_j - y_{j-m}|}\,,
+q_{t+h} = \sum \frac{|\breve{e}_{t+h|t}|}{(T-4)^{-1}\sum_{k=m+1}^{T}|y_k - y_{k-4}|}\,,
 \end{equation*}
-where $\breve{e}_{t+h}$\footnote{breve is used intead of a hat or tilde to denote that this can be the error either a base or reconciled forecast} is the difference between any forecast and the realisation {\color{red} check m is and change since m is bottom level dimension}.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
-
-\subsubsection{Probabilistic forecast evaluation}
+where $\breve{e}_{t+h}$\footnote{breve is used instead of a hat or tilde to denote that this can be the error either a base or reconciled forecast} is the difference between any forecast and the realisation {\color{red} 44444 check m is and change since m is bottom level dimension}.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
 
 Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}.  Let $\breve{F}$ be a probabilistic forecast and let $\breve{\vec{y}}\sim \breve{F}$  where breve is used to denote that either base forecast or reconciled forecast can be evaluated.  The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
 \begin{equation*}
 eS(\breve{F}_{T+h|T},\vec{y}_{T+h}) =
 E_{\breve{F}}\|\breve{\vec{y}}_{T+h}-\vec{y}_{T+h}\|^\alpha
 -\frac{1}{2}E_{\breve{F}}\|\breve{\vec{y}}_{T+h}-\breve{\vec{y}}^*_{T+h}\|^\alpha\,,
-\end{equation*}
-where $\vec{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
+\end{equation*} where $\vec{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 
 \begin{equation} \label{eq:24}
 \text{CRPS}(\breve{F}_i,y_{i,T+h}) = E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
@@ -1042,7 +1049,7 @@ Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_
 \pagebreak
 \bibliographystyle{agsm}
 
-\bibliography{References_BookChapter_HTS}
+\bibliography{References_BookChapter_HTS,library}
 
 
 \end{document}
