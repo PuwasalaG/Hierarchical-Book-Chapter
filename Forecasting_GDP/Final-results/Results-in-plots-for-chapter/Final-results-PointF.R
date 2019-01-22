@@ -60,11 +60,13 @@ SS.GDPI_ARIMA_MSE %>% left_join(SS.GDPI_ARIMA_MASE, by = c("Method", "h")) %>%
   filter(Method != "Base") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> GDPI_PointF
 
-GDPI_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+GDPI_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                       Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "gray") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values=0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + ggtitle("GDP(I)") -> INC_PointF_GDPI
 
 ##All aggregate summary
@@ -107,11 +109,13 @@ Aggregates.ARIMA_MSE %>% left_join(Aggregates.ARIMA_MASE, by = c("Method", "h"))
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> Aggregate_PointF
 
-Aggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+Aggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                            Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + 
   ggtitle("Across all aggregate levels") -> INC_PointF_Aggregates
 
@@ -155,11 +159,13 @@ Disaggregates.ARIMA_MSE %>% left_join(Disaggregates.ARIMA_MASE, by = c("Method",
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> Disaggregate_PointF
 
-Disaggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+Disaggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                               Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "gray") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + 
   ggtitle("Across all bottom level series") -> INC_PointF_Disaggregates
 
@@ -204,11 +210,13 @@ All.series.ARIMA_MSE %>% left_join(All.series.ARIMA_MASE, by = c("Method", "h"))
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> All.series_PointF
 
-All.series_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+All.series_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                             Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + 
   ggtitle("Across all levels") -> INC_PointF_All.series
 
@@ -272,11 +280,13 @@ SS.GDPE_ARIMA_MSE %>% left_join(SS.GDPE_ARIMA_MASE, by = c("Method", "h")) %>%
   filter(Method != "Base") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> GDPE_PointF
 
-GDPE_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+GDPE_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                       Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + ggtitle("GDP(E)") -> EXP_PointF_GDPE
 
 ##All aggregate summary
@@ -319,11 +329,13 @@ EXP_Aggregates.ARIMA_MSE %>% left_join(EXP_Aggregates.ARIMA_MASE, by = c("Method
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> EXP_Aggregate_PointF
 
-EXP_Aggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+EXP_Aggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                                Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + 
   ggtitle("Across all aggregate levels") -> EXP_PointF_Aggregates
 
@@ -367,11 +379,13 @@ EXP_Disaggregates.ARIMA_MSE %>% left_join(EXP_Disaggregates.ARIMA_MASE, by = c("
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> EXP_Disaggregate_PointF
 
-EXP_Disaggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+EXP_Disaggregate_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                                   Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("brown", "green3", "Blue", "Purple")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + 
   ggtitle("Across all bottom level series") -> EXP_PointF_Disaggregates
 
@@ -416,11 +430,13 @@ EXP_All.series.ARIMA_MSE %>% left_join(EXP_All.series.ARIMA_MASE, by = c("Method
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> EXP_All.series_PointF
 
-EXP_All.series_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+EXP_All.series_PointF %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                                 Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") + 
   ggtitle("Across all levels") -> EXP_PointF_All.series
 

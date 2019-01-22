@@ -37,18 +37,22 @@ INC_ARIMA_ES %>% left_join(INC_ARIMA_VS, by = c("Method", "h")) %>%
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> INC_MultivS_ES_VS
 
 #Plot for ES only
-INC_ARIMA_ES %>% ggplot(aes(x = h, y = ES, color = Method)) + 
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) + 
+INC_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = ES, color = Method, shape = Method)) + 
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Energy Score")  -> Plot_INC_MultivS_ES
 
 #Plot for ES and VS
-INC_MultivS_ES_VS %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+INC_MultivS_ES_VS %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)),
+                             Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") -> Plot_INC_MultivS_ES_VS
 
 
@@ -80,10 +84,12 @@ Skill.Score_GDPI_ARIMA %>% dplyr::select(-`MCRPS`, -`MLS`, -`SS_LS`) %>%
   slice(match(Method_Order, `Method`)) -> GDPI.ARIMA_CRPS
 
 GDPI.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) + 
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("GDP(I)") -> INC_GDPI_ProbF_Gauss 
 
 
@@ -113,10 +119,12 @@ Skill.Score_INC_aggregates_ARIMA %>% dplyr::select(-`Avg_CRPS`, -`Avg_LS`, -`SS_
   slice(match(Method_Order, `Method`)) -> INC_Aggregates.ARIMA_CRPS
 
 INC_Aggregates.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Across all aggregate levels") -> INC_Aggregate_ProbF_Gauss 
   
   
@@ -146,10 +154,12 @@ Skill.Score_INC_disaggregates_ARIMA %>% dplyr::select(-`Avg_CRPS`, -`Avg_LS`, -`
   slice(match(Method_Order, `Method`)) -> INC_Disaggregates.ARIMA_CRPS
 
 INC_Disaggregates.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Across all bottom level series") -> INC_Disaggregate_ProbF_Gauss 
 
 
@@ -179,10 +189,12 @@ Skill.Score_INC_All.series_ARIMA %>% dplyr::select(-`Avg_CRPS`, -`Avg_LS`, -`SS_
   slice(match(Method_Order, `Method`)) -> INC_All.series.ARIMA_CRPS
 
 INC_All.series.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Across all levels") -> INC_All.series_ProbF_Gauss 
 
 
@@ -222,18 +234,22 @@ EXP_ARIMA_ES %>% left_join(EXP_ARIMA_VS, by = c("Method", "h")) %>%
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> EXP_MultivS_ES_VS
 
 #Plot for ES only
-EXP_ARIMA_ES %>% ggplot(aes(x = h, y = ES, color = Method)) + 
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) + 
+EXP_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = ES, color = Method, shape = Method)) +  
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) + 
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Energy Score")  -> Plot_EXP_MultivS_ES
 
 #Plot for ES and VS
-EXP_MultivS_ES_VS %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule))) %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+EXP_MultivS_ES_VS %>% mutate(Scoring_rule = factor(Scoring_rule, levels = unique(Scoring_rule)), 
+                             Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   facet_wrap(~ `Scoring_rule`, scales = "free_y") +  ylab("Skill score %") -> Plot_EXP_MultivS_ES_VS
 
 
@@ -265,10 +281,12 @@ Skill.Score_GDPE_ARIMA %>% dplyr::select(-`MCRPS`, -`MLS`, -`SS_LS`) %>%
   slice(match(Method_Order, `Method`)) -> GDPE.ARIMA_CRPS
 
 GDPE.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("GDP(E)") -> EXP_GDPE_ProbF_Gauss 
 
 
@@ -298,10 +316,12 @@ Skill.Score_EXP_aggregates_ARIMA %>% dplyr::select(-`Avg_CRPS`, -`Avg_LS`, -`SS_
   slice(match(Method_Order, `Method`)) -> EXP_Aggregates.ARIMA_CRPS
 
 EXP_Aggregates.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) + 
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) +
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Across all aggregate levels") -> EXP_Aggregate_ProbF_Gauss 
 
 
@@ -331,10 +351,12 @@ Skill.Score_EXP_disaggregates_ARIMA %>% dplyr::select(-`Avg_CRPS`, -`Avg_LS`, -`
   slice(match(Method_Order, `Method`)) -> EXP_Disaggregates.ARIMA_CRPS
 
 EXP_Disaggregates.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Across all bottom level series") -> EXP_Disaggregate_ProbF_Gauss 
 
 
@@ -364,10 +386,12 @@ Skill.Score_EXP_All.series_ARIMA %>% dplyr::select(-`Avg_CRPS`, -`Avg_LS`, -`SS_
   slice(match(Method_Order, `Method`)) -> EXP_All.series.ARIMA_CRPS
 
 EXP_All.series.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>% 
-  ggplot(aes(x = h, y = Score, color = Method)) +
-  geom_point(shape = 18, size = 3) + 
-  geom_hline(yintercept = 0) +
-  scale_color_manual(values = c("Red", "green", "Blue", "Purple")) +
+  mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+  ggplot(aes(x = h, y = Score, color = Method, shape = Method)) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(size = 3) + 
+  scale_color_manual(values = c("green3", "Blue", "Purple", "brown")) +
+  scale_shape_manual(values = 0:3) +
   ylab("Skill score %") + ggtitle("Across all levels") -> EXP_All.series_ProbF_Gauss 
 
 
