@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  22 JAN 2019 11:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  22 JAN 2019 22:47
 entering extended mode
 **./Hierarchical_forecasting.tex
 (Hierarchical_forecasting.tex
@@ -1573,331 +1573,347 @@ Underfull \hbox (badness 10000) in paragraph at lines 577--578
 
  []
 
-<Figs/Results/INC-PointF.png, id=75, 602.25pt x 455.45157pt>
+<Figs/Results/NaiveVsBase_MSE.png, id=75, 602.25pt x 456.20438pt>
+File: Figs/Results/NaiveVsBase_MSE.png Graphic file (type png)
+
+<use Figs/Results/NaiveVsBase_MSE.png>
+Package pdftex.def Info: Figs/Results/NaiveVsBase_MSE.png used on input line 58
+4.
+(pdftex.def)             Requested size: 301.12425pt x 228.10162pt.
+ [18]
+<Figs/Results/NaiveVsBase_MASE.png, id=79, 602.25pt x 456.20438pt>
+File: Figs/Results/NaiveVsBase_MASE.png Graphic file (type png)
+
+<use Figs/Results/NaiveVsBase_MASE.png>
+Package pdftex.def Info: Figs/Results/NaiveVsBase_MASE.png used on input line 5
+91.
+(pdftex.def)             Requested size: 301.12425pt x 228.10162pt.
+
+<Figs/Results/INC-PointF.png, id=80, 602.25pt x 455.45157pt>
 File: Figs/Results/INC-PointF.png Graphic file (type png)
 
 <use Figs/Results/INC-PointF.png>
-Package pdftex.def Info: Figs/Results/INC-PointF.png used on input line 586.
+Package pdftex.def Info: Figs/Results/INC-PointF.png used on input line 599.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [18]
-<Figs/Results/EXP-PointF.png, id=79, 602.25pt x 455.45157pt>
+ [19 <./Figs/Results/NaiveVsBase_MSE.png> <./Figs/Results/NaiveVsBase_MASE.png>
+]
+<Figs/Results/EXP-PointF.png, id=87, 602.25pt x 456.20438pt>
 File: Figs/Results/EXP-PointF.png Graphic file (type png)
 
 <use Figs/Results/EXP-PointF.png>
-Package pdftex.def Info: Figs/Results/EXP-PointF.png used on input line 596.
-(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [19 <./Figs/Results/INC-PointF.png>]
+Package pdftex.def Info: Figs/Results/EXP-PointF.png used on input line 609.
+(pdftex.def)             Requested size: 301.12425pt x 228.10162pt.
+ [20 <./Figs/Results/INC-PointF.png>]
 
-LaTeX Warning: Reference `Tab: Inc_ProbGaus_ES_VS' on page 20 undefined on inpu
-t line 611.
-
-
-LaTeX Warning: Reference `Tab: Inc_ProbGaus_LS' on page 20 undefined on input l
-ine 611.
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_ES_VS' on page 21 undefined on inpu
+t line 624.
 
 
-LaTeX Warning: Reference `Tab: Inc_ProbGaus_UnivS' on page 20 undefined on inpu
-t line 611.
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_LS' on page 21 undefined on input l
+ine 624.
 
 
-LaTeX Warning: Reference `Tab: Exp_ProbGaus_ES_VS' on page 20 undefined on inpu
-t line 611.
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_UnivS' on page 21 undefined on inpu
+t line 624.
 
 
-LaTeX Warning: Reference `Tab: Exp_ProbGaus_LS' on page 20 undefined on input l
-ine 611.
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_ES_VS' on page 21 undefined on inpu
+t line 624.
 
 
-LaTeX Warning: Reference `Tab: Exp_ProbGaus_UnivS' on page 20 undefined on inpu
-t line 611.
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_LS' on page 21 undefined on input l
+ine 624.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 611--612
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_UnivS' on page 21 undefined on inpu
+t line 624.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 624--625
 
  []
 
-[20 <./Figs/Results/EXP-PointF.png>]
-<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png, id=89, 602.25pt x 455.45157pt>
+[21 <./Figs/Results/EXP-PointF.png>]
+<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png, id=96, 602.25pt x 455.45157pt>
 File: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png Graphic file (type png)
 
 <use Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png>
 Package pdftex.def Info: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png used on 
-input line 621.
+input line 634.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
 
-<Figs/Results/INC-ProbGaussF-UnivS_CRPS.png, id=90, 602.25pt x 455.45157pt>
+<Figs/Results/INC-ProbGaussF-UnivS_CRPS.png, id=97, 602.25pt x 455.45157pt>
 File: Figs/Results/INC-ProbGaussF-UnivS_CRPS.png Graphic file (type png)
 
 <use Figs/Results/INC-ProbGaussF-UnivS_CRPS.png>
 Package pdftex.def Info: Figs/Results/INC-ProbGaussF-UnivS_CRPS.png used on inp
-ut line 628.
+ut line 641.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [21 <./Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png>]
-<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png, id=95, 602.25pt x 455.45157pt>
+ [22 <./Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png>]
+<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png, id=102, 602.25pt x 455.45157pt>
 File: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png Graphic file (type png)
-
 <use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png>
 Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png used on 
-input line 638.
+input line 651.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [22 <./Figs/Results/INC-ProbGaussF-UnivS_CRPS.png>]
-<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png, id=100, 602.25pt x 455.45157pt>
+ [23 <./Figs/Results/INC-ProbGaussF-UnivS_CRPS.png>]
+<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png, id=107, 602.25pt x 455.45157pt>
 File: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png Graphic file (type png)
 
 <use Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png>
 Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png used on inp
-ut line 645.
+ut line 658.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [23 <./Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png>]
-<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png, id=105, 602.25pt x 455.45157p
+ [24 <./Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png>]
+<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png, id=112, 602.25pt x 455.45157p
 t>
 File: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png Graphic file (type png)
  <use Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png>
 Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png used o
-n input line 667.
+n input line 680.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [24 <./Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png>]
-<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png, id=110, 602.25pt x 455.45157pt>
+ [25 <./Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png>]
+<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png, id=118, 602.25pt x 455.45157pt>
 File: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png Graphic file (type png)
 
 <use Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png>
 Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png used on i
-nput line 674.
+nput line 687.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [25 <./Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png>]
-<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png, id=116, 602.25pt x 455.45157p
+ [26 <./Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png>]
+<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png, id=123, 602.25pt x 455.45157p
 t>
 File: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png Graphic file (type png)
  <use Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png>
 Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png used o
-n input line 688.
+n input line 701.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [26 <./Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png>]
-<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png, id=121, 602.25pt x 455.45157pt>
+ [27 <./Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png>]
+<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png, id=128, 602.25pt x 455.45157pt>
 File: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png Graphic file (type png)
 
 <use Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png>
 Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png used on i
-nput line 695.
+nput line 708.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [27 <./Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png>] [28 <./Figs/Results/E
-XP-ProbNonParaF-UnivS_CRPS.png>] <Figs/GDP_P_fig1.PNG, id=130, 463.7325pt x 299
+ [28 <./Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png>] [29 <./Figs/Results/E
+XP-ProbNonParaF-UnivS_CRPS.png>] <Figs/GDP_P_fig1.PNG, id=137, 463.7325pt x 299
 .31825pt>
 File: Figs/GDP_P_fig1.PNG Graphic file (type png)
 
 <use Figs/GDP_P_fig1.PNG>
-Package pdftex.def Info: Figs/GDP_P_fig1.PNG used on input line 712.
+Package pdftex.def Info: Figs/GDP_P_fig1.PNG used on input line 725.
 (pdftex.def)             Requested size: 301.42255pt x 194.55455pt.
 
-<Figs/GDP_P_fig2.PNG, id=132, 574.5465pt x 450.483pt>
+<Figs/GDP_P_fig2.PNG, id=139, 574.5465pt x 450.483pt>
 File: Figs/GDP_P_fig2.PNG Graphic file (type png)
 
 <use Figs/GDP_P_fig2.PNG>
-Package pdftex.def Info: Figs/GDP_P_fig2.PNG used on input line 719.
-(pdftex.def)             Requested size: 574.54509pt x 450.48189pt.
+Package pdftex.def Info: Figs/GDP_P_fig2.PNG used on input line 732.
+(pdftex.def)             Requested size: 373.45079pt x 292.81047pt.
 
-Overfull \hbox (241.64786pt too wide) in paragraph at lines 719--720
+Overfull \hbox (40.55356pt too wide) in paragraph at lines 732--733
  [][] 
  []
 
-[29 <./Figs/GDP_P_fig1.PNG>]
-<Figs/GDP_I_fig1.PNG, id=137, 554.07pt x 330.033pt>
+[30 <./Figs/GDP_P_fig1.PNG>]
+<Figs/GDP_I_fig1.PNG, id=144, 554.07pt x 330.033pt>
 File: Figs/GDP_I_fig1.PNG Graphic file (type png)
  <use Figs/GDP_I_fig1.PNG>
-Package pdftex.def Info: Figs/GDP_I_fig1.PNG used on input line 726.
+Package pdftex.def Info: Figs/GDP_I_fig1.PNG used on input line 739.
 (pdftex.def)             Requested size: 360.14124pt x 214.51889pt.
 
-Overfull \hbox (27.244pt too wide) in paragraph at lines 726--727
+Overfull \hbox (27.244pt too wide) in paragraph at lines 739--740
  [][] 
  []
 
-[30 <./Figs/GDP_P_fig2.PNG>]
-Overfull \hbox (76.06836pt too wide) in paragraph at lines 732--732
+[31 <./Figs/GDP_P_fig2.PNG>]
+Overfull \hbox (76.06836pt too wide) in paragraph at lines 745--745
 [] 
  []
 
-<Figs/GDP_E_fig1.PNG, id=142, 590.80725pt x 366.77025pt>
+<Figs/GDP_E_fig1.PNG, id=150, 590.80725pt x 366.77025pt>
 File: Figs/GDP_E_fig1.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig1.PNG>
-Package pdftex.def Info: Figs/GDP_E_fig1.PNG used on input line 738.
+Package pdftex.def Info: Figs/GDP_E_fig1.PNG used on input line 751.
 (pdftex.def)             Requested size: 384.02016pt x 238.39783pt.
 
-Overfull \hbox (51.12292pt too wide) in paragraph at lines 738--739
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 751--752
  [][] 
  []
 
-[31 <./Figs/GDP_I_fig1.PNG>]
-<Figs/GDP_E_fig2.PNG, id=148, 338.4645pt x 298.11375pt>
+[32 <./Figs/GDP_I_fig1.PNG>]
+<Figs/GDP_E_fig2.PNG, id=155, 338.4645pt x 298.11375pt>
 File: Figs/GDP_E_fig2.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig2.PNG>
-Package pdftex.def Info: Figs/GDP_E_fig2.PNG used on input line 745.
+Package pdftex.def Info: Figs/GDP_E_fig2.PNG used on input line 758.
 (pdftex.def)             Requested size: 338.46367pt x 298.11302pt.
 
-Overfull \hbox (5.56644pt too wide) in paragraph at lines 745--746
+Overfull \hbox (5.56644pt too wide) in paragraph at lines 758--759
  [][] 
  []
 
-[32 <./Figs/GDP_E_fig1.PNG>]
-<Figs/GDP_E_fig3.PNG, id=153, 590.80725pt x 351.714pt>
+[33 <./Figs/GDP_E_fig1.PNG>]
+<Figs/GDP_E_fig3.PNG, id=160, 590.80725pt x 351.714pt>
 File: Figs/GDP_E_fig3.PNG Graphic file (type png)
 
 <use Figs/GDP_E_fig3.PNG>
-Package pdftex.def Info: Figs/GDP_E_fig3.PNG used on input line 752.
+Package pdftex.def Info: Figs/GDP_E_fig3.PNG used on input line 765.
 (pdftex.def)             Requested size: 384.02016pt x 228.61139pt.
 
-Overfull \hbox (51.12292pt too wide) in paragraph at lines 752--753
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 765--766
  [][] 
  []
 
-[33 <./Figs/GDP_E_fig2.PNG>] [34 <./Figs/GDP_E_fig3.PNG>] [35] [36]
-<Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png, id=168, 602.25pt x 454
+[34 <./Figs/GDP_E_fig2.PNG>] [35 <./Figs/GDP_E_fig3.PNG>] [36] [37]
+<Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png, id=176, 602.25pt x 454
 .69875pt>
 File: Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png Graphic file (type
  png)
  <use Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png>
 Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png
- used on input line 939.
+ used on input line 952.
 (pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
- [37]
-<Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png, id=173, 602.25pt x 45
+ [38]
+<Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png, id=180, 602.25pt x 45
 4.69875pt>
 File: Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png Graphic file (typ
 e png)
  <use Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png>
 Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.pn
-g used on input line 946.
+g used on input line 959.
 (pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-1.png, id=174, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-1.png, id=181, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-1.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-1.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-1.png used on input li
-ne 953.
+ne 966.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [38 <./Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png> <./Figs/TS-plot
+ [39 <./Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png> <./Figs/TS-plot
 s/INC-hierarchy/INC-bottomlevel-TSplots.png>]
-<Figs/TS-plots/EXP-hierarchy/set-2.png, id=180, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-2.png, id=187, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-2.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-2.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-2.png used on input li
-ne 960.
+ne 973.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-3.png, id=181, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-3.png, id=188, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-3.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-3.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-3.png used on input li
-ne 967.
+ne 980.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [39 <./Figs/TS-plots/EXP-hierarchy/set-1.png> <./Figs/TS-plots/EXP-hierarchy/s
+ [40 <./Figs/TS-plots/EXP-hierarchy/set-1.png> <./Figs/TS-plots/EXP-hierarchy/s
 et-2.png>]
-<Figs/TS-plots/EXP-hierarchy/set-4.png, id=187, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-4.png, id=194, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-4.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-4.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-4.png used on input li
-ne 974.
+ne 987.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-5.png, id=188, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-5.png, id=195, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-5.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-5.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-5.png used on input li
-ne 981.
+ne 994.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [40 <./Figs/TS-plots/EXP-hierarchy/set-3.png> <./Figs/TS-plots/EXP-hierarchy/s
+ [41 <./Figs/TS-plots/EXP-hierarchy/set-3.png> <./Figs/TS-plots/EXP-hierarchy/s
 et-4.png>]
-<Figs/TS-plots/EXP-hierarchy/set-6.png, id=194, 481.8pt x 364.36125pt>
+<Figs/TS-plots/EXP-hierarchy/set-6.png, id=201, 481.8pt x 364.36125pt>
 File: Figs/TS-plots/EXP-hierarchy/set-6.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-6.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-6.png used on input li
-ne 988.
+ne 1001.
 (pdftex.def)             Requested size: 313.16628pt x 236.832pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-7.png, id=195, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-7.png, id=202, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-7.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-7.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-7.png used on input li
-ne 995.
+ne 1008.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [41 <./Figs/TS-plots/EXP-hierarchy/set-5.png> <./Figs/TS-plots/EXP-hierarchy/s
+ [42 <./Figs/TS-plots/EXP-hierarchy/set-5.png> <./Figs/TS-plots/EXP-hierarchy/s
 et-6.png>]
-<Figs/TS-plots/EXP-hierarchy/set-8.png, id=201, 481.8pt x 364.36125pt>
+<Figs/TS-plots/EXP-hierarchy/set-8.png, id=208, 481.8pt x 364.36125pt>
 File: Figs/TS-plots/EXP-hierarchy/set-8.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-8.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-8.png used on input li
-ne 1002.
+ne 1015.
 (pdftex.def)             Requested size: 313.16628pt x 236.832pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-9.png, id=202, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-9.png, id=209, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-9.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-9.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-9.png used on input li
-ne 1009.
+ne 1022.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [42 <./Figs/TS-plots/EXP-hierarchy/set-7.png> <./Figs/TS-plots/EXP-hierarchy/s
+ [43 <./Figs/TS-plots/EXP-hierarchy/set-7.png> <./Figs/TS-plots/EXP-hierarchy/s
 et-8.png>]
-<Figs/TS-plots/EXP-hierarchy/set-10.png, id=208, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-10.png, id=216, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-10.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-10.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-10.png used on input l
-ine 1016.
+ine 1029.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-11.png, id=209, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-11.png, id=217, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-11.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-11.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-11.png used on input l
-ine 1023.
+ine 1036.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [43 <./Figs/TS-plots/EXP-hierarchy/set-9.png> <./Figs/TS-plots/EXP-hierarchy/s
+ [44 <./Figs/TS-plots/EXP-hierarchy/set-9.png> <./Figs/TS-plots/EXP-hierarchy/s
 et-10.png>]
-<Figs/TS-plots/EXP-hierarchy/set-12.png, id=216, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-12.png, id=223, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-12.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-12.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-12.png used on input l
-ine 1030.
+ine 1043.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-13.png, id=217, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-13.png, id=224, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-13.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-13.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-13.png used on input l
-ine 1037.
+ine 1050.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [44 <./Figs/TS-plots/EXP-hierarchy/set-11.png> <./Figs/TS-plots/EXP-hierarchy/
+ [45 <./Figs/TS-plots/EXP-hierarchy/set-11.png> <./Figs/TS-plots/EXP-hierarchy/
 set-12.png>]
-<Figs/TS-plots/EXP-hierarchy/set-14.png, id=223, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-14.png, id=230, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-14.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-14.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-14.png used on input l
-ine 1044.
+ine 1057.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
 
-<Figs/TS-plots/EXP-hierarchy/set-15.png, id=224, 602.25pt x 455.45157pt>
+<Figs/TS-plots/EXP-hierarchy/set-15.png, id=231, 602.25pt x 455.45157pt>
 File: Figs/TS-plots/EXP-hierarchy/set-15.png Graphic file (type png)
 
 <use Figs/TS-plots/EXP-hierarchy/set-15.png>
 Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-15.png used on input l
-ine 1051.
+ine 1064.
 (pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
- [45 <./Figs/TS-plots/EXP-hierarchy/set-13.png> <./Figs/TS-plots/EXP-hierarchy/
-set-14.png>] [46 <./Figs/TS-plots/EXP-hierarchy/set-15.png>] (Hierarchical_fore
+ [46 <./Figs/TS-plots/EXP-hierarchy/set-13.png> <./Figs/TS-plots/EXP-hierarchy/
+set-14.png>] [47 <./Figs/TS-plots/EXP-hierarchy/set-15.png>] (Hierarchical_fore
 casting.bbl
 Overfull \hbox (48.59975pt too wide) in paragraph at lines 4--8
 \OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
@@ -1920,7 +1936,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 69--74
 
 Package natbib Warning: There were undefined citations.
 
-[47] (Hierarchical_forecasting.aux)
+[48] (Hierarchical_forecasting.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
@@ -1933,10 +1949,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 27630 strings out of 493320
- 573999 string characters out of 3138947
- 620650 words of memory out of 3000000
- 30602 multiletter control sequences out of 15000+200000
+ 27642 strings out of 493320
+ 574371 string characters out of 3138947
+ 620670 words of memory out of 3000000
+ 30612 multiletter control sequences out of 15000+200000
  61775 words of font info for 154 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,73p,10406b,1107s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1952,9 +1968,9 @@ onts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/boondox/zxxrl8a.pfb>
-Output written on Hierarchical_forecasting.pdf (47 pages, 671024 bytes).
+Output written on Hierarchical_forecasting.pdf (48 pages, 685314 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
+ 288 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 188 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 198 words of extra memory for PDF output out of 10000 (max. 10000000)
 
