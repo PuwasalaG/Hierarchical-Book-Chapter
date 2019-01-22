@@ -224,14 +224,9 @@ A compromise between bottom-up and top-down approaches is the middle-out approac
 
 \subsection{Point forecast reconciliation}\label{sec:reconciliation approaches}
 
-All the traditional approaches discussed so far are limited to only using information from a single-level of aggregation and furthermore ignoring any cross-correlations across levels of a hierarchy. An alternative framework that overcomes these limitations, first proposed by \citet{HynEtAl2011} and implemented by \citet{AthEtAl2009}, is one that involves forecast reconciliation. In a first step ignoring any aggregation constraints, forecasts for all the series across all levels of the hierarchy are generated. We refer to these as \textit{base} forecasts and denote them by $\hat{\vec{y}}_{T+h|T}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate all base forecasts so that the coherent nature of the data is extended to the forecasts.
+All approaches discussed so far are limited to only using information from a single-level of aggregation. Furthermore, these ignore any correlations across levels of a hierarchy. An alternative framework that overcomes these limitations is one that involves forecast \textit{reconciliation}. In a first step ignoring any aggregation constraints, forecasts for all the series across all levels of the hierarchy are generated. We refer to these as \textit{base} forecasts and denote them by $\hat{\vec{y}}_{T+h|T}$. In general, base forecasts will not be coherent. An example of an exception is when a simple method such as a random walk is used to generate \naive base forecasts for all the series in the hierarchy. In this case coherent nature of the data is extended to the forecasts.
 
-In a second step, base forecasts are reconciled so that they become coherent.
-
-ex-post adjustment
-
-
-This is achieved by projecting the base forecasts $\hat{\vec{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, via a projection matrix $\vec{SG}$, resulting in a set of coherent forecasts $\tilde{\vec{y}}_{T+h|T}$. More specifically,
+In a second step, base forecasts are reconciled, in an ex-post adjustment, so that they become coherent. This is achieved by projecting the base forecasts $\hat{\vec{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, via a projection matrix $\vec{SG}$, resulting in a set of coherent forecasts $\tilde{\vec{y}}_{T+h|T}$. More specifically,
 \begin{equation}\label{eq:recon}
 \tilde{\vec{y}}_{T+h|T}=\vec{S}\vec{G}\hat{\vec{y}}_{T+h|T},
 \end{equation}
@@ -241,8 +236,60 @@ where $\vec{G}$ is an $m\times n$ matrix that maps $\hat{\vec{y}}_{T+h|T}$ to th
 
 Note that all single-level approaches discussed so far can also be represented by \eqref{eq:recon} using appropriately designed \vec{G} matrices, however not all of these will be projections. For example, for the bottom-up approach, $\vec{G}=\begin{pmatrix}
 \vec{0}_{(m \times n-m)} & \vec{I}_m
-\end{pmatrix}$ in which case $\vec{SGS}=\vec{S}$. For the top-down approach $\vec{G}=(\vec{p}~\vec{0}_{(m \times n-1)})$, for which case $\vec{SGS}\ne\vec{S}$.
+\end{pmatrix}$ in which case $\vec{SGS}=\vec{S}$. For any top-down approach
+$\vec{G}=\begin{pmatrix}
+\vec{p} & \vec{0}_{(m \times n-1)}
+\end{pmatrix}$, for which case $\vec{SGS}\ne\vec{S}$.
 
+
+\subsubsection{Optimal MinT reconciliation}
+
+\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation. WE PRESENT THIS HERE AND LINK IT TO OTHER PAPERS
+
+Assume that $\hat{\vec{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\vec{y}}_{T+h|T})= E_{1:t}[\vec{y}_{T+h}|\vec{y}_1,...,\vec{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
+Let
+\begin{equation}\label{eq:base errors}
+\hat{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\hat{\vec{y}}_{T+h|T}
+\end{equation}
+denote a set of base forecast errors with Var$(\hat{\vec{e}}_{T+h|T})=\vec{W}_h$, and
+\begin{equation*}
+\tilde{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\tilde{\vec{y}}_{T+h|T}
+\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\vec{G}$ such that $\vec{S}\vec{G}\vec{S}=\vec{S}$, $\text{Var}(\tilde{\vec{e}}_{T+h|T})=\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}'
+$. Furthermore Theorem 1 shows that
+\begin{equation} \label{eq:MinT}
+\vec{G} = (\vec{S}'{\vec{W}}^{-1}_h\vec{S})^{-1}\vec{S}'{\vec{W}}^{-1}_h
+\end{equation}
+is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts. A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. \citet{WicEtAl2019} present possible alternative estimators for ${\vec{W}}_{h}$ and show that these lead to different $\vec{G}$ matrices. We summarise these below.
+
+
+Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors.
+
+
+Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
+
+
+\begin{itemize}
+    \item Set ${\vec{W}}_{h}=k_h\vec{I}_n$, for all $h$, where $k_{h} > 0$ is a proportionality constant. This is the most simplifying assumption to make, and returns $\vec{G}=(\vec{S}'\vec{S})^{-1}\vec{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$. Hence we refer to this as the OLS projection which minimises the Euclidean distance between $\hat{\vec{y}}_{T+h|T}$ and $\tilde{\vec{y}}_{T+h|T}$. The OLS reconciled forecasts are also unbiased since $\vec{SGS}=\vec{S}$. We should note that using a GLS estimator in this context is not possible since $\vec{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
+
+
+
+
+        the MinT estimator to the OLS estimator of \citet{HynEtAl2011}. This is optimal only under some special conditions, such as when the base forecast errors are uncorrelated and equivariant. However, these conditions are impossible to satisfy in applications of hierarchical and grouped time series.
+
+    \item Set ${\vec{W}}_{h}=\text{diag}(\hat{\vec{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
+        $$
+        \hat{\vec{W}}_{1} = \frac{1}{t}\sum_{k=1}^{t} \hat{\vec{e}}_{k}\hat{\vec{e}}_{k}'
+        $$
+        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. This estimator scales the base forecasts using the variance of the in-sample residuals and is therefore describes and referred to as a WLS estimator.
+    \item  Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results a $m$ grows compared to $t$. We refer to this a the MinT(Sample) estimator.
+    \item Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\vec{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\vec{W}}_{1}) + (1 - \lambda_{D})\hat{\vec{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
+
+        $$\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{Var}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},$$
+
+        %$$\hat{\lambda}_{D} = \frac{\sum_{i \neq j} \widehat{\var(\hat{r}_{ij})}} {\sum_{i \neq j} \hat{r}_{ij}^{2}},$$
+
+        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\vec{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. We refer to this as the MinT(Shrink) estimator.
+\end{itemize}
 
 
 
@@ -263,44 +310,7 @@ where $\vec{G}=(\vec{S}'\vec{S})^{-1}\vec{S}'$.
 In this reconciliation, the base forecasts are orthogonally projected to the coherent subspace $\mathfrak{s}$. Hence the OLS projection minimises the Euclidean distance between $\hat{\vec{y}}_{T+h|T}$ and $\tilde{\vec{y}}_{T+h|T}$. The OLS reconciled forecasts are also unbiased since $\vec{SGS}=\vec{S}$. We should note that using a GLS estimator in this context is not possible since $\vec{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
 
 \textcolor{red}{Can we add Tas's picture and talk about optimality in this sense.}
-\subsubsection{Optimal MinT reconciliation}
 
-\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation.
-
- and introduce the MinT approach. Assume again that $\hat{\vec{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\vec{y}}_{T+h|T})= E_{1:t}[\vec{y}_{T+h}|\vec{y}_1,...,\vec{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
-Let
-\begin{equation}\label{eq:base errors}
-\hat{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\hat{\vec{y}}_{T+h|T}
-\end{equation}
-denote a set of base forecast errors, with Var$(\hat{\vec{e}}_{T+h|T})=\vec{W}_h$, and
-\begin{equation*}
-\tilde{\vec{e}}_{T+h|T} = \vec{y}_{T+h|T}-\tilde{\vec{y}}_{T+h|T}
-\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\vec{G}$ such that $\vec{S}\vec{G}\vec{S}=\vec{S}$, $\text{Var}(\tilde{\vec{e}}_{T+h|T})=\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}'
-$. Furthermore Theorem 1 shows that
-\begin{equation} \label{eq:MinT}
-\vec{G} = (\vec{S}'{\vec{W}}^{-1}_h\vec{S})^{-1}\vec{S}'{\vec{W}}^{-1}_h
-\end{equation}
-is the unique solution that minimises the tr$[\vec{S}\vec{G}\vec{W}_h\vec{S}'\vec{G}']$ subject to $\vec{S}\vec{G}\vec{S}=\vec{S}$. Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\vec{W}_h$, the variance of the base forecast errors. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts using as $\vec{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts.
-
-A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\vec{W}}_{h}$. However, estimating ${\vec{W}}_{h}$ is challenging, especially for $h>1$. Of course setting ${\vec{W}}_{h}=k_h\vec{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
-
-\citet{WicEtAl2019} present possible alternative estimators for ${\vec{W}}_{h}$ and show that these lead to different $\vec{G}$ matrices. We summarise these below.
-
-\begin{itemize}
-    \item Set ${\vec{W}}_{h}=\text{diag}(\hat{\vec{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
-        $$
-        \hat{\vec{W}}_{1} = \frac{1}{t}\sum_{k=1}^{t} \hat{\vec{e}}_{k}\hat{\vec{e}}_{k}'
-        $$
-        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. This estimator scales the base forecasts using the variance of the in-sample residuals and is therefore describes and referred to as a WLS estimator.
-    \item  Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results a $m$ grows compared to $t$. We refer to this a the MinT(Sample) estimator.
-    \item Set $\vec{W}_{h}=k_{h}\hat{\vec{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\vec{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\vec{W}}_{1}) + (1 - \lambda_{D})\hat{\vec{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
-
-        $$\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{Var}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},$$
-
-        %$$\hat{\lambda}_{D} = \frac{\sum_{i \neq j} \widehat{\var(\hat{r}_{ij})}} {\sum_{i \neq j} \hat{r}_{ij}^{2}},$$
-
-        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\vec{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. We refer to this as the MinT(Shrink) estimator.
-\end{itemize}
 
 \section{Hierarchical probabilistic forecasting}
 
@@ -408,12 +418,16 @@ Due to these concerns, we employ a reconciliation method proposed by \cite{Gamak
 
 \section{Empirical Study: Australian GDP}\label{sec:data}
 
-According to the Australian Bureau of Statistics (ABS), GDP of Australia is measured in three main approaches namely, Production, Income and Expenditure. Each of the three approaches naturally form a hierarchy according to the way data are collected and aggregated. Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in gray whereas, the most disaggregate level is denoted in red. The intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
-.
+In our empirical data we consider Gross Domestic Product (GDP) of Australia with quarterly data available from the December quarter of 1984 until the March quarter of 2018.  The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely, Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures.  Each of these measures can be disaggregated into additional series, which themselves could be targets of interests to forecasters.  This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including headline GDP.
 
-GDP and its associated components are generally measured in different price indexes. \textit{Current price value} is one such price index which measures the sum of individual transaction values - quantity produced or sold multiplied by the unit price of a particular period. Alternatively, the production growth irrespective to the price change is measured by holding the price constant at a base year - referred to as \textit{constant price index} or by linking the period-to-period price indexes via an index formula - referred to as \textit{chain volume index} \citep{ABS2015}. Although the current prices are subjective to the changes of price in period-to-period, unlike chain volume indexes, these estimates satisfy the coherency of observed data. Therefore we consider the current prices of all series as the coherency is important in this study.
+For two of the three approaches, namely the Income approach and Expenditure approach, nominal data are available. Nominal data are the focus of our study rather than real data.  This is due to the fact that real data are constructed via a chain price index approach with different price deflators used for each series.  As a result, real GDP data are not coherent - the aggregate series is not a linear combination of the disaggregate series.  For similar reasons we do not use seasonally adjusted data; the process of seasonal adjustment results in data that are not coherent.  Finally, although there is a small statistical discrepancy between each series and the headline GDP figure, we can simply treat this statistical discrepancy, which is also published by the ABS, as a time series in its own right.  For further details on the data we refer the reader to \citep{ABS2018}.
 
-We use seasonally unadjusted quarterly data ranging from 1984-Q4 to 2018-Q1. Since the current prices of quarterly series are not available for production approach, we consider only the income and expenditure approaches in our study. Further, the current price estimates of GDP is calculated by reflating the average chain volume estimates over three approaches by the implicit price deflator derived from the expenditure-based estimate. As a result, there exist a statistical discrepancy for GDP estimates in each approach \citep{ABS2018}. These were also included in the hierarchy in order to align with the coherency conditions in observed data. Furthermore, adjusting for seasonality in each series will deviate the aggregate constraints of the hierarchy. Thus we use seasonally unadjusted data to preserve coherency.
+{\color{red} Following paragraph to be separated over next two sections}
+
+Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in grey whereas, the most disaggregate level is denoted in red.  Intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
+
+
+
 
 
 Following subsections will give a brief description of income and expenditure hierarchies.
@@ -490,91 +504,71 @@ Let us first observe the time series plots for each approach. Figure \ref{TS-Inc
 \clearpage	
 
 
+6. Experimental Design and
+- setup: Time frame of Rolling window,
+- alternative methods: ARIMA/base vs \naive, BU, OLS, WLS, MinT(Shrink).
+- evaluation
 
+- Point: MASE, MASE
+- Probabilistic: CRPS, Energy Score
+Skill score.
 
+7. Results
 
+\section{Methodology}\label{sec:meth}
 
-\section{Experimental Design and Results}\label{sec:results}
+We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP data.  We consider forecasts from $h=1$ quarter ahead forecasts up to $h=4$ quarter ahead using an {\em expanding} window.  First, the training sample is set to QX of XXXX to QX of XXXX and forecasts are produced for QX of XXXX to QX of XXXX. Then the training window is expanded one period ahead, i.e. from QX of XXXX to QX of XXXX with forecasts produces for QX of XXXX to QX of XXXX.  All up this leads to XX forecasts.
 
+{\color{red} Need to get these dates off Puwasala.  Also last section may need to be changed}
+
+\subsection{Models}
+
+The first task in forecasting time series is to obtain base forecasts for all series in the hierarchy.  In the case of the income approach this necessitates forecasting XX time series while in the case of the expenditure approach forecasts for XX time series must be obtained.  As such our focus was on a methodology that was fast but flexible.  We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and AIC using an algorithm developed by XXX and implement in the auto.arima function in XXX. {\color{red} Cite this to Rob's satisfaction}.  A similar approach was also undertaken using the ETS framework to produce base forecasts.  This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecats outperformed ETS forecasts.  Consequently, results for ETS models are excluded but are available from the authors upon request {\color{red} again do we put this in an appendix?}.  We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions and models and methods that handle a large number of predictors such as factor models or least angle regresssion.  However, \cite{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
+
+The forecast reconciliation approaches that we consider are bottom up, OLS, WLS with {\color{red} What scaling did we use} and the MinT (shrink) approach.  The MinT (sample) approach was also used but due to the size of the hierarchy forecasts reconciled via this approach were less stable.  Finally, all forecasts both base and reconciled are compared to a \naive benchmark.  Since the data are not deseasonalised, the \naive benchmark is a seasonal random walk, i.e. the forecast for GDP (or one of its components) is the realised GDP in the same quarter of the previous year.  The \naive forecast is by construction coherent and therefore does not need to be reconciled.
 
 \subsection{Evaluation}
 
-In this section we briefly discuss the methods that we use to measure the forecast accuracy of hierarchical forecasts.
+For evaluating point forecasts we consider two metrics, the Root Mean Squared Error (RMSE) and the Mean Absolute Scaled Error (MASE).  The absolute scaled error is defined as
+\begin{equation*}
+q_{t+h} = \sum \frac{|\breve{e}_{t+h|t}|}{(T-4)^{-1}\sum_{k=m+1}^{T}|y_k - y_{k-4}|}\,,
+\end{equation*}
+where $\breve{e}_{t+h}$\footnote{breve is used instead of a hat or tilde to denote that this can be the error either a base or reconciled forecast} is the difference between any forecast and the realisation {\color{red} 44444 check m is and change since m is bottom level dimension}.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
 
-\subsubsection{Point forecast evaluation}
-
-Any existing point forecast evaluation method can be used to evaluate the accuracy of hierarchical point forecast. We are mainly using Mean Squared Error (MSE) and Mean Absolute Scaled Error (MASE) in our empirical application. Mathematical expression for these measures are given below.
-
-\begin{equation}\label{eq:22}
-MSE = mean(e^2_{t+h}),
-\end{equation}
-and
-\begin{equation}\label{eq:23}
-MASE = mean(q_{t+h}),
-\end{equation}
-where $q_{t+h} = \frac{e_{t+h}}{\frac{1}{T-m}\sum_{j=m+1}^{T}|y_j - y_{j-m}|}$. Further $e_{t+h}$ is the forecast error, which is the difference between forecast and realisation.
-
-MSE is a scaled dependent measure. Therefore to compare series in different scales or with different units, MASE is preferred. For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
-
-\subsubsection{Probabilistic forecast evaluation}
-
-Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}. Scoring rules provides a summary measurement based on the relationship between realisation and the forecast distribution. However, not all scoring rules are applicable for hierarchical probabilistic forecast evaluation. An comprehensive discussion on this can be found in \cite{Gamakumara2018}.
-
-Since the whole forecast distribution of the hierarchy is a multivariate distribution, the forecast accuracy should also be assessed in the multivariate framework. Therefore using multivariate scoring rules is helpful. Energy score \citep{Gneiting2008} and variogram scores \citep{SCHEUERER2015} are the mainly using multivariate scoring rules in hierarchical framework. Further, multivariate log score \citep{Gneiting2007} can also be used for evaluating parametric forecast distributions. The mathematical expressions for these are given table \ref{table:scoringrules}.
-
-\begin{table}[!b]
-	\caption{Scoring rules to evaluate multivariate forecast densities. $\breve{\vec{y}}_{T+h}$ and $\breve{\vec{y}}^*_{T+h}$ be two independent random vectors from the coherent forecast distribution $\breve{\vec{F}}$ with the density function $\breve{\vec{f}}(\cdot)$ at time $T+h$ and $\vec{y}_{T+h}$ is the vector of realizations. Further $\breve{Y}_{T+h,i}$ and $\breve{Y}_{T+h,j}$ are $i$th and $j$th components of the vector $\breve{\vec{Y}}_{T+h}$. Moreover, the variogram score is given for order $p$ where, $w_{ij}$ are non-negative weights.}\label{table:scoringrules}
-	\centering\small\setstretch{1.3}
-	\begin{tabular}{@{}lp{8.1cm}}
-		\toprule
-		\textbf{Scoring rule}  & \textbf{Expression}           \\
-		\midrule
-		\text{Log score}       &
-		$\text{LS}(\breve{\bm{F}},\bm{y}_{T+h}) = -\log {\breve{\bm{f}}(\bm{y}_{T+h})}$ \\\\[-0.2cm]
-		\text{Energy score}    &
-		$\text{eS}(\breve{\bm{Y}}_{T+h},\bm{y}_{T+h}) =
-		E_{\breve{\bm{F}}}
-		\|\breve{\bm{Y}}_{T+h}-\bm{y}_{T+h}\|^\alpha -$ \par\hfill
-		$\frac{1}{2}E_{\breve{\bm{F}}}\|\breve{\bm{Y}}_{T+h}-\breve{\bm{Y}}^*_{T+h}\|^\alpha$, \,\, $\alpha \in (0,2]$ \\\\[-0.2cm]
-		\text{Variogram score} &
-		$\text{VS}(\breve{\bm{F}}, \bm{y}_{T+h}) =
-		\sum\limits_{i=1}^{n}
-		\sum\limits_{j=1}^{n}
-		w_{ij}\Big(|y_{T+h,i} - y_{T+h,j}|^p -$ \par\hfill
-		$E_{\breve{\bm{F}}}|\breve{Y}_{T+h,i}-\breve{Y}_{T+h,j}|^p\Big)^2$ \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-Log score is easy to use if the parametric forecast distributions are available. However, \cite{Gamakumara2018} showed that the multivariate log scores are inappropriate for the comparisons between incoherent and coherent forecast distributions. This is due to the degeneracy of multivariate coherent forecast distributions.
-
-Energy score and variogram score can be used in any comparisons between multivariate hierarchical forecast distributions. The expectations in these scoring rules can be approximated by the sample means of simulated samples.
-
-It would be also interested to see the performance of forecast distributions of individual series in the hierarchy. To measure these we use univariate scoring rules such as Continuous Rank Probability Score (CRPS) and univariate log score \citep{Gneiting2008}. The mathematical expression for CRPS is given by,
+Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}.  Let $\breve{F}$ be a probabilistic forecast and let $\breve{\vec{y}}\sim \breve{F}$  where breve is used to denote that either base forecast or reconciled forecast can be evaluated.  The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
+\begin{equation*}
+eS(\breve{F}_{T+h|T},\vec{y}_{T+h}) =
+E_{\breve{F}}\|\breve{\vec{y}}_{T+h}-\vec{y}_{T+h}\|^\alpha
+-\frac{1}{2}E_{\breve{F}}\|\breve{\vec{y}}_{T+h}-\breve{\vec{y}}^*_{T+h}\|^\alpha\,,
+\end{equation*} where $\vec{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 
 \begin{equation} \label{eq:24}
-\text{CRPS}(\breve{F}_i,y_{T+h,i}) = E_{\breve{F}_i}|\breve{Y}_{T+h,i}-y_{T+h,i}| - \frac{1}{2}E_{\breve{F}_i}|\breve{Y}_{T+h,i}-\breve{Y}^*_{T+h,i}|,
+\text{CRPS}(\breve{F}_i,y_{i,T+h}) = E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
 \end{equation}
-where $\breve{Y}_{T+h,i}$ and $\breve{Y}^*_{T+h,i}$ are two independent copies from the $i$th reconciled marginal forecast distribution $\tilde{F}_i$ of the hierarchy and $y_{T+h,i}$ is the $i$th realization from the true marginal distribution $G_i$. As in multivariate scoring rules, the expectations can be approximated by the sample average.
 
-\subsubsection{Comparison between different forecasting methods}
+where the subscript $i$ is used to denote that CRPS measures forecast accuracy for a single variable in the hierarchy.
 
-We are mainly interested to evaluate the hierarchical forecasts in two aspects. One is to examine whether the having coherent forecasts is improving the forecast accuracy. This can be evaluated by comparing the incoherent forecasts with any coherent forecasts in both point as well as probabilistic framework. Secondly we are interested in finding the best reconciliation method by comparing reconciled forecast from different reconciliation methods.
-
-For any comparison we use Skill score as defined in \citep{Gneiting2007}. For a given forecasting method, evaluated by a particular scoring rule $S(\cdot)$ , the skill score can be calculated as follows,
-\begin{equation} \label{eq:25}
-Ss[S_B(\cdot)] = \frac{S_B(\bm{Y},\bm{y})^{\text{ref}} - S_B(\breve{\bm{Y}},\bm{y})}{S_B(\bm{Y},\bm{y})^{\text{ref}}}\times 100\%,
-\end{equation}
-where $S_B(\cdot)$ is average score over $B$ replicates and $S_B(\bm{Y},\bm{y})^{\text{ref}}$ is the average score of the reference forecasting methods. Thus $Ss[S_B(\cdot)]$ gives the percentage improvement of the preferred forecasting method relative to the reference method. Any positive value indicates that method is superior to the reference method, whereas any negative value of $Ss[S_B(\cdot)]$ indicate that the method we compared is poor than the reference method.
+As an alternative to the energy score, log score and variogram scores were also considered.  The log score was disregarded since \cite{Gamakumara2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent.  The variogram score gave similar results to the energy score; variogram score results are omitted for brevity but are available from the authors upon request. {\color{red} or we put them in an appendix}
 
 
+%\subsubsection{Comparison between different forecasting methods}
+%
+%{\color{red}To be included in results section - and discussed much more briefly.}
+%
+%We are mainly interested to evaluate the hierarchical forecasts in two aspects. One is to examine whether the having coherent forecasts is improving the forecast accuracy. This can be evaluated by comparing the incoherent forecasts with any coherent forecasts in both point as well as probabilistic framework. Secondly we are interested in finding the best reconciliation method by comparing reconciled forecast from different reconciliation methods.
+%
+%For any comparison we use Skill score as defined in \citep{Gneiting2007}. For a given forecasting method, evaluated by a particular scoring rule $S(\cdot)$ , the skill score can be calculated as follows,
+%\begin{equation} \label{eq:25}
+%Ss[S_B(\cdot)] = \frac{S_B(\bm{Y},\bm{y})^{\text{ref}} - S_B(\breve{\bm{Y}},\bm{y})}{S_B(\bm{Y},\bm{y})^{\text{ref}}}\times 100\%,
+%\end{equation}
+%where $S_B(\cdot)$ is average score over $B$ replicates and $S_B(\bm{Y},\bm{y})^{\text{ref}}$ is the average score of the reference forecasting methods. Thus $Ss[S_B(\cdot)]$ gives the percentage improvement of the preferred forecasting method relative to the reference method. Any positive value indicates that method is superior to the reference method, whereas any negative value of $Ss[S_B(\cdot)]$ indicate that the method we compared is poor than the reference method.
+%
+%
+%
+%
+%First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent.
 
 
-First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent.
-
-\subsection{Point forecasts and evaluation}
-
-Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecasts. Then these forecasts were reconciled using alternative methods discussed in section (?). We initially use a training set of 40 observations corresponds to the period 1984, Q1 to 1994, Q3 and generate forecasts for next four quarters. Then the process was repeated by expanding the training window by adding one observation ahead. MSE and MASE were calculated over the replications for each series. Skill scores were then calculated by considering the base forecasts as reference method to compare the incoherent vs coherent forecasts. Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
 
 \textcolor{red}{Discuss results}
 
@@ -613,18 +607,18 @@ Using the ETS and ARIMA models we generate 4-step ahead incoherent point forecas
 
 
 
-\subsection{Probabilistic forecasts and evaluation}
+\section{Results}\label{sec:results}
 
-We are also interested to estimate the forecast distributions of GDP and its disaggregate components. For that we use the probabilistic forecasting methods described in section (?).
+Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
 
-\subsubsection{Gaussian probabilistic forecasts for Australian GDP}
-
-Under Gaussian assumption, forecast distribution of GDP is limited to estimating means and variances. First we estimate the mean and variance of 4-step ahead incoherent forecast distributions and then these will be reconciled following \ref{eq:rec mean} and \ref{eq:rec var} using alternative estimates for $\vec{G}$. Incoherent point forecasts will be taken as an estimate for the mean of incoherent Gaussian forecast distribution $\hat{\mu}_{T+h}$, where as the covariance of incoherent forecast errors will be taken as an estimate of the incoherent variance $\hat{\Sigma}_{T+h}$. Using an expanding window we repeat the process.
-
-To evaluate the predictive ability of the multivariate Gaussian forecast distributions, we calculate energy score (ES), Variogram score (VS) and multivariate log score (LS) for each replication. Further to see the predictive ability of univariate series, we calculate the CRPS and univariate log scores for marginal Gaussian forecast distributions. Skill scores were then calculated using average scores over replications by taking the scores for incoherent forecasts as reference method. Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
+Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
 
 \textcolor{red}{Discuss results}
 
+
+\textcolor{red}{Possible discuss skill scores}
+
+\textcolor{red}{Discuss breakdown into looking at different levels.}
 
 \subsection*{Income approach}
 
