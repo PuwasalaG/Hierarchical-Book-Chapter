@@ -572,19 +572,7 @@ As an alternative to the energy score, log score and variogram scores were also 
 
 \textcolor{red}{Discuss results}
 
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MSE.png}
-	\caption{Skill scores for naive forecasts based on MSE}\label{NaiveVsBase_MSE}
-\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
-	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
-\end{figure}
 \subsubsection*{Income approach}
 
 \begin{figure}[H]
@@ -609,9 +597,50 @@ As an alternative to the energy score, log score and variogram scores were also 
 
 \section{Results}\label{sec:results}
 
-Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
+\subsection{Base forecasts}
 
-Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
+Base beats \naive.  Some comments about Base models selected, i.e. some have $d=0$ some have $d=1$
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MSE.png}
+	\caption{Skill scores for naive forecasts based on MSE}\label{NaiveVsBase_MSE}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
+	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
+\end{figure}
+
+\subsection{Point Forecast Reconciliation}
+
+%Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
+
+Main points:
+
+\begin{itemize}
+	\item Reconciliation does better in particular MinT
+	\item OLS does poorly mainly due to bottom level series	
+	\item Bottom up does poorly at top level for short horizons.
+	\item These last two results particularly pronounces for the bigger hierarchy
+\end{itemize} 
+
+\subsection{Probabilistic Forecast Reconciliation}
+
+Main points:
+
+\begin{itemize}
+	\item MinT generally the best for Income
+	\item All reco methods improve for Income
+	\item Foe Exp more mixed results, BU particularly crap
+	\item Bad performance of BU due to top level
+	\item OLS slightly better
+\end{itemize}
+
+%Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
 
 \textcolor{red}{Discuss results}
 
