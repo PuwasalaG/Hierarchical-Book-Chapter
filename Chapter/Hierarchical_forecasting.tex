@@ -592,16 +592,9 @@ Similar results are obtained when MASE is used as the metric for evaluating fore
 
 \subsection{Point Forecast Reconciliation}
 
-%Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
+We now turn our attention to an evaluation of point forecasts obtained using different reconciliation methods.  The top row of Figure XXX shows the MSE and MASE aggregated over all series for both the income hierarchy and expenditure hierarchy and over different forecast horizons.  Results are displayed as skill scores relative to base forecasts.  We conclude that reconciliation methods generally improve forecast accuracy relative to base forecasts regardless of the hierarchy used, the forecasting horizon, the forecasting metric used to evaluate forecasts or the specific reconciliation method employed.  We do however note that while all reconciliation methods improve forecast performance, MinT (shrink) is the best forecasting method in most cases.
 
-Main points:
-
-\begin{itemize}
-	\item Reconciliation does better in particular MinT
-	\item OLS does poorly mainly due to bottom level series	
-	\item Bottom up does poorly at top level for short horizons.
-	\item These last two results particularly pronounces for the bigger hierarchy
-\end{itemize} 
+To further investigate the differences between reconciliation methods we break down these results by different levels of each hierarchy.  The second row of Figure XXX shows the forecasting performance a single series, namely the GDP which represents the top level of both hierarchies.  The third row shows results for all series excluding those on the bottom level, while the final row shows results for the bottom level series only.  Here, we see two general features, the first is that OLS reconciliation performs poorly on the bottom level series, the second is that bottom up relatively poorly on aggregate series.  These two features are particularly exacerbated for the larger Ependiture hierarchy.  These results are consistent with other findings in the forecast reconciliation literature see for instance XXX.
 
 \subsection{Probabilistic Forecast Reconciliation}
 
