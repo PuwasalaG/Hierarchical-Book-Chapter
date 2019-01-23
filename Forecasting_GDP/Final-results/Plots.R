@@ -52,21 +52,21 @@ Exp %>% select(c("Gdpe", "GneCii", "GneDfdGfcPvtPbiNdmSha", "GneCiiPba")) %>%
 
 
 
-#TS plots for each series of the hierarchy
+#TS plots for each series of the hierarchy - Income hierarchy
 
-Inc %>% select(c(names(Inc)[1:6])) %>% ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) -> INC_aggregates_TS
+Inc %>% dplyr::select(c(names(Inc)[1:6])) %>% ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = FALSE) -> INC_aggregates_TS
 
-Inc %>% select(c(names(Inc)[7:11])) %>% ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) -> INC_bottomLevel_TS_1
+Inc %>% dplyr::select(c(names(Inc)[7:11])) %>% ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = FALSE) -> INC_bottomLevel_TS_1
 
-Inc %>% select(c(names(Inc)[12:16])) %>% ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) -> INC_bottomLevel_TS_2
+Inc %>% dplyr::select(c(names(Inc)[12:16])) %>% ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = FALSE) -> INC_bottomLevel_TS_2
 
-ggarrange(INC_bottomLevel_TS_1, INC_bottomLevel_TS_2, ncol = 2)
+ggarrange(INC_bottomLevel_TS_1, INC_bottomLevel_TS_2, ncol = 2, legend = "bottom")
 
 
 rm(list = ls())
 load("Expenditure-approach/PointForecasts-ExpandingW.RData")
 
-Exp %>% select("Gdpe", "Gne", "ExpMinImp", "Sde") %>% rename("GDP(E)" = "Gdpe", "GNE" = "Gne", 
+Exp %>% dplyr::select("Gdpe", "Gne", "ExpMinImp", "Sde") %>% rename("GDP(E)" = "Gdpe", "GNE" = "Gne", 
                                                              "ExportsLessImports" = "ExpMinImp", "SD" = "Sde") %>% 
   ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") 
 
