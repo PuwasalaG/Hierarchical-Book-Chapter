@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-#Ignore latex auxiliary files
 .log
 .aux
 .idx
