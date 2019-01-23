@@ -77,18 +77,14 @@
 
 
 \section{Introduction}\label{sec:intro}
-
-
-\begin{itemize}
-	\item Importance of coherency
-	\item Point forecasting
-	\item Probabilistic forecasting
-\end{itemize}
 			
+Accurate forecasting of key macroeconomic variables such as GDP, inflation, industrial production is key to policy making. The era of big data has led to using regularization and shrinkage methods such as dynamic factor models, Lasso, LARS, Bayesian VARs to exploit the plethora of potentially useful predictors now available. Amongst these predictors are components of the variables. However this is ignored. In this 
 
-The key macroeconomic indicators such as Gross Domestic Product (GDP), inflation and monetary policies which are used to study the behavior and performance of an economy as a whole are it self aggregates of various other components.
-For example, if we take the GDP growth, it is the aggregate of consumption, government expenditure, investments and net exports. These four components are again aggregates of some sub components. When we collect data for each of these individual variab
-les over some time period, we will observe a collection of multiple time series that are bounded with some aggregation constraints. Thus the macroeconomic data are naturally forming cross sectional hierarchical time series.
+
+ 
+For example, if we take the GDP growth, it is the aggregate of consumption, government expenditure, investments and net exports. These four components are again aggregates of some sub components. 
+
+When we collect data for each of these individual variables over some time period, we will observe a collection of multiple time series that are bounded with some aggregation constraints. Thus the macroeconomic data are naturally forming cross sectional hierarchical time series.
 
 If the interest is on a single macroeconomic variable along different time granularities, then it can be considered as a temporal hierarchy. For example, suppose we have monthly consumer product index (CPI) of a particular country. The quarterly CPI is then the aggregate of corresponding monthly CPI of each quarter. Similarly the yearly CPI is the aggregate of quarterly CPI of each year. Hence it will form a temporal hierarchy.
 
@@ -495,7 +491,7 @@ We now demonstrate the potential for reconciliation methods to improve forecast 
 
 \subsection{Models}
 
-The first task in forecasting time series is to obtain base forecasts for all series in the hierarchy.  In the case of the income approach this necessitates forecasting XX time series while in the case of the expenditure approach forecasts for XX time series must be obtained.  As such our focus was on a methodology that was fast but flexible.  We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and AIC using an algorithm developed by XXX and implement in the auto.arima function in XXX. {\color{red} Cite this to Rob's satisfaction}.  A similar approach was also undertaken using the ETS framework to produce base forecasts.  This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecats outperformed ETS forecasts.  Consequently, results for ETS models are excluded but are available from the authors upon request {\color{red} again do we put this in an appendix?}.  We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions and models and methods that handle a large number of predictors such as factor models or least angle regresssion.  However, \cite{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
+The first task in forecasting time series is to obtain base forecasts for all series in the hierarchy.  In the case of the income approach this necessitates forecasting XX time series while in the case of the expenditure approach forecasts for XX time series must be obtained.  As such our focus was on a methodology that was fast but flexible.  We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and AIC using an algorithm developed by XXX and implement in the auto.arima function in XXX. {\color{red} Cite this to Rob's satisfaction}.  A similar approach was also undertaken using the ETS framework to produce base forecasts.  This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecats outperformed ETS forecasts.  Consequently, results for ETS models are excluded but are available from the authors upon request {\color{red} again do we put this in an appendix?} \textcolor{blue}{Could referring to Puwasala's thesis be an option. There will be some editing of the book before it comes out. Just a suggestion.}.  We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions and models and methods that handle a large number of predictors such as factor models or least angle regresssion.  However, \cite{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
 
 The forecast reconciliation approaches that we consider are bottom up, OLS, WLS with {\color{red} What scaling did we use} and the MinT (shrink) approach.  The MinT (sample) approach was also used but due to the size of the hierarchy forecasts reconciled via this approach were less stable.  Finally, all forecasts both base and reconciled are compared to a \naive benchmark.  Since the data are not deseasonalised, the \naive benchmark is a seasonal random walk, i.e. the forecast for GDP (or one of its components) is the realised GDP in the same quarter of the previous year.  The \naive forecast is by construction coherent and therefore does not need to be reconciled.
 
@@ -514,9 +510,9 @@ E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\bm{y}_{T+h}\|^\alpha
 -\frac{1}{2}E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\breve{\bm{y}}^*_{T+h}\|^\alpha\,,
 \end{equation*} where $\bm{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 
-\begin{equation} \label{eq:24}
+\begin{equation*} 
 \text{CRPS}(\breve{F}_i,y_{i,T+h}) = E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
-\end{equation}
+\end{equation*}
 
 where the subscript $i$ is used to denote that CRPS measures forecast accuracy for a single variable in the hierarchy.
 
