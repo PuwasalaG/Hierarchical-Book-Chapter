@@ -572,21 +572,23 @@ As an alternative to the energy score, log score and variogram scores were also 
 
 \subsection{Base forecasts}
 
-Base beats \naive.  Some comments about Base models selected, i.e. some have $d=0$ some have $d=1$
+Due to the different features in each time series a variety of ARIMA models were selected to be used as base models.  {\color{red} Some generalisations about models}.  Figure~\ref{NaiveVsBase_MSE} gives some indication of the performance of these base forecasting models relative to the \naive forecast over different horizons.  All results in this Figure and in subsequent figures are presented as the percentage changes in a forecasting metric relative to the base forecast, a measure known in the forecasting literature as {\em skill scores}.  Skill scores are computed such that positive values represent an improvement in forecasting performance over the base forecast and negative values represent a deterioration in forecast quality.  In Figure~\ref{NaiveVsBase_MSE}, panels on the left refer to results for the Income hierarchy with panels on the right referring to the expenditure hierarchy.  The top panels summarise results over all series in the hierarchy \textcolor{red} {How exactly do we do this.  Do we compute MSE for each series then add?  Do we compute skill score for each series and average these?}.  The clear result is that base forecasts are more accurate than \naive forecasts, however as the forecasting horizon increases, the difference becomes smaller.  This is to be expected since the \naive model here is a seasonal random walk, for horizons $h<4$ the forecast from an ARIMA model is based on more recent information.
+
+Similar results are obtained when MASE is used as the metric for evaluating forecast quality.  However one disadvantage of the base forecasts relative to the \naive forecast is that base forecasts are no longer coherent.  As such we now turn out attention to investigating whether reconciliation methods can lead to further improvements in forecast accuracy relative to base forecasts.
 
 \begin{figure}[H]
 	\centering
 	\small
 	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MSE.png}
-	\caption{Skill scores for naive forecasts based on MSE}\label{NaiveVsBase_MSE}
+	\caption{Skill scores for naive forecasts (relative to base forecasts) using mean square error as a forecast metric.  Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series.  Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}\label{NaiveVsBase_MSE}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
-	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
+%	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
+%\end{figure}
 
 \subsection{Point Forecast Reconciliation}
 
@@ -622,88 +624,88 @@ Main points:
 
 \textcolor{red}{Discuss breakdown into looking at different levels.}
 
-\subsection*{Income approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbGaus_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbGaus_UnivS}
-\end{figure}
-
-
-\subsection*{Expenditure approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbGaus_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbGaus_UnivS}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Non-parametric probabilistic forecasts for Australian GDP}
-
-We also estimate the coherent probabilistic forecasts for GDP and its disaggregate components by using the non-parametric bootstrap approach explained in the section (?).
-
-\subsection*{Income approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbNonParF_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbNonParF_UnivS}
-\end{figure}
-
-
-
-
-
-
-\subsection*{Expenditure approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbNonParF_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbNonParF_UnivS}
-\end{figure}
+%\subsection*{Income approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbGaus_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbGaus_UnivS}
+%\end{figure}
+%
+%
+%\subsection*{Expenditure approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbGaus_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbGaus_UnivS}
+%\end{figure}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%\subsubsection{Non-parametric probabilistic forecasts for Australian GDP}
+%
+%We also estimate the coherent probabilistic forecasts for GDP and its disaggregate components by using the non-parametric bootstrap approach explained in the section (?).
+%
+%\subsection*{Income approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbNonParF_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbNonParF_UnivS}
+%\end{figure}
+%
+%
+%
+%
+%
+%
+%\subsection*{Expenditure approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbNonParF_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbNonParF_UnivS}
+%\end{figure}
 
 
 

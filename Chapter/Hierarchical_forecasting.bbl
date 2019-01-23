@@ -47,6 +47,13 @@ Gross, C.~W. \harvardand\ Sohl, J.~E.  \harvardyearleft 1990\harvardyearright ,
   `{Disaggregation methods to expedite product line forecasting}', {\em Journal
   of Forecasting} {\bf 9}(3),~233--254.
 
+\harvarditem[Hyndman et~al.]{Hyndman, Lee \harvardand\ Wang}{2016}{Hyndman2016}
+Hyndman, R.~J., Lee, A.~J. \harvardand\ Wang, E.  \harvardyearleft
+  2016\harvardyearright , `{Fast computation of reconciled forecasts for
+  hierarchical and grouped time series}', {\em Computational Statistics and
+  Data Analysis} {\bf 97},~16--32.
+\newline\harvardurl{http://dx.doi.org/10.1016/j.csda.2015.11.007}
+
 \harvarditem{Manzan \harvardand\ Zerom}{2008}{Manzan2008}
 Manzan, S. \harvardand\ Zerom, D.  \harvardyearleft 2008\harvardyearright , `{A
   bootstrap-based non-parametric forecast density}', {\em International Journal

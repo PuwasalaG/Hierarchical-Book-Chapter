@@ -42,16 +42,12 @@
 \citation{WicEtAl2019}
 \citation{WicEtAl2019}
 \citation{HynEtAl2011}
-\citation{HynEtAl2011}
 \citation{WicEtAl2019}
 \newlabel{eq:base errors}{{3}{8}}
 \newlabel{eq:MinT}{{4}{8}}
+\citation{Hyndman2016}
+\citation{AthEtAl2017}
 \citation{Schafer2005}
-\citation{Gamakumara2018}
-\citation{HynEtAl2011}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}OLS reconciliation}{9}}
-\newlabel{eq:OLS}{{5}{9}}
-\citation{WicEtAl2019}
 \citation{Gneiting2014}
 \citation{Taieb2017}
 \citation{Gamakumara2018}
@@ -59,20 +55,20 @@
 \citation{Gamakumara2018}
 \citation{Gamakumara2018}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Hierarchical probabilistic forecasting}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Probabilistic forecast reconciliation in the Gaussian framework}{10}}
 \citation{Gneiting2005}
 \citation{Gneiting2014}
 \citation{Gneiting2008}
 \citation{Manzan2008}
 \citation{Vilar2013}
 \citation{Gamakumara2018}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Probabilistic forecast reconciliation in the Gaussian framework}{11}}
-\newlabel{eq:rec mean}{{6}{11}}
-\newlabel{eq:rec var}{{7}{11}}
+\newlabel{eq:rec mean}{{5}{11}}
+\newlabel{eq:rec var}{{6}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Probabilistic forecast reconciliation in the non-parametric framework}{11}}
 \citation{ABS2018}
+\citation{ABS2015}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Empirical Study: Australian GDP}{12}}
 \newlabel{sec:data}{{5}{12}}
-\citation{ABS2015}
 \citation{ABS2015}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Income approach}{13}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Expenditure approach}{13}}
@@ -88,7 +84,7 @@
 \citation{Gneiting2014}
 \citation{Gamakumara2018}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Evaluation}{17}}
-\newlabel{eq:24}{{8}{17}}
+\newlabel{eq:24}{{7}{17}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Summary of point forecasts in income approach}}{18}}
 \newlabel{Exp-PointF}{{5}{18}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Summary of point forecasts in expenditure approach}}{19}}
@@ -96,84 +92,65 @@
 \@writefile{toc}{\contentsline {section}{\numberline {7}Results}{19}}
 \newlabel{sec:results}{{7}{19}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Base forecasts}{19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Skill scores for naive forecasts based on MSE}}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Skill scores for naive forecasts (relative to base forecasts) using mean square error as a forecast metric. Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series. Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}}{20}}
 \newlabel{NaiveVsBase_MSE}{{7}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Skill scores for naive forecasts based on MASE}}{20}}
-\newlabel{NaiveVsBase_MASE}{{8}{20}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Point Forecast Reconciliation}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Point Forecast Reconciliation}{20}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Probabilistic Forecast Reconciliation}{21}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}}{22}}
-\newlabel{Inc_ProbGaus_ES_VS}{{9}{22}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}}{23}}
-\newlabel{Inc_ProbGaus_UnivS}{{10}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}}{24}}
-\newlabel{Exp_ProbGaus_ES_VS}{{11}{24}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}}{25}}
-\newlabel{Exp_ProbGaus_UnivS}{{12}{25}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {7.3.1}Non-parametric probabilistic forecasts for Australian GDP}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}}{26}}
-\newlabel{Inc_ProbNonParF_ES_VS}{{13}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}}{27}}
-\newlabel{Inc_ProbNonParF_UnivS}{{14}{27}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}}{28}}
-\newlabel{Exp_ProbNonParF_ES_VS}{{15}{28}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}}{29}}
-\newlabel{Exp_ProbNonParF_UnivS}{{16}{29}}
-\@writefile{toc}{\contentsline {section}{Appendix 1}{30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Hierarchy of production approach.}}{30}}
-\newlabel{GDP_P_fig1}{{17}{30}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Hierarchy of GVA under production approach.}}{31}}
-\newlabel{GDP_P_fig2}{{18}{31}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Hierarchy of income approach.}}{32}}
-\newlabel{GDP_I_fig1}{{19}{32}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Hierarchy of expenditure approach.}}{33}}
-\newlabel{GDP_E_fig1}{{20}{33}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Household final consumption expenditure under expenditure approach.}}{34}}
-\newlabel{GDP_E_fig2}{{21}{34}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Gross fixed capital formation (GFCF) under expenditure approach.}}{35}}
-\newlabel{GDP_E_fig3}{{22}{35}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Variables, Series IDs and their descriptions for Income Approach}}{35}}
-\newlabel{Tab: Income-hierarchy}{{1}{35}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Variables, Series IDs and their descriptions for Expenditure Approach}}{36}}
-\newlabel{Tab:Expenditure-hierarchy-1}{{2}{36}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Variables, Series IDs and their descriptions for Changes in Inventories - Expenditure Approach}}{37}}
-\newlabel{Tab:Expenditure-hierarchy-2}{{3}{37}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Variables, Series IDs and their descriptions for Household Final Consumption - Expenditure Approach}}{38}}
-\newlabel{Tab:Expenditure-hierarchy-3}{{4}{38}}
-\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces All aggregate level series of income hierarchy.}}{39}}
-\newlabel{INC-aggregates_TSplot}{{23}{39}}
-\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces All bottom level series of income hierarchy.}}{39}}
-\newlabel{INC-bottomlevel_TSplot}{{24}{39}}
-\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}}{40}}
-\newlabel{EXP-set-1}{{25}{40}}
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}}{40}}
-\newlabel{EXP-set-2}{{26}{40}}
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}}{41}}
-\newlabel{EXP-set-3}{{27}{41}}
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Disaggregation of private non-farm in expenditure hierarchy.}}{41}}
-\newlabel{EXP-set-4}{{28}{41}}
-\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Disaggregation of government final consumption expenditure.}}{42}}
-\newlabel{EXP-set-5}{{29}{42}}
-\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Public, private and total fixed capital formations.}}{42}}
-\newlabel{EXP-set-6}{{30}{42}}
-\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces Disaggregation of general government of Gross fixed capital formations.}}{43}}
-\newlabel{EXP-set-7}{{31}{43}}
-\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces Disaggregation of public corporations of Gross fixed capital formations.}}{43}}
-\newlabel{EXP-set-8}{{32}{43}}
-\@writefile{lof}{\contentsline {figure}{\numberline {33}{\ignorespaces Disaggregation of total dwelling and ownership transfer.}}{44}}
-\newlabel{EXP-set-9}{{33}{44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {34}{\ignorespaces Main disaggregation of total private business investments.}}{44}}
-\newlabel{EXP-set-10}{{34}{44}}
-\@writefile{lof}{\contentsline {figure}{\numberline {35}{\ignorespaces Remaining disaggregation of total private business investments.}}{45}}
-\newlabel{EXP-set-11}{{35}{45}}
-\@writefile{lof}{\contentsline {figure}{\numberline {36}{\ignorespaces Main disaggregation of household final consumption expenditure.}}{45}}
-\newlabel{EXP-set-12}{{36}{45}}
-\@writefile{lof}{\contentsline {figure}{\numberline {37}{\ignorespaces Disaggregation of household final consumption expenditure.}}{46}}
-\newlabel{EXP-set-13}{{37}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {38}{\ignorespaces Disaggregation of household final consumption expenditure.}}{46}}
-\newlabel{EXP-set-14}{{38}{46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {39}{\ignorespaces Disaggregation of household final consumption expenditure.}}{47}}
-\newlabel{EXP-set-15}{{39}{47}}
+\@writefile{toc}{\contentsline {section}{Appendix 1}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Hierarchy of production approach.}}{22}}
+\newlabel{GDP_P_fig1}{{8}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Hierarchy of GVA under production approach.}}{23}}
+\newlabel{GDP_P_fig2}{{9}{23}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Hierarchy of income approach.}}{24}}
+\newlabel{GDP_I_fig1}{{10}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Hierarchy of expenditure approach.}}{25}}
+\newlabel{GDP_E_fig1}{{11}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Household final consumption expenditure under expenditure approach.}}{26}}
+\newlabel{GDP_E_fig2}{{12}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Gross fixed capital formation (GFCF) under expenditure approach.}}{27}}
+\newlabel{GDP_E_fig3}{{13}{27}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Variables, Series IDs and their descriptions for Income Approach}}{27}}
+\newlabel{Tab: Income-hierarchy}{{1}{27}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Variables, Series IDs and their descriptions for Expenditure Approach}}{28}}
+\newlabel{Tab:Expenditure-hierarchy-1}{{2}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Variables, Series IDs and their descriptions for Changes in Inventories - Expenditure Approach}}{29}}
+\newlabel{Tab:Expenditure-hierarchy-2}{{3}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Variables, Series IDs and their descriptions for Household Final Consumption - Expenditure Approach}}{30}}
+\newlabel{Tab:Expenditure-hierarchy-3}{{4}{30}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces All aggregate level series of income hierarchy.}}{31}}
+\newlabel{INC-aggregates_TSplot}{{14}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces All bottom level series of income hierarchy.}}{31}}
+\newlabel{INC-bottomlevel_TSplot}{{15}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}}{32}}
+\newlabel{EXP-set-1}{{16}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}}{32}}
+\newlabel{EXP-set-2}{{17}{32}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}}{33}}
+\newlabel{EXP-set-3}{{18}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Disaggregation of private non-farm in expenditure hierarchy.}}{33}}
+\newlabel{EXP-set-4}{{19}{33}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Disaggregation of government final consumption expenditure.}}{34}}
+\newlabel{EXP-set-5}{{20}{34}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Public, private and total fixed capital formations.}}{34}}
+\newlabel{EXP-set-6}{{21}{34}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Disaggregation of general government of Gross fixed capital formations.}}{35}}
+\newlabel{EXP-set-7}{{22}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Disaggregation of public corporations of Gross fixed capital formations.}}{35}}
+\newlabel{EXP-set-8}{{23}{35}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Disaggregation of total dwelling and ownership transfer.}}{36}}
+\newlabel{EXP-set-9}{{24}{36}}
+\@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces Main disaggregation of total private business investments.}}{36}}
+\newlabel{EXP-set-10}{{25}{36}}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Remaining disaggregation of total private business investments.}}{37}}
+\newlabel{EXP-set-11}{{26}{37}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces Main disaggregation of household final consumption expenditure.}}{37}}
+\newlabel{EXP-set-12}{{27}{37}}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Disaggregation of household final consumption expenditure.}}{38}}
+\newlabel{EXP-set-13}{{28}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces Disaggregation of household final consumption expenditure.}}{38}}
+\newlabel{EXP-set-14}{{29}{38}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces Disaggregation of household final consumption expenditure.}}{39}}
+\newlabel{EXP-set-15}{{30}{39}}
 \bibstyle{agsm}
 \bibdata{References_BookChapter_HTS,library}
 \bibcite{ABS2015}{{1}{2015}{{Australian Bureau of Statistics}}{{}}}
@@ -184,10 +161,11 @@
 \bibcite{Gneiting2005}{{6}{2005}{{Gneiting \&\ Raftery}}{{}}}
 \bibcite{Gneiting2008}{{7}{2008}{{Gneiting et~al.}}{{Gneiting, Stanberry, Grimit, Held \&\ Johnson}}}
 \bibcite{gross1990}{{8}{1990}{{Gross \&\ Sohl}}{{}}}
-\bibcite{Manzan2008}{{9}{2008}{{Manzan \&\ Zerom}}{{}}}
-\bibcite{Schafer2005}{{10}{2005}{{Sch{\"{a}}fer \&\ Strimmer}}{{}}}
-\bibcite{Taieb2017}{{11}{2017}{{Taieb et~al.}}{{Taieb, Taylor \&\ Hyndman}}}
-\bibcite{Vilar2013}{{12}{2013}{{Vilar \&\ Vilar}}{{}}}
+\bibcite{Hyndman2016}{{9}{2016}{{Hyndman et~al.}}{{Hyndman, Lee \&\ Wang}}}
+\bibcite{Manzan2008}{{10}{2008}{{Manzan \&\ Zerom}}{{}}}
+\bibcite{Schafer2005}{{11}{2005}{{Sch{\"{a}}fer \&\ Strimmer}}{{}}}
+\bibcite{Taieb2017}{{12}{2017}{{Taieb et~al.}}{{Taieb, Taylor \&\ Hyndman}}}
+\bibcite{Vilar2013}{{13}{2013}{{Vilar \&\ Vilar}}{{}}}
 \immediate\closeout\minitoc
-\@writefile{toc}{\contentsline {section}{References}{48}}
-\@mtwritefile{\contentsline {mtchap}{References}{48}}
+\@writefile{toc}{\contentsline {section}{References}{40}}
+\@mtwritefile{\contentsline {mtchap}{References}{40}}
