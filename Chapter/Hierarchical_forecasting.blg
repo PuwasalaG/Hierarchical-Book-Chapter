@@ -1,0 +1,73 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: Hierarchical_forecasting.aux
+The style file: agsm.bst
+I couldn't open database file library.bib
+---line 155 of file Hierarchical_forecasting.aux
+ : \bibdata{References_BookChapter_HTS,library
+ :                                            }
+I'm skipping whatever remains of this command
+Database file #1: References_BookChapter_HTS.bib
+Warning--I didn't find a database entry for "AthEtAl2017"
+Warning--I didn't find a database entry for "ZelMon1971"
+Warning--I didn't find a database entry for "AmeWu1972"
+Warning--I didn't find a database entry for "Tia1972"
+Warning--I didn't find a database entry for "Bre1973"
+Warning--I didn't find a database entry for "Hot1993"
+Warning--I didn't find a database entry for "HotCar1993"
+Warning--I didn't find a database entry for "Mar1999"
+Warning--I didn't find a database entry for "SilEtAl2008"
+Warning--I didn't find a database entry for "RosSea1995"
+Warning--I didn't find a database entry for "NijPal1990"
+Warning--I didn't find a database entry for "AndEtAl2011"
+Warning--I didn't find a database entry for "KouEtAl2014"
+Warning--I didn't find a database entry for "AthEtAl2009"
+Warning--I didn't find a database entry for "WicEtAl2019"
+Warning--I didn't find a database entry for "HynEtAl2011"
+Warning--I didn't find a database entry for "PanEtAl2019"
+Warning--I didn't find a database entry for "hyndman2018forecasting"
+Warning--empty institution in ABS2015
+Warning--empty institution in ABS2018
+Warning--empty note in Gamakumara2018
+You've used 13 entries,
+            2909 wiz_defined-function locations,
+            768 strings with 7775 characters,
+and the built_in function-call counts, 64482 in all, are:
+= -- 10691
+> -- 743
+< -- 0
++ -- 5122
+- -- 224
+* -- 5657
+:= -- 12772
+add.period$ -- 13
+call.type$ -- 13
+change.case$ -- 184
+chr.to.int$ -- 13
+cite$ -- 16
+duplicate$ -- 194
+empty$ -- 409
+format.name$ -- 279
+if$ -- 11584
+int.to.chr$ -- 5
+int.to.str$ -- 0
+missing$ -- 10
+newline$ -- 46
+num.names$ -- 135
+pop$ -- 42
+preamble$ -- 1
+purify$ -- 195
+quote$ -- 0
+skip$ -- 169
+stack$ -- 0
+substring$ -- 15233
+swap$ -- 32
+text.length$ -- 182
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 52
+warning$ -- 3
+while$ -- 292
+width$ -- 0
+write$ -- 171
+(There was 1 error message)
