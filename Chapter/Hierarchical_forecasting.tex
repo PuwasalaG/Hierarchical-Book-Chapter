@@ -261,55 +261,32 @@ $. Furthermore Theorem 1 shows that
 \end{equation}
 is the unique solution that minimises the tr$[\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}']$ subject to $\bm{S}\bm{G}\bm{S}=\bm{S}$. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts, using as $\bm{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts. A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\bm{W}}_{h}$. However, estimating ${\bm{W}}_{h}$ is challenging, especially for $h>1$. \citet{WicEtAl2019} present possible alternative estimators for ${\bm{W}}_{h}$ and show that these lead to different $\bm{G}$ matrices. We summarise these below.
 
-
-Note that unlike the GLS solution to \eqref{eq:OLS}, the MinT solution is a function of $\bm{W}_h$, the variance of the base forecast errors.
-
-
-Of course setting ${\bm{W}}_{h}=k_h\bm{I}_n$ for all $h$ where $k_h>0$ is a proportionality constant, leads to the OLS solution of \cite{HynEtAl2011}. A disadvantage of this simplifying solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
-
-
 \begin{itemize}
     \item Set ${\bm{W}}_{h}=k_h\bm{I}_n$, for all $h$, where $k_{h} > 0$ is a proportionality constant. This most simplifying assumption returns $\bm{G}=(\bm{S}'\bm{S})^{-1}\bm{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$. Hence, we refer to this as the OLS projection which minimises the Euclidean distance between $\hat{\bm{y}}_{T+h|T}$ and $\tilde{\bm{y}}_{T+h|T}$.
-        
-        \cite{HynEtAl2011} also come to the OLS solution, however from the perspective of the following regression model. They propose to reconcile unbiased base forecasts through \begin{equation*}\hat{\bm{y}}_{T+h|T} = \bm{S\ubeta}_{T+h|T} + \bm{\varepsilon}_{T+h|T} \end{equation*} where $\bm{\ubeta}_{T+h|T}=E[\bm{b}_{t+h}|\bm{b}_1,.....,\bm{b}_t]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. Hence the OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$. We should note that using a GLS estimator in this context is not possible as $\bm{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
-        
-        The OLS solution is optimal only under some special conditions, such as when the base forecast errors are uncorrelated and equivariant. However, these conditions are not possible to be satisfied in applications of forecasting hierarchical time series.
 
+        \cite{HynEtAl2011} also come to the OLS solution, however from the perspective of the following regression model. They propose to reconcile unbiased base forecasts through \begin{equation*}\hat{\bm{y}}_{T+h|T} = \bm{S\ubeta}_{T+h|T} + \bm{\varepsilon}_{T+h|T} \end{equation*} where $\bm{\ubeta}_{T+h|T}=E[\bm{b}_{T+h}|\bm{b}_1,.....,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. Hence, the OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$. We should note that using the usual GLS estimator in this context is not possible as $\bm{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
+        
+        The OLS solution would be optimal under the conditions that the base forecast errors are uncorrelated and equivariant across all levels of the aggregation structure. However due to differences in scale across levels due to aggregation, the later is impossible to be satisfied.
+        
+        \textcolor{red}{I think I just leave the one from above} A disadvantage of the OLS solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
 
-    \item Set ${\bm{W}}_{h}=\text{diag}(\hat{\bm{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
+    \item Set ${\bm{W}}_{h}=k_{h}\text{diag}(\hat{\bm{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
         $$
-        \hat{\bm{W}}_{1} = \frac{1}{t}\sum_{k=1}^{t} \hat{\bm{e}}_{k}\hat{\bm{e}}_{k}'
+        \hat{\bm{W}}_{1} = \frac{1}{T}\sum_{T=1}^{T} \hat{\bm{e}}_{t}\hat{\bm{e}}_{t}'
         $$
-        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. This estimator scales the base forecasts using the variance of the in-sample residuals and is therefore describes and referred to as a WLS estimator.
-    \item  Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results a $m$ grows compared to $t$. We refer to this a the MinT(Sample) estimator.
+        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \cite{Hyndman2016}.
+        
+        \textcolor{red}{I have added this here because I think it is important and useful - we need to be careful to clarify that we used variance scaling when we get to the application.} An alternative diagonal scaling estimator is to set $\bm{W}_{h}=k_{h}\bm{\Lambda}$, for all $h$, where $k_{h} > 0$ and $\bm{\Lambda}=\text{diag}(\bm{S}\bm{1})$ with $\bm{1}$ being a unit column vector of dimension $n$. This was proposed by \citet{AthEtAl2017} for temporal hierarchies and assumes that each of the bottom-level base forecast errors has a variance $k_{h}$ and are uncorrelated between nodes. Each element of the diagonal $\bm{\Lambda}$ matrix contains the number of forecast error variances contributing to that aggregation level. This estimator depends only on the aggregation structure and is therefore referred to as a WLS estimator applying structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom-level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
+                
+    \item  Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results as $m$ grows compared to $T$. This is referred to this as the MinT(Sample) estimator.
     \item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\bm{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\bm{W}}_{1}) + (1 - \lambda_{D})\hat{\bm{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
 
         $$\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{Var}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},$$
 
         %$$\hat{\lambda}_{D} = \frac{\sum_{i \neq j} \widehat{\var(\hat{r}_{ij})}} {\sum_{i \neq j} \hat{r}_{ij}^{2}},$$
 
-        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. We refer to this as the MinT(Shrink) estimator.
+        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. This is referred to as the MinT(Shrink) estimator.
 \end{itemize}
-
-
-
-\subsubsection{OLS reconciliation}
-
-Assume that $\hat{\bm{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:t}(\hat{\bm{y}}_{T+h|T})= E_{1:t}[\bm{y}_{T+h}|\bm{y}_1,...,\bm{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$. For any $\bm{G}$ such that $\bm{SGS}=\bm{S}$ or equivalently $\bm{SG}=\bm{I}_m$ the resulting coherent forecasts are also unbiased. \textcolor{red}{Can we tie in here this? Can we say: More generally \citep{Gamakumara2018} show that any $\bm{SG}$ that is a projection matrix will result to unbiased coherent forecasts}.
-
-\cite{HynEtAl2011} proposed to  reconcile the unbiased base forecasts through the following regression model.
-From \eqref{eq:summing matrix},
-\begin{equation}\label{eq:OLS}
-\hat{\bm{y}}_{T+h|T} = \bm{S\ubeta}_{T+h|T} + \bm{\varepsilon}_{T+h|T},
-\end{equation}
-where $\bm{\ubeta}_{T+h|T}=E[\bm{b}_{t+h}|\bm{b}_1,.....,\bm{b}_t]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. The ordinary least squares (OLS) solution leads to the usual projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$, so that a set of coherent forecasts are obtained by,
-\begin{equation*}
-\tilde{\bm{y}}_{T+h|T}^{\text{OLS}} = \bm{SG}\hat{\bm{y}}_{T+h|T}
-\end{equation*}
-where $\bm{G}=(\bm{S}'\bm{S})^{-1}\bm{S}'$.
-In this reconciliation, the base forecasts are orthogonally projected to the coherent subspace $\mathfrak{s}$. Hence the OLS projection minimises the Euclidean distance between $\hat{\bm{y}}_{T+h|T}$ and $\tilde{\bm{y}}_{T+h|T}$. The OLS reconciled forecasts are also unbiased since $\bm{SGS}=\bm{S}$. We should note that using a GLS estimator in this context is not possible since $\bm{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
-
-\textcolor{red}{Can we add Tas's picture and talk about optimality in this sense.}
 
 
 \section{Hierarchical probabilistic forecasting}
@@ -418,39 +395,35 @@ Due to these concerns, we employ a reconciliation method proposed by \cite{Gamak
 
 \section{Empirical Study: Australian GDP}\label{sec:data}
 
-In our empirical data we consider Gross Domestic Product (GDP) of Australia with quarterly data available from the December quarter of 1984 until the March quarter of 2018.  The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely, Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures.  Each of these measures can be disaggregated into additional series, which themselves could be targets of interests to forecasters.  This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including headline GDP.
+In our empirical data we consider Gross Domestic Product (GDP) of Australia with quarterly data spanning the period 1984:Q4-2018:Q3. The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely, Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures. \textcolor{red}{Each of these measures can be disaggregated into additional series, which themselves could be targets of interests to forecasters.} \textcolor{blue}{Each of these measures are aggregates of economic variables which are also targets of interests to the macroeconomic forecaster.} This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including headline GDP.
 
-For two of the three approaches, namely the Income approach and Expenditure approach, nominal data are available. Nominal data are the focus of our study rather than real data.  This is due to the fact that real data are constructed via a chain price index approach with different price deflators used for each series.  As a result, real GDP data are not coherent - the aggregate series is not a linear combination of the disaggregate series.  For similar reasons we do not use seasonally adjusted data; the process of seasonal adjustment results in data that are not coherent.  Finally, although there is a small statistical discrepancy between each series and the headline GDP figure, we can simply treat this statistical discrepancy, which is also published by the ABS, as a time series in its own right.  For further details on the data we refer the reader to \citep{ABS2018}.
-
-{\color{red} Following paragraph to be separated over next two sections}
-
-Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in grey whereas, the most disaggregate level is denoted in red.  Intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
-
-
-
-
-
-Following subsections will give a brief description of income and expenditure hierarchies.
+We concentrate on the Income and Expenditure approaches as nominal data are available only for these two. We focus only on  nominal data due to the fact that real data are constructed via a chain price index approach with different price deflators used for each series. As a result, real GDP data are not coherent - the aggregate series is not a linear combination of the disaggregate series.  For similar reasons we do not use seasonally adjusted data; the process of seasonal adjustment results in data that are not coherent.  Finally, although there is a small statistical discrepancy between each series and the headline GDP figure, we simply treat this statistical discrepancy, which is also published by the ABS, as a time series in its own right. For further details on the data we refer the reader to \citep{ABS2018}.
 
 \subsection{Income approach}
 
-In the income approach, the GDP is measured by the aggregation of all income flows. That is the aggregation of all factor incomes  and the taxes less subsidies on production and imports at purchaser's price \citep{ABS2015}. Underline equation is given as,
-\begin{small}
+Using the income approach, GDP is measured by aggregating all income flows. In particular, GDP is the sum of all factor incomes  and the taxes, minus subsidies on production and imports at purchaser's price \citep{ABS2015}:
+\textcolor{red}{Need to say something about statistical discrepancy}
 	\begin{align*}
-	GDP(I) &= \textit{Compensation of employees} + \textit{Gross operating surplus} + \textit{Gross mixed income}\\ &+ \textit{Taxes on production and imports} - \textit{Subsidies on production and imports}\\ &+ \textit{Statistical decrepency (I)}\\
+	GDP(I) &= \textit{Compensation of employees} + \textit{Gross operating surplus}\\ &+ \textit{Gross mixed income}+ \textit{Taxes on production and imports}\\ &- \textit{Subsidies on production and imports} + \textit{Statistical decrepency (I)}\\
 	\end{align*}
-\end{small}
+
 Hierarchy shown in figure \ref{GDP_I_fig1} in appendix 1 reflects how these are further disaggregated.
 
 \subsection{Expenditure approach}
 
 In the expenditure approach, the GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. Underline equation is,
 
-\begin{small}
-	\begin{align*}
-	GDP(E) &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} + \textit{Changes in inventories}\\ &+ \textit{Exports of goods and services} - \textit{Imports of goods and services} + \textit{Statistical decrepency (E)}\\
+\begin{align*}
+	GDP(E) &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} \\ & + \textit{Changes in inventories} + \textit{Exports of goods and services} \\ & - \textit{Imports of goods and services} + \textit{Statistical decrepency (E)}\\
 	\end{align*}
-\end{small}
+
+
+Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in grey whereas, the most disaggregate level is denoted in red.  Intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
+
+Following subsections will give a brief description of income and expenditure hierarchies.
+
+
+
 Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_E_fig2} and \ref{GDP_E_fig3} in appendix 1.
 
 Income and expenditure hierarchies consist 16 and 81 series respectively. All quarterly data for these series were obtained from the ABS and used to estimate coherent forecasts for Australian GDP along with its disaggregate components. In the following section we describe the hierarchical forecasting methods that we are using to get these forecasts.
