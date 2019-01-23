@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6300 64-bit) (preloaded format=pdflatex 2017.12.10)  24 JAN 2019 01:39
 entering extended mode
 **./Hierarchical_forecasting.tex
@@ -1863,3 +1864,1992 @@ PDF statistics:
  0 named destinations out of 1000 (max. 500000)
  163 words of extra memory for PDF output out of 10000 (max. 10000000)
 
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.9.13)  23 JAN 2019 11:00
+entering extended mode
+**./Hierarchical_forecasting.tex
+(Hierarchical_forecasting.tex
+LaTeX2e <2018-04-01> patch level 5
+(svmult.cls
+Document Class: svmult 2007/06/25 v5.4 
+Springer Verlag global LaTeX document class for multi authored books
+Class Springer-SVMult Info: extra/valid Springer sub-package 
+(Springer-SVMult)           not found in option list - using "global" style.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+\svparindent=\dimen103
+\bibindent=\dimen104
+\betweenumberspace=\dimen105
+\headlineindent=\dimen106
+\minitoc=\write3
+\c@minitocdepth=\count88
+\c@chapter=\count89
+\mottowidth=\dimen107
+\svitemindent=\dimen108
+\verbatimindent=\dimen109
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 963.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 964.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 965.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 966.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 967.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 968.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 969.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 970.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 971.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 972.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 973.
+\tocchpnum=\dimen110
+\tocsecnum=\dimen111
+\tocsectotal=\dimen112
+\tocsubsecnum=\dimen113
+\tocsubsectotal=\dimen114
+\tocsubsubsecnum=\dimen115
+\tocsubsubsectotal=\dimen116
+\tocparanum=\dimen117
+\tocparatotal=\dimen118
+\tocsubparanum=\dimen119
+\foot@parindent=\dimen120
+\spthmsep=\dimen121
+\c@theorem=\count90
+\c@case=\count91
+\c@conjecture=\count92
+\c@corollary=\count93
+\c@definition=\count94
+\c@example=\count95
+\c@exercise=\count96
+\c@lemma=\count97
+\c@note=\count98
+\c@problem=\count99
+\c@property=\count100
+\c@proposition=\count101
+\c@question=\count102
+\c@solution=\count103
+\c@remark=\count104
+\c@prob=\count105
+\instindent=\dimen122
+\figgap=\dimen123
+\bildb@x=\box26
+\figcapgap=\dimen124
+\tabcapgap=\dimen125
+\c@merk=\count106
+\c@@inst=\count107
+\c@@auth=\count108
+\c@auco=\count109
+\instindent=\dimen126
+\authrun=\box27
+\authorrunning=\toks14
+\tocauthor=\toks15
+\titrun=\box28
+\titlerunning=\toks16
+\toctitle=\toks17
+\c@contribution=\count110
+LaTeX Info: Redefining \abstract on input line 2320.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\framed\framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip43
+\fb@frw=\dimen127
+\fb@frh=\dimen128
+\FrameRule=\dimen129
+\FrameSep=\dimen130
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\mathptmx.sty"
+Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup4
+\symitalic=\mathgroup5
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\helvet.sty"
+Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\courier.sty"
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\type1cm\type1cm.sty
+Package: type1cm 2002/09/05 v0.04 BlueSky/Y&Y Type1 CM font definitions (DPC, p
+atched RF)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\makeidx.sty"
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+)
+\Gin@req@height=\dimen131
+\Gin@req@width=\dimen132
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2018/04/20 v1.8s multicolumn formatting (FMi)
+\c@tracingmulticols=\count111
+\mult@box=\box29
+\multicol@leftmargin=\dimen133
+\c@unbalance=\count112
+\c@collectmore=\count113
+\doublecol@number=\count114
+\multicoltolerance=\count115
+\multicolpretolerance=\count116
+\full@width=\dimen134
+\page@free=\dimen135
+\premulticols=\dimen136
+\postmulticols=\dimen137
+\multicolsep=\skip44
+\multicolbaselineskip=\skip45
+\partial@page=\box30
+\last@line=\box31
+\maxbalancingoverflow=\dimen138
+\mult@rightbox=\box32
+\mult@grightbox=\box33
+\mult@gfirstbox=\box34
+\mult@firstbox=\box35
+\@tempa=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
+\@tempa=\box46
+\@tempa=\box47
+\@tempa=\box48
+\@tempa=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\c@columnbadness=\count117
+\c@finalcolumnbadness=\count118
+\last@try=\dimen139
+\multicolovershoot=\dimen140
+\multicolundershoot=\dimen141
+\mult@nat@firstbox=\box53
+\colbreak@box=\box54
+\mc@col@check@num=\count119
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\footmisc\footmisc.sty
+Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
+\FN@temptoken=\toks19
+\footnotemargin=\dimen142
+\c@pp@next@reset=\count120
+Package footmisc Info: Declaring symbol style bringhurst on input line 855.
+Package footmisc Info: Declaring symbol style chicago on input line 863.
+Package footmisc Info: Declaring symbol style wiley on input line 872.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 903.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 924
+.
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\qtree\qtree.sty
+Package: 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
+Package: qtree 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pict2e\pict2e.sty
+Package: pict2e 2016/02/05 v0.3b Improved picture commands (HjG,RN,JT)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pict2e\pict2e.cfg
+File: pict2e.cfg 2016/02/05 v0.1u pict2e configuration for teTeX/TeXLive
+)
+Package pict2e Info: Driver file: pdftex.def on input line 119.
+Package pict2e Info: Driver file for pict2e: p2e-pdftex.def on input line 121.
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pict2e\p2e-pdftex.def
+File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
+)
+\pIIe@GRAPH=\toks20
+\@arclen=\dimen143
+\@arcrad=\dimen144
+\@tempdimd=\dimen145
+)
+\c@treecount=\count121
+\c@branchcount=\count122
+\parentbox=\box55
+\treebox=\box56
+\treeboxone=\box57
+\treeboxtwo=\box58
+\treeboxthree=\box59
+\treeboxfour=\box60
+\treeboxfive=\box61
+\treeboxsix=\box62
+\treeboxseven=\box63
+\treeboxeight=\box64
+\treeboxnine=\box65
+\treeboxten=\box66
+\treeboxeleven=\box67
+\treeboxtwelve=\box68
+\treeboxthirteen=\box69
+\treeboxfourteen=\box70
+\treeboxfifteen=\box71
+\treeboxsixteen=\box72
+\treeboxseventeen=\box73
+\treeboxeighteen=\box74
+\treeboxnineteen=\box75
+\treeboxtwenty=\box76
+\treeoffsetone=\skip46
+\treeoffsettwo=\skip47
+\treeoffsetthree=\skip48
+\treeoffsetfour=\skip49
+\treeoffsetfive=\skip50
+\treeoffsetsix=\skip51
+\treeoffsetseven=\skip52
+\treeoffseteight=\skip53
+\treeoffsetnine=\skip54
+\treeoffsetten=\skip55
+\treeoffseteleven=\skip56
+\treeoffsettwelve=\skip57
+\treeoffsetthirteen=\skip58
+\treeoffsetfourteen=\skip59
+\treeoffsetfifteen=\skip60
+\treeoffsetsixteen=\skip61
+\treeoffsetseventeen=\skip62
+\treeoffseteighteen=\skip63
+\treeoffsetnineteen=\skip64
+\treeoffsettwenty=\skip65
+\treeshiftone=\skip66
+\treeshifttwo=\skip67
+\treeshiftthree=\skip68
+\treeshiftfour=\skip69
+\treeshiftfive=\skip70
+\treeshiftsix=\skip71
+\treeshiftseven=\skip72
+\treeshifteight=\skip73
+\treeshiftnine=\skip74
+\treeshiftten=\skip75
+\treeshifteleven=\skip76
+\treeshifttwelve=\skip77
+\treeshiftthirteen=\skip78
+\treeshiftfourteen=\skip79
+\treeshiftfifteen=\skip80
+\treeshiftsixteen=\skip81
+\treeshiftseventeen=\skip82
+\treeshifteighteen=\skip83
+\treeshiftnineteen=\skip84
+\treeshifttwenty=\skip85
+\treewidthone=\skip86
+\treewidthtwo=\skip87
+\treewidththree=\skip88
+\treewidthfour=\skip89
+\treewidthfive=\skip90
+\treewidthsix=\skip91
+\treewidthseven=\skip92
+\treewidtheight=\skip93
+\treewidthnine=\skip94
+\treewidthten=\skip95
+\treewidtheleven=\skip96
+\treewidthtwelve=\skip97
+\treewidththirteen=\skip98
+\treewidthfourteen=\skip99
+\treewidthfifteen=\skip100
+\treewidthsixteen=\skip101
+\treewidthseventeen=\skip102
+\treewidtheighteen=\skip103
+\treewidthnineteen=\skip104
+\treewidthtwenty=\skip105
+\daughteroffsetone=\skip106
+\daughteroffsettwo=\skip107
+\daughteroffsetthree=\skip108
+\daughteroffsetfour=\skip109
+\branchwidthone=\skip110
+\branchwidthtwo=\skip111
+\branchwidththree=\skip112
+\branchwidthfour=\skip113
+\parentoffset=\skip114
+\treeoffset=\skip115
+\daughteroffset=\skip116
+\branchwidth=\skip117
+\parentwidth=\skip118
+\treewidth=\skip119
+\qta=\toks21
+\qtb=\toks22
+\nbranches=\count123
+\qroofx=\count124
+\qroofy=\count125
+\@qrscratchbox=\box77
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\bm.sty"
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+LaTeX Info: Redefining \bm on input line 207.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2017/09/02 v2.17a AMS math features
+\@mathmargin=\skip120
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks23
+\ex@=\dimen146
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+LaTeX Info: Redefining \boldsymbol on input line 28.
+\pmbraise@=\dimen147
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count126
+LaTeX Info: Redefining \frac on input line 213.
+\uproot@=\count127
+\leftroot@=\count128
+LaTeX Info: Redefining \overline on input line 375.
+\classnum@=\count129
+\DOTSCASE@=\count130
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
+\Mathstrutbox@=\box78
+\strutbox@=\box79
+\big@size=\dimen148
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
+
+
+Package amsmath Warning: Unable to redefine math accent \vec.
+
+\macc@depth=\count131
+\c@MaxMatrixCols=\count132
+\dotsspace@=\muskip10
+\c@parentequation=\count133
+\dspbrk@lvl=\count134
+\tag@help=\toks24
+\row@=\count135
+\column@=\count136
+\maxfields@=\count137
+\andhelp@=\toks25
+\eqnshift@=\dimen149
+\alignsep@=\dimen150
+\tagshift@=\dimen151
+\tagwidth@=\dimen152
+\totwidth@=\dimen153
+\lineht@=\dimen154
+\@envbody=\toks26
+\multlinegap=\skip121
+\multlinetaggap=\skip122
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup6
+\symAMSb=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
+Package: multirow 2018/08/03 v2.3 Span multiple rows of a table
+\multirow@colwidth=\skip123
+\multirow@cntb=\count138
+\multirow@dima=\skip124
+\bigstrutjot=\dimen155
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\amsrefs\textcmds.sty
+Package: textcmds 2012/08/02 v2.00
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\siunitx\siunitx.sty
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\expl3.sty
+Package: expl3 2018-08-23 L3 programming layer (loader) 
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\expl3-code.tex
+Package: expl3 2018-08-23 L3 programming layer (code)
+\c_max_int=\count139
+\l_tmpa_int=\count140
+\l_tmpb_int=\count141
+\g_tmpa_int=\count142
+\g_tmpb_int=\count143
+\g__kernel_prg_map_int=\count144
+\c_log_iow=\count145
+\l_iow_line_count_int=\count146
+\l__iow_line_target_int=\count147
+\l__iow_one_indent_int=\count148
+\l__iow_indent_int=\count149
+\c_zero_dim=\dimen156
+\c_max_dim=\dimen157
+\l_tmpa_dim=\dimen158
+\l_tmpb_dim=\dimen159
+\g_tmpa_dim=\dimen160
+\g_tmpb_dim=\dimen161
+\c_zero_skip=\skip125
+\c_max_skip=\skip126
+\l_tmpa_skip=\skip127
+\l_tmpb_skip=\skip128
+\g_tmpa_skip=\skip129
+\g_tmpb_skip=\skip130
+\c_zero_muskip=\muskip11
+\c_max_muskip=\muskip12
+\l_tmpa_muskip=\muskip13
+\l_tmpb_muskip=\muskip14
+\g_tmpa_muskip=\muskip15
+\g_tmpb_muskip=\muskip16
+\l_keys_choice_int=\count150
+\l__intarray_loop_int=\count151
+\c__intarray_sp_dim=\dimen162
+\g__intarray_font_int=\count152
+\c__fp_leading_shift_int=\count153
+\c__fp_middle_shift_int=\count154
+\c__fp_trailing_shift_int=\count155
+\c__fp_big_leading_shift_int=\count156
+\c__fp_big_middle_shift_int=\count157
+\c__fp_big_trailing_shift_int=\count158
+\c__fp_Bigg_leading_shift_int=\count159
+\c__fp_Bigg_middle_shift_int=\count160
+\c__fp_Bigg_trailing_shift_int=\count161
+\c__kernel_randint_max_int=\count162
+\g__fp_array_int=\count163
+\l__fp_array_loop_int=\count164
+\l__sort_length_int=\count165
+\l__sort_min_int=\count166
+\l__sort_top_int=\count167
+\l__sort_max_int=\count168
+\l__sort_true_max_int=\count169
+\l__sort_block_int=\count170
+\l__sort_begin_int=\count171
+\l__sort_end_int=\count172
+\l__sort_A_int=\count173
+\l__sort_B_int=\count174
+\l__sort_C_int=\count175
+\l__tl_analysis_normal_int=\count176
+\l__tl_analysis_index_int=\count177
+\l__tl_analysis_nesting_int=\count178
+\l__tl_analysis_type_int=\count179
+\l__regex_internal_a_int=\count180
+\l__regex_internal_b_int=\count181
+\l__regex_internal_c_int=\count182
+\l__regex_balance_int=\count183
+\l__regex_group_level_int=\count184
+\l__regex_mode_int=\count185
+\c__regex_cs_in_class_mode_int=\count186
+\c__regex_cs_mode_int=\count187
+\l__regex_catcodes_int=\count188
+\l__regex_default_catcodes_int=\count189
+\c__regex_catcode_D_int=\count190
+\c__regex_catcode_S_int=\count191
+\c__regex_catcode_L_int=\count192
+\c__regex_catcode_O_int=\count193
+\c__regex_catcode_A_int=\count194
+\c__regex_all_catcodes_int=\count195
+\l__regex_show_lines_int=\count196
+\l__regex_min_state_int=\count197
+\l__regex_max_state_int=\count198
+\l__regex_left_state_int=\count199
+\l__regex_right_state_int=\count266
+\l__regex_capturing_group_int=\count267
+\l__regex_min_pos_int=\count268
+\l__regex_max_pos_int=\count269
+\l__regex_curr_pos_int=\count270
+\l__regex_start_pos_int=\count271
+\l__regex_success_pos_int=\count272
+\l__regex_curr_char_int=\count273
+\l__regex_curr_catcode_int=\count274
+\l__regex_last_char_int=\count275
+\l__regex_case_changed_char_int=\count276
+\l__regex_curr_state_int=\count277
+\l__regex_step_int=\count278
+\l__regex_min_active_int=\count279
+\l__regex_max_active_int=\count280
+\l__regex_replacement_csnames_int=\count281
+\l__regex_match_count_int=\count282
+\l__regex_min_submatch_int=\count283
+\l__regex_submatch_int=\count284
+\l__regex_zeroth_submatch_int=\count285
+\g__regex_trace_regex_int=\count286
+\c_empty_box=\box80
+\l_tmpa_box=\box81
+\l_tmpb_box=\box82
+\g_tmpa_box=\box83
+\g_tmpb_box=\box84
+\l__box_top_dim=\dimen163
+\l__box_bottom_dim=\dimen164
+\l__box_left_dim=\dimen165
+\l__box_right_dim=\dimen166
+\l__box_top_new_dim=\dimen167
+\l__box_bottom_new_dim=\dimen168
+\l__box_left_new_dim=\dimen169
+\l__box_right_new_dim=\dimen170
+\l__box_internal_box=\box85
+\l__coffin_internal_box=\box86
+\l__coffin_internal_dim=\dimen171
+\l__coffin_offset_x_dim=\dimen172
+\l__coffin_offset_y_dim=\dimen173
+\l__coffin_x_dim=\dimen174
+\l__coffin_y_dim=\dimen175
+\l__coffin_x_prime_dim=\dimen176
+\l__coffin_y_prime_dim=\dimen177
+\c_empty_coffin=\box87
+\l__coffin_aligned_coffin=\box88
+\l__coffin_aligned_internal_coffin=\box89
+\l_tmpa_coffin=\box90
+\l_tmpb_coffin=\box91
+\l__coffin_display_coffin=\box92
+\l__coffin_display_coord_coffin=\box93
+\l__coffin_display_pole_coffin=\box94
+\l__coffin_display_offset_dim=\dimen178
+\l__coffin_display_x_dim=\dimen179
+\l__coffin_display_y_dim=\dimen180
+\g__file_internal_ior=\read1
+\l__coffin_bounding_shift_dim=\dimen181
+\l__coffin_left_corner_dim=\dimen182
+\l__coffin_right_corner_dim=\dimen183
+\l__coffin_bottom_corner_dim=\dimen184
+\l__coffin_top_corner_dim=\dimen185
+\l__coffin_scaled_total_height_dim=\dimen186
+\l__coffin_scaled_width_dim=\dimen187
+\l__seq_internal_a_int=\count287
+\l__seq_internal_b_int=\count288
+) (C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\l3kernel\l3pdfmode.def
+File: l3pdfmode.def 2018-08-23 v L3 Experimental driver: PDF mode
+\l__driver_color_stack_int=\count289
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\l3packages\xparse\xparse
+.sty
+Package: xparse 2018-08-23 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count290
+\g__xparse_grabber_int=\count291
+\l__xparse_m_args_int=\count292
+\l__xparse_mandatory_args_int=\count293
+\l__xparse_v_nesting_int=\count294
+)
+Package: siunitx 2018/05/17 v2.7s A comprehensive (SI) units package
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2018/04/30 v2.4h Tabular extension package (FMi)
+\col@sep=\dimen188
+\ar@mcellbox=\box95
+\extrarowheight=\dimen189
+\NC@list=\toks28
+\extratabsurround=\skip131
+\backup@length=\skip132
+\ar@cellbox=\box96
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\l3packages\l3keys2e\l3ke
+ys2e.sty
+Package: l3keys2e 2018-08-23 LaTeX2e option processing using LaTeX3 keys
+)
+\l__siunitx_tmp_box=\box97
+\l__siunitx_tmp_dim=\dimen190
+\l__siunitx_tmp_int=\count295
+\l__siunitx_number_mantissa_length_int=\count296
+\l__siunitx_number_uncert_length_int=\count297
+\l__siunitx_round_int=\count298
+\l__siunitx_process_decimal_int=\count299
+\l__siunitx_process_uncertainty_int=\count300
+\l__siunitx_process_fixed_int=\count301
+\l__siunitx_process_integer_min_int=\count302
+\l__siunitx_process_precision_int=\count303
+\l__siunitx_group_min_int=\count304
+\l__siunitx_angle_marker_box=\box98
+\l__siunitx_angle_unit_box=\box99
+\l__siunitx_angle_marker_dim=\dimen191
+\l__siunitx_angle_unit_dim=\dimen192
+\l__siunitx_unit_int=\count305
+\l__siunitx_unit_denominator_int=\count306
+\l__siunitx_unit_numerator_int=\count307
+\l__siunitx_unit_prefix_int=\count308
+\l__siunitx_unit_prefix_base_int=\count309
+\l__siunitx_unit_prefix_gram_int=\count310
+\l__siunitx_number_product_int=\count311
+\c__siunitx_one_fill_skip=\skip133
+\l__siunitx_table_unit_align_skip=\skip134
+\l__siunitx_table_exponent_dim=\dimen193
+\l__siunitx_table_integer_dim=\dimen194
+\l__siunitx_table_mantissa_dim=\dimen195
+\l__siunitx_table_marker_dim=\dimen196
+\l__siunitx_table_result_dim=\dimen197
+\l__siunitx_table_uncert_dim=\dimen198
+\l__siunitx_table_fill_pre_dim=\dimen199
+\l__siunitx_table_fill_post_dim=\dimen256
+\l__siunitx_table_fill_mid_dim=\dimen257
+\l__siunitx_table_pre_box=\box100
+\l__siunitx_table_post_box=\box101
+\l__siunitx_table_mantissa_box=\box102
+\l__siunitx_table_result_box=\box103
+\l__siunitx_table_number_align_skip=\skip135
+\l__siunitx_table_text_align_skip=\skip136
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareBinaryPrefix with sig. 'mmm' on line 7237.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareSIPostPower with sig. 'mm' on line 7240.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareSIPrefix with sig. 'mmm' on line 7243.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareSIPrePower with sig. 'mm' on line 7246.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareSIQualifier with sig. 'mm' on line 7249.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareSIUnit with sig. 'O{}mm' on line 7252.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \DeclareSIUnitWithOptions with sig. 'mmm' on line 7255.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \ang with sig. 'o>{\SplitArgument {2}{;}}m' on line 7270.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \num with sig. 'om' on line 7279.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \numlist with sig. 'o>{\SplitList {;}}m' on line 7288.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \numrange with sig. 'omm' on line 7297.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SIlist with sig. 'o>{\SplitList {;}}mm' on line 7309.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SIrange with sig. 'ommm' on line 7321.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SI with sig. 'omom' on line 7333.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \sisetup with sig. 'm' on line 7336.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \tablenum with sig. 'om' on line 7351.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \si with sig. 'om' on line 7363.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \numInBookmark with sig. 'om' on line 7410.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \numrangeInBookmark with sig. 'omm' on line 7412.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SIInBookmark with sig. 'omom' on line 7414.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SIlistInBookmark with sig. 'omm' on line 7416.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \SIrangeInBookmark with sig. 'ommm' on line 7418.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \siInBookmark with sig. 'om' on line 7419.
+.................................................
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator.st
+y
+Package: translator 2018/01/04 v1.12 Easy translation of strings in LaTeX
+)) ("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\mathrsfs.sty"
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup8
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count312
+\float@exts=\toks29
+\float@box=\box104
+\@float@everytoks=\toks30
+\@floatcapt=\box105
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\booktabs\booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen258
+\lightrulewidth=\dimen259
+\cmidrulewidth=\dimen260
+\belowrulesep=\dimen261
+\belowbottomsep=\dimen262
+\aboverulesep=\dimen263
+\abovetopsep=\dimen264
+\cmidrulesep=\dimen265
+\cmidrulekern=\dimen266
+\defaultaddspace=\dimen267
+\@cmidla=\count313
+\@cmidlb=\count314
+\@aboverulesep=\dimen268
+\@belowrulesep=\dimen269
+\@thisruleclass=\count315
+\@lastruleclass=\count316
+\@thisrulewidth=\dimen270
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\soul\soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks31
+\SOUL@lasttoken=\toks32
+\SOUL@cmds=\toks33
+\SOUL@buffer=\toks34
+\SOUL@token=\toks35
+\SOUL@spaceskip=\skip137
+\SOUL@ttwidth=\dimen271
+\SOUL@uldp=\dimen272
+\SOUL@ulht=\dimen273
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\natbib\natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip138
+\bibsep=\skip139
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count317
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\setspace\setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pdfpages\pdfpages.sty
+Package: pdfpages 2017/10/31 v0.5l Insert pages of external PDF documents (AM)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count318
+\calc@Bcount=\count319
+\calc@Adimen=\dimen274
+\calc@Bdimen=\dimen275
+\calc@Askip=\skip140
+\calc@Bskip=\skip141
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count320
+\calc@Cskip=\skip142
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\eso-pic\eso-pic.sty
+Package: eso-pic 2018/04/12 v2.0h eso-pic (RN)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)))
+\AM@pagewidth=\dimen276
+\AM@pageheight=\dimen277
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pdfpages\pppdftex.def
+File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
+)
+\AM@pagebox=\box106
+\AM@global@opts=\toks36
+\AM@toc@title=\toks37
+\c@AM@survey=\count321
+\AM@templatesizebox=\box107
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\mathalfa\mathalfa.sty
+Package: mathalfa 2018/05/02 - 1.10mathalfa (License LPPL) Michael Sharpe
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
+\XKV@toks=\toks38
+\XKV@tempa@toks=\toks39
+)
+\XKV@depth=\count322
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
+(Font)                  U/BOONDOX-ds/m/n --> U/BOONDOX-ds/b/n on input line 141
+.
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\frontendlayer\tikz.s
+ty
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgf.sty
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfrcs.sty
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-
+common.tex
+\pgfutil@everybye=\toks40
+\pgfutil@tempdima=\dimen278
+\pgfutil@tempdimb=\dimen279
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-
+common-lists.tex))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfutil-
+latex.def
+\pgfutil@abb=\box108
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\ms\everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfrcs.c
+ode.tex
+Package: pgfrcs 2015/08/07 v3.0.1a (rcs-revision 1.31)
+))
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgfcore.s
+ty
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\systemlayer\pgfsys.s
+ty
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys
+.code.tex
+Package: pgfsys 2014/07/09 v3.0.1a (rcs-revision 1.48)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.
+code.tex
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeysf
+iltered.code.tex
+\pgfkeys@tmptoks=\toks43
+))
+\pgf@x=\dimen280
+\pgf@y=\dimen281
+\pgf@xa=\dimen282
+\pgf@ya=\dimen283
+\pgf@xb=\dimen284
+\pgf@yb=\dimen285
+\pgf@xc=\dimen286
+\pgf@yc=\dimen287
+\w@pgf@writea=\write4
+\r@pgf@reada=\read2
+\c@pgf@counta=\count323
+\c@pgf@countb=\count324
+\c@pgf@countc=\count325
+\c@pgf@countd=\count326
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgf.cf
+g
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys
+-pdftex.def
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys
+-common-pdf.def
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
+)))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys
+softpath.code.tex
+File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
+\pgfsyssoftpath@smallbuffer@items=\count327
+\pgfsyssoftpath@bigbuffer@items=\count328
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfsys
+protocol.code.tex
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+.code.tex
+Package: pgfcore 2010/04/11 v3.0.1a (rcs-revision 1.7)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.
+tex
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathcalc.c
+ode.tex
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathutil.c
+ode.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathparser
+.code.tex
+\pgfmath@dimen=\dimen288
+\pgfmath@count=\count329
+\pgfmath@box=\box109
+\pgfmath@toks=\toks47
+\pgfmath@stack@operand=\toks48
+\pgfmath@stack@operation=\toks49
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.code.tex
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.basic.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.trigonometric.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.random.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.comparison.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.base.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.round.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.misc.code.tex)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfuncti
+ons.integerarithmetics.code.tex)))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfloat.
+code.tex
+\c@pgfmathroundto@lastzeros=\count330
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+points.code.tex
+File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
+\pgf@picminx=\dimen289
+\pgf@picmaxx=\dimen290
+\pgf@picminy=\dimen291
+\pgf@picmaxy=\dimen292
+\pgf@pathminx=\dimen293
+\pgf@pathmaxx=\dimen294
+\pgf@pathminy=\dimen295
+\pgf@pathmaxy=\dimen296
+\pgf@xx=\dimen297
+\pgf@xy=\dimen298
+\pgf@yx=\dimen299
+\pgf@yy=\dimen300
+\pgf@zx=\dimen301
+\pgf@zy=\dimen302
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+pathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
+\pgf@path@lastx=\dimen303
+\pgf@path@lasty=\dimen304
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+pathusage.code.tex
+File: pgfcorepathusage.code.tex 2014/11/02  (rcs-revision 1.24)
+\pgf@shorten@end@additional=\dimen305
+\pgf@shorten@start@additional=\dimen306
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+scopes.code.tex
+File: pgfcorescopes.code.tex 2015/05/08  (rcs-revision 1.46)
+\pgfpic=\box110
+\pgf@hbox=\box111
+\pgf@layerbox@main=\box112
+\pgf@picture@serial@count=\count331
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+graphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2014/11/02  (rcs-revision 1.12)
+\pgflinewidth=\dimen307
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+transformations.code.tex
+File: pgfcoretransformations.code.tex 2015/08/07  (rcs-revision 1.20)
+\pgf@pt@x=\dimen308
+\pgf@pt@y=\dimen309
+\pgf@pt@temp=\dimen310
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+quick.code.tex
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+objects.code.tex
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+pathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+arrows.code.tex
+File: pgfcorearrows.code.tex 2015/05/14  (rcs-revision 1.43)
+\pgfarrowsep=\dimen311
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+shade.code.tex
+File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
+\pgf@max=\dimen312
+\pgf@sys@shading@range@num=\count332
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+image.code.tex
+File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+external.code.tex
+File: pgfcoreexternal.code.tex 2014/07/09  (rcs-revision 1.21)
+\pgfexternal@startupbox=\box113
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+layers.code.tex
+File: pgfcorelayers.code.tex 2013/07/18  (rcs-revision 1.7)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+transparency.code.tex
+File: pgfcoretransparency.code.tex 2013/09/30  (rcs-revision 1.5)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfcore
+patterns.code.tex
+File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
+)))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodules
+hapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box114
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodulep
+lot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfcom
+p-version-0-65.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen313
+\pgf@nodesepend=\dimen314
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfcom
+p-version-1-18.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgffor.sty
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfkeys.st
+y
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkeys.
+code.tex))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\pgf\math\pgfmath.sty
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.
+tex))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgffor.c
+ode.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.code.
+tex)
+\pgffor@iter=\dimen315
+\pgffor@skip=\dimen316
+\pgffor@stack=\toks50
+\pgffor@toks=\toks51
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflibra
+ryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count333
+\pgfplotmarksize=\dimen317
+)
+\tikz@lastx=\dimen318
+\tikz@lasty=\dimen319
+\tikz@lastxsaved=\dimen320
+\tikz@lastysaved=\dimen321
+\tikzleveldistance=\dimen322
+\tikzsiblingdistance=\dimen323
+\tikz@figbox=\box115
+\tikz@figbox@bg=\box116
+\tikz@tempbox=\box117
+\tikz@tempbox@bg=\box118
+\tikztreelevel=\count334
+\tikznumberofchildren=\count335
+\tikznumberofcurrentchild=\count336
+\tikz@fig@count=\count337
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodulem
+atrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count338
+\pgfmatrixcurrentcolumn=\count339
+\pgf@matrix@numberofcolumns=\count340
+)
+\tikz@expandcount=\count341
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibrarytrees.code.tex
+File: tikzlibrarytrees.code.tex 2008/02/24 v3.0.1a (rcs-revision 1.2)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.code.tex
+File: tikzlibraryshapes.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\shapes\p
+gflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.misc.code.tex
+File: tikzlibraryshapes.misc.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\shapes\p
+gflibraryshapes.misc.code.tex
+File: pgflibraryshapes.misc.code.tex 2013/07/18 v3.0.1a (rcs-revision 1.5)
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.symbols.code.tex
+File: tikzlibraryshapes.symbols.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\shapes\p
+gflibraryshapes.symbols.code.tex
+File: pgflibraryshapes.symbols.code.tex 2013/09/11 v3.0.1a (rcs-revision 1.6)
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.arrows.code.tex
+File: tikzlibraryshapes.arrows.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\shapes\p
+gflibraryshapes.arrows.code.tex
+File: pgflibraryshapes.arrows.code.tex 2008/06/26 v3.0.1a (rcs-revision 1.1)
+))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.callouts.code.tex
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\shapes\p
+gflibraryshapes.callouts.code.tex))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1
+)
+
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\shapes\p
+gflibraryshapes.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2010/01/07 v3.0.1a (rcs-revision 1.2)
+
+\pgfnodepartlowerbox=\box119
+\pgfnodeparttwobox=\box120
+\pgfnodepartthreebox=\box121
+\pgfnodepartfourbox=\box122
+\pgfnodeparttwentybox=\box123
+\pgfnodepartnineteenbox=\box124
+\pgfnodeparteighteenbox=\box125
+\pgfnodepartseventeenbox=\box126
+\pgfnodepartsixteenbox=\box127
+\pgfnodepartfifteenbox=\box128
+\pgfnodepartfourteenbox=\box129
+\pgfnodepartthirteenbox=\box130
+\pgfnodeparttwelvebox=\box131
+\pgfnodepartelevenbox=\box132
+\pgfnodeparttenbox=\box133
+\pgfnodepartninebox=\box134
+\pgfnodeparteightbox=\box135
+\pgfnodepartsevenbox=\box136
+\pgfnodepartsixbox=\box137
+\pgfnodepartfivebox=\box138
+)))
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\tikz
+\libraries\tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2013/07/12 v3.0.1a (rcs-revision 1.4)
+)
+\@indexfile=\write5
+\openout5 = `Hierarchical_forecasting.idx'.
+
+
+Writing index file Hierarchical_forecasting.idx
+(Hierarchical_forecasting.aux
+
+LaTeX Warning: Label `def:coherence' multiply defined.
+
+)
+\openout1 = `Hierarchical_forecasting.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 58.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count342
+\scratchdimen=\dimen324
+\scratchbox=\box139
+\nofMPsegments=\count343
+\nofMParguments=\count344
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count345
+\MPscratchDim=\dimen325
+\MPnumerator=\count346
+\makeMPintoPDFobject=\count347
+\everyMPtoPDFconversion=\toks53
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1enc.dfu"
+File: ts1enc.dfu 2018/04/05 v1.2c UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+   defining Unicode char U+FEFF (decimal 65279)
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\translator\translator-ba
+sic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(C:\Users\gathana\AppData\Roaming\MiKTeX\2.9\tex\latex\siunitx\siunitx-abbrevia
+tions.cfg
+File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
+)
+\AtBeginShipoutBox=\box140
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\pdflscape.sty"
+Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\lscape.sty"
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+))
+ABD: EveryShipout initializing macros
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 58
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
+File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 58
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd"
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 58
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd"
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 58
+.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd"
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 58.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\jknappen\ursfs.fd"
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+
+
+Package mathptmx Warning: There are no bold math fonts on input line 73.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+LaTeX Font Info:    Calculating math sizes for size <8.5> on input line 73.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8.5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6.29004> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5.10005> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <8.5> not available
+(Font)              size <8> substituted on input line 73.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 78.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 82.
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
+ [1
+
+
+
+{C:/Users/gathana/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+\OT1/ptm/m/n/10 va-tions across all se-ries of the hi-er-ar-chy at $\OML/ztmcm/
+m/it/10 t$\OT1/ptm/m/n/10 . Sim-i-larly de-note as
+ []
+
+[3
+
+]
+
+LaTeX Warning: Reference `XXX' on page 4 undefined on input line 156.
+
+[4]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 198.
+ [5] [6] [7]
+LaTeX Font Info:    Try loading font information for U+psy on input line 267.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+)
+[8] [9] [10] [11] [12] [13]
+<Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png, id=59, 602.25pt x 
+454.69875pt>
+File: Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png Graphic file (
+type png)
+<use Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png>
+Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots
+.png  used on input line 465.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [14]
+<Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png, id=63, 602.25pt x 
+454.69875pt>
+File: Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png Graphic file (
+type png)
+<use Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots
+.png  used on input line 472.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [15 <./Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png> <./Figs/TS-
+plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png>]
+
+Package natbib Warning: Citation `PanEtAl2019' on page 16 undefined on input li
+ne 499.
+
+[16
+
+]
+
+Package natbib Warning: Citation `hyndman2018forecasting' on page 17 undefined 
+on input line 509.
+
+[17]
+<Figs/Results/NaiveVsBase_MSE.png, id=75, 602.25pt x 456.20438pt>
+File: Figs/Results/NaiveVsBase_MSE.png Graphic file (type png)
+<use Figs/Results/NaiveVsBase_MSE.png>
+Package pdftex.def Info: Figs/Results/NaiveVsBase_MSE.png  used on input line 5
+51.
+(pdftex.def)             Requested size: 301.12425pt x 228.10162pt.
+<Figs/Results/NaiveVsBase_MASE.png, id=76, 602.25pt x 456.20438pt>
+File: Figs/Results/NaiveVsBase_MASE.png Graphic file (type png)
+<use Figs/Results/NaiveVsBase_MASE.png>
+Package pdftex.def Info: Figs/Results/NaiveVsBase_MASE.png  used on input line 
+558.
+(pdftex.def)             Requested size: 301.12425pt x 228.10162pt.
+ [18 <./Figs/Results/NaiveVsBase_MSE.png>]
+<Figs/Results/INC-PointF.png, id=81, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-PointF.png Graphic file (type png)
+<use Figs/Results/INC-PointF.png>
+Package pdftex.def Info: Figs/Results/INC-PointF.png  used on input line 566.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [19 <./Figs/Results/NaiveVsBase_MASE.png>]
+<Figs/Results/EXP-PointF.png, id=87, 602.25pt x 456.20438pt>
+File: Figs/Results/EXP-PointF.png Graphic file (type png)
+<use Figs/Results/EXP-PointF.png>
+Package pdftex.def Info: Figs/Results/EXP-PointF.png  used on input line 576.
+(pdftex.def)             Requested size: 301.12425pt x 228.10162pt.
+ [20 <./Figs/Results/INC-PointF.png>]
+
+LaTeX Warning: Reference `Tab: Inc_PointF' on page 21 undefined on input line 5
+85.
+
+
+LaTeX Warning: Reference `Tab: Exp_PointF' on page 21 undefined on input line 5
+85.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 585--586
+
+ []
+
+
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_ES_VS' on page 21 undefined on inpu
+t line 587.
+
+
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_LS' on page 21 undefined on input l
+ine 587.
+
+
+LaTeX Warning: Reference `Tab: Inc_ProbGaus_UnivS' on page 21 undefined on inpu
+t line 587.
+
+
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_ES_VS' on page 21 undefined on inpu
+t line 587.
+
+
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_LS' on page 21 undefined on input l
+ine 587.
+
+
+LaTeX Warning: Reference `Tab: Exp_ProbGaus_UnivS' on page 21 undefined on inpu
+t line 587.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 587--588
+
+ []
+
+<Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png, id=92, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png Graphic file (type png)
+<use Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png>
+Package pdftex.def Info: Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png  used on
+ input line 601.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+[21 <./Figs/Results/EXP-PointF.png>]
+<Figs/Results/INC-ProbGaussF-UnivS_CRPS.png, id=97, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-ProbGaussF-UnivS_CRPS.png Graphic file (type png)
+<use Figs/Results/INC-ProbGaussF-UnivS_CRPS.png>
+Package pdftex.def Info: Figs/Results/INC-ProbGaussF-UnivS_CRPS.png  used on in
+put line 608.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [22 <./Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png>]
+<Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png, id=102, 602.25pt x 455.45157pt>
+
+File: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png Graphic file (type png)
+<use Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png>
+Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png  used on
+ input line 618.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [23 <./Figs/Results/INC-ProbGaussF-UnivS_CRPS.png>]
+<Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png, id=107, 602.25pt x 455.45157pt>
+File: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png Graphic file (type png)
+<use Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png>
+Package pdftex.def Info: Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png  used on in
+put line 625.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [24 <./Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png>]
+<Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png, id=112, 602.25pt x 455.45157p
+t>
+File: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png Graphic file (type png)
+<use Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png>
+Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png  used 
+on input line 647.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [25 <./Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png>]
+<Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png, id=118, 602.25pt x 455.45157pt>
+File: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png Graphic file (type png)
+<use Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png>
+Package pdftex.def Info: Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png  used on 
+input line 654.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [26 <./Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png>]
+<Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png, id=123, 602.25pt x 455.45157p
+t>
+File: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png Graphic file (type png)
+<use Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png>
+Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png  used 
+on input line 668.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [27 <./Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png>]
+<Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png, id=128, 602.25pt x 455.45157pt>
+File: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png Graphic file (type png)
+<use Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png>
+Package pdftex.def Info: Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png  used on 
+input line 675.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [28 <./Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png>] [29 <./Figs/Results/E
+XP-ProbNonParaF-UnivS_CRPS.png>]
+<Figs/GDP_P_fig1.PNG, id=137, 463.7325pt x 299.31825pt>
+File: Figs/GDP_P_fig1.PNG Graphic file (type png)
+<use Figs/GDP_P_fig1.PNG>
+Package pdftex.def Info: Figs/GDP_P_fig1.PNG  used on input line 692.
+(pdftex.def)             Requested size: 301.42255pt x 194.55455pt.
+<Figs/GDP_P_fig2.PNG, id=139, 574.5465pt x 450.483pt>
+File: Figs/GDP_P_fig2.PNG Graphic file (type png)
+<use Figs/GDP_P_fig2.PNG>
+Package pdftex.def Info: Figs/GDP_P_fig2.PNG  used on input line 699.
+(pdftex.def)             Requested size: 373.45079pt x 292.81047pt.
+
+Overfull \hbox (40.55356pt too wide) in paragraph at lines 699--700
+ [][] 
+ []
+
+[30 <./Figs/GDP_P_fig1.PNG>]
+<Figs/GDP_I_fig1.PNG, id=144, 554.07pt x 330.033pt>
+File: Figs/GDP_I_fig1.PNG Graphic file (type png)
+<use Figs/GDP_I_fig1.PNG>
+Package pdftex.def Info: Figs/GDP_I_fig1.PNG  used on input line 706.
+(pdftex.def)             Requested size: 360.14124pt x 214.51889pt.
+
+Overfull \hbox (27.244pt too wide) in paragraph at lines 706--707
+ [][] 
+ []
+
+[31 <./Figs/GDP_P_fig2.PNG>]
+Overfull \hbox (76.06836pt too wide) detected at line 712
+[]
+ []
+
+<Figs/GDP_E_fig1.PNG, id=150, 590.80725pt x 366.77025pt>
+File: Figs/GDP_E_fig1.PNG Graphic file (type png)
+<use Figs/GDP_E_fig1.PNG>
+Package pdftex.def Info: Figs/GDP_E_fig1.PNG  used on input line 718.
+(pdftex.def)             Requested size: 384.02016pt x 238.39783pt.
+
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 718--719
+ [][] 
+ []
+
+[32 <./Figs/GDP_I_fig1.PNG>]
+<Figs/GDP_E_fig2.PNG, id=155, 338.4645pt x 298.11375pt>
+File: Figs/GDP_E_fig2.PNG Graphic file (type png)
+<use Figs/GDP_E_fig2.PNG>
+Package pdftex.def Info: Figs/GDP_E_fig2.PNG  used on input line 725.
+(pdftex.def)             Requested size: 338.46367pt x 298.11302pt.
+
+Overfull \hbox (5.56644pt too wide) in paragraph at lines 725--726
+ [][] 
+ []
+
+[33 <./Figs/GDP_E_fig1.PNG>]
+<Figs/GDP_E_fig3.PNG, id=160, 590.80725pt x 351.714pt>
+File: Figs/GDP_E_fig3.PNG Graphic file (type png)
+<use Figs/GDP_E_fig3.PNG>
+Package pdftex.def Info: Figs/GDP_E_fig3.PNG  used on input line 732.
+(pdftex.def)             Requested size: 384.02016pt x 228.61139pt.
+
+Overfull \hbox (51.12292pt too wide) in paragraph at lines 732--733
+ [][] 
+ []
+
+[34 <./Figs/GDP_E_fig2.PNG>] [35 <./Figs/GDP_E_fig3.PNG>] [36] [37]
+<Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png, id=176, 602.25pt x 454
+.69875pt>
+File: Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png Graphic file (type
+ png)
+<use Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png>
+Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png
+  used on input line 919.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+ [38]
+<Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png, id=180, 602.25pt x 45
+4.69875pt>
+File: Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png Graphic file (typ
+e png)
+<use Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png>
+Package pdftex.def Info: Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.pn
+g  used on input line 926.
+(pdftex.def)             Requested size: 301.12425pt x 227.34882pt.
+<Figs/TS-plots/EXP-hierarchy/set-1.png, id=181, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-1.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-1.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-1.png  used on input l
+ine 933.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+[39 <./Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png> <./Figs/TS-plots
+/INC-hierarchy/INC-bottomlevel-TSplots.png>]
+<Figs/TS-plots/EXP-hierarchy/set-2.png, id=187, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-2.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-2.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-2.png  used on input l
+ine 940.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+<Figs/TS-plots/EXP-hierarchy/set-3.png, id=188, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-3.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-3.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-3.png  used on input l
+ine 947.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [40 <./Figs/TS-plots/EXP-hierarchy/set-1.png> <./Figs/TS-plots/EXP-hierarchy/s
+et-2.png>]
+<Figs/TS-plots/EXP-hierarchy/set-4.png, id=194, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-4.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-4.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-4.png  used on input l
+ine 954.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+<Figs/TS-plots/EXP-hierarchy/set-5.png, id=195, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-5.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-5.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-5.png  used on input l
+ine 961.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [41 <./Figs/TS-plots/EXP-hierarchy/set-3.png> <./Figs/TS-plots/EXP-hierarchy/s
+et-4.png>]
+<Figs/TS-plots/EXP-hierarchy/set-6.png, id=201, 481.8pt x 364.36125pt>
+File: Figs/TS-plots/EXP-hierarchy/set-6.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-6.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-6.png  used on input l
+ine 968.
+(pdftex.def)             Requested size: 313.16628pt x 236.832pt.
+<Figs/TS-plots/EXP-hierarchy/set-7.png, id=202, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-7.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-7.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-7.png  used on input l
+ine 975.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [42 <./Figs/TS-plots/EXP-hierarchy/set-5.png> <./Figs/TS-plots/EXP-hierarchy/s
+et-6.png>]
+<Figs/TS-plots/EXP-hierarchy/set-8.png, id=208, 481.8pt x 364.36125pt>
+File: Figs/TS-plots/EXP-hierarchy/set-8.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-8.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-8.png  used on input l
+ine 982.
+(pdftex.def)             Requested size: 313.16628pt x 236.832pt.
+<Figs/TS-plots/EXP-hierarchy/set-9.png, id=209, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-9.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-9.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-9.png  used on input l
+ine 989.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+
+[43 <./Figs/TS-plots/EXP-hierarchy/set-7.png> <./Figs/TS-plots/EXP-hierarchy/se
+t-8.png>]
+<Figs/TS-plots/EXP-hierarchy/set-10.png, id=216, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-10.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-10.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-10.png  used on input 
+line 996.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+<Figs/TS-plots/EXP-hierarchy/set-11.png, id=217, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-11.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-11.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-11.png  used on input 
+line 1003.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [44 <./Figs/TS-plots/EXP-hierarchy/set-9.png> <./Figs/TS-plots/EXP-hierarchy/s
+et-10.png>]
+<Figs/TS-plots/EXP-hierarchy/set-12.png, id=223, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-12.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-12.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-12.png  used on input 
+line 1010.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+<Figs/TS-plots/EXP-hierarchy/set-13.png, id=224, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-13.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-13.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-13.png  used on input 
+line 1017.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [45 <./Figs/TS-plots/EXP-hierarchy/set-11.png> <./Figs/TS-plots/EXP-hierarchy/
+set-12.png>]
+<Figs/TS-plots/EXP-hierarchy/set-14.png, id=230, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-14.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-14.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-14.png  used on input 
+line 1024.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+<Figs/TS-plots/EXP-hierarchy/set-15.png, id=231, 602.25pt x 455.45157pt>
+File: Figs/TS-plots/EXP-hierarchy/set-15.png Graphic file (type png)
+<use Figs/TS-plots/EXP-hierarchy/set-15.png>
+Package pdftex.def Info: Figs/TS-plots/EXP-hierarchy/set-15.png  used on input 
+line 1031.
+(pdftex.def)             Requested size: 301.12425pt x 227.72522pt.
+ [46 <./Figs/TS-plots/EXP-hierarchy/set-13.png> <./Figs/TS-plots/EXP-hierarchy/
+set-14.png>] [47 <./Figs/TS-plots/EXP-hierarchy/set-15.png>] (Hierarchical_fore
+casting.bbl
+Overfull \hbox (48.59975pt too wide) in paragraph at lines 30--34
+\OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
+etailsPage/5216.02015?OpenDocument 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--41
+\OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 http://www.abs.gov.au/AUSSTATS/abs@.nsf/D
+etailsPage/5206.0Sep
+ []
+
+[48]
+Underfull \hbox (badness 10000) in paragraph at lines 135--140
+\OT1/ptm/b/n/10 URL: \OT1/ptm/m/it/10 https://www.degruyter.com/view/j/sagmb.20
+05.4.issue-
+ []
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[49] (Hierarchical_forecasting.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 29467 strings out of 492973
+ 608030 string characters out of 3135926
+ 653684 words of memory out of 3000000
+ 32791 multiletter control sequences out of 15000+200000
+ 581530 words of font info for 142 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,17n,73p,1566b,1107s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/euler/eufm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/rsfs/rsfs1
+0.pfb><C:/Users/gathana/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/symbol/usyr.
+pfb><C:/Users/gathana/AppData/Roaming/MiKTeX/2.9/fonts/type1/urw/symbol/usyr.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
+es/utmri8a.pfb><C:/Users/gathana/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/
+boondox/zxxrl8a.pfb>
+Output written on Hierarchical_forecasting.pdf (49 pages, 685515 bytes).
+PDF statistics:
+ 292 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 198 words of extra memory for PDF output out of 10000 (max. 10000000)
+
+>>>>>>> Stashed changes

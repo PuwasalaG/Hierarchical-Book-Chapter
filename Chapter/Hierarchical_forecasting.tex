@@ -150,11 +150,11 @@ an $n\times m$ matrix referred to as the \textit{summing matrix} and $\bm{I}_m$ 
 
 \begin{property}
 A hierarchical time series has observations that are \textit{coherent}, i.e., $\bm{y}_{t} \in \mathfrak{s}$ for all $t$. We use the term coherent to describe not just $\bm{y}_t$ but any vector in $\mathfrak{s}$.
-  \label{def:coherence}
+  \label{prop:coherence}
 \end{property}
 
 
-Structures similar to the one portrayed in Figure \ref{fig:simple tree} can be found in macroeconomics. For instance in Section~\ref{XXX} we consider the case of GDP and its components.  However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on.  These structures can also be captured by an appropriately designed $\bm{S}$ matrix.
+Structures similar to the one portrayed in Figure \ref{fig:simple tree} can be found in macroeconomics. For instance in Section~\ref{sec:data} we consider two alternative hierarchical structures for the case of GDP and its components.  However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on.  These structures can also be captured by an appropriately designed $\bm{S}$ matrix.
 
 An important alternative aggregation structure also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. Figure \ref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\bm{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical, grouped time series do not naturally disaggregate in a unique manner.
 \begin{figure}[!hbt]
@@ -181,6 +181,7 @@ An important implementation of aggregation structures are \textit{temporal hiera
 
 The overwhelming majority of the literature concentrates on a single level of temporal aggregation \citep[there are some notable exceptions such as,][]{AndEtAl2011,KouEtAl2014}. \cite{AthEtAl2017} show that considering multiple levels of aggregation via temporal hierarchies and implementing forecast reconciliation approaches rather than single level approaches results in substantial gains in forecast accuracy across all levels of temporal aggregation. This is an example of the benefits of forecast reconciliation to which we now turn out attention to.
 
+\clearpage
 \section{Point forecasting}\label{sec:point forecasting}
 
 A requirement when forecasting hierarchial time series is that the forecasts adhere to the same aggregation constraints as the observed data, i.e., they are coherent.
@@ -193,7 +194,7 @@ are said to be \textit{coherent} if $\tilde{\bm{y}}_{T+h|T} \in \mathfrak{s}$.
 
 Hence, coherent forecasts of lower level series aggregate up to their corresponding upper level series and vice versa.
 
-\textcolor{red}{Add the picture here.}
+\textcolor{red}{Add the picture here. Puwasala.}
 Let us consider the smallest possible hierarchy with two bottom level series, $A$ and $B$ that add up to the top level $Tot$. Suppose $\breve{\bm{y}}_{T+h|T}$ of this hierarchy is given by $\breve{\bm{y}}_{T+h|T} = [\breve{y}_{Tot,T+h|T},\breve{y}_{A,T+h|T}, \breve{y}_{B,T+h|T}]$. Due to the aggregation structure we have $\breve{y}_{Tot,T+h|T}=\breve{y}_{A,T+h|T}+\breve{y}_{B,T+h|T}$. This implies that, even though  $\breve{\bm{y}}_{Tot,T+h|T} \in \mathbb{R}^3$, the points actually lie in $\mathfrak{s}\subset \mathbb{R}^3$, which is a two dimensional subspace within $\mathbb{R}^3$ space.
 
 \subsection{Single-level approaches}\label{sec:single level approaches}
@@ -265,11 +266,7 @@ is the unique solution that minimises the tr$[\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'
 \begin{itemize}
     \item Set ${\bm{W}}_{h}=k_h\bm{I}_n$, for all $h$, where $k_{h} > 0$ is a proportionality constant. This most simplifying assumption returns $\bm{G}=(\bm{S}'\bm{S})^{-1}\bm{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$. Hence, we refer to this as the OLS projection which minimises the Euclidean distance between $\hat{\bm{y}}_{T+h|T}$ and $\tilde{\bm{y}}_{T+h|T}$.
 
-        \cite{HynEtAl2011} also come to the OLS solution, however from the perspective of the following regression model. They propose to reconcile unbiased base forecasts through \begin{equation*}\hat{\bm{y}}_{T+h|T} = \bm{S\ubeta}_{T+h|T} + \bm{\varepsilon}_{T+h|T} \end{equation*} where $\bm{\ubeta}_{T+h|T}=E[\bm{b}_{T+h}|\bm{b}_1,.....,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. Hence, the OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$. We should note that using the usual GLS estimator in this context is not possible as $\bm{V}$ is not identifiable as shown by \cite{WicEtAl2019}.
-        
-        The OLS solution would be optimal under the conditions that the base forecast errors are uncorrelated and equivariant across all levels of the aggregation structure. However due to differences in scale across levels due to aggregation, the later is impossible to be satisfied.
-        
-        \textcolor{red}{I think I just leave the one from above} A disadvantage of the OLS solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. \textcolor{red}{However OLS does well in practice because as discussed it minimises the Euclidean distance and blah blah. Not sure how much we want to say here.}
+        \cite{HynEtAl2011} also come to the OLS solution, however from the perspective of the following regression model. They propose to reconcile unbiased base forecasts through \begin{equation*}\hat{\bm{y}}_{T+h|T} = \bm{S\ubeta}_{T+h|T} + \bm{\varepsilon}_{T+h|T} \end{equation*} where $\bm{\ubeta}_{T+h|T}=E[\bm{b}_{T+h}|\bm{b}_1,.....,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. Hence, the OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$. A disadvantage of the OLS solution, further to not accounting for the correlations across series, is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. We should note that using the usual GLS estimator in this context is not possible as $\bm{V}$ is not identifiable as shown by \cite{WicEtAl2019} who provide the alternative solutions that follow.
 
     \item Set ${\bm{W}}_{h}=k_{h}\text{diag}(\hat{\bm{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
         $$
@@ -277,8 +274,8 @@ is the unique solution that minimises the tr$[\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'
         $$
         is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \cite{Hyndman2016}.
         
-        \textcolor{red}{I have added this here because I think it is important and useful - we need to be careful to clarify that we used variance scaling when we get to the application.} An alternative diagonal scaling estimator is to set $\bm{W}_{h}=k_{h}\bm{\Lambda}$, for all $h$, where $k_{h} > 0$ and $\bm{\Lambda}=\text{diag}(\bm{S}\bm{1})$ with $\bm{1}$ being a unit column vector of dimension $n$. This was proposed by \citet{AthEtAl2017} for temporal hierarchies and assumes that each of the bottom-level base forecast errors has a variance $k_{h}$ and are uncorrelated between nodes. Each element of the diagonal $\bm{\Lambda}$ matrix contains the number of forecast error variances contributing to that aggregation level. This estimator depends only on the aggregation structure and is therefore referred to as a WLS estimator applying structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom-level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
-                
+        An alternative diagonal scaling estimator is to set $\bm{W}_{h}=k_{h}\bm{\Lambda}$, for all $h$, where $k_{h} > 0$ and $\bm{\Lambda}=\text{diag}(\bm{S}\bm{1})$ with $\bm{1}$ being a unit column vector of dimension $n$. This was proposed by \citet{AthEtAl2017} for temporal hierarchies and assumes that each of the bottom-level base forecast errors has a variance $k_{h}$ and are uncorrelated between nodes. Each element of the diagonal $\bm{\Lambda}$ matrix contains the number of forecast error variances contributing to that aggregation level. This estimator depends only on the aggregation structure and is therefore referred to as a WLS estimator applying structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom-level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
+
     \item  Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results as $m$ grows compared to $T$. This is referred to this as the MinT(Sample) estimator.
     \item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\bm{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\bm{W}}_{1}) + (1 - \lambda_{D})\hat{\bm{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
 
@@ -289,7 +286,7 @@ is the unique solution that minimises the tr$[\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'
         where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. This is referred to as the MinT(Shrink) estimator.
 \end{itemize}
 
-
+\clearpage
 \section{Hierarchical probabilistic forecasting}
 
 Point forecasts are limited since they provide no indication of uncertainty around the forecast. A richer description of forecast uncertainty can be obtained by providing a ``probabilistic forecasts'', that is a full density for the target of interest. For a review of probabilistic forecasts, and methods for evaluating such forecasts known as {\em scoring rules} see  \citep{Gneiting2014}. In recent years, the use of probabilistic forecasts and their evaluation via scoring rules has become pervasive in macroeconomic forecasting, for example {\color{red} need to find some references that use scoring rules for macro forecasting.  Check Bayesian macro guys like Koop Korobilis, Josh Chan also Mike Smith's work with Shaun Vahey}.
@@ -393,41 +390,53 @@ Due to these concerns, we employ a reconciliation method proposed by \cite{Gamak
 %\end{equation}
 %where, $\tilde{\bm{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,...,N$. $\tilde{\bm{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\bm{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
 
+\clearpage
 
 \section{Empirical Study: Australian GDP}\label{sec:data}
 
-In our empirical data we consider Gross Domestic Product (GDP) of Australia with quarterly data spanning the period 1984:Q4-2018:Q3. The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely, Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures. \textcolor{red}{Each of these measures can be disaggregated into additional series, which themselves could be targets of interests to forecasters.} \textcolor{blue}{Each of these measures are aggregates of economic variables which are also targets of interests to the macroeconomic forecaster.} This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including headline GDP.
+In our empirical data we consider Gross Domestic Product (GDP) of Australia with quarterly data spanning the period 1984:Q4-2018:Q3. The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely, Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures. Each of these measures are aggregates of economic variables which are also targets of interests for the macroeconomic forecaster. This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including headline GDP.
 
 We concentrate on the Income and Expenditure approaches as nominal data are available only for these two. We focus only on  nominal data due to the fact that real data are constructed via a chain price index approach with different price deflators used for each series. As a result, real GDP data are not coherent - the aggregate series is not a linear combination of the disaggregate series.  For similar reasons we do not use seasonally adjusted data; the process of seasonal adjustment results in data that are not coherent.  Finally, although there is a small statistical discrepancy between each series and the headline GDP figure, we simply treat this statistical discrepancy, which is also published by the ABS, as a time series in its own right. For further details on the data we refer the reader to \citep{ABS2018}.
 
-\subsection{Income approach}
+\subsubsection*{Income approach}
 
-Using the income approach, GDP is measured by aggregating all income flows. In particular, GDP is the sum of all factor incomes  and the taxes, minus subsidies on production and imports at purchaser's price \citep{ABS2015}:
-\textcolor{red}{Need to say something about statistical discrepancy}
+Using the income approach, GDP is calculated by aggregating all income flows. In particular, GDP is the sum of all factor incomes and taxes, minus subsidies on production and imports at purchaser's price \textcolor{red}{are these descriptions correct? Can we please double-check.} \citep{ABS2015}:
 	\begin{align*}
-	GDP(I) &= \textit{Compensation of employees} + \textit{Gross operating surplus}\\ &+ \textit{Gross mixed income}+ \textit{Taxes on production and imports}\\ &- \textit{Subsidies on production and imports} + \textit{Statistical decrepency (I)}\\
+	\textit{GDP} &= \textit{Compensation of employees} + \textit{Gross operating surplus}\\ &+ \textit{Gross mixed income}+ \textit{Taxes on production and imports}\\ &- \textit{Subsidies on production and imports} + \textit{Statistical discrepancy (I)}\\
 	\end{align*}
+Figure \ref{fig:GDP_I} shows the full hierarchical structure capturing all components aggregated to form GDP using the income approach. The hierarchy has two levels of aggregation below the top-level, with a total of $n=16$ series across the whole structure and $m=10$ series at the bottom-level.
 
-Hierarchy shown in figure \ref{GDP_I_fig1} in appendix 1 reflects how these are further disaggregated.
+\subsubsection*{Expenditure approach}
 
-\subsection{Expenditure approach}
-
-In the expenditure approach, the GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. Underline equation is,
+In the expenditure approach, GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. Underline equation is,
 
 \begin{align*}
-	GDP(E) &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} \\ & + \textit{Changes in inventories} + \textit{Exports of goods and services} \\ & - \textit{Imports of goods and services} + \textit{Statistical decrepency (E)}\\
+	\textit{GDP} &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} \\ & + \textit{Changes in inventories} + \textit{Trade balance}+\textit{Statistical discrepancy (E)}\\
 	\end{align*}
+Figures \ref{fig:GDP_E}, \ref{fig:GFCF} and \ref{fig:HFCE} show the full hierarchical structure capturing all components aggregated to form GDP using the expenditure approach. The hierarchy has three levels of aggregation below the top-level, with a total of $n=81$ series across the whole structure and $m=53$ series at the bottom-level.
+
+\textcolor{red}{THIS NEEDS TO BE ADDED: description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in the supplementary materials.}
+
+Figures \ref{fig:TS-Inc} and \ref{fig:TS-Exp} display time series from the income and the expenditure approaches respectively. The first panel of each figure shows the most aggregate GDP series \textcolor{red}{(I guess this is the same for each figure? Do we need them both? Can we do something else here. Maybe have GPD at the top and then on the left side/panels the income series and on the right side the expenditure series all on the same graph)}. The panels below show series from the levels below. The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account and model all information and diverse signals from each series in the hierarchy which can only be achieved through a forecast reconciliation approach.
 
 
-Figures \ref{GDP_P_fig1}, \ref{GDP_I_fig1} and \ref{GDP_E_fig1} depict these hierarchies. In each hierarchy, the most aggregate level is denoted in grey whereas, the most disaggregate level is denoted in red.  Intermediate levels are denoted in orange and blue. Levels denoted in orange continues to disaggregate further and these are separately depicted in different tree diagrams. Further, a description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in appendix 1.
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[width=\textwidth]{Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png}
+	\caption{Time plots for series from different levels of income hierarchy.}\label{fig:TS-Inc}
+\end{figure}
 
-Following subsections will give a brief description of income and expenditure hierarchies.
+\begin{figure}[H]
+	\centering
+	\small
+	\includegraphics[width=\textwidth]{Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png}
+	\caption{Time plots for series from different levels of expenditure hierarchy.}\label{fig:TS-Exp}
+\end{figure}
 
 
+\clearpage	
 
-Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_E_fig2} and \ref{GDP_E_fig3} in appendix 1.
-
-Income and expenditure hierarchies consist 16 and 81 series respectively. All quarterly data for these series were obtained from the ABS and used to estimate coherent forecasts for Australian GDP along with its disaggregate components. In the following section we describe the hierarchical forecasting methods that we are using to get these forecasts.
 
 \begin{itemize}
 	\item GDP of Australia
@@ -460,23 +469,6 @@ In this empirical study we apply above discussed hierarchical methods to obtain 
 
 Let us first observe the time series plots for each approach. Figure \ref{TS-Inc} and \ref{TS-Exp} depicts these plots for income and expenditure hierarchies respectively. The upper panel of each figure shows the time series of all aggregate level series whereas lower panel shows the bottom level series. We can see that different series reflect different characteristics. For example, in the expenditure hierarchy, some series reflects an upward trend while some others reflect a downward trend or no trend at all. Further some series are having seasonal pattern whereas some does not have any seasonality. Moreover the bottom level series reflects some noise level compared to aggregate series in both hierarchies. Therefore, coherent forecasts through traditional methods such as top-down or bottom-up methods would not be accurate as they will ignore part of the information in generating forecasts. Thus forecast reconciliation is important in this empirical study.
 
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png}
-	\caption{Time plots for series from different levels of income hierarchy.}\label{TS-Inc}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png}
-	\caption{Time plots for series from different levels of expenditure hierarchy.}\label{TS-Exp}
-\end{figure}
-
-
-\clearpage	
-
 
 6. Experimental Design and
 - setup: Time frame of Rolling window,
@@ -487,7 +479,13 @@ Let us first observe the time series plots for each approach. Figure \ref{TS-Inc
 - Probabilistic: CRPS, Energy Score
 Skill score.
 
+
 7. Results
+
+
+
+\clearpage	
+
 
 \section{Methodology}\label{sec:meth}
 
@@ -505,9 +503,9 @@ The forecast reconciliation approaches that we consider are bottom up, OLS, WLS 
 
 For evaluating point forecasts we consider two metrics, the Root Mean Squared Error (RMSE) and the Mean Absolute Scaled Error (MASE).  The absolute scaled error is defined as
 \begin{equation*}
-q_{t+h} = \sum \frac{|\breve{e}_{t+h|t}|}{(T-4)^{-1}\sum_{k=m+1}^{T}|y_k - y_{k-4}|}\,,
+q_{T+h} = \sum \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
 \end{equation*}
-where $\breve{e}_{t+h}$\footnote{breve is used instead of a hat or tilde to denote that this can be the error either a base or reconciled forecast} is the difference between any forecast and the realisation {\color{red} 44444 check m is and change since m is bottom level dimension}.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to \cite{hyndman2018forecasting}.
+where $\breve{e}_{t+h}$ is the difference between any forecast and the realisation\footnote{Breve is used instead of a hat or tilde to denote that this can be the error either a base or reconciled forecast} and $4$ is used due to the quarterly nature of the data we consider.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to \cite[Chapter 3 of][]{HynAth2018}.
 
 Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \cite{Gneiting2014}.  Let $\breve{F}$ be a probabilistic forecast and let $\breve{\bm{y}}\sim \breve{F}$  where breve is used to denote that either base forecast or reconciled forecast can be evaluated.  The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
 \begin{equation*}
@@ -580,14 +578,14 @@ Similar results are obtained when MASE is used as the metric for evaluating fore
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_SS_MSE.png}
+	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_SS_MSE.png}
 	\caption{Skill scores for naive forecasts (relative to base forecasts) using mean square error as a forecast metric.  Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series.  Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}\label{fig: NaiveVsBase_SS_MSE}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MSE.png}
+	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_MSE.png}
 	\caption{Mean squared errors for naive and base forecasts. Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series.  Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}\label{fig: NaiveVsBase_MSE}
 \end{figure}
 
@@ -608,7 +606,7 @@ To further investigate the differences between reconciliation methods we break d
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.40]{Figs/Results/PointF.png}
+	\includegraphics[width=\textwidth]{Figs/Results/PointF.png}
 	\caption{Skill score point forecasts from different reconciliation methods (with reference to base forecasts). Left two panels refer to skill score using MSE for income and expenditure hierarchies. Similarly right two panels refer to skill score using MASE. First row refer to results summarised over all series, second row refers to top-level GDP series, third row to aggregate levels and last row to the bottom level.}
 	\label{fig: PointF}
 \end{figure}
@@ -621,12 +619,12 @@ To further investigate the differences between reconciliation methods we break d
 
 We now turn our attention towards results for probabilistic forecasts.  Figure \ref{fig: Prob-forecasts-SS_ES} shows skill scores based on the energy score which as a multivariate score summarises forecast accuracy over the entire hierarchy.  The top panels refer to assuming Gaussian probabilistic forecasts as described in Section~\ref{sec:probrecgauss} while the bottom panels refer to the method described in Section~\ref{sec:probrecnp}.  The left panels correspond to the income hierarchy, the right panels to the expenditure hierarchy.  For the income hierarchy, all methods improve upon base forecasts at all horizons.  In nearly all cases the best performing reconciliation method in MinT, a notable result since the optimal properties for MinT have thus far only been established theoretically in the point forecasting case.  For the larger expenditure hierarchy results are little more mixed.  While bottom up tends to perform poorly, all other reconciliation methods improve upon base forecasts (with the single exception of MinT (shrink) in the Gaussian framework four quarters ahead).  Interestingly, OLS performs best under the assumption of Gaussianity - this may indicate that OLS is a more robust method under model misspecification but further investigation is required.
 
-Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores based on the cumulative ranked probability score for a single series, namely top-level GDP.  The cause of the poor performance of bottom up reconciliation as a failure to accurately forecast aggregate series is apparent here.  
+Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores based on the cumulative ranked probability score for a single series, namely top-level GDP.  The cause of the poor performance of bottom up reconciliation as a failure to accurately forecast aggregate series is apparent here.
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/ProbF_MultivS.png}
+	\includegraphics[width=\textwidth]{Figs/Results/ProbF_MultivS.png}
 	\caption{Skill score for multivariate probabilistic forecasts from different reconciliation methods (with reference to base forecasts) using energy score. Top panel refers to the results for Gaussian approach and bottom panel refers to the non-parametric bootstrap approach. Left panel refers to the income hierarchy and right panel to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_ES}
 \end{figure}
@@ -634,7 +632,7 @@ Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores base
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[scale=0.50]{Figs/Results/ProbF_UnivS.png}
+	\includegraphics[width=\textwidth]{Figs/Results/ProbF_UnivS.png}
 	\caption{Skill score for probabilistic forecasts of top-level GDP from different reconciliation methods (with reference to base forecasts) using CRPS. Top panel refers to the results for Gaussian approach and bottom panel refers to the non-parametric bootstrap approach. Left panel refers to the income hierarchy and right panel to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_CRPS}
 \end{figure}
@@ -748,358 +746,336 @@ Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores base
 	\begin{itemize}
 		\item Scope to use methods for more complex structures (grouped/temporal)
 		\item Focus on constructing base forecasts using base models.  More sophisticated approaches could be used.  Will gains still be there or still be modest.
-		\item Non-linear constraints. 
+		\item Non-linear constraints.
 	\end{itemize}
 \end{itemize}
 
+\clearpage
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix 1}
 
 \begin{figure}[H]
 	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/GDP_P_fig1.PNG}
-	\caption{Hierarchy of production approach.}\label{GDP_P_fig1}
+	\includegraphics[width=\textwidth]{Figs/IncomeApproach.PNG}
+	\caption{Hierarchical structure of the income approach for GDP. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GDP_I}
+\end{figure}
+
+\begin{figure}[H]
+	\centering	\includegraphics[width=\textwidth]{Figs/ExpenditureApproach.PNG}
+	\caption{Hierarchical structure of the expenditure approach for GDP. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures \ref{fig:GFCF} and \ref{fig:HFCE}. The red cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/GDP_P_fig2.PNG}
-	\caption{Hierarchy of GVA under production approach.}\label{GDP_P_fig2}
+	\includegraphics[width=\textwidth]{Figs/GFCF.PNG}
+	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from Figure \ref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GFCF}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/GDP_I_fig1.PNG}
-	\caption{Hierarchy of income approach.}\label{GDP_I_fig1}
-\end{figure}
-
-\begin{align*}
-GDP(E) &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} + \textit{Changes in inventories} +\\ &\textit{Exports of goods and services} - \textit{Imports of goods and services} + \textit{Statistical decrepency (E)}\\
-\end{align*}
-Associated hierarchical structure is given in figure \ref{GDP_E_fig1}, \ref{GDP_E_fig2} and \ref{GDP_E_fig3}.
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/GDP_E_fig1.PNG}
-	\caption{Hierarchy of expenditure approach.}\label{GDP_E_fig1}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=1]{Figs/GDP_E_fig2.PNG}
-	\caption{Household final consumption expenditure under expenditure approach.}\label{GDP_E_fig2}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/GDP_E_fig3.PNG}
-	\caption{Gross fixed capital formation (GFCF) under expenditure approach.}\label{GDP_E_fig3}
+	\includegraphics[width=\textwidth]{Figs/HFCE.PNG}
+	\caption{Hierarchical structure for Household Final Consumption Expenditure under expenditure approach for GDP, continued from Figure \ref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series..}\label{fig:HFCE}
 \end{figure}
 
 
-\begin{table}[H]
-	\caption{Variables, Series IDs and their descriptions for Income Approach}
-	\centering
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}[t]{lll}
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			Gdpi & A2302467A & GDP(I)\\
-			Sdi & A2302413V & Statistical discrepancy (I)\\
-			Tsi & A2302412T & Taxes less subsidies (I)\\
-			TfiCoeWns & A2302399K & Compensation of employees; Wages and salaries\\
-			TfiCoeEsc & A2302400J & Compensation of employees; Employers' social contributions\\
-			\addlinespace
-			TfiCoe & A2302401K & Compensation of employees\\
-			TfiGosCopNfnPvt & A2323369L & Private non-financial corporations; Gross operating surplus\\
-			TfiGosCopNfnPub & A2302403R & Public non-financial corporations; Gross operating surplus\\
-			TfiGosCopNfn & A2302404T & Non-financial corporations; Gross operating surplus\\
-			TfiGosCopFin & A2302405V & Financial corporations;  Gross operating surplus\\
-			\addlinespace
-			TfiGosCop & A2302406W & Total corporations; Gross operating surplus\\
-			TfiGosGvt & A2298711F & General government; Gross operating surplus\\
-			TfiGosDwl & A2302408A & Dwellings owned by persons; Gross operating surplus\\
-			TfiGos & A2302409C & All sectors; Gross operating surplus\\
-			TfiGmi & A2302410L & Gross mixed income\\
-			Tfi & A2302411R & Total factor income\\
-			\bottomrule
-		\end{tabular}
-		\label{Tab: Income-hierarchy}
-	}
-\end{table}
+%
+%\begin{table}[H]
+%	\caption{Variables, Series IDs and their descriptions for Income Approach}
+%	\centering
+%	\resizebox{\linewidth}{!}{
+%		\begin{tabular}[t]{lll}
+%			\toprule
+%			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+%			\midrule
+%			Gdpi & A2302467A & GDP(I)\\
+%			Sdi & A2302413V & Statistical discrepancy (I)\\
+%			Tsi & A2302412T & Taxes less subsidies (I)\\
+%			TfiCoeWns & A2302399K & Compensation of employees; Wages and salaries\\
+%			TfiCoeEsc & A2302400J & Compensation of employees; Employers' social contributions\\
+%			\addlinespace
+%			TfiCoe & A2302401K & Compensation of employees\\
+%			TfiGosCopNfnPvt & A2323369L & Private non-financial corporations; Gross operating surplus\\
+%			TfiGosCopNfnPub & A2302403R & Public non-financial corporations; Gross operating surplus\\
+%			TfiGosCopNfn & A2302404T & Non-financial corporations; Gross operating surplus\\
+%			TfiGosCopFin & A2302405V & Financial corporations;  Gross operating surplus\\
+%			\addlinespace
+%			TfiGosCop & A2302406W & Total corporations; Gross operating surplus\\
+%			TfiGosGvt & A2298711F & General government; Gross operating surplus\\
+%			TfiGosDwl & A2302408A & Dwellings owned by persons; Gross operating surplus\\
+%			TfiGos & A2302409C & All sectors; Gross operating surplus\\
+%			TfiGmi & A2302410L & Gross mixed income\\
+%			Tfi & A2302411R & Total factor income\\
+%			\bottomrule
+%		\end{tabular}
+%		\label{Tab: Income-hierarchy}
+%	}
+%\end{table}
 
-\begin{table}[H]
-	\caption{Variables, Series IDs and their descriptions for Expenditure Approach}
-	\centering
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}[t]{lll}
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			
-			Gdpe & A2302467A & GDP(E)\\
-			Sde & A2302566J & Statistical Discrepancy(E)\\
-			Exp & A2302564C & Exports of goods and services\\
-			Imp & A2302565F & Imports of goods and services\\
-			Gne & A2302563A & Gross national exp.\\
-			\addlinespace
-			GneDfdFceGvtNatDef & A2302523J & Gen. gov. - National; Final consumption exp. - Defence\\
-			GneDfdFceGvtNatNdf & A2302524K & Gen. gov. - National; Final consumption exp. - Non-defence\\
-			GneDfdFceGvtNat & A2302525L & Gen. gov. - National; Final consumption exp.\\
-			GneDfdFceGvtSnl & A2302526R & Gen. gov. - State and local; Final consumption exp,\\
-			GneDfdFceGvt & A2302527T & Gen. gov.; Final consumption exp.\\
-			\addlinespace
-			GneDfdFce & A2302529W & All sectors; Final consumption exp.\\
-			GneDfdGfcPvtTdwNnu & A2302543T & Pvt.; Gross fixed capital formation (GFCF)\\
-			GneDfdGfcPvtTdwAna & A2302544V & Pvt.; GFCF - Dwellings - Alterations and additions\\
-			GneDfdGfcPvtTdw & A2302545W & Pvt.; GFCF - Dwellings - Total\\
-			GneDfdGfcPvtOtc & A2302546X & Pvt.; GFCF - Ownership transfer costs\\
-			\addlinespace
-			GneDfdGfcPvtPbiNdcNbd & A2302533L & Pvt. GFCF - Non-dwelling construction - New building\\
-			GneDfdGfcPvtPbiNdcNec & A2302534R & Pvt.; GFCF - Non-dwelling construction -\\
-			&  & New engineering construction\\
-			GneDfdGfcPvtPbiNdcSha & A2302535T & Pvt.; GFCF - Non-dwelling construction -\\
-			&  & Net purchase of second hand \vphantom{1} assets\\
-			\addlinespace
-			GneDfdGfcPvtPbiNdc & A2302536V & Pvt.; GFCF - Non-dwelling construction - Total\\
-			GneDfdGfcPvtPbiNdmNew & A2302530F & Pvt.; GFCF - Machinery and equipment - New\\
-			GneDfdGfcPvtPbiNdmSha & A2302531J & Pvt.; GFCF - Machinery and equipment -\\
-			&  & Net purchase of second hand assets\\
-			GneDfdGfcPvtPbiNdm & A2302532K & Pvt.; GFCF - Machinery and equipment - Total\\
-			\addlinespace
-			GneDfdGfcPvtPbiCbr & A2716219R & Pvt.; GFCF - Cultivated biological resources\\
-			GneDfdGfcPvtPbiIprRnd & A2716221A & Pvt.; GFCF - Intellectual property products -\\
-			&  & Research and development\\
-			GneDfdGfcPvtPbiIprMnp & A2302539A & Pvt.; GFCF - Intellectual property products -\\
-			&  & Mineral and petroleum exploration\\
-			\addlinespace
-			GneDfdGfcPvtPbiIprCom & A2302538X & Pvt.; GFCF - Intellectual property products - Computer software\\
-			GneDfdGfcPvtPbiIprArt & A2302540K & Pvt.; GFCF - Intellectual property products - Artistic originals\\
-			GneDfdGfcPvtPbiIpr & A2716220X & Pvt.; GFCF - Intellectual property products Total\\
-			GneDfdGfcPvtPbi & A2302542R & Pvt.;  GFCF - Total private business investment\\
-			GneDfdGfcPvt & A2302547A & Pvt.; GFCF\\
-			\addlinespace
-			GneDfdGfcPubPcpCmw & A2302548C & Plc. corporations - Commonwealth; GFCF\\
-			GneDfdGfcPubPcpSnl & A2302549F & Plc. corporations - State and local; GFCF\\
-			GneDfdGfcPubPcp & A2302550R & Plc. corporations; GFCF Total\\
-			GneDfdGfcPubGvtNatDef & A2302551T & Gen. gov. - National; GFCF - Defence\\
-			GneDfdGfcPubGvtNatNdf & A2302552V & Gen. gov. - National ; GFCF - Non-defence\\
-			\addlinespace
-			GneDfdGfcPubGvtNat & A2302553W & Gen. gov. - National ; GFCF Total\\
-			GneDfdGfcPubGvtSnl & A2302554X & Gen. gov. - State and local; GFCF\\
-			GneDfdGfcPubGvt & A2302555A & Gen. gov.; GFCF\\
-			GneDfdGfcPub & A2302556C & Plc.; GFCF\\
-			GneDfdGfc & A2302557F & All sectors; GFCF\\
-			\bottomrule
-		\end{tabular}
-		
-		\label{Tab:Expenditure-hierarchy-1}
-	}
-\end{table}
-
-\begin{table}[H]
-	\caption{Variables, Series IDs and their descriptions for Changes in Inventories - Expenditure Approach}
-	\centering
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}[t]{lll}
-			
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			
-			GneCii & A2302562X & Changes in Inventories\\
-			GneCiiPfm & A2302560V & Farm\\
-			GneCiiPba & A2302561W & Public authorities\\
-			GneCiiPnf & A2302559K & Private; Non-farm Total\\
-			GneCiiPnfMin & A83722619L & Private; Mining (B)\\
-			\addlinespace
-			GneCiiPnfMan & A3348511X & Private; Manufacturing (C)\\
-			GneCiiPnfWht & A3348512A & Private; Wholesale trade (F)\\
-			GneCiiPnfRet & A3348513C & Private; Retail trade (G)\\
-			GneCiiPnfOnf & A2302273C & Private; Non-farm; Other non-farm industries\\
-			\bottomrule
-		\end{tabular}
-		\label{Tab:Expenditure-hierarchy-2}
-	}
-\end{table}
-
-\begin{table}[H]
-	\caption{Variables, Series IDs and their descriptions for Household Final Consumption - Expenditure Approach}
-	\centering
-	\resizebox{\linewidth}{!}{
-		\begin{tabular}[t]{lll}
-			
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			
-			GneDfdHfc & A2302254W & Household Final Consumption Expenditure\\
-			GneDfdFceHfcFud & A2302237V & Food\\
-			GneDfdFceHfcAbt & A3605816F & Alcoholic beverages and tobacco\\
-			GneDfdFceHfcAbtCig & A2302238W & Cigarettes and tobacco\\
-			GneDfdFceHfcAbtAlc & A2302239X & Alcoholic beverages\\
-			\addlinespace
-			GneDfdFceHfcCnf & A2302240J & Clothing and footwear\\
-			GneDfdFceHfcHwe & A3605680F & Housing, water, electricity, gas and other fuels\\
-			GneDfdFceHfcHweRnt & A3605681J & Actual and imputed rent for housing\\
-			GneDfdFceHfcHweWsc & A3605682K & Water and sewerage charges\\
-			GneDfdFceHfcHweEgf & A2302242L & Electricity, gas and other fuel\\
-			\addlinespace
-			GneDfdFceHfcFhe & A2302243R & Furnishings and household equipment\\
-			GneDfdFceHfcFheFnt & A3605683L & Furniture, floor coverings and household goods\\
-			GneDfdFceHfcFheApp & A3605684R & Household appliances\\
-			GneDfdFceHfcFheTls & A3605685T & Household tools\\
-			GneDfdFceHfcHlt & A2302244T & Health\\
-			\addlinespace
-			GneDfdFceHfcHltMed & A3605686V & Medicines, medical aids and therapeutic appliances\\
-			GneDfdFceHfcHltHsv & A3605687W & Total health services\\
-			GneDfdFceHfcTpt & A3605688X & Transport\\
-			GneDfdFceHfcTptPvh & A2302245V & Purchase of vehicles\\
-			GneDfdFceHfcTptOvh & A2302246W & Operation of vehicles\\
-			\addlinespace
-			GneDfdFceHfcTptTsv & A2302247X & Transport services\\
-			GneDfdFceHfcCom & A2302248A & Communications\\
-			GneDfdFceHfcRnc & A2302249C & Recreation and culture\\
-			GneDfdFceHfcEdc & A2302250L & Education services\\
-			GneDfdFceHfcHcr & A2302251R & Hotels, cafes and restaurants\\
-			\addlinespace
-			GneDfdFceHfcHcrCsv & A3605694V & Catering services\\
-			GneDfdFceHfcHcrAsv & A3605695W & Accommodation services\\
-			GneDfdFceHfcMis & A3605696X & Miscellaneous goods and services\\
-			GneDfdFceHfcMisOgd & A3605697A & Other goods\\
-			GneDfdFceHfcMisIfs & A2302252T & Insurance and other financial services\\
-			GneDfdFceHfcMisOsv & A3606485T & Other services\\
-			\bottomrule
-		\end{tabular}
-		\label{Tab:Expenditure-hierarchy-3}
-	}
-\end{table}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png}
-	\caption{All aggregate level series of income hierarchy.}\label{INC-aggregates_TSplot}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png}
-	\caption{All bottom level series of income hierarchy.}\label{INC-bottomlevel_TSplot}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-1.png}
-	\caption{GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}\label{EXP-set-1}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-2.png}
-	\caption{Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}\label{EXP-set-2}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-3.png}
-	\caption{Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}\label{EXP-set-3}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-4.png}
-	\caption{Disaggregation of private non-farm in expenditure hierarchy.}\label{EXP-set-4}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-5.png}
-	\caption{Disaggregation of government final consumption expenditure.}\label{EXP-set-5}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-6.png}
-	\caption{Public, private and total fixed capital formations.}\label{EXP-set-6}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-7.png}
-	\caption{Disaggregation of general government of Gross fixed capital formations.}\label{EXP-set-7}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-8.png}
-	\caption{Disaggregation of public corporations of Gross fixed capital formations.}\label{EXP-set-8}
-\end{figure}
-
-\begin{figure}[H]
- 	\centering
- 	\small
- 	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-9.png}
- 	\caption{Disaggregation of total dwelling and ownership transfer.}\label{EXP-set-9}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-10.png}
-	\caption{Main disaggregation of total private business investments.}\label{EXP-set-10}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-11.png}
-	\caption{Remaining disaggregation of total private business investments.}\label{EXP-set-11}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-12.png}
-	\caption{Main disaggregation of household final consumption expenditure.}\label{EXP-set-12}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-13.png}
-	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-13}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-14.png}
-	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-14}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-15.png}
-	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-15}
-\end{figure}
+%\begin{table}[H]
+%	\caption{Variables, Series IDs and their descriptions for Expenditure Approach}
+%	\centering
+%	\resizebox{\linewidth}{!}{
+%		\begin{tabular}[t]{lll}
+%			\toprule
+%			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+%			\midrule
+%			
+%			Gdpe & A2302467A & GDP(E)\\
+%			Sde & A2302566J & Statistical Discrepancy(E)\\
+%			Exp & A2302564C & Exports of goods and services\\
+%			Imp & A2302565F & Imports of goods and services\\
+%			Gne & A2302563A & Gross national exp.\\
+%			\addlinespace
+%			GneDfdFceGvtNatDef & A2302523J & Gen. gov. - National; Final consumption exp. - Defence\\
+%			GneDfdFceGvtNatNdf & A2302524K & Gen. gov. - National; Final consumption exp. - Non-defence\\
+%			GneDfdFceGvtNat & A2302525L & Gen. gov. - National; Final consumption exp.\\
+%			GneDfdFceGvtSnl & A2302526R & Gen. gov. - State and local; Final consumption exp,\\
+%			GneDfdFceGvt & A2302527T & Gen. gov.; Final consumption exp.\\
+%			\addlinespace
+%			GneDfdFce & A2302529W & All sectors; Final consumption exp.\\
+%			GneDfdGfcPvtTdwNnu & A2302543T & Pvt.; Gross fixed capital formation (GFCF)\\
+%			GneDfdGfcPvtTdwAna & A2302544V & Pvt.; GFCF - Dwellings - Alterations and additions\\
+%			GneDfdGfcPvtTdw & A2302545W & Pvt.; GFCF - Dwellings - Total\\
+%			GneDfdGfcPvtOtc & A2302546X & Pvt.; GFCF - Ownership transfer costs\\
+%			\addlinespace
+%			GneDfdGfcPvtPbiNdcNbd & A2302533L & Pvt. GFCF - Non-dwelling construction - New building\\
+%			GneDfdGfcPvtPbiNdcNec & A2302534R & Pvt.; GFCF - Non-dwelling construction -\\
+%			&  & New engineering construction\\
+%			GneDfdGfcPvtPbiNdcSha & A2302535T & Pvt.; GFCF - Non-dwelling construction -\\
+%			&  & Net purchase of second hand \vphantom{1} assets\\
+%			\addlinespace
+%			GneDfdGfcPvtPbiNdc & A2302536V & Pvt.; GFCF - Non-dwelling construction - Total\\
+%			GneDfdGfcPvtPbiNdmNew & A2302530F & Pvt.; GFCF - Machinery and equipment - New\\
+%			GneDfdGfcPvtPbiNdmSha & A2302531J & Pvt.; GFCF - Machinery and equipment -\\
+%			&  & Net purchase of second hand assets\\
+%			GneDfdGfcPvtPbiNdm & A2302532K & Pvt.; GFCF - Machinery and equipment - Total\\
+%			\addlinespace
+%			GneDfdGfcPvtPbiCbr & A2716219R & Pvt.; GFCF - Cultivated biological resources\\
+%			GneDfdGfcPvtPbiIprRnd & A2716221A & Pvt.; GFCF - Intellectual property products -\\
+%			&  & Research and development\\
+%			GneDfdGfcPvtPbiIprMnp & A2302539A & Pvt.; GFCF - Intellectual property products -\\
+%			&  & Mineral and petroleum exploration\\
+%			\addlinespace
+%			GneDfdGfcPvtPbiIprCom & A2302538X & Pvt.; GFCF - Intellectual property products - Computer software\\
+%			GneDfdGfcPvtPbiIprArt & A2302540K & Pvt.; GFCF - Intellectual property products - Artistic originals\\
+%			GneDfdGfcPvtPbiIpr & A2716220X & Pvt.; GFCF - Intellectual property products Total\\
+%			GneDfdGfcPvtPbi & A2302542R & Pvt.;  GFCF - Total private business investment\\
+%			GneDfdGfcPvt & A2302547A & Pvt.; GFCF\\
+%			\addlinespace
+%			GneDfdGfcPubPcpCmw & A2302548C & Plc. corporations - Commonwealth; GFCF\\
+%			GneDfdGfcPubPcpSnl & A2302549F & Plc. corporations - State and local; GFCF\\
+%			GneDfdGfcPubPcp & A2302550R & Plc. corporations; GFCF Total\\
+%			GneDfdGfcPubGvtNatDef & A2302551T & Gen. gov. - National; GFCF - Defence\\
+%			GneDfdGfcPubGvtNatNdf & A2302552V & Gen. gov. - National ; GFCF - Non-defence\\
+%			\addlinespace
+%			GneDfdGfcPubGvtNat & A2302553W & Gen. gov. - National ; GFCF Total\\
+%			GneDfdGfcPubGvtSnl & A2302554X & Gen. gov. - State and local; GFCF\\
+%			GneDfdGfcPubGvt & A2302555A & Gen. gov.; GFCF\\
+%			GneDfdGfcPub & A2302556C & Plc.; GFCF\\
+%			GneDfdGfc & A2302557F & All sectors; GFCF\\
+%			\bottomrule
+%		\end{tabular}
+%		
+%		\label{Tab:Expenditure-hierarchy-1}
+%	}
+%\end{table}
+%
+%\begin{table}[H]
+%	\caption{Variables, Series IDs and their descriptions for Changes in Inventories - Expenditure Approach}
+%	\centering
+%	\resizebox{\linewidth}{!}{
+%		\begin{tabular}[t]{lll}
+%			
+%			\toprule
+%			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+%			\midrule
+%			
+%			GneCii & A2302562X & Changes in Inventories\\
+%			GneCiiPfm & A2302560V & Farm\\
+%			GneCiiPba & A2302561W & Public authorities\\
+%			GneCiiPnf & A2302559K & Private; Non-farm Total\\
+%			GneCiiPnfMin & A83722619L & Private; Mining (B)\\
+%			\addlinespace
+%			GneCiiPnfMan & A3348511X & Private; Manufacturing (C)\\
+%			GneCiiPnfWht & A3348512A & Private; Wholesale trade (F)\\
+%			GneCiiPnfRet & A3348513C & Private; Retail trade (G)\\
+%			GneCiiPnfOnf & A2302273C & Private; Non-farm; Other non-farm industries\\
+%			\bottomrule
+%		\end{tabular}
+%		\label{Tab:Expenditure-hierarchy-2}
+%	}
+%\end{table}
+%
+%\begin{table}[H]
+%	\caption{Variables, Series IDs and their descriptions for Household Final Consumption - Expenditure Approach}
+%	\centering
+%	\resizebox{\linewidth}{!}{
+%		\begin{tabular}[t]{lll}
+%			
+%			\toprule
+%			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+%			\midrule
+%			
+%			GneDfdHfc & A2302254W & Household Final Consumption Expenditure\\
+%			GneDfdFceHfcFud & A2302237V & Food\\
+%			GneDfdFceHfcAbt & A3605816F & Alcoholic beverages and tobacco\\
+%			GneDfdFceHfcAbtCig & A2302238W & Cigarettes and tobacco\\
+%			GneDfdFceHfcAbtAlc & A2302239X & Alcoholic beverages\\
+%			\addlinespace
+%			GneDfdFceHfcCnf & A2302240J & Clothing and footwear\\
+%			GneDfdFceHfcHwe & A3605680F & Housing, water, electricity, gas and other fuels\\
+%			GneDfdFceHfcHweRnt & A3605681J & Actual and imputed rent for housing\\
+%			GneDfdFceHfcHweWsc & A3605682K & Water and sewerage charges\\
+%			GneDfdFceHfcHweEgf & A2302242L & Electricity, gas and other fuel\\
+%			\addlinespace
+%			GneDfdFceHfcFhe & A2302243R & Furnishings and household equipment\\
+%			GneDfdFceHfcFheFnt & A3605683L & Furniture, floor coverings and household goods\\
+%			GneDfdFceHfcFheApp & A3605684R & Household appliances\\
+%			GneDfdFceHfcFheTls & A3605685T & Household tools\\
+%			GneDfdFceHfcHlt & A2302244T & Health\\
+%			\addlinespace
+%			GneDfdFceHfcHltMed & A3605686V & Medicines, medical aids and therapeutic appliances\\
+%			GneDfdFceHfcHltHsv & A3605687W & Total health services\\
+%			GneDfdFceHfcTpt & A3605688X & Transport\\
+%			GneDfdFceHfcTptPvh & A2302245V & Purchase of vehicles\\
+%			GneDfdFceHfcTptOvh & A2302246W & Operation of vehicles\\
+%			\addlinespace
+%			GneDfdFceHfcTptTsv & A2302247X & Transport services\\
+%			GneDfdFceHfcCom & A2302248A & Communications\\
+%			GneDfdFceHfcRnc & A2302249C & Recreation and culture\\
+%			GneDfdFceHfcEdc & A2302250L & Education services\\
+%			GneDfdFceHfcHcr & A2302251R & Hotels, cafes and restaurants\\
+%			\addlinespace
+%			GneDfdFceHfcHcrCsv & A3605694V & Catering services\\
+%			GneDfdFceHfcHcrAsv & A3605695W & Accommodation services\\
+%			GneDfdFceHfcMis & A3605696X & Miscellaneous goods and services\\
+%			GneDfdFceHfcMisOgd & A3605697A & Other goods\\
+%			GneDfdFceHfcMisIfs & A2302252T & Insurance and other financial services\\
+%			GneDfdFceHfcMisOsv & A3606485T & Other services\\
+%			\bottomrule
+%		\end{tabular}
+%		\label{Tab:Expenditure-hierarchy-3}
+%	}
+%\end{table}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png}
+%	\caption{All aggregate level series of income hierarchy.}\label{INC-aggregates_TSplot}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png}
+%	\caption{All bottom level series of income hierarchy.}\label{INC-bottomlevel_TSplot}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-1.png}
+%	\caption{GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}\label{EXP-set-1}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-2.png}
+%	\caption{Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}\label{EXP-set-2}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-3.png}
+%	\caption{Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}\label{EXP-set-3}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-4.png}
+%	\caption{Disaggregation of private non-farm in expenditure hierarchy.}\label{EXP-set-4}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-5.png}
+%	\caption{Disaggregation of government final consumption expenditure.}\label{EXP-set-5}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-6.png}
+%	\caption{Public, private and total fixed capital formations.}\label{EXP-set-6}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-7.png}
+%	\caption{Disaggregation of general government of Gross fixed capital formations.}\label{EXP-set-7}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-8.png}
+%	\caption{Disaggregation of public corporations of Gross fixed capital formations.}\label{EXP-set-8}
+%\end{figure}
+%
+%\begin{figure}[H]
+% 	\centering
+% 	\small
+% 	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-9.png}
+% 	\caption{Disaggregation of total dwelling and ownership transfer.}\label{EXP-set-9}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-10.png}
+%	\caption{Main disaggregation of total private business investments.}\label{EXP-set-10}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-11.png}
+%	\caption{Remaining disaggregation of total private business investments.}\label{EXP-set-11}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-12.png}
+%	\caption{Main disaggregation of household final consumption expenditure.}\label{EXP-set-12}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-13.png}
+%	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-13}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-14.png}
+%	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-14}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-15.png}
+%	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-15}
+%\end{figure}
 
 \pagebreak
 \bibliographystyle{agsm}

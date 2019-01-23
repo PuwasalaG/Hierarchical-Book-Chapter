@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Hierarchical_forecasting.aux
 The style file: agsm.bst
 I couldn't open database file library.bib
@@ -28,3 +29,27 @@ Warning--empty institution in ABS2015
 Warning--empty institution in ABS2018
 Warning--empty note in Gamakumara2018
 (There was 1 error message)
+=======
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Hierarchical_forecasting.aux
+The style file: agsm.bst
+Database file #1: References_BookChapter_HTS.bib
+Database file #2: library.bib
+Repeated entry---line 448 of file library.bib
+ : @article{Taieb2017
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 4575 of file library.bib
+ : @article{Gneiting2014
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 4816 of file library.bib
+ : @unpublished{Gamakumara2018
+ :                            ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "PanEtAl2019"
+Warning--I didn't find a database entry for "hyndman2018forecasting"
+Warning--empty institution in ABS2015
+Warning--empty institution in ABS2018
+Warning--empty note in Gamakumara2018
+(There were 3 error messages)
+>>>>>>> Stashed changes
