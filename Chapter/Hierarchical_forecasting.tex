@@ -303,7 +303,7 @@ To the best of our knowledge the first attempt to even define coherence in the s
 
 In practice this definition suggests two approaches.  For some parametric distributions, for instance the multivariate normal, it may be possible to derive a reconciled probabilistic forecast analytically.  However, in macroeconomic forecasting, non-standard distributions such as bimodal distribution are often required to take different policy regimes into account {\color{red} worth checking if any (marginal) predictives are bimodal before we include this statement}.  In such cases a non-parametric approach based on bootstrapping in-sample errors proposed \cite{Gamakumara2018} can be used as long as a sample from the predictive distribution is available.  Each of these scenarios is now covered in detail.
 
-\subsection{Probabilistic forecast reconciliation in the Gaussian framework}
+\subsection{Probabilistic forecast reconciliation in the Gaussian framework}\label{sec:probrecgauss}
 
 %Suppose we have a set of hierarchical time series where each realisation follows a multivariate Guassian distribution. i.e., $\bm{y}_T \sim \mathscr{N}(\bm{\mu}_T, \Sigma_T)$ where both $\bm{\mu}_T$ and $\Sigma_T$ lives in the coherent subspace $\mathfrak{s}$ due to the aggregation structure of the hierarchy. We are interested in estimating the predictive Gaussian distribution of $\bm{Y}_{T+h}| \bm{\mathscr{I}}_T$ where $\bm{\mathscr{I}}_T= \{\bm{y}_1,\bm{y}_2,\dots.,\bm{y}_T\}$, which should also lives in $\mathfrak{s}$. Since Gaussian distributions are uniquely characterised by the first two moments, it is sufficient to have the mean and variance forecasts to get the Gaussian predictive distributions of the hierarchy.
 
@@ -323,7 +323,7 @@ There are several options for obtaining the base probabilistic forecast and in p
 
 {\color{red} Need to check with Puwasala that base forecasts have diagonal sigma hat}
 
-\subsection{Probabilistic forecast reconciliation in the non-parametric framework}
+\subsection{Probabilistic forecast reconciliation in the non-parametric framework}\label{sec:probrecnp}
 
 In many applications, including macroeconomic forecasting, it may not reasonable to assume Gaussian predictive distributions. Therefore, non-parametric approaches has been widely used for probabilistic forecasts in different disciplines. For example, ensemble forecasting in weather applications (\cite{Gneiting2005}, \cite{Gneiting2014}, \cite{Gneiting2008}), bootstrap based approaches (\cite{Manzan2008}, \cite{Vilar2013}). {\color{red} Check/replace these references with references that show heavy tails/skewness in macro applications.}
 
@@ -572,145 +572,149 @@ As an alternative to the energy score, log score and variogram scores were also 
 
 \subsection{Base forecasts}
 
-Base beats \naive.  Some comments about Base models selected, i.e. some have $d=0$ some have $d=1$
+Due to the different features in each time series a variety of ARIMA models were selected to be used as base models.  {\color{red} Some generalisations about models}.  Figure~\ref{NaiveVsBase_MSE} gives some indication of the performance of these base forecasting models relative to the \naive forecast over different horizons.  All results in this Figure and in subsequent figures are presented as the percentage changes in a forecasting metric relative to the base forecast, a measure known in the forecasting literature as {\em skill scores}.  Skill scores are computed such that positive values represent an improvement in forecasting performance over the base forecast and negative values represent a deterioration in forecast quality.  In Figure~\ref{NaiveVsBase_MSE}, panels on the left refer to results for the Income hierarchy with panels on the right referring to the expenditure hierarchy.  The top panels summarise results over all series in the hierarchy \textcolor{red} {How exactly do we do this.  Do we compute MSE for each series then add?  Do we compute skill score for each series and average these?}.  The clear result is that base forecasts are more accurate than \naive forecasts, however as the forecasting horizon increases, the difference becomes smaller.  This is to be expected since the \naive model here is a seasonal random walk, for horizons $h<4$ the forecast from an ARIMA model is based on more recent information.
+
+Similar results are obtained when MASE is used as the metric for evaluating forecast quality.  However one disadvantage of the base forecasts relative to the \naive forecast is that base forecasts are no longer coherent.  As such we now turn out attention to investigating whether reconciliation methods can lead to further improvements in forecast accuracy relative to base forecasts.
 
 \begin{figure}[H]
 	\centering
 	\small
 	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MSE.png}
-	\caption{Skill scores for naive forecasts based on MSE}\label{NaiveVsBase_MSE}
+	\caption{Skill scores for naive forecasts (relative to base forecasts) using mean square error as a forecast metric.  Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series.  Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}\label{NaiveVsBase_MSE}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
-	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
-\end{figure}
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
+%	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
+%\end{figure}
 
 \subsection{Point Forecast Reconciliation}
 
-%Results are presented in \ref{Tab: Inc_PointF} and \ref{Tab: Exp_PointF} for income and expenditure approaches respectively. \\
+We now turn our attention to an evaluation of point forecasts obtained using different reconciliation methods.  The top row of Figure XXX shows skill scores based on the MSE and MASE.  These are aggregated over all series for both the income hierarchy and expenditure hierarchy and over different forecast horizons {\color{red} Puwasala to confirm whether we are looking at a skill score based on average MSE or an average of skill scores}.  Results are displayed as skill scores relative to base forecasts.  We conclude that reconciliation methods generally improve forecast accuracy relative to base forecasts regardless of the hierarchy used, the forecasting horizon, the forecasting metric used to evaluate forecasts or the specific reconciliation method employed.  We do however note that while all reconciliation methods improve forecast performance, MinT (shrink) is the best forecasting method in most cases.
 
-Main points:
-
-\begin{itemize}
-	\item Reconciliation does better in particular MinT
-	\item OLS does poorly mainly due to bottom level series	
-	\item Bottom up does poorly at top level for short horizons.
-	\item These last two results particularly pronounces for the bigger hierarchy
-\end{itemize} 
+To further investigate the differences between reconciliation methods we break down these results by different levels of each hierarchy.  The second row of Figure XXX shows the forecasting performance a single series, namely the GDP which represents the top level of both hierarchies.  The third row shows results for all series excluding those on the bottom level, while the final row shows results for the bottom level series only.  Here, we see two general features, the first is that OLS reconciliation performs poorly on the bottom level series, the second is that bottom up relatively poorly on aggregate series.  These two features are particularly exacerbated for the larger Ependiture hierarchy.  These results are consistent with other findings in the forecast reconciliation literature see for instance XXX.
 
 \subsection{Probabilistic Forecast Reconciliation}
 
-Main points:
+We now turn our attention towards results for probabilistic forecasts.  Figure XXX shows skill scores based on the energy score which as a multivariate score summarises forecast accuracy over the entire hierarchy.  The top panels refer to assuming Gaussian probabilistic forecasts as described in Section~\ref{sec:probrecgauss} while the bottom panels refer to the method described in Section~\ref{sec:probrecnp}.  The left panels correspond to the income hierarchy, the right panels to the expenditure hierarchy.  For the income hierarchy, all methods improve upon base forecasts at all horizons.  In nearly all cases the best performing reconciliation method in MinT, a notable result since the optimal properties for MinT have thus far only been established theoretically in the point forecasting case.  For the larger expenditure hierarchy results are little more mixed.  While bottom up tends to perform poorly, all other reconciliation methods improve upon base forecasts (with the single exception of MinT (shrink) in the Gaussian framework four quarters ahead).  Interestingly, OLS performs best under the assumption of Gaussianity - this may indicate that OLS is a more robust method under model misspecification but further investigation is required.
 
-\begin{itemize}
-	\item MinT generally the best for Income
-	\item All reco methods improve for Income
-	\item Foe Exp more mixed results, BU particularly crap
-	\item Bad performance of BU due to top level
-	\item OLS slightly better
-\end{itemize}
+Finally, Figure XXX displays the skill scores based on the cumulative ranked probability score for a single series, namely top-level GDP.  The cause of the poor performance of bottom up reconciliation as a failure to accurately forecast aggregate series is apparent here.  
+
 
 %Results are presented in tables \ref{Tab: Inc_ProbGaus_ES_VS}, \ref{Tab: Inc_ProbGaus_LS}, \ref{Tab: Inc_ProbGaus_UnivS} for income approach and \ref{Tab: Exp_ProbGaus_ES_VS}, \ref{Tab: Exp_ProbGaus_LS}, \ref{Tab: Exp_ProbGaus_UnivS} for expenditure approach. \\
 
-\textcolor{red}{Discuss results}
 
 
-\textcolor{red}{Possible discuss skill scores}
-
-\textcolor{red}{Discuss breakdown into looking at different levels.}
-
-\subsection*{Income approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbGaus_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbGaus_UnivS}
-\end{figure}
-
-
-\subsection*{Expenditure approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbGaus_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbGaus_UnivS}
-\end{figure}
+\textcolor{red}{Possible discuss skill scores in more detail especially w.r.t how they are combined}
 
 
 
 
 
-
-
-
-
-
-\subsubsection{Non-parametric probabilistic forecasts for Australian GDP}
-
-We also estimate the coherent probabilistic forecasts for GDP and its disaggregate components by using the non-parametric bootstrap approach explained in the section (?).
-
-\subsection*{Income approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbNonParF_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbNonParF_UnivS}
-\end{figure}
-
-
-
-
-
-
-\subsection*{Expenditure approach}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png}
-	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbNonParF_ES_VS}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png}
-	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbNonParF_UnivS}
-\end{figure}
+%\subsection*{Income approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbGaus_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbGaussF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbGaus_UnivS}
+%\end{figure}
+%
+%
+%\subsection*{Expenditure approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbGaus_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbGaussF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbGaus_UnivS}
+%\end{figure}
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%\subsubsection{Non-parametric probabilistic forecasts for Australian GDP}
+%
+%We also estimate the coherent probabilistic forecasts for GDP and its disaggregate components by using the non-parametric bootstrap approach explained in the section (?).
+%
+%\subsection*{Income approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of income hierarchy}\label{Inc_ProbNonParF_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/INC-ProbNonParaF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of income hierarchy}\label{Inc_ProbNonParF_UnivS}
+%\end{figure}
+%
+%
+%
+%
+%
+%
+%\subsection*{Expenditure approach}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-MultivS_ES_VS.png}
+%	\caption{Skill scores with respect to energy score and variogram score for multivariate Gaussian forecast distribution of expenditure hierarchy}\label{Exp_ProbNonParF_ES_VS}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\small
+%	\includegraphics[scale=0.50]{Figs/Results/EXP-ProbNonParaF-UnivS_CRPS.png}
+%	\caption{Skill scores for univariate Gaussian forecast distributions of individual series of expenditure hierarchy}\label{Exp_ProbNonParF_UnivS}
+%\end{figure}
 
 
 
 
 \pagebreak
 
+\section{Conclusions}
 
+\begin{itemize}
+	\item Reconciliation can improve forecasts in macro context.  This is true when we want to forecast all series but also when we only care about a single series.
+	\item Bottom up which is the most simple and obvious way is not the best.  Particularly if we only care about top level
+	\item MinT works really well.  Optimality is based on minimising trace of covariance matrix of reconciled errors but it good performance is robust to different evaluation metrics and even probabilistic forecasts.
+	\item Above point may not be true for larger hierarchies.
+	\item Future Avenues:
+	\begin{itemize}
+		\item Scope to use methods for more complex structures (grouped/temporal)
+		\item Focus on constructing base forecasts using base models.  More sophisticated approaches could be used.  Will gains still be there or still be modest.
+		\item Non-linear constraints. 
+	\end{itemize}
+\end{itemize}
 
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix 1}

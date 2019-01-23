@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-=======
-#Ignore latex auxiliary files
 .log
 .aux
 .idx
 .bbl
 .blg
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
 
->>>>>>> 6789b4409a7090e6b52b1846c341a227eadf4064
