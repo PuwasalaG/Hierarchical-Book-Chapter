@@ -20,6 +20,7 @@ X[,3] <- X[,1] + X[,2]
 
 colnames(X) <- c("X1", "X2", "X3")
 
+tikz('Schematic_3D.tex',standAlone = FALSE)
 
 s3d <- scatterplot3d(X, color = "red",
                      angle=55, pch = 16, grid=TRUE, box=FALSE)
@@ -31,6 +32,6 @@ arrows(-5,-6, -2.5, 0.5, lwd=3)
 arrows(-5.5,-3.9, 0, -1.5, lwd=3)
 text(-3, 0.5, TeX('$\\textbf{S}_1$'),col = 1, adj = c(-.1, -.1))
 text(0, -2.35, TeX('$\\textbf{S}_2$'),col = 1, adj = c(-.1, -.1))
-text(0, 5, TeX('$\\textbf{S}$'),col = 1, adj = c(-.1, -.1))
-
+text(0, 5, "{\\huge $\\mathfrak{s}$}",col = 1, adj = c(-.1, -.1))
+dev.off()
 
