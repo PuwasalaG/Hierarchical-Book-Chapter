@@ -42,15 +42,26 @@ DF_MultiV %>% filter(`Log score` != "NA") %>%
 
 load("Income-approach/PointForecasts-ExpandingW.RData")
 
-Inc %>% select(c("Gdpi", "TfiGosCopNfn", "TfiGosCopNfnPub", "Sdi")) %>% 
-  ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") -> INC-char-of-levels-TSplots
+Inc %>% select(c("Gdpi")) %>% 
+  ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") -> INC_GDP_TSplot
+
+Inc %>% select(c("TfiGosCopNfn", "TfiGosCopNfnPub", "Sdi")) %>% 
+  ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") -> INC_char_of_evels_TSplots
 
 load("Expenditure-approach/PointForecasts-ExpandingW.RData")
 
-Exp %>% select(c("Gdpe", "GneCii", "GneDfdGfcPvtPbiNdmSha", "GneCiiPba")) %>% 
-  ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") -> EXP-char-of-levels-TSplots
+Exp %>% select(c("Gdpe")) %>% 
+  ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") -> EXP_GDP_TSplot
 
+Exp %>% select(c("GneCii", "GneDfdGfcPvtPbiNdmSha", "GneCiiPba")) %>% 
+  ts(start = c(1984, 4), frequency = 4) %>% autoplot(facets = TRUE) + ylab("$ million") -> EXP_char_of_levels_TSplots
 
+grid.arrange( arrangeGrob(INC_char_of_evels_TSplots, top = "Income"),
+              arrangeGrob(EXP_char_of_levels_TSplots, top = "Expenditure"),
+              ncol=2) -> INC_EXP_plots
+
+grid.arrange( arrangeGrob(INC_GDP_TSplot, top = "GDP"), 
+              arrangeGrob(INC_EXP_plots), ncol = 1)
 
 #TS plots for each series of the hierarchy - Income hierarchy
 
