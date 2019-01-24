@@ -733,18 +733,11 @@ Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores base
 
 \section{Conclusions}
 
-\begin{itemize}
-	\item Reconciliation can improve forecasts in macro context.  This is true when we want to forecast all series but also when we only care about a single series.
-	\item Bottom up which is the most simple and obvious way is not the best.  Particularly if we only care about top level
-	\item MinT works really well.  Optimality is based on minimising trace of covariance matrix of reconciled errors but it good performance is robust to different evaluation metrics and even probabilistic forecasts.
-	\item Above point may not be true for larger hierarchies.
-	\item Future Avenues:
-	\begin{itemize}
-		\item Scope to use methods for more complex structures (grouped/temporal)
-		\item Focus on constructing base forecasts using base models.  More sophisticated approaches could be used.  Will gains still be there or still be modest.
-		\item Non-linear constraints.
-	\end{itemize}
-\end{itemize}
+In the macroeconomic setting, we have demonstrated the potential for forecast reconciliation methods to not only provide coherent forecasts, but to also improve overall forecast accuracy.  This result holds for both point forecasts and probabilistic forecasts, for two different hierarchies and over different forecasting horizons.  Even where the objective is to only forecast a single series, for instance top-level GDP, the application of forecast reconciliation methods improves forecast accuracy.
+
+By comparing results from different forecast reconciliation techniques we make a number of conclusions.  Despite its simplicity, bottom up can perform poorly at more aggregated levels of the hierarchy, a result found elsewhere in the literature. Meanwhile, when forecast accuracy at the bottom level is evaluated, OLS tends to break down in some instances.  Overall, the WLS and MinT (shrink) methods, and particularly the latter tend to yield the highest improvements in forecast accuracy.  
+
+There are a number of open avenues for research in the literature on forecast literature, some of which are particularly relevant to macroeconomic applications.  First there is scope to consider more complex aggregation structures, for instance in addition to the hierarchies we consider, data on GDP and GDP components that disaggregated along geographical lines are also available.  This leads to a grouped hierarchy.  Furthermore given the substantial literature on the optimal frequency at which to analyse macroeconomic data a study on forecasting GDP or other variables as a temporal hierarchy may also be of interest.  Furthermore, in this chapter we have only shown that reconciliation methods can be used to improve forecast accuracy when univariate ARIMA models are used to produce base forecasts.  It will be interesting to evaluate whether such results hold when multivariate approaches, e.g. a Bayesian VAR or dynamic factor model, is used as a base forecasting model, or whether in this case the gains from forecast reconciliation are more modest.  Finally, a current limitation of the forecast reconciliation literature is that it only applies to collections of time series that adhere to linear constraints.  In macroeconomics there are many examples of data that only adhere to non-linear constraints, for instance real GDP is a complicated function of GDP components and price deflators.  The extension of forecast reconciliation methods to non-linear constraints potentially holds great promise for continued improvement in macroeconomic forecasting.
 
 \clearpage
 \section*{Appendix}
@@ -752,24 +745,24 @@ Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores base
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{Figs/IncomeApproach.PNG}
+	\includegraphics[width=\textwidth]{Figs/IncomeApproach.png}
 	\caption{Hierarchical structure of the income approach for GDP. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GDP_I}
 \end{figure}
 
 \begin{figure}[H]
-	\centering	\includegraphics[width=\textwidth]{Figs/ExpenditureApproach.PNG}
+	\centering	\includegraphics[width=\textwidth]{Figs/ExpenditureApproach.png}
 	\caption{Hierarchical structure of the expenditure approach for GDP. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures \ref{fig:GFCF} and \ref{fig:HFCE}. The red cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{Figs/GFCF.PNG}
+	\includegraphics[width=\textwidth]{Figs/GFCF.png}
 	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from Figure \ref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GFCF}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{Figs/HFCE.PNG}
+	\includegraphics[width=\textwidth]{Figs/HFCE.png}
 	\caption{Hierarchical structure for Household Final Consumption Expenditure under expenditure approach for GDP, continued from Figure \ref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series..}\label{fig:HFCE}
 \end{figure}
 

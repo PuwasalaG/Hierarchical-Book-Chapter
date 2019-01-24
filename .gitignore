@@ -1,10 +1,10 @@
-.log
-.aux
-.idx
-.bbl
-.blg
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+*.log
+*.aux
+*.idx
+*.bbl
+*.blg
+*.Rproj.user
+*.Rhistory
+*.RData
+*.Ruserdata
 
