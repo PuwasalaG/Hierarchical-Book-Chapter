@@ -73,37 +73,13 @@
 %
 \maketitle
 
-\abstract*{TBC}
-
-
 \section{Introduction}\label{sec:intro}
 			
-GEORGES BIT			
-			
-Accurate forecasting of key macroeconomic variables such as GDP, inflation, industrial production, has been in the forefront of economic research over many decades. Early approaches involved univariate models or at best low dimensional multivariate systems. The era of big data has led to now using regularization and shrinkage methods such as dynamic factor models, Lasso, LARS, Bayesian VARs, in an effort to exploit the plethora of potentially useful predictors now available. These predictors commonly also include the components of the variables of interest something ignored by the aforementioned approaches. For example, GDP is the aggregate of consumption, government expenditure, investment and net exports. Each of these components are aggregates of more sub-components with all these all being included in the set of predictors for GDP. 
+Accurate forecasting of key macroeconomic variables such as Gross Domestic Product (GDP), inflation, industrial production, has been at the forefront of economic research over many decades. Early approaches involved univariate models or at best low dimensional multivariate systems. The era of big data has now led to the use of regularization and shrinkage methods such as dynamic factor models, Lasso, LARS, Bayesian VARs, in an effort to exploit the plethora of potentially useful predictors now available. These predictors commonly also include the components of the variables of interest.  For instance, GDP is formed as an aggregate of consumption, government expenditure, investment and net exports with each of these components also formed as aggregates of other economic variables.  While the macroeconomic forecasting literature regularly uses such sub-indices as predictors, it does so in ways that fail to exploit accounting identities that describe known deterministic relationships between macroeconomic variables. 
 
-In this chapter we take a different approach. We directly account for take advantage of the aggregation structure macroeconomic variables of interest and there components form. Such aggregation structures for time are labelled as hierarchical times series.
+In this chapter we take a different approach.  Over the past decade there has been a growing literature on forecasting collections of time series that follow aggregation constraints, known as hierarchical times series.  Initially the aim of this literature was to ensure that forecasts adhered to aggregation constraints thus ensuring aligned decision making.  However in applications to tourism data, retail data, {\color{red} more  examples and references} the forecast reconciliation methods designed to deal with this problem have also been shown to improve forecast accuracy.  Since both aligned decision making and forecast accuracy are key concerns for economic agents and policy makers we propose the application of state of the art forecast reconciliation methods to macroeconomic forecasting. {\color{red} Has anyone applied reconciliation to macro?}.
 
-PUWASALAS BIT
- 
-For example, if we take the GDP growth, it is the aggregate of consumption, government expenditure, investments and net exports. These four components are again aggregates of some sub components. 
-
-When we collect data for each of these individual variables over some time period, we will observe a collection of multiple time series that are bounded with some aggregation constraints. Thus the macroeconomic data are naturally forming cross sectional hierarchical time series.
-
-If the interest is on a single macroeconomic variable along different time granularities, then it can be considered as a temporal hierarchy. For example, suppose we have monthly consumer product index (CPI) of a particular country. The quarterly CPI is then the aggregate of corresponding monthly CPI of each quarter. Similarly the yearly CPI is the aggregate of quarterly CPI of each year. Hence it will form a temporal hierarchy.
-
-Macroeconomic forecasts are crucial for economic and business activities of any economy. Therefore this area of study has a long history in literature. Econometricians have developed various approaches for getting reliable economic forecasts using macroeconomic data. However, the information of aggregation structure in real data is limitedly used in literature. Moreover, having coherent forecasts will help the economists and policy makers for align decision making that impact for the whole economy. Therefore, our focus in this chapter is to introduce hierarchical forecasting methods for macroeconomic forecasting particularly for cross-sectional hierarchical data structures.
-
-Obtaining coherent forecasts are independent from the forecasting models. That means forecasters were given the freedom to use any reliable forecasting method to obtain the forecasts for individual series in the hierarchy. Getting coherent forecasts is a post-processing technique which ensures the aggregation properties are preserved in the forecasts.   \\
-
-
-\textcolor{red}{briefly discuss the point forecasts as well as probabilistic forecasts in the sense of macroeconomic data  }
-
-\begin{itemize}
-	\item Importance of coherency
-	\item Point forecasting
-	\item Probabilistic forecasting
-\end{itemize}
+The remainder of the paper is set out as follows.  Section 2 introduces the concept of hierarchical time series, i.e. collections of time series with known linear constraints, with a particular emphasis on macroeconomic examples. Section 3 describes state-of-the-art forecast reconciliation techniques for point forecasts, while section 4 describes the more recent extension of these techniques to probabilistic forecasting.  Section 5 describes the data used in our empirical case study, namely Australian GDP data that can be represented using two different hierarchies.  Section 6 provides details on the setup of our empirical study including metrics used for the evaluation of both point and probabilistic forecasts.  Section 7 presents results and Section 8 concludes providing future avenues for research that are of particular relevance to macroeconometrians.
 \clearpage
 \section{Hierarchical time series}\label{sec:Hier ts}
 
@@ -716,8 +692,8 @@ By comparing results from different forecast reconciliation techniques we make a
 There are a number of open avenues for research in the literature on forecast reconciliation, some of which are particularly relevant to macroeconomic applications.  First there is scope to consider more complex aggregation structures, for instance in addition to the hierarchies we have already considered, data on GDP and GDP components disaggregated along geographical lines are also available.  This leads to a grouped hierarchy.  Also, given the substantial literature on the optimal frequency at which to analyse macroeconomic data, a study on forecasting GDP or other variables as a temporal hierarchy may be of interest.  In this chapter we have only shown that reconciliation methods can be used to improve forecast accuracy when univariate ARIMA models are used to produce base forecasts.  It will be interesting to evaluate whether such results hold when multivariate approaches, e.g. a Bayesian VAR or dynamic factor model, is used as a base forecasting model, or whether the gains from forecast reconciliation would be more modest.  Finally, a current limitation of the forecast reconciliation literature is that it only applies to collections of time series that adhere to linear constraints.  In macroeconomics there are many examples of data that adhere to non-linear constraints, for instance real GDP is a complicated but deterministic function of GDP components and price deflators.  The extension of forecast reconciliation methods to non-linear constraints potentially holds great promise for continued improvement in macroeconomic forecasting.
 
 \clearpage
-\section*{Appendix}
-\addcontentsline{toc}{section}{Appendix 1}
+%\section*{Appendix}
+%\addcontentsline{toc}{section}{Appendix 1}
 
 
 
