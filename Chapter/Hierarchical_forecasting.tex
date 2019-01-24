@@ -194,7 +194,20 @@ are said to be \textit{coherent} if $\tilde{\bm{y}}_{T+h|T} \in \mathfrak{s}$.
 
 Hence, coherent forecasts of lower level series aggregate up to their corresponding upper level series and vice versa.
 
-\textcolor{red}{Add the picture here. Puwasala.}
+\begin{figure}[H]
+	\centering
+	\vspace{-0.9cm}
+	\small
+	\resizebox{\linewidth}{!}{
+	\input{Figs/Diagram_3D/Schematic_3D}
+}
+	\caption{3 dimensional schematic to represent the smallest possible hierarchy.}\label{fig:Schematic-3D}
+
+\end{figure}
+
+\textcolor{red}{Fix the caption of figure \ref{fig:Schematic-3D}.}
+
+
 Let us consider the smallest possible hierarchy with two bottom level series, $A$ and $B$ that add up to the top level $Tot$. Suppose $\breve{\bm{y}}_{T+h|T}$ of this hierarchy is given by $\breve{\bm{y}}_{T+h|T} = [\breve{y}_{Tot,T+h|T},\breve{y}_{A,T+h|T}, \breve{y}_{B,T+h|T}]$. Due to the aggregation structure we have $\breve{y}_{Tot,T+h|T}=\breve{y}_{A,T+h|T}+\breve{y}_{B,T+h|T}$. This implies that, even though  $\breve{\bm{y}}_{Tot,T+h|T} \in \mathbb{R}^3$, the points actually lie in $\mathfrak{s}\subset \mathbb{R}^3$, which is a two dimensional subspace within $\mathbb{R}^3$ space.
 
 \subsection{Single-level approaches}\label{sec:single level approaches}
@@ -320,6 +333,7 @@ and
 There are several options for obtaining the base probabilistic forecast and in particular the variance covariance matrix $\hat{\bm{\Sigma}}$.  One option is to fit multivariate models level by level or for the hierarchy as a whole leading respectively to a $\hat{\bm \Sigma}$ that is block diagonal or dense.  Another alternative is to fit univariate models for each individual series in which case $\hat{\bm{\Sigma}}$ is a diagonal matrix. Due to the large number of series under investigation here we consider the latter option.  However we emphasise that correlation will enter the probabilistic forecast after reconciliation.  The reconciled probabilistic forecast will ultimately depending on the choice of $\bm{G}$; the same choices of $\bm{G}$ matrices used in section~\ref{sec:point forecasting} are be used here.
 
 {\color{red} Need to check with Puwasala that base forecasts have diagonal sigma hat}
+{\color{blue} I have taken the variance covariance matrix of the base forecast errors as the $\hat{\bm{\Sigma}}$. Thus $\hat{\bm{\Sigma}}$ is same as $\hat{\bm{W}}_{1}$, and I have taken the shrinkage estimator for $\hat{\bm{W}}_{1}$}
 
 \subsection{Probabilistic forecast reconciliation in the non-parametric framework}\label{sec:probrecnp}
 
@@ -344,7 +358,7 @@ Due to these concerns, we employ a reconciliation method proposed by \cite{Gamak
 \end{enumerate}
 
 
-{\color{red}Check with Puwasala that this is exactly what she has done.  Notation may need work to bring in line with previous sections.}
+{\color{red}Check with Puwasala that this is exactly what she has done.} {\color{blue} these steps are correct.}  {\color{red} Notation may need work to bring in line with previous sections.}
 
 %For a given forecast horizon and add these to the point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$.  Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
 
@@ -400,7 +414,7 @@ We concentrate on the Income and Expenditure approaches as nominal data are avai
 
 \subsubsection*{Income approach}
 
-Using the income approach, GDP is calculated by aggregating all income flows. In particular, GDP is the sum of all factor incomes and taxes, minus subsidies on production and imports at purchaser's price \textcolor{red}{are these descriptions correct? Can we please double-check.} \citep{ABS2015}:
+Using the income approach, GDP is calculated by aggregating all income flows. In particular, GDP at purchaser's price is the sum of all factor incomes and taxes, minus subsidies on production and imports. \textcolor{red}{are these descriptions correct? Can we please double-check.} \citep{ABS2015}:
 	\begin{align*}
 	\textit{GDP} &= \textit{Compensation of employees} + \textit{Gross operating surplus}\\ &+ \textit{Gross mixed income}+ \textit{Taxes on production and imports}\\ &- \textit{Subsidies on production and imports} + \textit{Statistical discrepancy (I)}\\
 	\end{align*}
@@ -417,23 +431,15 @@ Figures \ref{fig:GDP_E}, \ref{fig:GFCF} and \ref{fig:HFCE} show the full hierarc
 
 \textcolor{red}{THIS NEEDS TO BE ADDED: description of each series in these hierarchies along with the series ID assigned by the ABS is given in the tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in the supplementary materials.}
 
-Figures \ref{fig:TS-Inc} and \ref{fig:TS-Exp} display time series from the income and the expenditure approaches respectively. The first panel of each figure shows the most aggregate GDP series \textcolor{red}{(I guess this is the same for each figure? Do we need them both? Can we do something else here. Maybe have GPD at the top and then on the left side/panels the income series and on the right side the expenditure series all on the same graph)}. The panels below show series from the levels below. The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account and model all information and diverse signals from each series in the hierarchy which can only be achieved through a forecast reconciliation approach.
+Figures \ref{fig:TSplots-INC-EXP} displays time series from the income and expenditure approaches. Top panel shows the most aggregate GDP series. The bottom panel shows series from below levels for income hierarchy in left panel and expenditure hierarchy in right panel. The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account and model all information and diverse signals from each series in the hierarchy which can only be achieved through a forecast reconciliation approach.
 
 
 \begin{figure}[H]
 	\centering
 	\small
-	\includegraphics[width=\textwidth]{Figs/TS-plots/INC-hierarchy/INC-char-of-levels-TSplots.png}
-	\caption{Time plots for series from different levels of income hierarchy.}\label{fig:TS-Inc}
+	\includegraphics[width=\textwidth]{Figs/TS-plots/TSplots-INC-EXP.png}
+	\caption{Time plots for series from different levels of income and expenditure hierarchies.}\label{fig:TSplots-INC-EXP}
 \end{figure}
-
-\begin{figure}[H]
-	\centering
-	\small
-	\includegraphics[width=\textwidth]{Figs/TS-plots/EXP-hierarchy/EXP-char-of-levels-TSplots.png}
-	\caption{Time plots for series from different levels of expenditure hierarchy.}\label{fig:TS-Exp}
-\end{figure}
-
 
 \clearpage	
 
@@ -489,13 +495,13 @@ Skill score.
 
 \section{Methodology}\label{sec:meth}
 
-We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP data.  We consider forecasts from $h=1$ quarter ahead forecasts up to $h=4$ quarter ahead using an {\em expanding} window.  First, the training sample is set to QX of XXXX to QX of XXXX and forecasts are produced for QX of XXXX to QX of XXXX. Then the training window is expanded one period ahead, i.e. from QX of XXXX to QX of XXXX with forecasts produces for QX of XXXX to QX of XXXX.  All up this leads to XX forecasts.
+We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP data.  We consider forecasts from $h=1$ quarter ahead forecasts up to $h=4$ quarter ahead using an {\em expanding} window.  First, the training sample is set to Q4 of 1984 to Q3 of 1994 and forecasts are produced for Q4 of 1994 to Q3 of 1995. Then the training window is expanded one period ahead, i.e. from Q4 of 1984 to Q4 of 2017 with forecasts produces for the last observation at Q1 of 2018. All up this leads to 94 1-step-ahead, 93 2-step-ahead, 92 3-step-ahead and 91 4-step-ahead forecasts.
 
 {\color{red} Need to get these dates off Puwasala.  Also last section may need to be changed}
 
 \subsection{Models}
 
-The first task in forecasting time series is to obtain base forecasts for all series in the hierarchy.  In the case of the income approach this necessitates forecasting XX time series while in the case of the expenditure approach forecasts for XX time series must be obtained.  As such our focus was on a methodology that was fast but flexible.  We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and AIC using an algorithm developed by XXX and implement in the auto.arima function in XXX. {\color{red} Cite this to Rob's satisfaction}.  A similar approach was also undertaken using the ETS framework to produce base forecasts.  This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecats outperformed ETS forecasts.  Consequently, results for ETS models are excluded but are available from the authors upon request {\color{red} again do we put this in an appendix?}.  We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions and models and methods that handle a large number of predictors such as factor models or least angle regresssion.  However, \cite{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
+The first task in forecasting time series is to obtain base forecasts for all series in the hierarchy.  In the case of the income approach this necessitates forecasting 16 time series while in the case of the expenditure approach forecasts for 80 time series must be obtained.  As such our focus was on a methodology that was fast but flexible.  We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and AIC using an algorithm developed by XXX and implement in the auto.arima function in XXX. {\color{red} Cite this to Rob's satisfaction}.  A similar approach was also undertaken using the ETS framework to produce base forecasts.  This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecats outperformed ETS forecasts.  Consequently, results for ETS models are excluded but are available from the authors upon request {\color{red} again do we put this in an appendix?}.  We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions and models and methods that handle a large number of predictors such as factor models or least angle regresssion.  However, \cite{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
 
 The forecast reconciliation approaches that we consider are bottom up, OLS, WLS with {\color{red} What scaling did we use} and the MinT (shrink) approach.  The MinT (sample) approach was also used but due to the size of the hierarchy forecasts reconciled via this approach were less stable.  Finally, all forecasts both base and reconciled are compared to a \naive benchmark.  Since the data are not deseasonalised, the \naive benchmark is a seasonal random walk, i.e. the forecast for GDP (or one of its components) is the realised GDP in the same quarter of the previous year.  The \naive forecast is by construction coherent and therefore does not need to be reconciled.
 
@@ -512,7 +518,7 @@ Forecast accuracy of probabilistic forecasts can be evaluated using scoring rule
 eS(\breve{F}_{T+h|T},\bm{y}_{T+h}) =
 E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\bm{y}_{T+h}\|^\alpha
 -\frac{1}{2}E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\breve{\bm{y}}^*_{T+h}\|^\alpha\,,
-\end{equation*} where $\bm{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
+\end{equation*} where $\bm{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. {\color{red} What did we use for alpha?}{\color{blue}we use alpha = 1}.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 
 \begin{equation} \label{eq:24}
 \text{CRPS}(\breve{F}_i,y_{i,T+h}) = E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
@@ -571,7 +577,7 @@ As an alternative to the energy score, log score and variogram scores were also 
 
 \subsection{Base forecasts}
 
-Due to the different features in each time series a variety of ARIMA models were selected to be used as base models.  {\color{red} Some generalisations about models}.  Figure~\ref{fig: NaiveVsBase_SS_MSE} gives some indication of the performance of these base forecasting models relative to the \naive forecast over different horizons.  All results in this Figure and in subsequent figures are presented as the percentage changes in a forecasting metric relative to the base forecast, a measure known in the forecasting literature as {\em skill scores}.  Skill scores are computed such that positive values represent an improvement in forecasting performance over the base forecast and negative values represent a deterioration in forecast quality.  In Figure~\ref{fig: NaiveVsBase_SS_MSE}, panels on the left refer to results for the Income hierarchy with panels on the right referring to the expenditure hierarchy.  The top panels summarise results over all series in the hierarchy \textcolor{red} {How exactly do we do this.  Do we compute MSE for each series then add?  Do we compute skill score for each series and average these?}.  The clear result is that base forecasts are more accurate than \naive forecasts, however as the forecasting horizon increases, the difference becomes smaller.  This is to be expected since the \naive model here is a seasonal random walk, for horizons $h<4$ the forecast from an ARIMA model is based on more recent information.
+Due to the different features in each time series a variety of ARIMA models were selected to be used as base models.  {\color{red} Some generalisations about models}.  Figure~\ref{fig: NaiveVsBase_SS_MSE} gives some indication of the performance of these base forecasting models relative to the \naive forecast over different horizons.  All results in this Figure and in subsequent figures are presented as the percentage changes in a forecasting metric relative to the base forecast, a measure known in the forecasting literature as {\em skill scores}.  Skill scores are computed such that positive values represent an improvement in forecasting performance over the base forecast and negative values represent a deterioration in forecast quality.  In Figure~\ref{fig: NaiveVsBase_SS_MSE}, panels on the left refer to results for the Income hierarchy with panels on the right referring to the expenditure hierarchy.  The top panels summarise results over all series in the hierarchy \textcolor{red} {How exactly do we do this.  Do we compute MSE for each series then add?  Do we compute skill score for each series and average these?} \textcolor{blue}{We compute average MSE over all series and then calculated the skill scores}.  The clear result is that base forecasts are more accurate than \naive forecasts, however as the forecasting horizon increases, the difference becomes smaller.  This is to be expected since the \naive model here is a seasonal random walk, for horizons $h<4$ the forecast from an ARIMA model is based on more recent information.
 
 Similar results are obtained when MASE is used as the metric for evaluating forecast quality.  However one disadvantage of the base forecasts relative to the \naive forecast is that base forecasts are no longer coherent.  As such we now turn out attention to investigating whether reconciliation methods can lead to further improvements in forecast accuracy relative to base forecasts.
 
@@ -586,7 +592,7 @@ Similar results are obtained when MASE is used as the metric for evaluating fore
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_MSE.png}
-	\caption{Mean squared errors for naive and base forecasts. Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series.  Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}\label{fig: NaiveVsBase_MSE}
+	\caption{Mean squared errors for naive and base forecasts. Top panels refer to results summarised over all series and bottom panels refer to the top-level GDP series.  Left panels refer to the income hierarchy and right panels to the expenditure hierarchy}\label{fig: NaiveVsBase_MSE}
 \end{figure}
 
 
@@ -599,15 +605,15 @@ Similar results are obtained when MASE is used as the metric for evaluating fore
 
 \subsection{Point Forecast Reconciliation}
 
-We now turn our attention to an evaluation of point forecasts obtained using different reconciliation methods.  The top row of Figure \ref{fig: PointF} shows skill scores based on the MSE and MASE.  These are aggregated over all series for both the income hierarchy and expenditure hierarchy and over different forecast horizons {\color{red} Puwasala to confirm whether we are looking at a skill score based on average MSE or an average of skill scores}.  Results are displayed as skill scores relative to base forecasts.  We conclude that reconciliation methods generally improve forecast accuracy relative to base forecasts regardless of the hierarchy used, the forecasting horizon, the forecasting metric used to evaluate forecasts or the specific reconciliation method employed.  We do however note that while all reconciliation methods improve forecast performance, MinT (shrink) is the best forecasting method in most cases.
+We now turn our attention to an evaluation of point forecasts obtained using different reconciliation methods.  The top row of Figure \ref{fig: PointF} shows skill scores based on the MSE and MASE.  These are aggregated over all series for both the income hierarchy and expenditure hierarchy and over different forecast horizons {\color{red} Puwasala to confirm whether we are looking at a skill score based on average MSE or an average of skill scores} {\color{blue}We are looking at a skill score based on average MSE}.  Results are displayed as skill scores relative to base forecasts.  We conclude that reconciliation methods generally improve forecast accuracy relative to base forecasts regardless of the hierarchy used, the forecasting horizon, the forecasting metric used to evaluate forecasts or the specific reconciliation method employed.  We do however note that while all reconciliation methods improve forecast performance, MinT (shrink) is the best forecasting method in most cases.
 
-To further investigate the differences between reconciliation methods we break down these results by different levels of each hierarchy.  The second row of Figure XXX shows the forecasting performance a single series, namely the GDP which represents the top level of both hierarchies.  The third row shows results for all series excluding those on the bottom level, while the final row shows results for the bottom level series only.  Here, we see two general features, the first is that OLS reconciliation performs poorly on the bottom level series, the second is that bottom up relatively poorly on aggregate series.  These two features are particularly exacerbated for the larger Ependiture hierarchy.  These results are consistent with other findings in the forecast reconciliation literature see for instance XXX.
+To further investigate the differences between reconciliation methods we break down these results by different levels of each hierarchy.  The second row of Figure \ref{fig: PointF} shows the forecasting performance a single series, namely the GDP which represents the top level of both hierarchies.  The third row shows results for all series excluding those on the bottom level, while the final row shows results for the bottom level series only.  Here, we see two general features, the first is that OLS reconciliation performs poorly on the bottom level series, the second is that bottom up relatively poorly on aggregate series.  These two features are particularly exacerbated for the larger Ependiture hierarchy.  These results are consistent with other findings in the forecast reconciliation literature see for instance XXX.
 
 \begin{figure}[H]
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/PointF.png}
-	\caption{Skill score point forecasts from different reconciliation methods (with reference to base forecasts). Left two panels refer to skill score using MSE for income and expenditure hierarchies. Similarly right two panels refer to skill score using MASE. First row refer to results summarised over all series, second row refers to top-level GDP series, third row to aggregate levels and last row to the bottom level.}
+	\caption{Skill score point forecasts from different reconciliation methods (with reference to base forecasts). Left two panels refer to skill score using MSE for income and expenditure hierarchies. Similarly right two panels refer to skill score using MASE. First row refers to results summarised over all series, second row to top-level GDP series, third row to aggregate levels and last row to the bottom level.}
 	\label{fig: PointF}
 \end{figure}
 
@@ -625,7 +631,7 @@ Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores base
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/ProbF_MultivS.png}
-	\caption{Skill score for multivariate probabilistic forecasts from different reconciliation methods (with reference to base forecasts) using energy score. Top panel refers to the results for Gaussian approach and bottom panel refers to the non-parametric bootstrap approach. Left panel refers to the income hierarchy and right panel to the expenditure hierarchy.}
+	\caption{Skill score for multivariate probabilistic forecasts from different reconciliation methods (with reference to base forecasts) using energy score. Top panels refer to the results for Gaussian approach and bottom panels to the non-parametric bootstrap approach. Left panels refer to the income hierarchy and right panels to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_ES}
 \end{figure}
 
@@ -633,7 +639,7 @@ Finally, Figure \ref{fig: Prob-forecasts-SS_CRPS} displays the skill scores base
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/ProbF_UnivS.png}
-	\caption{Skill score for probabilistic forecasts of top-level GDP from different reconciliation methods (with reference to base forecasts) using CRPS. Top panel refers to the results for Gaussian approach and bottom panel refers to the non-parametric bootstrap approach. Left panel refers to the income hierarchy and right panel to the expenditure hierarchy.}
+	\caption{Skill score for probabilistic forecasts of top-level GDP from different reconciliation methods (with reference to base forecasts) using CRPS. Top panels refer to the results for Gaussian approach and bottom panels refer to the non-parametric bootstrap approach. Left panel refers to the income hierarchy and right panel to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_CRPS}
 \end{figure}
 
