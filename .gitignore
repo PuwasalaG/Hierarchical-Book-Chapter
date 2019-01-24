@@ -7,4 +7,6 @@
 *.Rhistory
 *.RData
 *.Ruserdata
+*.ilg
+*.ind
 
