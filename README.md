@@ -20,8 +20,8 @@
 
 
 - *Tas* to: 
- 1. Discuss red points on page 9 and 10 with George. 
- 2. Find references probabilistic forecasts in Macro
+ 1. Discuss red points on page  8 with George. 
+ 2. Find references probabilistic forecasts in Macro **DONE**
  3. Fix 3D schematic.  Change notation position of s vectors etc. **DONE**
 
 - *Everyone* to:
