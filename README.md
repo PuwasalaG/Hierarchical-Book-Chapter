@@ -7,15 +7,15 @@
 - *George* (and maybe *Rob*) to
 
  1. Add more examples of where forecast reconciliation has been applied in Intro.  Currently only have tourism and retail.  References needed too.
- 2. Verify whether forecast reconciliation has been applied to macro at all.
+ 2. Verify whether forecast reconciliation has been applied to macro at all apart from the PhD thesis found by Puwasala.
  3. Cite papers in 7.2 about the general result that OLS works poorly for bottom level series and BU works poorly for top level series
 
 
 - *Puwasala* to:
 
- 1. Find reference to a PhD thesis that does forecast reconciliation
- 2. Puwasala to check whether marginal bimodality exists in probabilistic forecasts - first check top level series.
- 3. Puwasala to look in to what models fitted in ARIMA in a particular training window. Add this to section 7.1
+ 1. Find reference to a PhD thesis that does forecast reconciliation **DONE**
+ 2. Puwasala to check whether marginal bimodality exists in probabilistic forecasts - first check top level series. Produce plot with smoothness
+ 3. Puwasala to look in to what models fitted in ARIMA in a particular training window. Add this to section 7.1 Add sentence
  4. Puwasala to break fig 10 into to MSE and MASE
 
 
