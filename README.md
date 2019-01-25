@@ -14,7 +14,7 @@
 - *Puwasala* to:
 
  1. Find reference to a PhD thesis that does forecast reconciliation **DONE**
- 2. Puwasala to check whether marginal bimodality exists in probabilistic forecasts - first check top level series. Produce plot with smoothness
+ 2. Puwasala to check whether marginal bimodality exists in probabilistic forecasts - first check top level series. Produce plot with smoothness **DONE**
  3. Puwasala to look in to what models fitted in ARIMA in a particular training window. Add this to section 7.1 Add sentence
  4. Puwasala to break fig 10 into to MSE and MASE
 
