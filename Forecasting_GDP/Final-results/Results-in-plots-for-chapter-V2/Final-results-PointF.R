@@ -11,6 +11,7 @@ require(gtable)
 setwd("C:/Puwasala/PhD_Monash/Research/Hierarchical-Book-Chapter/Forecasting_GDP/Final-results/Results-in-plots-for-chapter")
 
 ## Point-forecasting - Income approach
+
 rm(list = ls())
 load("Point-forecasting/INC-PointForecasts-ExpandingW.RData")
 
@@ -69,8 +70,7 @@ GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
   ylab("Skill score (MSE) %") + ggtitle("Top level") +
   theme(legend.position="bottom") +
   theme(plot.title = element_text(size = 10, face = "italic")) +
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> INC_PointF_GDPI_MSE
+  theme(axis.title.y = element_blank()) -> INC_PointF_GDPI_MSE
 
 GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
@@ -80,8 +80,7 @@ GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
   scale_shape_manual(values=0:3) +
   ylab("Skill score (MASE) %") + ggtitle("Top level") +
   theme(plot.title = element_text(size = 10, face = "italic")) +
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> INC_PointF_GDPI_MASE
+  theme(axis.title.y = element_blank()) -> INC_PointF_GDPI_MASE
 
 ##All aggregate summary
 
@@ -131,8 +130,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
   ylab("Skill score (MSE) %") + 
   ggtitle("Aggregate levels") +
   theme(plot.title = element_text(size = 10, face = "italic")) +
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> INC_PointF_Aggregates_MSE
+  theme(axis.title.y = element_blank()) -> INC_PointF_Aggregates_MSE
 
 Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
@@ -143,8 +141,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
   ylab("Skill score (MASE) %") + 
   ggtitle("Aggregate levels") +
   theme(plot.title = element_text(size = 10, face = "italic")) +
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> INC_PointF_Aggregates_MASE
+  theme(axis.title.y = element_blank()) -> INC_PointF_Aggregates_MASE
 
 ##All disaggregate summary
 
@@ -255,8 +252,7 @@ All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "
   ylab("Skill score (MSE) %") + 
   ggtitle("All levels") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank())-> INC_PointF_All.series_MSE
+  theme(axis.title.y = element_blank()) -> INC_PointF_All.series_MSE
 
 All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
@@ -267,8 +263,7 @@ All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "
   ylab("Skill score (MASE) %") + 
   ggtitle("All levels") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank())-> INC_PointF_All.series_MASE
+  theme(axis.title.y = element_blank()) -> INC_PointF_All.series_MASE
 
 
 
@@ -334,8 +329,7 @@ GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
   scale_shape_manual(values=0:3) +
   ylab("Skill score (MSE) %") + ggtitle("Top level") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> EXP_PointF_GDPE_MSE
+  theme(axis.title.y = element_blank()) -> EXP_PointF_GDPE_MSE
 
 GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
@@ -345,8 +339,7 @@ GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
   scale_shape_manual(values=0:3) +
   ylab("Skill score (MASE) %") + ggtitle("Top level") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> EXP_PointF_GDPE_MASE
+  theme(axis.title.y = element_blank()) -> EXP_PointF_GDPE_MASE
 
 ##All aggregate summary
 
@@ -396,8 +389,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
   ylab("Skill score (MSE) %") + 
   ggtitle("Aggregate levels") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> EXP_PointF_Aggregates_MSE
+  theme(axis.title.y = element_blank()) -> EXP_PointF_Aggregates_MSE
 
 Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
@@ -408,8 +400,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
   ylab("Skill score (MASE) %") + 
   ggtitle("Aggregate levels") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> EXP_PointF_Aggregates_MASE
+  theme(axis.title.y = element_blank()) -> EXP_PointF_Aggregates_MASE
 
 ##All disaggregate summary
 
@@ -520,8 +511,7 @@ All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "
   ylab("Skill score (MSE) %") + 
   ggtitle("All levels") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> EXP_PointF_All.series_MSE
+  theme(axis.title.y = element_blank()) -> EXP_PointF_All.series_MSE
 
 All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
@@ -532,8 +522,7 @@ All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "
   ylab("Skill score (MASE) %") + 
   ggtitle("All levels") +
   theme(plot.title = element_text(size = 10, face = "italic"))+
-  theme(axis.title.y = element_blank()) + 
-  theme(axis.title.x = element_blank()) -> EXP_PointF_All.series_MASE
+  theme(axis.title.y = element_blank()) -> EXP_PointF_All.series_MASE
 
 rm(list=ls()[! ls() %in% c("INC_PointF_GDPI_MSE", "INC_PointF_Aggregates_MSE", "INC_PointF_Disaggregates_MSE", 
                            "INC_PointF_All.series_MSE", "INC_PointF_GDPI_MASE", "INC_PointF_Aggregates_MASE", 
@@ -553,6 +542,30 @@ rm(list=ls()[! ls() %in% c("INC_PointF_GDPI_MSE", "INC_PointF_Aggregates_MSE", "
 
 legend = gtable_filter(ggplotGrob(INC_PointF_GDPI_MSE), "guide-box")
 
+
+grid.arrange( arrangeGrob(INC_PointF_All.series_MSE+ theme(legend.position="none"), 
+                          INC_PointF_GDPI_MSE + theme(legend.position="none"),
+                          INC_PointF_Aggregates_MSE + theme(legend.position="none"), 
+                          INC_PointF_Disaggregates_MSE + theme(legend.position="none"), top="Income", ncol = 1), 
+              arrangeGrob(EXP_PointF_All.series_MSE + theme(legend.position="none"),
+                          EXP_PointF_GDPE_MSE + theme(legend.position="none"),
+                          EXP_PointF_Aggregates_MSE+ theme(legend.position="none"), 
+                          EXP_PointF_Disaggregates_MSE + theme(legend.position="none"), top="Expenditure", ncol = 1), 
+              left = textGrob("Skill score (MSE) %", rot = 90, vjust = 1),
+              ncol=2, legend, heights=c(10, 1))
+
+grid.arrange( arrangeGrob(INC_PointF_All.series_MASE+ theme(legend.position="none"), 
+                          INC_PointF_GDPI_MASE + theme(legend.position="none"),
+                          INC_PointF_Aggregates_MASE + theme(legend.position="none"), 
+                          INC_PointF_Disaggregates_MASE + theme(legend.position="none"), top="Income"), 
+              arrangeGrob(EXP_PointF_All.series_MASE + theme(legend.position="none"),
+                          EXP_PointF_GDPE_MASE + theme(legend.position="none"),
+                          EXP_PointF_Aggregates_MASE+ theme(legend.position="none"), 
+                          EXP_PointF_Disaggregates_MASE + theme(legend.position="none"), top="Expenditure"), 
+              left = textGrob("Skill score (MASE) %", rot = 90, vjust = 1),
+              ncol=2, legend, heights=c(10, 1))
+
+
 ggarrange(INC_PointF_All.series_MSE, INC_PointF_GDPI_MSE, INC_PointF_Aggregates_MSE, 
           INC_PointF_Disaggregates_MSE, ncol = 1, nrow = 4, common.legend = TRUE, legend = "none", 
           align = "v") -> p1_MSE
@@ -562,8 +575,14 @@ ggarrange(EXP_PointF_All.series_MSE, EXP_PointF_GDPE_MSE, EXP_PointF_Aggregates_
           align = "v") -> p2_MSE
 
 
-grid.arrange( arrangeGrob(p1_MSE, top="Income", left = textGrob("Skill score (MSE) %", rot = 90, vjust = 1)), 
+
+
+
+
+
+grid.arrange( arrangeGrob(p1_MSE, top="Income"), 
               arrangeGrob(p2_MSE+ theme(legend.position="none"), top="Expenditure"), 
+              left = textGrob("Skill score (MSE) %", rot = 90, vjust = 1),
               ncol=2, legend, heights=c(10, 1))
 
 
@@ -582,6 +601,11 @@ grid.arrange( arrangeGrob(p1_MASE, top="Income", left = textGrob("Skill score (M
               ncol=2, legend, heights=c(10, 1))
 
 
+grid.arrange( arrangeGrob(Plot_INC_MultivS_Gauss + theme(legend.position="none"), 
+                          Plot_INC_MultivS_NonPara + theme(legend.position="none"), top="Income"), 
+              arrangeGrob(Plot_EXP_MultivS_Gauss + theme(legend.position="none"), 
+                          Plot_EXP_MultivS_NonPara + theme(legend.position="none"), top="Expenditure"), 
+              ncol=2, mylegend, heights=c(10, 1))
 
 
 
