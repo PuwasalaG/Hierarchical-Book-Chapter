@@ -7,7 +7,7 @@
 - *George* (and maybe *Rob*) to
 
  1. Add more examples of where forecast reconciliation has been applied in Intro.  Currently only have tourism and retail.  References needed too.
- 2. Verify whether forecast reconciliation has been applied to macro at all apart from the PhD thesis found by Puwasala.
+ 2. Verify whether forecast reconciliation has been applied to macro at all apart from the PhD thesis found by Puwasala. **I have seen a paper by Kourentzes presented in the ISF2017 on forecasting unemployment in Scandinavia. Have not seen much since about it. Searched but could not find it. So I guess yes this **
  3. Cite papers in 7.2 about the general result that OLS works poorly for bottom level series and BU works poorly for top level series
 
 
