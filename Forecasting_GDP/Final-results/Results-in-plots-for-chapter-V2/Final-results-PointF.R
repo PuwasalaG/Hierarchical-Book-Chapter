@@ -17,7 +17,7 @@ load("Point-forecasting/INC-PointForecasts-ExpandingW.RData")
 
 #Results for most aggregate level
 
-Method_Order <- c("Benchmark", "Base", "Bottom-up", "OLS", "WLS", "MinT Shrink")
+Method_Order <- c("Benchmark", "Base", "Bottom-up", "OLS", "WLS", "MinT(Shrink)")
 
 #ARIMA
 GDPI_PointF_arima <- Score_arima %>% dplyr::filter(`Series`=="Gdpi") 
@@ -37,7 +37,7 @@ GDPI_PointF_arima %>% mutate(SS_MSE = round((1-(`MSE`/GDPI_ARIMA.base_MSE))*100,
 
 SS.GDPI_ARIMA_MSE <- Skill.Score_GDPI_ARIMA %>% dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MSE` ) %>% 
   spread(key = `Forecast Horizon`, value = `SS_MSE`) %>% 
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame()
@@ -49,7 +49,7 @@ SS.GDPI_ARIMA_MSE %>% filter(Method != "Benchmark") %>%
 SS.GDPI_ARIMA_MASE <- Skill.Score_GDPI_ARIMA %>% 
   dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MASE` ) %>% 
   spread(key = `Forecast Horizon`, value = `SS_MASE`) %>% 
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame()
@@ -61,7 +61,7 @@ SS.GDPI_ARIMA_MSE %>% left_join(SS.GDPI_ARIMA_MASE, by = c("Method", "h")) %>%
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   filter(Method != "Base") -> GDPI_PointF
 
-GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -72,7 +72,7 @@ GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
   theme(plot.title = element_text(size = 10, face = "italic")) +
   theme(axis.title.y = element_blank()) -> INC_PointF_GDPI_MSE
 
-GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -86,7 +86,7 @@ GDPI_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
 
 Score_arima %>% dplyr::filter(`Series` %in% c(names(Inc)[1:6])) %>%
   dplyr::select(-`Series`) %>% group_by(`F-method`, `R-method`, `Forecast Horizon`) %>%
-  summarise(Avg_MSE = round(mean(`MSE`), digits = 2), Avg_MASE = round(mean(`MASE`), digits = 2)) -> Score_aggregates_ARIMA
+  summarise(Avg_MSE = mean(`MSE`), Avg_MASE = mean(`MASE`)) -> Score_aggregates_ARIMA
 
 Score_aggregates_ARIMA %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>% 
@@ -104,7 +104,7 @@ Score_aggregates_ARIMA %>% mutate(SS_MSE = round((1-(`Avg_MSE`/ARIMA.base_MSE))*
 
 Skill.Score_aggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MASE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MSE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Aggregates.ARIMA_MSE
 
 Aggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -112,7 +112,7 @@ Aggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>%
 
 Skill.Score_aggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MSE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MASE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Aggregates.ARIMA_MASE
 
 Aggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -121,7 +121,7 @@ Aggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>%
 Aggregates.ARIMA_MSE %>% left_join(Aggregates.ARIMA_MASE, by = c("Method", "h")) %>% 
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") -> Aggregate_PointF
 
-Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) +
@@ -132,7 +132,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
   theme(plot.title = element_text(size = 10, face = "italic")) +
   theme(axis.title.y = element_blank()) -> INC_PointF_Aggregates_MSE
 
-Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) +
@@ -147,7 +147,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
 
 Score_arima %>% dplyr::filter(`Series` %in% c(names(Inc)[7:16])) %>%
   dplyr::select(-`Series`) %>% group_by(`F-method`, `R-method`, `Forecast Horizon`) %>%
-  summarise(Avg_MSE = round(mean(`MSE`), digits = 2), Avg_MASE = round(mean(`MASE`), digits = 2)) -> Score_disaggregates_ARIMA
+  summarise(Avg_MSE = mean(`MSE`), Avg_MASE = mean(`MASE`)) -> Score_disaggregates_ARIMA
 
 Score_disaggregates_ARIMA %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>% 
@@ -165,7 +165,7 @@ Score_disaggregates_ARIMA %>% mutate(SS_MSE = round((1-(`Avg_MSE`/ARIMA.base_MSE
 
 Skill.Score_disaggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MASE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MSE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Disaggregates.ARIMA_MSE
 
 Disaggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -173,7 +173,7 @@ Disaggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>%
 
 Skill.Score_disaggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MSE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MASE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Disaggregates.ARIMA_MASE
 
 Disaggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -182,7 +182,7 @@ Disaggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>%
 Disaggregates.ARIMA_MSE %>% left_join(Disaggregates.ARIMA_MASE, by = c("Method", "h")) %>% 
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") -> Disaggregate_PointF
 
-Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -193,7 +193,7 @@ Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink",
   theme(plot.title = element_text(size = 10, face = "italic")) +
   theme(axis.title.y = element_blank()) -> INC_PointF_Disaggregates_MSE
 
-Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -208,7 +208,7 @@ Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink",
 
 Score_arima %>% dplyr::select(-`Series`) %>% 
   group_by(`F-method`, `R-method`, `Forecast Horizon`) %>%
-  summarise(Avg_MSE = round(mean(`MSE`), digits = 2), Avg_MASE = round(mean(`MASE`), digits = 2)) -> Score_all.series_ARIMA
+  summarise(Avg_MSE = mean(`MSE`), Avg_MASE = mean(`MASE`)) -> Score_all.series_ARIMA
 
 Score_all.series_ARIMA %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>% 
@@ -226,7 +226,7 @@ Score_all.series_ARIMA %>% mutate(SS_MSE = round((1-(`Avg_MSE`/ARIMA.base_MSE))*
 
 Skill.Score_all.series_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MASE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MSE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> All.series.ARIMA_MSE
 
 All.series.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -234,7 +234,7 @@ All.series.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>%
 
 Skill.Score_all.series_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MSE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MASE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> All.series.ARIMA_MASE
 
 All.series.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -243,7 +243,7 @@ All.series.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>%
 All.series.ARIMA_MSE %>% left_join(All.series.ARIMA_MASE, by = c("Method", "h")) %>% 
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") -> All.series_PointF
 
-All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
@@ -254,7 +254,7 @@ All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "
   theme(plot.title = element_text(size = 10, face = "italic"))+
   theme(axis.title.y = element_blank()) -> INC_PointF_All.series_MSE
 
-All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
@@ -277,7 +277,7 @@ load("Point-forecasting/EXP-PointForecasts-ExpandingW.RData")
 
 #Results for most aggregate level
 
-Method_Order <- c("Benchmark", "Base", "Bottom-up", "OLS", "WLS", "MinT Shrink")
+Method_Order <- c("Benchmark", "Base", "Bottom-up", "OLS", "WLS", "MinT(Shrink)")
 
 #ARIMA
 GDPE_PointF_arima <- Score_arima %>% dplyr::filter(`Series`=="Gdpe") 
@@ -297,7 +297,7 @@ GDPE_PointF_arima %>% mutate(SS_MSE = round((1-(`MSE`/GDPE_ARIMA.base_MSE))*100,
 
 SS.GDPE_ARIMA_MSE <- Skill.Score_GDPE_ARIMA %>% dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MSE` ) %>% 
   spread(key = `Forecast Horizon`, value = `SS_MSE`) %>% 
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame()
@@ -309,7 +309,7 @@ SS.GDPE_ARIMA_MSE %>% filter(Method != "Benchmark") %>%
 SS.GDPE_ARIMA_MASE <- Skill.Score_GDPE_ARIMA %>% 
   dplyr::select(`F-method`, `R-method`, `Forecast Horizon`, `SS_MASE` ) %>% 
   spread(key = `Forecast Horizon`, value = `SS_MASE`) %>% 
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame()
@@ -321,7 +321,7 @@ SS.GDPE_ARIMA_MSE %>% left_join(SS.GDPE_ARIMA_MASE, by = c("Method", "h")) %>%
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") %>% 
   filter(Method != "Base") -> GDPE_PointF
 
-GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -331,7 +331,7 @@ GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
   theme(plot.title = element_text(size = 10, face = "italic"))+
   theme(axis.title.y = element_blank()) -> EXP_PointF_GDPE_MSE
 
-GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -345,7 +345,7 @@ GDPE_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", 
 
 Score_arima %>% dplyr::filter(`Series` %in% c(names(Exp)[1:27])) %>%
   dplyr::select(-`Series`) %>% group_by(`F-method`, `R-method`, `Forecast Horizon`) %>%
-  summarise(Avg_MSE = round(mean(`MSE`), digits = 2), Avg_MASE = round(mean(`MASE`), digits = 2)) -> Score_aggregates_ARIMA
+  summarise(Avg_MSE = mean(`MSE`), Avg_MASE = mean(`MASE`)) -> Score_aggregates_ARIMA
 
 Score_aggregates_ARIMA %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>% 
@@ -363,7 +363,7 @@ Score_aggregates_ARIMA %>% mutate(SS_MSE = round((1-(`Avg_MSE`/ARIMA.base_MSE))*
 
 Skill.Score_aggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MASE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MSE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Aggregates.ARIMA_MSE
 
 Aggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -371,7 +371,7 @@ Aggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>%
 
 Skill.Score_aggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MSE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MASE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Aggregates.ARIMA_MASE
 
 Aggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -380,7 +380,7 @@ Aggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>%
 Aggregates.ARIMA_MSE %>% left_join(Aggregates.ARIMA_MASE, by = c("Method", "h")) %>% 
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") -> Aggregate_PointF
 
-Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) +
@@ -391,7 +391,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
   theme(plot.title = element_text(size = 10, face = "italic"))+
   theme(axis.title.y = element_blank()) -> EXP_PointF_Aggregates_MSE
 
-Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) +
@@ -406,7 +406,7 @@ Aggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "W
 
 Score_arima %>% dplyr::filter(`Series` %in% c(names(Exp)[28:80])) %>%
   dplyr::select(-`Series`) %>% group_by(`F-method`, `R-method`, `Forecast Horizon`) %>%
-  summarise(Avg_MSE = round(mean(`MSE`), digits = 2), Avg_MASE = round(mean(`MASE`), digits = 2)) -> Score_disaggregates_ARIMA
+  summarise(Avg_MSE = mean(`MSE`), Avg_MASE = mean(`MASE`)) -> Score_disaggregates_ARIMA
 
 Score_disaggregates_ARIMA %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>% 
@@ -424,7 +424,7 @@ Score_disaggregates_ARIMA %>% mutate(SS_MSE = round((1-(`Avg_MSE`/ARIMA.base_MSE
 
 Skill.Score_disaggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MASE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MSE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Disaggregates.ARIMA_MSE
 
 Disaggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -432,7 +432,7 @@ Disaggregates.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>%
 
 Skill.Score_disaggregates_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MSE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MASE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> Disaggregates.ARIMA_MASE
 
 Disaggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -441,7 +441,7 @@ Disaggregates.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>%
 Disaggregates.ARIMA_MSE %>% left_join(Disaggregates.ARIMA_MASE, by = c("Method", "h")) %>% 
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") -> Disaggregate_PointF
 
-Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -452,7 +452,7 @@ Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink",
   theme(plot.title = element_text(size = 10, face = "italic"))+
   theme(axis.title.y = element_blank()) -> EXP_PointF_Disaggregates_MSE
 
-Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "gray") +
   geom_point(size = 3) + 
@@ -467,7 +467,7 @@ Disaggregate_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink",
 
 Score_arima %>% dplyr::select(-`Series`) %>% 
   group_by(`F-method`, `R-method`, `Forecast Horizon`) %>%
-  summarise(Avg_MSE = round(mean(`MSE`), digits = 2), Avg_MASE = round(mean(`MASE`), digits = 2)) -> Score_all.series_ARIMA
+  summarise(Avg_MSE = mean(`MSE`), Avg_MASE = mean(`MASE`)) -> Score_all.series_ARIMA
 
 Score_all.series_ARIMA %>% dplyr::filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>% 
@@ -485,7 +485,7 @@ Score_all.series_ARIMA %>% mutate(SS_MSE = round((1-(`Avg_MSE`/ARIMA.base_MSE))*
 
 Skill.Score_all.series_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MASE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MSE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> All.series.ARIMA_MSE
 
 All.series.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -493,7 +493,7 @@ All.series.ARIMA_MSE %>% filter(Method != "Base", Method != "Benchmark") %>%
 
 Skill.Score_all.series_ARIMA %>% dplyr::select(-`Avg_MASE`, -`Avg_MSE`, -`SS_MSE`) %>% 
   spread(key = `Forecast Horizon`, value = SS_MASE) %>% ungroup() %>% dplyr::select(-`F-method`) %>%  
-  mutate(`R-method` = replace(`R-method`, 6, "Benchmark")) %>% rename("Method" = "R-method") %>%
+  mutate(`R-method` = replace(`R-method`, c(6,3), c("Benchmark", "MinT(Shrink)"))) %>% rename("Method" = "R-method") %>%
   slice(match(Method_Order, `Method`)) %>% as.data.frame() -> All.series.ARIMA_MASE
 
 All.series.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>% 
@@ -502,7 +502,7 @@ All.series.ARIMA_MASE %>% filter(Method != "Base", Method != "Benchmark") %>%
 All.series.ARIMA_MSE %>% left_join(All.series.ARIMA_MASE, by = c("Method", "h")) %>% 
   rename("MSE" = "MSE.x", "MASE" = "MSE.y") -> All.series_PointF
 
-All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MSE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
@@ -513,7 +513,7 @@ All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "
   theme(plot.title = element_text(size = 10, face = "italic"))+
   theme(axis.title.y = element_blank()) -> EXP_PointF_All.series_MSE
 
-All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+All.series_PointF %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = MASE, color = Method, shape = Method)) +
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
@@ -543,69 +543,26 @@ rm(list=ls()[! ls() %in% c("INC_PointF_GDPI_MSE", "INC_PointF_Aggregates_MSE", "
 legend = gtable_filter(ggplotGrob(INC_PointF_GDPI_MSE), "guide-box")
 
 
-grid.arrange( arrangeGrob(INC_PointF_All.series_MSE+ theme(legend.position="none"), 
-                          INC_PointF_GDPI_MSE + theme(legend.position="none"),
+grid.arrange( arrangeGrob(INC_PointF_All.series_MSE + theme(legend.position="none"), 
+                          INC_PointF_GDPI_MSE + theme(legend.position="none"), 
                           INC_PointF_Aggregates_MSE + theme(legend.position="none"), 
-                          INC_PointF_Disaggregates_MSE + theme(legend.position="none"), top="Income", ncol = 1), 
-              arrangeGrob(EXP_PointF_All.series_MSE + theme(legend.position="none"),
-                          EXP_PointF_GDPE_MSE + theme(legend.position="none"),
-                          EXP_PointF_Aggregates_MSE+ theme(legend.position="none"), 
-                          EXP_PointF_Disaggregates_MSE + theme(legend.position="none"), top="Expenditure", ncol = 1), 
-              left = textGrob("Skill score (MSE) %", rot = 90, vjust = 1),
-              ncol=2, legend, heights=c(10, 1))
+                          INC_PointF_Disaggregates_MSE + theme(legend.position="none"), top="Income", ncol = 1),
+              arrangeGrob(EXP_PointF_All.series_MSE + theme(legend.position="none"), 
+                          EXP_PointF_GDPE_MSE + theme(legend.position="none"), 
+                          EXP_PointF_Aggregates_MSE + theme(legend.position="none"), 
+                          EXP_PointF_Disaggregates_MSE + theme(legend.position="none"), top="Expenditure", 
+                          ncol = 1),
+              left = textGrob("Skill score (MSE) %", rot = 90, vjust = 1), ncol=2, legend, heights=c(10, 1))
 
-grid.arrange( arrangeGrob(INC_PointF_All.series_MASE+ theme(legend.position="none"), 
-                          INC_PointF_GDPI_MASE + theme(legend.position="none"),
+
+grid.arrange( arrangeGrob(INC_PointF_All.series_MASE + theme(legend.position="none"), 
+                          INC_PointF_GDPI_MASE + theme(legend.position="none"), 
                           INC_PointF_Aggregates_MASE + theme(legend.position="none"), 
-                          INC_PointF_Disaggregates_MASE + theme(legend.position="none"), top="Income"), 
-              arrangeGrob(EXP_PointF_All.series_MASE + theme(legend.position="none"),
-                          EXP_PointF_GDPE_MASE + theme(legend.position="none"),
-                          EXP_PointF_Aggregates_MASE+ theme(legend.position="none"), 
-                          EXP_PointF_Disaggregates_MASE + theme(legend.position="none"), top="Expenditure"), 
-              left = textGrob("Skill score (MASE) %", rot = 90, vjust = 1),
-              ncol=2, legend, heights=c(10, 1))
-
-
-ggarrange(INC_PointF_All.series_MSE, INC_PointF_GDPI_MSE, INC_PointF_Aggregates_MSE, 
-          INC_PointF_Disaggregates_MSE, ncol = 1, nrow = 4, common.legend = TRUE, legend = "none", 
-          align = "v") -> p1_MSE
-
-ggarrange(EXP_PointF_All.series_MSE, EXP_PointF_GDPE_MSE, EXP_PointF_Aggregates_MSE, 
-          EXP_PointF_Disaggregates_MSE, ncol = 1, nrow = 4, common.legend = TRUE, legend = "none", 
-          align = "v") -> p2_MSE
-
-
-
-
-
-
-
-grid.arrange( arrangeGrob(p1_MSE, top="Income"), 
-              arrangeGrob(p2_MSE+ theme(legend.position="none"), top="Expenditure"), 
-              left = textGrob("Skill score (MSE) %", rot = 90, vjust = 1),
-              ncol=2, legend, heights=c(10, 1))
-
-
-
-ggarrange(INC_PointF_All.series_MASE, INC_PointF_GDPI_MASE, INC_PointF_Aggregates_MASE, 
-          INC_PointF_Disaggregates_MASE, ncol = 1, nrow = 4, common.legend = TRUE, legend = "none", 
-          align = "v") -> p1_MASE
-
-ggarrange(EXP_PointF_All.series_MASE, EXP_PointF_GDPE_MASE, EXP_PointF_Aggregates_MASE, 
-          EXP_PointF_Disaggregates_MASE, ncol = 1, nrow = 4, common.legend = TRUE, legend = "none", 
-          align = "v") -> p2_MASE
-
-
-grid.arrange( arrangeGrob(p1_MASE, top="Income", left = textGrob("Skill score (MASE) %", rot = 90, vjust = 1)), 
-              arrangeGrob(p2_MASE+ theme(legend.position="none"), top="Expenditure"), 
-              ncol=2, legend, heights=c(10, 1))
-
-
-grid.arrange( arrangeGrob(Plot_INC_MultivS_Gauss + theme(legend.position="none"), 
-                          Plot_INC_MultivS_NonPara + theme(legend.position="none"), top="Income"), 
-              arrangeGrob(Plot_EXP_MultivS_Gauss + theme(legend.position="none"), 
-                          Plot_EXP_MultivS_NonPara + theme(legend.position="none"), top="Expenditure"), 
-              ncol=2, mylegend, heights=c(10, 1))
-
-
+                          INC_PointF_Disaggregates_MASE + theme(legend.position="none"), top="Income", ncol = 1),
+              arrangeGrob(EXP_PointF_All.series_MASE + theme(legend.position="none"), 
+                          EXP_PointF_GDPE_MASE + theme(legend.position="none"), 
+                          EXP_PointF_Aggregates_MASE + theme(legend.position="none"), 
+                          EXP_PointF_Disaggregates_MASE + theme(legend.position="none"), top="Expenditure", 
+                          ncol = 1),
+              left = textGrob("Skill score (MASE) %", rot = 90, vjust = 1), ncol=2, legend, heights=c(10, 1))
 

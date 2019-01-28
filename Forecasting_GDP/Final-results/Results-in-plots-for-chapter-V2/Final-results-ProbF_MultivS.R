@@ -9,17 +9,17 @@ rm(list = ls())
 #Multivariate forecasts (Gaussian) - Income approach
 load("Prob-forecasting/INC-ProbForecasts-GaussianApproach-ExpandingW.RData")
 
-Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT Shrink")
+Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT(Shrink)")
 
 SS_E.ES_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> INC_ARIMA_ES
 
 INC_ARIMA_ES %>% gather(-Method, key = "h", value = "ES") -> INC_ARIMA_ES
 
 SS_E.VS_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>% 
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> INC_ARIMA_VS
 
@@ -31,7 +31,7 @@ INC_ARIMA_ES %>% left_join(INC_ARIMA_VS, by = c("Method", "h")) %>%
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> INC_MultivS_ES_VS
 
 #Plot for ES only
-INC_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+INC_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = ES, color = Method, shape = Method)) + 
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
@@ -48,17 +48,17 @@ rm(list=ls()[! ls() %in% c("Plot_INC_MultivS_Gauss")])
 
 #Scores for Multivariate forecasts 
 load("Prob-forecasting/EXP-ProbForecasts-GaussianApproach-ExpandingW.RData")
-Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT Shrink")
+Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT(Shrink)")
 
 SS_E.ES_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> EXP_ARIMA_ES
 
 EXP_ARIMA_ES %>% gather(-Method, key = "h", value = "ES") -> EXP_ARIMA_ES
 
 SS_E.VS_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>% 
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> EXP_ARIMA_VS
 
@@ -70,7 +70,7 @@ EXP_ARIMA_ES %>% left_join(EXP_ARIMA_VS, by = c("Method", "h")) %>%
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> EXP_MultivS_ES_VS
 
 #Plot for ES only
-EXP_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%
+EXP_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>%
   ggplot(aes(x = h, y = ES, color = Method, shape = Method)) +  
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) +
@@ -85,17 +85,17 @@ EXP_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS",
 rm(list=ls()[! ls() %in% c("Plot_INC_MultivS_Gauss", "Plot_EXP_MultivS_Gauss")])
 load("Prob-forecasting/INC-ProbForecasts-BootstrapApproach-ExpandingW.RData")
 
-Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT Shrink")
+Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT(Shrink)")
 
 SS_E.ES_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> INC_ARIMA_ES
 
 INC_ARIMA_ES %>% gather(-Method, key = "h", value = "ES") -> INC_ARIMA_ES
 
 SS_E.VS_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 4, 7), c("Bottom-up", "MinT Sample", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>% 
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> INC_ARIMA_VS
 
@@ -107,7 +107,7 @@ INC_ARIMA_ES %>% left_join(INC_ARIMA_VS, by = c("Method", "h")) %>%
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> INC_MultivS_ES_VS
 
 #Plot for ES only
-INC_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>%  
+INC_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>%  
   ggplot(aes(x = h, y = ES, color = Method, shape = Method)) + 
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
@@ -125,17 +125,17 @@ load("Prob-forecasting/EXP-ProbForecasts-BootstrapApproach-ExpandingW.RData")
 
 #Scores for Multivariate forecasts 
 
-Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT Shrink")
+Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT(Shrink)")
 
 SS_E.ES_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>%  
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> EXP_ARIMA_ES
 
 EXP_ARIMA_ES %>% gather(-Method, key = "h", value = "ES") -> EXP_ARIMA_ES
 
 SS_E.VS_ARIMA %>% ungroup() %>% 
-  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT Shrink", "Benchmark"))) %>%
+  mutate(`R-method` = replace(`R-method`, list = c(2, 3, 6), c("Bottom-up", "MinT(Shrink)", "Benchmark"))) %>%
   dplyr::select(-`F-method`) %>% 
   rename("Method" = "R-method") %>% slice(match(Method_Order, `Method`)) -> EXP_ARIMA_VS
 
@@ -147,7 +147,7 @@ EXP_ARIMA_ES %>% left_join(EXP_ARIMA_VS, by = c("Method", "h")) %>%
   gather(-Method, -h, key = "Scoring_rule", value = "Score") -> EXP_MultivS_ES_VS
 
 #Plot for ES only
-EXP_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT Shrink", "WLS", "OLS", "Bottom-up"))) %>% 
+EXP_ARIMA_ES %>% mutate(Method = factor(Method, levels = c("MinT(Shrink)", "WLS", "OLS", "Bottom-up"))) %>% 
   ggplot(aes(x = h, y = ES, color = Method, shape = Method)) + 
   geom_hline(yintercept = 0, color = "grey") +
   geom_point(size = 3) + 
