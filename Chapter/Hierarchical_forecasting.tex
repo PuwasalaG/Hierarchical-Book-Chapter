@@ -6,14 +6,17 @@
 %
 %%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 % RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[graybox]{svmult}
 
 % choose options for [] as required from the list
 % in the Reference Guide
 
-\usepackage{mathptmx}       % selects Times Roman as basic font
+%\usepackage{mathptmx}       % selects Times Roman as basic font
+% Much better times roman fonts are obtained with the following 3 lines.
+\usepackage{newtxmath,newtxtext}
+\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
 \usepackage{helvet}         % selects Helvetica as sans-serif font
 \usepackage{courier}        % selects Courier as typewriter font
 \usepackage{type1cm}        % activate if the above 3 fonts are
