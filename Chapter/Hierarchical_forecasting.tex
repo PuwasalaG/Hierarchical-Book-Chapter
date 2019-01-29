@@ -287,75 +287,60 @@ A significant advantage of the MinT reconciliation solution is that it is the fi
 	where $\hat{r}_{ij}$ is the $(i,j)$th element of $\hat{\bm{R}}_{1}$, the one-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. This is referred to as the MinT(Shrink) estimator.
 \end{itemize}
 
-\section{Hierarchical probabilistic forecasting}
+\section{Hierarchical probabilistic forecasting}\label{sec:probforecasting}
 
-A limitation of point forecasts is that they provide no indication of uncertainty around the forecast. A richer description of forecast uncertainty can be obtained by providing a probabilistic forecast, also commonly referred to as a density forecast. For a review of probabilistic forecasts, and methods for evaluating such forecasts known as {\em scoring rules} see  \citep{Gneiting2014}. In recent years, the use of probabilistic forecasts and their evaluation via scoring rules has become pervasive in macroeconomic forecasting, some notable (but non-exhaustive) examples are \cite{GewAmi2010}, \cite{BilEtAl2013}, \cite{CarEtAl2015} and \cite{ClaRav2015}.
+A limitation of point forecasts is that they provide no indication of uncertainty around the forecast. A richer description of forecast uncertainty can be obtained by providing a probabilistic forecast, also commonly referred to as a density forecast. For a review of probabilistic forecasts, and methods for evaluating such forecasts known as \emph{scoring rules} see \citep{Gneiting2014}. In recent years, the use of probabilistic forecasts and their evaluation via scoring rules has become pervasive in macroeconomic forecasting, some notable (but non-exhaustive) examples are \citet{GewAmi2010}, \citet{BilEtAl2013}, \citet{CarEtAl2015} and \citet{ClaRav2015}.
 
 %For example, \citet{McSharry2005} produced probabilistic forecasts for electricity demand, \citet{BenTaieb2017} for smart meter data, \citet{Pinson2009} for wind power generation, and \citet{Gel2004}, \citet{Gneiting2005a} and \citet{Gneiting2005} for various weather variables.
 
 The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\bm{y}_{T+h|T}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
-To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \cite{Taieb2017} who define a coherent forecast in terms of a convolution.  An equivalent definition, provided by \cite{GamEtAl2018} defines a  coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$.  \cite{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
+To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \citet{Taieb2017} who define a coherent forecast in terms of a convolution. An equivalent definition, provided by \citet{GamEtAl2018} defines a coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$. \citet{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
 
-\begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\mathbb{R}^n$ that are mapped onto  $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a base probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ reconciles $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
+\begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\varmathbb{R}^n$ that are mapped onto $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a base probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ reconciles $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 \end{definition}
 
-In practice this definition leads to two approaches.  For some parametric distributions, for instance the multivariate normal,  a reconciled probabilistic forecast can be derived analytically.  However, in macroeconomic forecasting, non-standard distributions such as bimodal distributions are often required to take different policy regimes into account.  In such cases a non-parametric approach based on bootstrapping in-sample errors proposed \cite{GamEtAl2018} can be used.  These scenarios are now covered in detail.
+In practice this definition leads to two approaches. For some parametric distributions, for instance the multivariate normal, a reconciled probabilistic forecast can be derived analytically. However, in macroeconomic forecasting, non-standard distributions such as bimodal distributions are often required to take different policy regimes into account. In such cases a non-parametric approach based on bootstrapping in-sample errors proposed \citet{GamEtAl2018} can be used. These scenarios are now covered in detail.
 
 \subsection{Probabilistic forecast reconciliation in the Gaussian framework}\label{sec:probrecgauss}
 
-%Suppose we have a set of hierarchical time series where each realisation follows a multivariate Guassian distribution. i.e., $\bm{y}_T \sim \mathscr{N}(\bm{\mu}_T, \Sigma_T)$ where both $\bm{\mu}_T$ and $\Sigma_T$ lives in the coherent subspace $\mathfrak{s}$ due to the aggregation structure of the hierarchy. We are interested in estimating the predictive Gaussian distribution of $\bm{Y}_{T+h}| \bm{\mathscr{I}}_T$ where $\bm{\mathscr{I}}_T= \{\bm{y}_1,\bm{y}_2,\dots.,\bm{y}_T\}$, which should also lives in $\mathfrak{s}$. Since Gaussian distributions are uniquely characterised by the first two moments, it is sufficient to have the mean and variance forecasts to get the Gaussian predictive distributions of the hierarchy.
+%Suppose we have a set of hierarchical time series where each realisation follows a multivariate Guassian distribution. i.e., $\bm{y}_T \sim \mathscr{N}(\bm{\mu}_T, \Sigma_T)$ where both $\bm{\mu}_T$ and $\Sigma_T$ lives in the coherent subspace $\mathfrak{s}$ due to the aggregation structure of the hierarchy. We are interested in estimating the predictive Gaussian distribution of $\bm{Y}_{T+h}| \bm{\mathscr{I}}_T$ where $\bm{\mathscr{I}}_T= \{\bm{y}_1,\bm{y}_2,\dots,\bm{y}_T\}$, which should also lives in $\mathfrak{s}$. Since Gaussian distributions are uniquely characterised by the first two moments, it is sufficient to have the mean and variance forecasts to get the Gaussian predictive distributions of the hierarchy.
 
 %Assume we have fit the time series models for each series of the hierarchy by considering all the available information. Using these fitted models we can estimate the means and variance forecasts of the hierarchy which are denoted by $\bm{\hat{\mu}}_{T+h}$ and $\hat{\Sigma}_{T+h}$ respectively. Each element in $\bm{\hat{\mu}}_{T+h}$ corresponds to the mean forecast of each series in the hierarchy and these elements are stacked in the same order as $\bm{y}_t$. Similarly $\hat{\Sigma}_{T+h}$ contains variances and covariances of all series in the hierarchy. One can either fit univariate models for each individual series of the hierarchy or fit multivariate models by considering the correlation structure of the series for getting these forecasts. However as long as the aggregation structure is not imposed, it is very unlikely that these forecasts will be coherent. Thus it comes to the point of reconciliation.
 
-In the case where the base forecasts are probabilistic forecasts characterised by elliptical distributions, \cite{GamEtAl2018} show that reconciled probabilistic forecasts will also be elliptical.  This is particularly straightforward for the Gaussian distribution which is completely characterised by two moments.  Letting the base probabilistic forecasts be $\mathscr{N}(\bm{\hat{y}}_{T+h|T}, \hat{\bm{\Sigma}}_{T+h|T})$, then the reconciled probabilistic forecasts will be $\mathscr{N}(\bm{\tilde{y}}_{T+h|T}, \tilde{\bm{\Sigma}}_{T+h|T})$, where,
-
+In the case where the base forecasts are probabilistic forecasts characterised by elliptical distributions, \citet{GamEtAl2018} show that reconciled probabilistic forecasts will also be elliptical. This is particularly straightforward for the Gaussian distribution which is completely characterised by two moments. Letting the base probabilistic forecasts be $\mathscr{N}(\bm{\hat{y}}_{T+h|T}, \hat{\bm{\Sigma}}_{T+h|T})$, then the reconciled probabilistic forecasts will be $\mathscr{N}(\bm{\tilde{y}}_{T+h|T}, \tilde{\bm{\Sigma}}_{T+h|T})$, where
 \begin{equation}\label{eq:rec mean}
-\bm{\tilde{y}}_{T+h|T} = \bm{SG}\bm{\hat{y}}_{T+h|T},
+	\bm{\tilde{y}}_{T+h|T} = \bm{SG}\bm{\hat{y}}_{T+h|T},
 \end{equation}
 and
 \begin{equation}\label{eq:rec var}
-\tilde{\bm{\Sigma}}_{T+h|T} = \bm{SG}\hat{\bm{\Sigma}}_{T+h|T}\bm{G'S'}.
+	\tilde{\bm{\Sigma}}_{T+h|T} = \bm{SG}\hat{\bm{\Sigma}}_{T+h|T}\bm{G'S'}.
 \end{equation}
 
-There are several options for obtaining the base probabilistic forecasts and in particular the variance covariance matrix $\hat{\bm{\Sigma}}$.  One option is to fit multivariate models either level by level or for the hierarchy as a whole leading respectively to a $\hat{\bm \Sigma}$ that is block diagonal or dense.  Another alternative is to fit univariate models for each individual series in which case $\hat{\bm{\Sigma}}$ is a diagonal matrix. A third alternative, that we employ here, is to obtain $\hat{\bm{\Sigma}}$ using in-sample forecast errors, in a similar vein to how $\hat{\bm{W}}_{1}$ is estimated in the MinT method.  Here the same shrinkage estimator described in Section~\ref{sec:reconciliation approaches} is used.  The reconciled probabilistic forecast will ultimately depend on the choice of $\bm{G}$; the same choices of $\bm{G}$ matrices used in Section~\ref{sec:point forecasting} can be used.
+There are several options for obtaining the base probabilistic forecasts and in particular the variance covariance matrix $\hat{\bm{\Sigma}}$. One option is to fit multivariate models either level by level or for the hierarchy as a whole leading respectively to a $\hat{\bm \Sigma}$ that is block diagonal or dense. Another alternative is to fit univariate models for each individual series in which case $\hat{\bm{\Sigma}}$ is a diagonal matrix. A third alternative, that we employ here, is to obtain $\hat{\bm{\Sigma}}$ using in-sample forecast errors, in a similar vein to how $\hat{\bm{W}}_{1}$ is estimated in the MinT method. Here the same shrinkage estimator described in \autoref{sec:reconciliation approaches} is used. The reconciled probabilistic forecast will ultimately depend on the choice of $\bm{G}$; the same choices of $\bm{G}$ matrices used in \autoref{sec:point forecasting} can be used.
 
 \subsection{Probabilistic forecast reconciliation in the non-parametric framework}\label{sec:probrecnp}
 
-In many applications, including macroeconomic forecasting, it may not be reasonable to assume Gaussian predictive distributions. Therefore, non-parametric approaches have been widely used for probabilistic forecasts in different disciplines. For example, ensemble forecasting in weather applications \citep{GneRaf2005,Gneiting2014,Gneiting2008}, bootstrap based approaches \citep{Manzan2008,Vilar2013}. In macroeconomics, \cite{CogEtAl2005} discuss the importance of allowing for skew in density forecasts and more recently \cite{SmiVah2016} discuss this issue in detail.
+In many applications, including macroeconomic forecasting, it may not be reasonable to assume Gaussian predictive distributions. Therefore, non-parametric approaches have been widely used for probabilistic forecasts in different disciplines. For example, ensemble forecasting in weather applications \citep{GneRaf2005,Gneiting2014,Gneiting2008}, and bootstrap based approaches \citep{Manzan2008,Vilar2013}. In macroeconomics, \citet{CogEtAl2005} discuss the importance of allowing for skewness in density forecasts and more recently \citet{SmiVah2016} discuss this issue in detail.
 
-%Non-parametric approaches are also important in hierarchical forecasting as in most applications they have millions of time series which are often difficult to assume parametric distributions. Further, for data with heavy tails, it is often misleading to assume Gaussianity. The algorithm introduced by \cite{Taieb2017} is also a non-parametric approach as it does not make any distributional assumptions. They first generate, a sample from the bottom-level predictive distribution, and then aggregate to obtain coherent probabilistic forecasts of the upper levels of the hierarchy. Initially they use MinT algorithm to reconcile the means of the bottom-level forecast distributions, and then a copula-based approach is employed to model the dependency structure of the hierarchy. Resulting multi-dimensional distribution is used to generate the empirical forecast distributions for all bottom-level series which are then aggregated to obtain the empirical forecast distribution for the entire hierarchy. Although the means of forecast distributions are reconciled, the predictive distributions were obtained through a bottom-up based approach. Therefore this approach is not a reconciliation method as it does not use all the information from the hierarchy when producing coherent probabilistic forecasts.
+%Non-parametric approaches are also important in hierarchical forecasting as in most applications they have millions of time series which are often difficult to assume parametric distributions. Further, for data with heavy tails, it is often misleading to assume Gaussianity. The algorithm introduced by \citet{Taieb2017} is also a non-parametric approach as it does not make any distributional assumptions. They first generate, a sample from the bottom-level predictive distribution, and then aggregate to obtain coherent probabilistic forecasts of the upper levels of the hierarchy. Initially they use MinT algorithm to reconcile the means of the bottom-level forecast distributions, and then a copula-based approach is employed to model the dependency structure of the hierarchy. Resulting multi-dimensional distribution is used to generate the empirical forecast distributions for all bottom-level series which are then aggregated to obtain the empirical forecast distribution for the entire hierarchy. Although the means of forecast distributions are reconciled, the predictive distributions were obtained through a bottom-up based approach. Therefore this approach is not a reconciliation method as it does not use all the information from the hierarchy when producing coherent probabilistic forecasts.
 
-%\cite{Jeon2018} is the only existing study that does reconciliation in probabilistic hierarchical forecasts. This method is based on cross-validation and it also does not assume any parametric distributions for predictive densities. However they applied this method particularly for temporal hierarchies.
+%\citet{Jeon2018} is the only existing study that does reconciliation in probabilistic hierarchical forecasts. This method is based on cross-validation and it also does not assume any parametric distributions for predictive densities. However they applied this method particularly for temporal hierarchies.
 
-Due to these concerns, we employ the bootstrap method proposed by \cite{GamEtAl2018} that does not make parametric assumptions about the predictive distribution. An important result exploited by this method is that applying point forecast reconciliation to the draws from an incoherent base predictive distribution, results in a sample from the reconciled predictive distribution. We summarise this process below:
+Due to these concerns, we employ the bootstrap method proposed by \citet{GamEtAl2018} that does not make parametric assumptions about the predictive distribution. An important result exploited by this method is that applying point forecast reconciliation to the draws from an incoherent base predictive distribution, results in a sample from the reconciled predictive distribution. We summarise this process below:
 
 %In the first step we obtain possible sample paths from the incoherent forecast distributions. This follows by the reconciliation step which projects each sample path to the coherent subspace. These steps will be discussed in detail below.
 
 \begin{enumerate}
-	\item Fit univariate models to each series in the hierarchy over a training set from $t=1$ to $t=T$
-	\item For each series compute $h$-step ahead point forecasts, for all $h$ up to $H$. Collect these into a $n\times H$ matrix $\hat{\bm Y}:=(\hat{\bm{y}}_{T+1|T},\ldots,\hat{\bm{y}}_{T+H|T})$, where $\hat{\bm{y}}_{T+h|T}$ is a $n\times 1$ vector of $h$-step ahead point forecasts for all series in the hierarchy.
-	\item Compute one-step ahead in-sample forecast errors. Collect these into an $n \times T$ matrix ${\hat{\bm E}}=(\hat{\bm{e}}_1,\hat{\bm{e}}_2,.....,\hat{\bm{e}}_T)$, where the $n\times 1$ vector $\hat{\bm{e}}_t={\bm y}_t-\hat{\bm {y}}_{t|t-1}$.  Here, $\hat{\bm {y}}_{t|t-1}$ is a vector of forecasts made for time $t$ using information up to and including $t-1$. These are called in-sample forecasts since they depend on past values but information from the entire training sample is used to estimate parameters that forecasts are based on.
-	\item Block bootstrap from $\hat{\bm{E}}$, that is choose $H$ consecutive columns of $\hat{{\bm E}}$ at random, repeating this process $B$ times.  Denote the $n\times H$ matrix obtained at iteration $b$ as $\hat{{\bm E}}^b$ for $b=1,\ldots,B$.
-	\item For all $b$, compute $\hat{\bm \Upsilon}^b:=\hat{\bm Y}+{\bm \hat{\bm{E}}}^b$. Each row of $\hat{\bm \Upsilon}^b$ is a sample path of $h$ forecasts for a single series.  Each column of $\hat{\bm \Upsilon}^b$ is a realisation from the joint predictive distribution at a particular horizon.
-	\item For each $b=1,\ldots,B$ select the $h^{th}$ column of $\hat{\bm \Upsilon}^b$ and stack these to form a $n\times B$ matrix $\hat{\bm{\Upsilon}}_{T+h|T}$
-	\item For a given ${\bm G}$ matrix and for each $h=1,\ldots,H$ compute $\tilde{\bm{\Upsilon}}_{T+h|T}={\bm S}{\bm G}\hat{\bm{\Upsilon}}_{T+h|T}$.   Each column of $\tilde{\bm \Upsilon}_{T+h|T}$ is a realisation from the joint $h$-step ahead reconciled predictive distribution.
+	\item Fit univariate models to each series in the hierarchy over a training set from $t=1,\dots,T$.
+	\item For each series compute $h$-step-ahead point forecasts, for $h=1,\dots,H$. Collect these into an $n\times H$ matrix $\hat{\bm{Y}}:=(\hat{\bm{y}}_{T+1|T},\dots,\hat{\bm{y}}_{T+H|T})$, where $\hat{\bm{y}}_{T+h|T}$ is an $n$-vector of $h$-step-ahead point forecasts for all series in the hierarchy.
+	\item Compute one-step-ahead in-sample forecast errors. Collect these into an $n \times T$ matrix ${\hat{\bm E}}=(\hat{\bm{e}}_1,\hat{\bm{e}}_2,\dots,\hat{\bm{e}}_T)$, where the $n$-vector $\hat{\bm{e}}_t={\bm{y}}_t-\hat{\bm {y}}_{t|t-1}$. Here, $\hat{\bm {y}}_{t|t-1}$ is a vector of forecasts made for time $t$ using information up to and including time $t-1$. These are called in-sample forecasts since they depend on past values but information from the entire training sample is used to estimate parameters that forecasts are based on.
+	\item Block bootstrap from $\hat{\bm{E}}$, that is choose $H$ consecutive columns of $\hat{{\bm E}}$ at random, repeating this process $B$ times. Denote the $n\times H$ matrix obtained at iteration $b$ as $\hat{{\bm E}}^b$ for $b=1,\dots,B$.
+	\item For all $b$, compute $\hat{\bm\Upsilon}^b:=\hat{\bm{Y}}+\hat{\bm{E}}^b$. Each row of $\hat{\bm \Upsilon}^b$ is a sample path of $h$ forecasts for a single series. Each column of $\hat{\bm \Upsilon}^b$ is a realisation from the joint predictive distribution at a particular horizon.
+	\item For each $b=1,\dots,B$, select the $h$th column of $\hat{\bm \Upsilon}^b$ and stack these to form an $n\times B$ matrix $\hat{\bm{\Upsilon}}_{T+h|T}$
+	\item For a given ${\bm G}$ matrix and for each $h=1,\dots,H$, compute $\tilde{\bm{\Upsilon}}_{T+h|T}={\bm S}{\bm G}\hat{\bm{\Upsilon}}_{T+h|T}$.  Each column of $\tilde{\bm \Upsilon}_{T+h|T}$ is a realisation from the joint $h$-step-ahead reconciled predictive distribution.
 \end{enumerate}
 
-
-%For a given forecast horizon and add these to the point forecasts $\hat{\bm{y}}_{T+1},\ldots,\hat{\bm{y}}_{T+h}$.  Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
-
-%\begin{equation} \label{eq:19}
-%\hat{\bm{Y}}^b_{T+h|T}=\begin{pmatrix}
-%\hat{\bm{y}}_{1,T+h|T}^b\\
-%\hat{\bm{y}}_{2,T+h|T}^b\\
-%\vdots\\
-%\hat{\bm{y}}_{N,T+h|T}^b
-%\end{pmatrix}.
-%\end{equation}
-
-
-
-%bootstrapped errors will be incorporated as the error series for simulating future paths. Taking block bootstrapped in-sample errors in generating future paths will implicitly model the dependency structure of the hierarchy. These simulated future sample paths will be then formed in a vector $\hat{\bm{y}}_{T+h|T}^b$ by stacking the sample paths of each node in the same order as $\bm{y}_t$. As such we generate a sample of $N$ future paths for the hierarchy. We can denote this sample by a $(N \times n)$ matrix $\hat{\bm{Y}}^b_{T+h|T}$ where,
+%For a given forecast horizon and add these to the point forecasts $\hat{\bm{y}}_{T+1},\dots,\hat{\bm{y}}_{T+h}$. Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
 
 %\begin{equation} \label{eq:19}
 %\hat{\bm{Y}}^b_{T+h|T}=\begin{pmatrix}
@@ -366,14 +351,24 @@ Due to these concerns, we employ the bootstrap method proposed by \cite{GamEtAl2
 %\end{pmatrix}.
 %\end{equation}
 
-%An advantage to this approach is that the dependence structure of the hierarchy as well as serial correlation, are captured through the bootstrapping.  However future paths constructed in this way will not be coherent and thus require reconciliation.
+%bootstrapped errors will be incorporated as the error series for simulating future paths. Taking block bootstrapped in-sample errors in generating future paths will implicitly model the dependency structure of the hierarchy. These simulated future sample paths will be then formed in a vector $\hat{\bm{y}}_{T+h|T}^b$ by stacking the sample paths of each node in the same order as $\bm{y}_t$. As such we generate a sample of $N$ future paths for the hierarchy. We can denote this sample by a $(N \times n)$ matrix $\hat{\bm{Y}}^b_{T+h|T}$ where
+%\begin{equation} \label{eq:19}
+%\hat{\bm{Y}}^b_{T+h|T}=\begin{pmatrix}
+%\hat{\bm{y}}_{1,T+h|T}^b\\
+%\hat{\bm{y}}_{2,T+h|T}^b\\
+%\vdots\\
+%\hat{\bm{y}}_{N,T+h|T}^b
+%\end{pmatrix}.
+%\end{equation}
+
+%An advantage to this approach is that the dependence structure of the hierarchy as well as serial correlation, are captured through the bootstrapping. However future paths constructed in this way will not be coherent and thus require reconciliation.
 
 %\subsection*{Step 2: Reconciling future sample paths}
 
 %The second step is to project these sample paths to the coherent subspace. Then we get a set of reconciled future paths which form a possible sample from the reconciled probabilistic forecast distribution. Similar to the projection used in the point forecast reconciliation, we project each sample path through the projection $\bm{SG}$. Then we get,
 
 %\begin{equation} \label{eq:20}
-%\tilde{\bm{y}}_{i,T+h}^b = \bm{SG}\hat{\bm{y}}_{i,T+h}^b, \quad i = 1, ..., N
+%\tilde{\bm{y}}_{i,T+h}^b = \bm{SG}\hat{\bm{y}}_{i,T+h}^b, \quad i = 1, \dots, N
 %\end{equation}
 %and let
 %\begin{equation}\label{eq:21}
@@ -384,7 +379,7 @@ Due to these concerns, we employ the bootstrap method proposed by \cite{GamEtAl2
 %\tilde{\bm{y}}_{N,T+h|T}^b
 %\end{pmatrix}
 %\end{equation}
-%where, $\tilde{\bm{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,...,N$. $\tilde{\bm{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\bm{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom-level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
+%where $\tilde{\bm{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,\dots,N$. $\tilde{\bm{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\bm{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom-level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
 
 \section{Australian GDP}\label{sec:data}
 
