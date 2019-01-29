@@ -101,12 +101,12 @@ The remainder of the chapter is set out as follows. \autoref{sec:Hier ts} introd
 
 \section{Hierarchical time series}\label{sec:Hier ts}
 
-To simplify the introduction of some notation we use the simple two-level hierarchical structure shown in Figure \ref{fig:simple tree}. Denote as $y_{Tot,t}$ the value observed at time $t$ for the most aggregate (Total) series  corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
+To simplify the introduction of some notation we use the simple two-level hierarchical structure shown in \autoref{fig:simple tree}. Denote as $y_{\text{Tot},t}$ the value observed at time $t$ for the most aggregate (Total) series corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
 
-\begin{figure}[!hbt]  \center
-  \begin{tikzpicture}
-    \tikzstyle{every node}=[ellipse,draw,inner sep=2pt,minimum size=7mm,fill=red!15] %158,202,225
-    \tikzstyle[level distance=.1cm]
+\begin{figure}[!hbt]\sidecaption[t]\centering
+	\begin{tikzpicture}
+		\tikzstyle{every node}=[ellipse,draw,inner sep=2pt,minimum size=7mm,fill=red!15] %158,202,225
+		\tikzstyle[level distance=.1cm]
     \tikzstyle[sibling distance=.1cm]
     %\tikzstyle{level 3}=[sibling distance=6.2mm,font=\tiny]
     \tikzstyle{level 1}=[sibling distance=40mm, font=\small, set style={{every node}+=[fill=hfill_blue]}]
@@ -123,39 +123,38 @@ To simplify the introduction of some notation we use the simple two-level hierar
     };
   \end{tikzpicture}
   \caption{A simple two-level hierarchical structure.}
-  \label{fig:simple tree}
+	\label{fig:simple tree}
 \end{figure}
 
-Let $\bm{y}_t = (y_{Tot,t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$, a vector containing observations across all series of the hierarchy at $t$. Similarly denote as \linebreak $\bm{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level series. In general, $\bm{y}_t\in \mathbb{R}^n$ and $\bm{b}_t \in \mathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of Figure \ref{fig:simple tree}, $n=8$ and $m=5$.
+Let $\bm{y}_t = (y_{\text{Tot},t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$ denote a vector containing observations across all series of the hierarchy at time $t$. Similarly denote as $\bm{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level series. In general, $\bm{y}_t\in \varmathbb{R}^n$ and $\bm{b}_t \in \varmathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of \autoref{fig:simple tree}, $n=8$ and $m=5$.
 
-Aggregation constraints dictate that $y_{Tot}=y_{A,t}+y_{B,t}=y_{AA,t}+y_{AB,t}+y_{BA,t}+y_{BB,t}+y_{BC,t}$,~ $y_{A,t}=y_{AA,t}+y_{AB,t}$ and $y_{B}=y_{BA,t}+y_{BB,t}+y_{BC,t}$. Hence we can write
+Aggregation constraints dictate that $y_{\text{Tot}}=y_{A,t}+y_{B,t}=y_{AA,t}+y_{AB,t}+y_{BA,t}+y_{BB,t}+y_{BC,t}$,~ $y_{A,t}=y_{AA,t}+y_{AB,t}$ and $y_{B}=y_{BA,t}+y_{BB,t}+y_{BC,t}$. Hence we can write
 \begin{equation}\label{eq:summing matrix}
-\bm{y}_t = \bm{Sb}_t,
+	\bm{y}_t = \bm{Sb}_t,
 \end{equation}
 where \begin{equation*}
-\bm{S} = \begin{pmatrix}
-1& 1& 1& 1 & 1 \\
-1& 1& 0& 0 & 0\\
-0& 0& 1& 1 & 1\\
-& \multicolumn{3}{c}{\bm{I}_5} &
-\end{pmatrix}
+	\bm{S} = \begin{pmatrix}
+		1 & 1                            & 1 & 1 & 1 \\
+		1 & 1                            & 0 & 0 & 0 \\
+		0 & 0                            & 1 & 1 & 1 \\
+		  & \multicolumn{3}{c}{\bm{I}_5} &
+	\end{pmatrix}
 \end{equation*}
-an $n\times m$ matrix referred to as the \textit{summing matrix} and $\bm{I}_m$ is an $m$-dimensional identity matrix. $\bm{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\bm{S}$ span the linear subspace of $\mathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\mathbb{R}^m$ by $\bm{S}$ will result in an $n$-dimensional vector that lies in $\mathfrak{s}$.
+is an $n\times m$ matrix referred to as the \textit{summing matrix} and $\bm{I}_m$ is an $m$-dimensional identity matrix. $\bm{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\bm{S}$ span the linear subspace of $\varmathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\varmathbb{R}^m$ by $\bm{S}$ will result in an $n$-dimensional vector that lies in $\mathfrak{s}$.
 
 \begin{property}
-A hierarchical time series has observations that are \textit{coherent}, i.e., $\bm{y}_{t} \in \mathfrak{s}$ for all $t$. We use the term coherent to describe not just $\bm{y}_t$ but any vector in $\mathfrak{s}$.
-  \label{prop:coherence}
+	A hierarchical time series has observations that are \textit{coherent}, i.e., $\bm{y}_{t} \in \mathfrak{s}$ for all $t$. We use the term coherent to describe not just $\bm{y}_t$ but any vector in $\mathfrak{s}$.
+	\label{prop:coherence}
 \end{property}
 
+Structures similar to the one shown in \autoref{fig:simple tree} can be found in macroeconomics. For instance, in \autoref{sec:data} we consider two alternative hierarchical structures for the case of GDP and its components. However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices, and so on. These structures can also be captured by an appropriately designed $\bm{S}$ matrix.
 
-Structures similar to the one portrayed in Figure \ref{fig:simple tree} can be found in macroeconomics. For instance in Section~\ref{sec:data} we consider two alternative hierarchical structures for the case of GDP and its components.  However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices and so on.  These structures can also be captured by an appropriately designed $\bm{S}$ matrix.
+An important alternative aggregation structure, also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. \autoref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\bm{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical structures, grouped time series do not naturally disaggregate in a unique manner.
 
-An important alternative aggregation structure also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. Figure \ref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\bm{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical, grouped time series do not naturally disaggregate in a unique manner.
-\begin{figure}[!hbt]
-\center
-\tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
-\begin{tikzpicture}
-    \matrix[ampersand replacement=\&,column sep=0.3cm] {
+\begin{figure}[!hbt]\sidecaption\centering
+	\tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
+	\begin{tikzpicture}
+		\matrix[ampersand replacement=\&,column sep=0.3cm] {
         \node[circle,draw,fill=hfill_yellow, font=\small,distance=1cm] {AX};~ \&
         \node[circle,draw,fill=hfill_yellow,font=\small] {AY};~ \&
         \node[circle,draw,fill=hfill_blue, font=\small] {A}; \\[0.3cm]
@@ -171,9 +170,13 @@ An important alternative aggregation structure also commonly found in macroecono
   \label{fig:simple grouped tree}
 \end{figure}
 
-An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \cite{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies (e.g. quarterly, annual). There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \cite{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others such as, \cite{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single most optimum level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous, making it very challenging to reach a consensus or some concrete conclusions. For example, \cite{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state, ``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.'' A similar conclusion is reached by \cite{NijPal1990}. \cite{SilEtAl2008} consider forecasting French cash state deficit and provide empirical evidence of forecast accuracy gains from forecasting with the aggregate model rather than aggregating forecasts from the disaggregate model.
+An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \citet{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies (e.g.\ quarterly, annual). There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \citet{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others, including \citet{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single best level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous making it very challenging to reach a consensus or some concrete conclusions. For example, \citet{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state,
+\begin{quote}
+``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.''
+\end{quote}
+A similar conclusion is reached by \citet{NijPal1990}. \citet{SilEtAl2008} consider forecasting French cash state deficit and provide empirical evidence of forecast accuracy gains from forecasting with the aggregate model rather than aggregating forecasts from the disaggregate model.
 
-The overwhelming majority of this literature concentrates on a single level of temporal aggregation \citep[there are some notable exceptions such as,][]{AndEtAl2011,KouEtAl2014}. \cite{AthEtAl2017} show that considering multiple levels of aggregation via temporal hierarchies and implementing forecast reconciliation approaches rather than single level approaches results in substantial gains in forecast accuracy across all levels of temporal aggregation. This is an example of the benefits of forecast reconciliation to which we now turn out attention to.
+The vast majority of this literature concentrates on a single level of temporal aggregation \citep[although there are some notable exceptions such as][]{AndEtAl2011,KouEtAl2014}. \citet{AthEtAl2017} show that considering multiple levels of aggregation via temporal hierarchies and implementing forecast reconciliation approaches rather than single level approaches results in substantial gains in forecast accuracy across all levels of temporal aggregation.
 
 \section{Point forecasting}\label{sec:point forecasting}
 
