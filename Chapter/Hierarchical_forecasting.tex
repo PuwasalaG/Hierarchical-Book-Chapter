@@ -29,10 +29,22 @@
 
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
 
-\usepackage{qtree, bm, amsmath, amssymb, qtree, bm, multirow, textcmds, siunitx, mathrsfs, float, booktabs, color, soul}
+\usepackage{amsmath,bm}
+\usepackage{qtree, multirow, textcmds, siunitx, mathrsfs, float, booktabs, color, soul}
 \usepackage{natbib, setspace}
 \usepackage{pdfpages} %To insert pdf pages
 \usepackage[bb=boondox]{mathalfa}
+
+%% Any special functions or other packages can be loaded here.
+\usepackage{todonotes}
+\usepackage[hidelinks]{hyperref}
+\usepackage[section]{placeins}
+\usepackage[english]{babel}
+\addto\extrasenglish{
+  \def\sectionautorefname{Section}
+  \def\subsectionautorefname{Section}
+}
+
 \usepackage{tikz}
 \definecolor{hfill_blue}{RGB}{208,229,249}
 \definecolor{hfill_yellow}{RGB}{255,255,208}
