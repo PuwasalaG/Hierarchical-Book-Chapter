@@ -383,59 +383,62 @@ Due to these concerns, we employ the bootstrap method proposed by \citet{GamEtAl
 
 \section{Australian GDP}\label{sec:data}
 
-In our empirical application we consider Gross Domestic Product (GDP) of Australia with quarterly data spanning the period 1984:Q4-2018:Q3. The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely: Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures. Each of these measures are aggregates of economic variables which are also targets of interests for the macroeconomic forecaster. This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including the headline GDP.
+In our empirical application we consider Gross Domestic Product (GDP) of Australia with quarterly data spanning the period 1984:Q4--2018:Q3. The Australian Bureau of Statistics (ABS) measures GDP using three main approaches namely Production, Income and Expenditure. The final GDP figure is obtained as an average of these three figures. Each of these measures are aggregates of economic variables which are also targets of interests for the macroeconomic forecaster. This suggests a hierarchical approach to forecasting could be used to improve forecasts of all series in the hierarchy including the headline GDP.
 
-We concentrate on the Income and Expenditure approaches as nominal data are available only for these two. We restrict our attention to nominal data due to the fact that real data are constructed via a chain price index approach with different price deflators used for each series. As a result, real GDP data are not coherent - the aggregate series is not a linear combination of the disaggregate series.  For similar reasons we do not use seasonally adjusted data; the process of seasonal adjustment results in data that are not coherent.  Finally, although there is a small statistical discrepancy between each series and the headline GDP figure, we simply treat this statistical discrepancy, which is also published by the ABS, as a time series in its own right. For further of the details on the data please refer to \cite{ABS2018}.
+We concentrate on the Income and Expenditure approaches as nominal data are available only for these two. We restrict our attention to nominal data due to the fact that real data are constructed via a chain price index approach with different price deflators used for each series. As a result, real GDP data are not coherent --- the aggregate series is not a linear combination of the disaggregate series. For similar reasons we do not use seasonally adjusted data; the process of seasonal adjustment results in data that are not coherent. Finally, although there is a small statistical discrepancy between each series and the headline GDP figure, we simply treat this statistical discrepancy, which is also published by the ABS, as a time series in its own right. For further of the details on the data please refer to \citet{ABS2018}.
+
 
 \subsubsection*{Income approach}
 
 Using the income approach, GDP is calculated by aggregating all income flows. In particular, GDP at purchaser's price is the sum of all factor incomes and taxes, minus subsidies on production and imports \citep{ABS2015}:
-	\begin{align*}
-	\textit{GDP} &= \textit{Gross operating surplus}+ \textit{Gross mixed income}\\& + \textit{Compensation of employees} \\& + \textit{Taxes less Subsidies on production and imports} \\& + \textit{Statistical discrepancy (I)}\\
-	\end{align*}
-Figure \ref{fig:GDP_I} shows the full hierarchical structure capturing all components aggregated to form GDP using the income approach. The hierarchy has two levels of aggregation below the top-level, with a total of $n=16$ series across the whole structure and $m=10$ series at the bottom-level.
+\begin{align*}
+	\textit{GDP}
+	  & = \textit{Gross operating surplus}+ \textit{Gross mixed income} \\
+	  & + \textit{Compensation of employees} \\
+	  & + \textit{Taxes less Subsidies on production and imports} \\
+	  & + \textit{Statistical discrepancy (I)}.
+\end{align*}
+\autoref{fig:GDP_I} shows the full hierarchical structure capturing all components aggregated to form GDP using the income approach. The hierarchy has two levels of aggregation below the top-level, with a total of $n=16$ series across the whole structure and $m=10$ series at the bottom-level.
 
-\begin{figure}[t]
+\begin{figure}[!h]
 	\centering
-	\includegraphics[width=\textwidth]{Figs/IncomeApproach.png}
+	\includegraphics[width=.9\textwidth]{Figs/IncomeApproach.png}
 	\caption{Hierarchical structure of the income approach for GDP. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GDP_I}
 \end{figure}
 
 \subsubsection*{Expenditure approach}
 
+\begin{figure}
+	\centering	\includegraphics[width=.9\textwidth]{Figs/ExpenditureApproach.png}
+	\caption{Hierarchical structure of the expenditure approach for GDP. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
+%\end{figure}
+%
+%\begin{figure}[!b]
+	\centering
+	\includegraphics[width=.9\textwidth]{Figs/GFCF.png}
+	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GFCF}
+\end{figure}
+
 In the expenditure approach, GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. The underline equation is:
-
 \begin{align*}
-	\textit{GDP} &= \textit{Final consumption expenditure} + \textit{Gross fixed capital formation} \\ & + \textit{Changes in inventories} + \textit{Trade balance}+\textit{Statistical discrepancy (E)}\\
-	\end{align*}
-Figures \ref{fig:GDP_E}, \ref{fig:GFCF} and \ref{fig:HFCE} show the full hierarchical structure capturing all components aggregated to form GDP using the expenditure approach. The hierarchy has three levels of aggregation below the top-level, with a total of $n=80$ series across the whole structure and $m=53$ series at the bottom-level. \textcolor{orange}{A description of each series in these hierarchies along with the series ID assigned by the ABS are given in the Tables \ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and \ref{Tab:Expenditure-hierarchy-3} in the Appendix. GEORGE: I have added these to the Appendix. Will ask the Editors how they want these and that they can go to online supplementary materials.}
+	\textit{GDP}
+	 & = \textit{Final consumption expenditure} + \textit{Gross fixed capital formation}                  \\
+	 & + \textit{Changes in inventories} + \textit{Trade balance} + \textit{Statistical discrepancy (E)}.
+\end{align*}
+Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarchical structure capturing all components aggregated to form GDP using the expenditure approach. The hierarchy has three levels of aggregation below the top-level, with a total of $n=80$ series across the whole structure and $m=53$ series at the bottom-level. Descriptions of each series in these hierarchies along with the series ID assigned by the ABS are given in the Tables~\ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and~\ref{Tab:Expenditure-hierarchy-3} in the Appendix.\todo{GEORGE: I have added these to the Appendix. Will ask the Editors how they want these and that they can go to online supplementary materials.}
 
-
-Figure \ref{fig:TSplots-INC-EXP} displays time series from the income and expenditure approaches. The top panel shows the most aggregate GDP series. The panels below show series from levels below for the income hierarchy in left panel and the expenditure hierarchy in right panel. The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account and model all information and diverse signals from each series in the hierarchy which can only be achieved through a forecast reconciliation approach.
-
-\begin{figure}[t]
-	\centering	\includegraphics[width=\textwidth]{Figs/ExpenditureApproach.png}
-	\caption{Hierarchical structure of the expenditure approach for GDP. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures \ref{fig:GFCF} and \ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
-\end{figure}
-
-\begin{figure}[t]
+\begin{figure}[!t]
 	\centering
-	\includegraphics[width=\textwidth]{Figs/GFCF.png}
-	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from Figure \ref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GFCF}
+	\includegraphics[width=.9\textwidth]{Figs/HFCE.png}
+	\caption{Hierarchical structure for Household Final Consumption Expenditure under expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series..}\label{fig:HFCE}
 \end{figure}
 
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\textwidth]{Figs/HFCE.png}
-	\caption{Hierarchical structure for Household Final Consumption Expenditure under expenditure approach for GDP, continued from Figure \ref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series..}\label{fig:HFCE}
-\end{figure}
+\autoref{fig:TSplots-INC-EXP}\todo{Please save all figures as pdf not png. Also fix facet labels for Fig 8 and convert millions to billions.} displays time series from the income and expenditure approaches. The top panel shows the most aggregate GDP series. The panels below show series from levels below for the income hierarchy (left panel) and the expenditure hierarchy (right panel). The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account and model all information and diverse signals from each series in the hierarchy which can only be achieved through a forecast reconciliation approach.
 
-
-
-\begin{figure}[t]
+\begin{figure}
 	\centering
 	\small
-	\includegraphics[width = \textwidth]{Figs/TS-plots/TSplots-INC-EXP.png}
+	\includegraphics[width = .9\textwidth]{Figs/TS-plots/TSplots-INC-EXP.png}
 	\caption{Time plots for series from different levels of income and expenditure hierarchies.}\label{fig:TSplots-INC-EXP}
 \end{figure}
 
