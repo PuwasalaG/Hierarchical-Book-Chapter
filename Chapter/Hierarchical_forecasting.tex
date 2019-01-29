@@ -442,42 +442,36 @@ Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarc
 	\caption{Time plots for series from different levels of income and expenditure hierarchies.}\label{fig:TSplots-INC-EXP}
 \end{figure}
 
-
 \section{Empirical application methodology}\label{sec:meth}
 
-We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP.  We consider forecasts from $h=1$ quarter ahead up to $h=4$ quarters ahead using an {\em expanding} window.  First, the training sample is set from 1984:Q4 to 1994:Q3 and forecasts are produced for 1994:Q4 to 1995:Q3. Then the training window is expanded by one quarter ahead at a time, i.e. from 1984:Q4 to 2017:Q4 with the final forecasts produced for the last available observation of 2018:Q1. This leads to 94 1-step ahead, 93 2-steps ahead, 92 3-steps ahead and 91 4-steps ahead forecasts available for evaluation.
-
+We now demonstrate the potential for reconciliation methods to improve forecast accuracy for Australian GDP\@. We consider forecasts from $h=1$ quarter ahead up to $h=4$ quarters ahead using an \emph{expanding} window. First, the training sample is set from 1984:Q4 to 1994:Q3 and forecasts are produced for 1994:Q4 to 1995:Q3. Then the training window is expanded by one quarter at a time, i.e.\ from 1984:Q4 to 2017:Q4 with the final forecasts produced for the last available observation in 2018:Q1. This leads to 94 1-step-ahead, 93 2-steps-ahead, 92 3-steps-ahead and 91 4-steps-ahead forecasts available for evaluation.
 
 \subsection{Models}
 
+The first task in forecast reconciliation is to obtain base forecasts for all series in the hierarchy. In the case of the income approach this necessitates forecasting $n=16$ separate time series while in the case of the expenditure approach forecasts for $n=80$ separate time series must be obtained. Given the diversity in these time series discussed in \autoref{sec:data}, we focus on an approach that is fast but also flexible. We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and the AIC using an algorithm developed by \citet{HK08} and implemented in the \verb|auto.arima()| function in \citet{Rforecast}. A similar approach was also undertaken using the ETS framework to produce base forecasts \citep{expsmooth08}. This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecasts were found to be more accurate than ETS forecasts.\todo{Consequently for brevity, we have excluded presenting the results for ETS models. However, these are available from the authors upon request.} We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions, and models and methods that handle a large number of predictors such as factor models or least angle regression. However, \citet{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
 
-The first task in forecast reconciliation is to obtain base forecasts for all series in the hierarchy.  In the case of the income approach this necessitates forecasting $n=16$ separate time series while in the case of the expenditure approach forecasts for $n=80$ separate time series must be obtained.  Given the diversity in these time series discussed in Section~\ref{sec:data}, we focus on an approach that is fast but also flexible.  We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and the AIC using an algorithm developed by XXX and implement in the auto.arima function in XXX. {\color{red} Cite this to Rob's satisfaction}.  A similar approach was also undertaken using the ETS framework to produce base forecasts {\color{red} Again reference required here}.  This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecasts were found to be more accurate than ETS forecasts.  {\color{orange} Consequently for brevity, we have excluded presenting the results for ETS models. However, these are available from the authors upon request}.  We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions and models and methods that handle a large number of predictors such as factor models or least angle regresssion. However, \cite{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
-
-The hierarchical forecasting approaches we consider are bottom- up, OLS, WLS with variance scaling and the MinT(Shrink) approach.  The MinT(Sample) approach was also used but due to the size of the hierarchy forecasts reconciled via this approach were less stable.  Finally, all forecasts both base and coherent are compared to a \naive benchmark.  Since the data are not deseasonalised, the \naive benchmark is a seasonal random walk, i.e. the forecast for GDP (or one of its components) is the realised GDP in the same quarter of the previous year.  The \naive forecasts are by construction coherent and therefore do not need to be reconciled.
+The hierarchical forecasting approaches we consider are bottom-up, OLS, WLS with variance scaling and the MinT(Shrink) approach. The MinT(Sample) approach was also used but due to the size of the hierarchy, forecasts reconciled via this approach were less stable. Finally, all forecasts (both base and coherent) are compared to a seasonal \naive benchmark \citep{HynAth2018}; i.e.\ the forecast for GDP (or one of its components) is the realised GDP in the same quarter of the previous year. The \naive forecasts are by construction coherent and therefore do not need to be reconciled.
 
 \subsection{Evaluation}
 
-For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE).  The absolute scaled error is defined as
+For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE). The absolute scaled error is defined as
 \begin{equation*}
-q_{T+h} = \sum \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
+	q_{T+h} = \sum \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
 \end{equation*}
-where $\breve{e}_{t+h}$ is the difference between any forecast and the realisation\footnote{Breve is used instead of a hat or tilde to denote that this can be the error for either a base or reconciled forecast.}. $4$ is used due to the quarterly nature of the data.  An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series.  As such scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series.  For more details on different point forecast accuracy measures refer to Chapter 3 of \citet{HynAth2018}.
+where $\breve{e}_{t+h}$ is the difference between any forecast and the realisation\footnote{Breve is used instead of a hat or tilde to denote that this can be the error for either a base or reconciled forecast.}, and $4$ is used due to the quarterly nature of the data. An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series. Consequently, scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series. For more details on different point forecast accuracy measures, refer to Chapter 3 of \citet{HynAth2018}.
 
-Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \citep{Gneiting2014}.  Let $\breve{F}$ be a probabilistic forecast and let $\breve{\bm{y}}\sim \breve{F}$  where breve is used to denote that either base forecasts or coherent forecasts can be evaluated.  The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
+Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \citep{Gneiting2014}. Let $\breve{F}$ be a probabilistic forecast and let $\breve{\bm{y}}\sim \breve{F}$ where a breve is again used to denote that either base forecasts or coherent forecasts can be evaluated. The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
 \begin{equation*}
-eS(\breve{F}_{T+h|T},\bm{y}_{T+h}) =
-E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\bm{y}_{T+h}\|^\alpha
--\frac{1}{2}E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\breve{\bm{y}}^*_{T+h}\|^\alpha\,,
-\end{equation*} where $\bm{y}_{T+h}$ is the realisation at time $T+h$, $\alpha\in (0,2]$. We set $\alpha=1$, noting that other values of $\alpha$ give similar results.  The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available which is the case for all methods we employ.  An advantage of using energy score is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
-
+	eS(\breve{F}_{T+h|T},\bm{y}_{T+h}) =
+	\E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\bm{y}_{T+h}\|^\alpha
+	-\frac{1}{2}\E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\breve{\bm{y}}^*_{T+h}\|^\alpha\,,
+\end{equation*} where $\bm{y}_{T+h}$ is the realisation at time $T+h$, and $\alpha\in (0,2]$. We set $\alpha=1$, noting that other values of $\alpha$ give similar results. The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available, which is the case for all methods we employ. An advantage of using energy scores is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 \begin{equation*}
-\text{CRPS}(\breve{F}_i,y_{i,T+h}) = E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
+	\text{CRPS}(\breve{F}_i,y_{i,T+h}) = \E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}\E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
 \end{equation*}
-
 where the subscript $i$ is used to denote that CRPS measures forecast accuracy for a single variable in the hierarchy.
 
-As alternatives to the energy score, log score and variogram scores were also considered.  The log score was disregarded since \cite{GamEtAl2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent.  {\color{orange}The variogram score gave similar results to the energy score. Variogram score results are omitted for brevity but these are available from the authors upon request.}
-
+Alternatives to the energy score were also considered, namely log scores and variogram scores. The log score was disregarded since \citet{GamEtAl2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent. The variogram score gave similar results to the energy score, but these results are omitted for brevity but these are available from the authors upon request.
 
 %\subsubsection{Comparison between different forecasting methods}
 %
@@ -495,7 +489,6 @@ As alternatives to the energy score, log score and variogram scores were also co
 %
 %
 %First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent.
-
 
 %\subsubsection*{Income approach}
 %
@@ -515,9 +508,6 @@ As alternatives to the energy score, log score and variogram scores were also co
 %	\includegraphics[scale=0.50]{Figs/Results/EXP-PointF.png}
 %	\caption{Summary of point forecasts in expenditure approach}\label{Inc-PointF}
 %\end{figure}
-
-
-
 
 \section{Results}\label{sec:results}
 
