@@ -180,109 +180,111 @@ The vast majority of this literature concentrates on a single level of temporal 
 
 \section{Point forecasting}\label{sec:point forecasting}
 
-A requirement when forecasting hierarchial time series is that the forecasts adhere to the same aggregation constraints as the observed data, i.e., they are coherent.
+A requirement when forecasting hierarchical time series is that the forecasts adhere to the same aggregation constraints as the observed data; i.e., they are coherent.
 
-\begin{definition}
-A set of $h$-step ahead forecasts $\tilde{\bm{y}}_{T+h|T}$, stacked in the same order as $\bm{y}_{t}$ and generated using information up to and including time $T$,
-are said to be \textit{coherent} if $\tilde{\bm{y}}_{T+h|T} \in \mathfrak{s}$.
-  \label{def:coherence}
+\begin{definition}\label{def:coherence}
+	A set of $h$-step-ahead forecasts $\tilde{\bm{y}}_{T+h|T}$, stacked in the same order as $\bm{y}_{t}$ and generated using information up to and including time $T$, are said to be \textit{coherent} if $\tilde{\bm{y}}_{T+h|T} \in \mathfrak{s}$.
 \end{definition}
 
-Hence, coherent forecasts of lower level series aggregate up to their corresponding upper level series and vice versa.
+Hence, coherent forecasts of lower level series aggregate to their corresponding upper level series and vice versa.
 
-
-\begin{figure}[!t]
+\begin{figure}[!b]
 	\centering
 	\vspace{-0.9cm}
 	\small
 	\resizebox{\linewidth}{!}{
-	\input{Figs/Diagram_3D/Schematic_3D}
-}
-	\caption{Representation of coherent subspace in a three dimensional hierarchy where $y_{Tot} = y_A + y_B$. The coherent subspace is depicted as a gray two dimensional plane labelled $\mathfrak{s}$. Note the columns of $\vec{s}_1 = (1,1,0)'$ and $\vec{s}_2 = (1, 0, 1)'$ form a basis for $\mathfrak{s}$. The red points lying on $\mathfrak{s}$ can be either realisations or coherent forecasts. }\label{fig:Schematic-3D}
-
+		\input{Figs/Diagram_3D/Schematic_3D}
+	}
+	\caption{Representation of a coherent subspace in a three dimensional hierarchy where $y_{\text{Tot}} = y_A + y_B$. The coherent subspace is depicted as a gray two dimensional plane labelled $\mathfrak{s}$. Note that the columns of $\vec{s}_1 = (1,1,0)'$ and $\vec{s}_2 = (1, 0, 1)'$ form a basis for $\mathfrak{s}$. The red points lying on $\mathfrak{s}$ can be either realisations or coherent forecasts.}\label{fig:Schematic-3D}
 \end{figure}
 
-Let us consider the smallest possible hierarchy with two bottom-level series, depicted in Figure\ref{fig:Schematic-3D}, where $y_{Tot} = y_A + y_B$. While base forecasts could lie anywhere in $\mathbb{R}^3$, the realisations and coherent forecasts lie in a two dimensional subspace $\mathfrak{s}\subset \mathbb{R}^3$.
-
+Let us consider the smallest possible hierarchy with two bottom-level series, depicted in \autoref{fig:Schematic-3D}, where $y_{\text{Tot}} = y_A + y_B$. While base forecasts could lie anywhere in $\varmathbb{R}^3$, the realisations and coherent forecasts lie in a two dimensional subspace $\mathfrak{s}\subset \varmathbb{R}^3$.
 
 \subsection{Single-level approaches}\label{sec:single level approaches}
 A common theme across all traditional approaches for forecasting hierarchical time series is that a single-level of aggregation is first selected and forecasts for that level are generated. These are then linearly combined to generate a set of coherent forecasts the rest of the structure.
 
 \subsubsection{Bottom-up}
 
-In the \textit{bottom-up} approach, forecasts for the most disaggregate level are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\bm{b}}_{T+h|T} \in \mathbb{R}^m$, a set of $h$-step ahead forecasts for the bottom-level series. For the simple hierarchical structure of Figure \ref{fig:simple tree}, $\hat{\bm{b}}_{T+h|T} = (\hat{{y}}_{AA,T+h|T}, \hat{{y}}_{AB,T+h|T}, \hat{{y}}_{BA,T+h|T}, \hat{{y}}_{BB,T+h|T},\hat{{y}}_{BC,T+h|T}),$ where, $\hat{{y}}_{i,T+h|T}$ is the $h$-step ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by,
+In the \textit{bottom-up} approach, forecasts for the most disaggregate level are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\bm{b}}_{T+h|T} \in \varmathbb{R}^m$, a set of $h$-step-ahead forecasts for the bottom-level series. For the simple hierarchical structure of \autoref{fig:simple tree}, $\hat{\bm{b}}_{T+h|T} = (\hat{{y}}_{AA,T+h|T}, \hat{{y}}_{AB,T+h|T}, \hat{{y}}_{BA,T+h|T}, \hat{{y}}_{BB,T+h|T},\hat{{y}}_{BC,T+h|T}),$ where $\hat{{y}}_{i,T+h|T}$ is the $h$-step-ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by
 \begin{equation*}\label{eq:BU}
-\tilde{\bm{y}}^{BU}_{T+h|T}=\bm{S\hat{\bm{b}}}_{T+h|T}.
+	\tilde{\bm{y}}^{\text{BU}}_{T+h|T}=\bm{S\hat{\bm{b}}}_{T+h|T}.
 \end{equation*}
 Generating bottom-up forecasts has the advantage of no information being lost due to aggregation. However, bottom-level data can potentially be highly volatile or very noisy and therefore challenging to forecast.
 
 \subsubsection{Top-down}
 
-In contrast \textit{top-down} approaches involve first generating forecasts for the most aggregate level and then disaggregating these down the hierarchy. In general, coherent forecasts generated from top-down approaches are given by,
+In contrast, \textit{top-down} approaches involve first generating forecasts for the most aggregate level and then disaggregating these down the hierarchy. In general, coherent forecasts generated from top-down approaches are given by
 \begin{equation*}
-\tilde{\bm{y}}^{TD}_{T+h|T}=\bm{S}\bm{p}\hat{y}_{Tot, T+h|T},
+	\tilde{\bm{y}}^{\text{TD}}_{T+h|T}=\bm{S}\bm{p}\hat{y}_{Tot, T+h|T},
 \end{equation*}
-where $\bm{p} = (p_1,...,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{Tot, T+h|T}$ to forecasts for the bottom-level series, hence $\bm{p}\hat{y}_{Tot, T+h|T}=\bm{\hat{\bm{b}}}_{T+h|T}$. These are then aggregated up by the summing matrix $\bm{S}$.
+where $\bm{p} = (p_1,\dots,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{Tot, T+h|T}$ to forecasts for the bottom-level series; hence $\bm{p}\hat{y}_{Tot, T+h|T}=\bm{\hat{\bm{b}}}_{T+h|T}$. These are then aggregated by the summing matrix $\bm{S}$.
 
-Traditionally proportions have been calculated based on the observed historical data. \cite{gross1990} present and evaluate twenty-one alternative approaches. The most convenient attribute of these approaches is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregate top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. A limitation of such top-down approaches, is that characteristics of lower level series cannot be captured. To overcome this, \cite{AthEtAl2009} introduced a new top-down approach which disaggregates the top-level based on proportions of forecasts rather than the historical data and show evidence that this method outperforms the conventional top-down approaches. However, a limitation of all top-down is that they introduce bias to the forecasts even when the top-level forecast itself is unbiased. We discuss this in detail in Section~ \ref{sec:reconciliation approaches} that follows.
+Traditionally, proportions have been calculated based on the observed historical data. \citet{gross1990} present and evaluate twenty-one alternative approaches. The most convenient attribute of these approaches is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregate top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. A limitation of such top-down approaches is that characteristics of lower level series cannot be captured. To overcome this, \citet{AthEtAl2009} introduced a new top-down approach which disaggregates the top-level based on proportions of forecasts rather than the historical data and showed that this method outperforms the conventional top-down approaches. However, a limitation of all top-down approaches is that they introduce bias to the forecasts even when the top-level forecast itself is unbiased. We discuss this in detail in \autoref{sec:reconciliation approaches}.
 
 \subsubsection{Middle-out}
 
-A compromise between bottom-up and top-down approaches is the middle-out approach. It entails first forecasting the series of a selected middle-level. For series above the middle-level, coherent forecasts are generated using the bottom-up approach by aggregating the middle-level forecasts upwards. For series below the middle level, coherent forecasts are generated using a top-down approach by disaggregating the middle-level forecasts downwards. Since the middle-out approach involves generating top-down forecasts, it also introduces bias to the forecasts.
+A compromise between bottom-up and top-down approaches is the middle-out approach. It entails first forecasting the series of a selected middle-level. For series above the middle-level, coherent forecasts are generated using the bottom-up approach by aggregating the middle-level forecasts. For series below the middle level, coherent forecasts are generated using a top-down approach by disaggregating the middle-level forecasts. Since the middle-out approach involves generating top-down forecasts, it also introduces bias to the forecasts.
 
 \subsection{Point forecast reconciliation}\label{sec:reconciliation approaches}
 
-All approaches discussed so far are limited to only using information from a single-level of aggregation. Furthermore, these ignore any correlations across levels of a hierarchy. An alternative framework that overcomes these limitations is one that involves forecast \textit{reconciliation}. In a first step forecasts for all the series across all levels of the hierarchy are generated, ignoring any aggregation constraints. We refer to these as \textit{base} forecasts and denote them by $\hat{\bm{y}}_{T+h|T}$. In general, base forecasts will not be coherent, although a notable exception is when a random walk is used to generate base forecasts. In this case, forecasts are simply equal to a previous realisation of the data and they inherit the property of coherence.
+All approaches discussed so far are limited to only using information from a single-level of aggregation. Furthermore, these ignore any correlations across levels of a hierarchy. An alternative framework that overcomes these limitations is one that involves forecast \textit{reconciliation}. In a first step. forecasts for all the series across all levels of the hierarchy are computed, ignoring any aggregation constraints. We refer to these as \textit{base} forecasts and denote them by $\hat{\bm{y}}_{T+h|T}$. In general, base forecasts will not be coherent, unless a very simple method has been used to compute them such as for \naive forecasts. In this case, forecasts are simply equal to a previous realisation of the data and they inherit the property of coherence.
 
-The second step is an ex-post adjustment that reconciles base forecasts so that they become coherent. In general, this is achieved by mapping the base forecasts $\hat{\bm{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$, via a matrix $\bm{SG}$, resulting in a set of coherent forecasts $\tilde{\bm{y}}_{T+h|T}$. More specifically,
+The second step is an adjustment that reconciles base forecasts so that they become coherent. In general, this is achieved by mapping the base forecasts $\hat{\bm{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$ via a matrix $\bm{SG}$, resulting in a set of coherent forecasts $\tilde{\bm{y}}_{T+h|T}$. Specifically,
 \begin{equation}\label{eq:recon}
-\tilde{\bm{y}}_{T+h|T}=\bm{S}\bm{G}\hat{\bm{y}}_{T+h|T},
+	\tilde{\bm{y}}_{T+h|T}=\bm{S}\bm{G}\hat{\bm{y}}_{T+h|T},
 \end{equation}
-where $\bm{G}$ is an $m\times n$ matrix that maps $\hat{\bm{y}}_{T+h|T}$ to $\mathbb{R}^m$, producing new forecasts for the bottom-level, which are in turn mapped to the coherent subspace by the summing matrix $\bm{S}$. We restrict our attention to projections on $\mathfrak{s}$ in which case $\bm{SGS}=\bm{S}$. This ensures that unbiasedness is preserved, i.e., for a set of unbiased base forecasts reconciled forecasts will also be unbiased.
+where $\bm{G}$ is an $m\times n$ matrix that maps $\hat{\bm{y}}_{T+h|T}$ to $\varmathbb{R}^m$, producing new forecasts for the bottom-level, which are in turn mapped to the coherent subspace by the summing matrix $\bm{S}$. We restrict our attention to projections on $\mathfrak{s}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. This ensures that unbiasedness is preserved, i.e., for a set of unbiased base forecasts reconciled forecasts will also be unbiased.
 
 Note that all single-level approaches discussed so far can also be represented by \eqref{eq:recon} using appropriately designed $\bm{G}$ matrices, however not all of these will be projections. For example for the bottom-up approach, $\bm{G}=\begin{pmatrix}
-\bm{0}_{(m \times n-m)} & \bm{I}_m
-\end{pmatrix}$ in which case $\bm{SGS}=\bm{S}$. For any top-down approach
+		\bm{0}_{(m \times n-m)} & \bm{I}_m
+	\end{pmatrix}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. For any top-down approach
 $\bm{G}=\begin{pmatrix}
-\bm{p} & \bm{0}_{(m \times n-1)}
-\end{pmatrix}$, for which case $\bm{SGS}\ne\bm{S}$.
-
+		\bm{p} & \bm{0}_{(m \times n-1)}
+	\end{pmatrix}$, for which $\bm{S}\bm{G}\bm{S}\ne\bm{S}$.
 
 \subsubsection{Optimal MinT reconciliation}
 
-\cite{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation. We present here a detailed outline of this approach and in turn relate it to previous significant contributions in forecast reconciliation.
+\citet{WicEtAl2019} build a unifying framework for much of the previous literature on forecast reconciliation. We present here a detailed outline of this approach and in turn relate it to previous significant contributions in forecast reconciliation.
 
-Assume that $\hat{\bm{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $E_{1:T}(\hat{\bm{y}}_{T+h|T})= E_{1:T}[\bm{y}_{T+h}|\bm{y}_1,...,\bm{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
+Assume that $\hat{\bm{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $\E_{1:T}(\hat{\bm{y}}_{T+h|T})= \E_{1:T}[\bm{y}_{T+h}\mid\bm{y}_1,\dots,\bm{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
 Let
 \begin{equation}\label{eq:base errors}
-\hat{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\hat{\bm{y}}_{T+h|T}
+	\hat{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\hat{\bm{y}}_{T+h|T}
 \end{equation}
 denote a set of base forecast errors with Var$(\hat{\bm{e}}_{T+h|T})=\bm{W}_h$, and
 \begin{equation*}
-\tilde{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\tilde{\bm{y}}_{T+h|T}
-\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \cite{WicEtAl2019} shows that for any matrix $\bm{G}$ such that $\bm{S}\bm{G}\bm{S}=\bm{S}$, $\text{Var}(\tilde{\bm{e}}_{T+h|T})=\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'
+	\tilde{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\tilde{\bm{y}}_{T+h|T}
+\end{equation*} denote a set of coherent forecast errors. Lemma 1 in \citet{WicEtAl2019} shows that for any matrix $\bm{G}$ such that $\bm{S}\bm{G}\bm{S}=\bm{S}$, $\text{Var}(\tilde{\bm{e}}_{T+h|T})=\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'
 $. Furthermore Theorem 1 shows that
 \begin{equation} \label{eq:MinT}
-\bm{G} = (\bm{S}'{\bm{W}}^{-1}_h\bm{S})^{-1}\bm{S}'{\bm{W}}^{-1}_h
+	\bm{G} = (\bm{S}'{\bm{W}}^{-1}_h\bm{S})^{-1}\bm{S}'{\bm{W}}^{-1}_h
 \end{equation}
-is the unique solution that minimises the tr$[\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}']$ subject to $\bm{S}\bm{G}\bm{S}=\bm{S}$. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts, using as $\bm{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts.
-A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via ${\bm{W}}_{h}$. However, estimating ${\bm{W}}_{h}$ is challenging, especially for $h>1$. \citet{WicEtAl2019} present possible alternative estimators for ${\bm{W}}_{h}$ and show that these lead to different $\bm{G}$ matrices. We summarise these below.
+is the unique solution that minimises the trace of $\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'$ subject to $\bm{S}\bm{G}\bm{S}=\bm{S}$. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts, using as $\bm{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts.
 
-\begin{itemize}
-    \item Set ${\bm{W}}_{h}=k_h\bm{I}_n$, for all $h$, where $k_{h} > 0$ is a proportionality constant. This simple assumption returns $\bm{G}=(\bm{S}'\bm{S})^{-1}\bm{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$ minimising the Euclidean distance between $\hat{\bm{y}}_{T+h|T}$ and $\tilde{\bm{y}}_{T+h|T}$.  \cite{HynEtAl2011} come to same solution, however from the perspective of the following regression model \begin{equation*}\hat{\bm{y}}_{T+h|T} = \bm{S\ubeta}_{T+h|T} + \bm{\varepsilon}_{T+h|T} \end{equation*} where $\bm{\ubeta}_{T+h|T}=E[\bm{b}_{T+h}|\bm{b}_1,.....,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. The OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$, and due to this interpretation we continue to refer to this reconciliation method as OLS. A disadvantage of the OLS solution is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation.  Furthermore, OLS does not account for the correlations across series.
+A significant advantage of the MinT reconciliation solution is that it is the first to incorporate the full correlation structure of the hierarchy via $\bm{W}_{h}$. However, estimating $\bm{W}_{h}$ is challenging, especially for $h>1$. \citet{WicEtAl2019} present possible alternative estimators for $\bm{W}_{h}$ and show that these lead to different $\bm{G}$ matrices. We summarise these below.
 
-    \item Set ${\bm{W}}_{h}=k_{h}\text{diag}(\hat{\bm{W}}_{1})$ for all $h$, where $k_{h} > 0$ and
-        $$
-        \hat{\bm{W}}_{1} = \frac{1}{T}\sum_{T=1}^{T} \hat{\bm{e}}_{t}\hat{\bm{e}}_{t}'
-        $$
-        is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \cite{Hyndman2016}.
+\begin{itemize}\parskip=1.2ex
+	\item Set $\bm{W}_{h}=k_h\bm{I}_n$ for all $h$, where $k_{h} > 0$ is a proportionality constant. This simple assumption returns $\bm{G}=(\bm{S}'\bm{S})^{-1}\bm{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$ minimising the Euclidean distance between $\hat{\bm{y}}_{T+h|T}$ and $\tilde{\bm{y}}_{T+h|T}$. \citet{HynEtAl2011} come to same solution, however from the perspective of the following regression model
+  \begin{equation*}
+    \hat{\bm{y}}_{T+h|T} = \bm{S}\bm{\beta}_{T+h|T} + \bm{\varepsilon}_{T+h|T},
+  \end{equation*}
+  where $\bm{\beta}_{T+h|T}=\E[\bm{b}_{T+h}\mid\bm{b}_1,\dots,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. The OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$, and due to this interpretation we continue to refer to this reconciliation method as OLS\@. A disadvantage of the OLS solution is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. Furthermore, OLS does not account for the correlations across series.
 
-        An alternative WLS estimator is proposed by \citet{AthEtAl2017} in the context of temporal hierarchies. Here $\bm{W}_{h}$ is proportional to $\text{diag}(\bm{S}\bm{1})$ where $\bm{1}$ being a unit column vector of dimension $n$. Hence the weights are proportional to the number of bottom-level variables required to form an aggregate. For example in the hierarchy of Figure~\ref{fig:simple tree} the weights corresponding to the Total, series A and series B are proportional to 5, 2 and 3 respectively. This weighting scheme depends only on the aggregation structure and is referred to as structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom-level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
+	\item Set ${\bm{W}}_{h}=k_{h}\text{diag}(\hat{\bm{W}}_{1})$ for all $h$ ($k_{h} > 0$), where
+  $$
+    \hat{\bm{W}}_{1} = \frac{1}{T}\sum_{T=1}^{T} \hat{\bm{e}}_{t}\hat{\bm{e}}_{t}'
+  $$
+  is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \citet{Hyndman2016}.
 
-    \item  Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$, for all $h$, where $k_{h} > 0$, the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results as $m$ grows compared to $T$. This is referred to this as the MinT(Sample) estimator.
-    \item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}^D$, for all $h$, where $k_{h} > 0$, $\hat{\bm{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\bm{W}}_{1}) + (1 - \lambda_{D})\hat{\bm{W}}_{1}$ is a shrinkage estimator with diagonal target, and shrinkage intensity parameter
-        $$\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{Var}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},$$
-        where $\hat{r}_{ij}$ is the $ij$th element of $\hat{\bm{R}}_{1}$, the $1$-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. This is referred to as the MinT(Shrink) estimator.
+  An alternative WLS estimator is proposed by \citet{AthEtAl2017} in the context of temporal hierarchies. Here $\bm{W}_{h}$ is proportional to $\text{diag}(\bm{S}\bm{1})$ where $\bm{1}$ is a unit column vector of dimension $n$. Hence the weights are proportional to the number of bottom-level variables required to form an aggregate. For example, in the hierarchy of \autoref{fig:simple tree}, the weights corresponding to the Total, series A and series B are proportional to 5, 2 and 3 respectively. This weighting scheme depends only on the aggregation structure and is referred to as structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom-level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
+
+	\item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$ for all $h$ ($k_{h} > 0$) to be proportional to the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results as $m$ grows compared to $T$. This is referred to this as the MinT(Sample) estimator.
+
+	\item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}^D$ for all $h$ ($k_{h} > 0$), where $\hat{\bm{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\bm{W}}_{1}) + (1 - \lambda_{D})\hat{\bm{W}}_{1}$ is a shrinkage estimator with diagonal target and shrinkage intensity parameter
+  $$
+    \hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{\text{Var}}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},
+  $$
+	where $\hat{r}_{ij}$ is the $(i,j)$th element of $\hat{\bm{R}}_{1}$, the one-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. This is referred to as the MinT(Shrink) estimator.
 \end{itemize}
 
 \section{Hierarchical probabilistic forecasting}
