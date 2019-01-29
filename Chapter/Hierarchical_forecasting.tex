@@ -90,7 +90,7 @@
 \maketitle
 
 \section{Introduction}\label{sec:intro}
-			
+
 Accurate forecasting of key macroeconomic variables such as Gross Domestic Product (GDP), inflation, industrial production, has been at the forefront of economic research over many decades. Early approaches involved univariate models or at best low dimensional multivariate systems. The era of big data has led to the use of regularization and shrinkage methods such as dynamic factor models, Lasso, LARS, Bayesian VARs, in an effort to exploit the plethora of potentially useful predictors now available. These predictors commonly also include the components of the variables of interest. For instance, GDP is formed as an aggregate of consumption, government expenditure, investment and net exports, with each of these components also formed as aggregates of other economic variables. While the macroeconomic forecasting literature regularly uses such sub-indices as predictors, it does so in ways that fail to exploit accounting identities that describe known deterministic relationships between macroeconomic variables.
 
 In this chapter we take a different approach. Over the past decade there has been a growing literature on forecasting collections of time series that follow aggregation constraints, known as hierarchical time series. Initially the aim of this literature was to ensure that forecasts adhered to aggregation constraints thus ensuring aligned decision making. However in many empirical settings the forecast reconciliation methods designed to deal with this problem have also been shown to improve forecast accuracy. Examples include forecasting accidents and emergency admissions \citep{AthEtAl2017}, mortality rates \citep{ShaHyn2017}, prison populations \citep{AthEtAl2019}, retail sales \citep{VilPed2018}, solar energy \citep{YanEtAl2017,YagEtAl2019}, tourism demand \citep{AthEtAl2009, HynEtAl2011, WicEtAl2019}, wind power generation \citep{ZhaDon2018}. Since both aligned decision making and forecast accuracy are key concerns for economic agents and policy makers we propose the application of state of the art forecast reconciliation methods to macroeconomic forecasting. To the best of our knowledge the only application of forecast reconciliation methods to macroeconomics is the PhD thesis of \citep{weiss2018essays} which focuses on point forecasting for inflation.
@@ -107,22 +107,22 @@ To simplify the introduction of some notation we use the simple two-level hierar
 	\begin{tikzpicture}
 		\tikzstyle{every node}=[ellipse,draw,inner sep=2pt,minimum size=7mm,fill=red!15] %158,202,225
 		\tikzstyle[level distance=.1cm]
-    \tikzstyle[sibling distance=.1cm]
-    %\tikzstyle{level 3}=[sibling distance=6.2mm,font=\tiny]
-    \tikzstyle{level 1}=[sibling distance=40mm, font=\small, set style={{every node}+=[fill=hfill_blue]}]
-    \tikzstyle{level 2}=[sibling distance=15mm, font=\footnotesize, set style={{every node}+=[fill=hfill_yellow]}]
-    \node{Total}%[edge from parent fork down]
-    child {node {A}
-      child {node {AA}}
-      child {node {AB}}
-    }
-    child {node {B}
-      child {node {BA}}
-      child {node {BB}}
-      child {node {BC}}
-    };
-  \end{tikzpicture}
-  \caption{A simple two-level hierarchical structure.}
+		\tikzstyle[sibling distance=.1cm]
+		%\tikzstyle{level 3}=[sibling distance=6.2mm,font=\tiny]
+		\tikzstyle{level 1}=[sibling distance=40mm, font=\small, set style={{every node}+=[fill=hfill_blue]}]
+		\tikzstyle{level 2}=[sibling distance=15mm, font=\footnotesize, set style={{every node}+=[fill=hfill_yellow]}]
+		\node{Total}%[edge from parent fork down]
+		child {node {A}
+				child {node {AA}}
+				child {node {AB}}
+			}
+		child {node {B}
+				child {node {BA}}
+				child {node {BB}}
+				child {node {BC}}
+			};
+	\end{tikzpicture}
+	\caption{A simple two-level hierarchical structure.}
 	\label{fig:simple tree}
 \end{figure}
 
@@ -155,19 +155,19 @@ An important alternative aggregation structure, also commonly found in macroecon
 	\tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
 	\begin{tikzpicture}
 		\matrix[ampersand replacement=\&,column sep=0.3cm] {
-        \node[circle,draw,fill=hfill_yellow, font=\small,distance=1cm] {AX};~ \&
-        \node[circle,draw,fill=hfill_yellow,font=\small] {AY};~ \&
-        \node[circle,draw,fill=hfill_blue, font=\small] {A}; \\[0.3cm]
-        \node[circle,draw,fill=hfill_yellow, font=\small] {BX};~ \&
-        \node[circle,draw,fill=hfill_yellow, font=\small] {BY};~ \&
-        \node[circle,draw,fill=hfill_blue, font=\small] {B}; \\[0.3cm]
-        \node[circle,draw,fill=hfill_blue, font=\small] {X};~ \&
-        \node[circle,draw,fill=hfill_blue, font=\small] {Y};~ \&
-        \node[ellipse,draw,fill=red!15] {Total}; \\
-};
-\end{tikzpicture}
-  \caption{A simple two-level grouped structure.}
-  \label{fig:simple grouped tree}
+			\node[circle,draw,fill=hfill_yellow, font=\small,distance=1cm] {AX};~ \&
+			\node[circle,draw,fill=hfill_yellow,font=\small] {AY};~ \&
+			\node[circle,draw,fill=hfill_blue, font=\small] {A}; \\[0.3cm]
+			\node[circle,draw,fill=hfill_yellow, font=\small] {BX};~ \&
+			\node[circle,draw,fill=hfill_yellow, font=\small] {BY};~ \&
+			\node[circle,draw,fill=hfill_blue, font=\small] {B}; \\[0.3cm]
+			\node[circle,draw,fill=hfill_blue, font=\small] {X};~ \&
+			\node[circle,draw,fill=hfill_blue, font=\small] {Y};~ \&
+			\node[ellipse,draw,fill=red!15] {Total}; \\
+		};
+	\end{tikzpicture}
+	\caption{A simple two-level grouped structure.}
+	\label{fig:simple grouped tree}
 \end{figure}
 
 An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \citet{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies (e.g.\ quarterly, annual). There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \citet{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others, including \citet{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single best level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous making it very challenging to reach a consensus or some concrete conclusions. For example, \citet{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state,
@@ -599,194 +599,188 @@ There are a number of open avenues for research in the literature on forecast re
 \bibliographystyle{agsm}
 \bibliography{References_BookChapter_HTS}
 
-
-
 \clearpage
 
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix 1}
 
-
-
-
-
 \begin{table}[!h]
 	\caption{Variables, Series IDs and their descriptions for Income Approach}
 	\small
 	\centering
-		\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			Gdpi & A2302467A & GDP(I)\\
-			Sdi & A2302413V & Statistical discrepancy (I)\\
-			Tsi & A2302412T & Taxes less subsidies (I)\\
-			TfiCoeWns & A2302399K & Compensation of employees; Wages and salaries\\
-			TfiCoeEsc & A2302400J & Compensation of employees; Employers' social contributions\\
-			\addlinespace
-			TfiCoe & A2302401K & Compensation of employees\\
-			TfiGosCopNfnPvt & A2323369L & Private non-financial corporations; Gross operating surplus\\
-			TfiGosCopNfnPub & A2302403R & Public non-financial corporations; Gross operating surplus\\
-			TfiGosCopNfn & A2302404T & Non-financial corporations; Gross operating surplus\\
-			TfiGosCopFin & A2302405V & Financial corporations;  Gross operating surplus\\
-			\addlinespace
-			TfiGosCop & A2302406W & Total corporations; Gross operating surplus\\
-			TfiGosGvt & A2298711F & General government; Gross operating surplus\\
-			TfiGosDwl & A2302408A & Dwellings owned by persons; Gross operating surplus\\
-			TfiGos & A2302409C & All sectors; Gross operating surplus\\
-			TfiGmi & A2302410L & Gross mixed income\\
-			Tfi & A2302411R & Total factor income\\
-			\bottomrule
-		\end{tabular*}
-		\label{Tab: Income-hierarchy}
-	
+	\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
+		\toprule
+		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+		\midrule
+		Gdpi & A2302467A & GDP(I)\\
+		Sdi & A2302413V & Statistical discrepancy (I)\\
+		Tsi & A2302412T & Taxes less subsidies (I)\\
+		TfiCoeWns & A2302399K & Compensation of employees; Wages and salaries\\
+		TfiCoeEsc & A2302400J & Compensation of employees; Employers' social contributions\\
+		\addlinespace
+		TfiCoe & A2302401K & Compensation of employees\\
+		TfiGosCopNfnPvt & A2323369L & Private non-financial corporations; Gross operating surplus\\
+		TfiGosCopNfnPub & A2302403R & Public non-financial corporations; Gross operating surplus\\
+		TfiGosCopNfn & A2302404T & Non-financial corporations; Gross operating surplus\\
+		TfiGosCopFin & A2302405V & Financial corporations; Gross operating surplus\\
+		\addlinespace
+		TfiGosCop & A2302406W & Total corporations; Gross operating surplus\\
+		TfiGosGvt & A2298711F & General government; Gross operating surplus\\
+		TfiGosDwl & A2302408A & Dwellings owned by persons; Gross operating surplus\\
+		TfiGos & A2302409C & All sectors; Gross operating surplus\\
+		TfiGmi & A2302410L & Gross mixed income\\
+		Tfi & A2302411R & Total factor income\\
+		\bottomrule
+	\end{tabular*}
+	\label{Tab: Income-hierarchy}
+
 \end{table}
 
-\begin{table}[t]
+\begin{table}
 	\caption{Variables, Series IDs and their descriptions for Expenditure Approach}
 	\small
 	\centering
-		\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			
-			Gdpe & A2302467A & GDP(E)\\
-			Sde & A2302566J & Statistical Discrepancy(E)\\
-			Exp & A2302564C & Exports of goods and services\\
-			Imp & A2302565F & Imports of goods and services\\
-			Gne & A2302563A & Gross national exp.\\
-			\addlinespace
-			GneDfdFceGvtNatDef & A2302523J & Gen. gov. - National; Final consumption exp. - Defence\\
-			GneDfdFceGvtNatNdf & A2302524K & Gen. gov. - National; Final consumption exp. - Non-defence\\
-			GneDfdFceGvtNat & A2302525L & Gen. gov. - National; Final consumption exp.\\
-			GneDfdFceGvtSnl & A2302526R & Gen. gov. - State and local; Final consumption exp,\\
-			GneDfdFceGvt & A2302527T & Gen. gov.; Final consumption exp.\\
-			\addlinespace
-			GneDfdFce & A2302529W & All sectors; Final consumption exp.\\
-			GneDfdGfcPvtTdwNnu & A2302543T & Pvt.; Gross fixed capital formation (GFCF)\\
-			GneDfdGfcPvtTdwAna & A2302544V & Pvt.; GFCF - Dwellings - Alterations and additions\\
-			GneDfdGfcPvtTdw & A2302545W & Pvt.; GFCF - Dwellings - Total\\
-			GneDfdGfcPvtOtc & A2302546X & Pvt.; GFCF - Ownership transfer costs\\
-			\addlinespace
-			GneDfdGfcPvtPbiNdcNbd & A2302533L & Pvt. GFCF - Non-dwelling construction - New building\\
-			GneDfdGfcPvtPbiNdcNec & A2302534R & Pvt.; GFCF - Non-dwelling construction -\\
-			&  & New engineering construction\\
-			GneDfdGfcPvtPbiNdcSha & A2302535T & Pvt.; GFCF - Non-dwelling construction -\\
-			&  & Net purchase of second hand \vphantom{1} assets\\
-			\addlinespace
-			GneDfdGfcPvtPbiNdc & A2302536V & Pvt.; GFCF - Non-dwelling construction - Total\\
-			GneDfdGfcPvtPbiNdmNew & A2302530F & Pvt.; GFCF - Machinery and equipment - New\\
-			GneDfdGfcPvtPbiNdmSha & A2302531J & Pvt.; GFCF - Machinery and equipment -\\
-			&  & Net purchase of second hand assets\\
-			GneDfdGfcPvtPbiNdm & A2302532K & Pvt.; GFCF - Machinery and equipment - Total\\
-			\addlinespace
-			GneDfdGfcPvtPbiCbr & A2716219R & Pvt.; GFCF - Cultivated biological resources\\
-			GneDfdGfcPvtPbiIprRnd & A2716221A & Pvt.; GFCF - Intellectual property products -\\
-			&  & Research and development\\
-			GneDfdGfcPvtPbiIprMnp & A2302539A & Pvt.; GFCF - Intellectual property products -\\
-			&  & Mineral and petroleum exploration\\
-			\addlinespace
-			GneDfdGfcPvtPbiIprCom & A2302538X & Pvt.; GFCF - Intellectual property products - Computer software\\
-			GneDfdGfcPvtPbiIprArt & A2302540K & Pvt.; GFCF - Intellectual property products - Artistic originals\\
-			GneDfdGfcPvtPbiIpr & A2716220X & Pvt.; GFCF - Intellectual property products Total\\
-			GneDfdGfcPvtPbi & A2302542R & Pvt.;  GFCF - Total private business investment\\
-			GneDfdGfcPvt & A2302547A & Pvt.; GFCF\\
-			\addlinespace
-			GneDfdGfcPubPcpCmw & A2302548C & Plc. corporations - Commonwealth; GFCF\\
-			GneDfdGfcPubPcpSnl & A2302549F & Plc. corporations - State and local; GFCF\\
-			GneDfdGfcPubPcp & A2302550R & Plc. corporations; GFCF Total\\
-			GneDfdGfcPubGvtNatDef & A2302551T & Gen. gov. - National; GFCF - Defence\\
-			GneDfdGfcPubGvtNatNdf & A2302552V & Gen. gov. - National ; GFCF - Non-defence\\
-			\addlinespace
-			GneDfdGfcPubGvtNat & A2302553W & Gen. gov. - National ; GFCF Total\\
-			GneDfdGfcPubGvtSnl & A2302554X & Gen. gov. - State and local; GFCF\\
-			GneDfdGfcPubGvt & A2302555A & Gen. gov.; GFCF\\
-			GneDfdGfcPub & A2302556C & Plc.; GFCF\\
-			GneDfdGfc & A2302557F & All sectors; GFCF\\
-			\bottomrule
-		\end{tabular*}
-		
-		\label{Tab:Expenditure-hierarchy-1}
-	
+	\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
+		\toprule
+		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+		\midrule
+
+		Gdpe & A2302467A & GDP(E)\\
+		Sde & A2302566J & Statistical Discrepancy(E)\\
+		Exp & A2302564C & Exports of goods and services\\
+		Imp & A2302565F & Imports of goods and services\\
+		Gne & A2302563A & Gross national exp.\\
+		\addlinespace
+		GneDfdFceGvtNatDef & A2302523J & Gen. gov. - National; Final consumption exp. - Defence\\
+		GneDfdFceGvtNatNdf & A2302524K & Gen. gov. - National; Final consumption exp. - Non-defence\\
+		GneDfdFceGvtNat & A2302525L & Gen. gov. - National; Final consumption exp.\\
+		GneDfdFceGvtSnl & A2302526R & Gen. gov. - State and local; Final consumption exp,\\
+		GneDfdFceGvt & A2302527T & Gen. gov.; Final consumption exp.\\
+		\addlinespace
+		GneDfdFce & A2302529W & All sectors; Final consumption exp.\\
+		GneDfdGfcPvtTdwNnu & A2302543T & Pvt.; Gross fixed capital formation (GFCF)\\
+		GneDfdGfcPvtTdwAna & A2302544V & Pvt.; GFCF - Dwellings - Alterations and additions\\
+		GneDfdGfcPvtTdw & A2302545W & Pvt.; GFCF - Dwellings - Total\\
+		GneDfdGfcPvtOtc & A2302546X & Pvt.; GFCF - Ownership transfer costs\\
+		\addlinespace
+		GneDfdGfcPvtPbiNdcNbd & A2302533L & Pvt. GFCF - Non-dwelling construction - New building\\
+		GneDfdGfcPvtPbiNdcNec & A2302534R & Pvt.; GFCF - Non-dwelling construction -\\
+		&  & New engineering construction\\
+		GneDfdGfcPvtPbiNdcSha & A2302535T & Pvt.; GFCF - Non-dwelling construction -\\
+		&  & Net purchase of second hand \vphantom{1} assets\\
+		\addlinespace
+		GneDfdGfcPvtPbiNdc & A2302536V & Pvt.; GFCF - Non-dwelling construction - Total\\
+		GneDfdGfcPvtPbiNdmNew & A2302530F & Pvt.; GFCF - Machinery and equipment - New\\
+		GneDfdGfcPvtPbiNdmSha & A2302531J & Pvt.; GFCF - Machinery and equipment -\\
+		&  & Net purchase of second hand assets\\
+		GneDfdGfcPvtPbiNdm & A2302532K & Pvt.; GFCF - Machinery and equipment - Total\\
+		\addlinespace
+		GneDfdGfcPvtPbiCbr & A2716219R & Pvt.; GFCF - Cultivated biological resources\\
+		GneDfdGfcPvtPbiIprRnd & A2716221A & Pvt.; GFCF - Intellectual property products -\\
+		&  & Research and development\\
+		GneDfdGfcPvtPbiIprMnp & A2302539A & Pvt.; GFCF - Intellectual property products -\\
+		&  & Mineral and petroleum exploration\\
+		\addlinespace
+		GneDfdGfcPvtPbiIprCom & A2302538X & Pvt.; GFCF - Intellectual property products - Computer software\\
+		GneDfdGfcPvtPbiIprArt & A2302540K & Pvt.; GFCF - Intellectual property products - Artistic originals\\
+		GneDfdGfcPvtPbiIpr & A2716220X & Pvt.; GFCF - Intellectual property products Total\\
+		GneDfdGfcPvtPbi & A2302542R & Pvt.;  GFCF - Total private business investment\\
+		GneDfdGfcPvt & A2302547A & Pvt.; GFCF\\
+		\addlinespace
+		GneDfdGfcPubPcpCmw & A2302548C & Plc. corporations - Commonwealth; GFCF\\
+		GneDfdGfcPubPcpSnl & A2302549F & Plc. corporations - State and local; GFCF\\
+		GneDfdGfcPubPcp & A2302550R & Plc. corporations; GFCF Total\\
+		GneDfdGfcPubGvtNatDef & A2302551T & Gen. gov. - National; GFCF - Defence\\
+		GneDfdGfcPubGvtNatNdf & A2302552V & Gen. gov. - National ; GFCF - Non-defence\\
+		\addlinespace
+		GneDfdGfcPubGvtNat & A2302553W & Gen. gov. - National ; GFCF Total\\
+		GneDfdGfcPubGvtSnl & A2302554X & Gen. gov. - State and local; GFCF\\
+		GneDfdGfcPubGvt & A2302555A & Gen. gov.; GFCF\\
+		GneDfdGfcPub & A2302556C & Plc.; GFCF\\
+		GneDfdGfc & A2302557F & All sectors; GFCF\\
+		\bottomrule
+	\end{tabular*}
+
+	\label{Tab:Expenditure-hierarchy-1}
+
 \end{table}
 
 \begin{table}[h]
 	\caption{Variables, Series IDs and their descriptions for Changes in Inventories - Expenditure Approach}
 	\small
 	\centering
-		\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
-			
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			
-			GneCii & A2302562X & Changes in Inventories\\
-			GneCiiPfm & A2302560V & Farm\\
-			GneCiiPba & A2302561W & Public authorities\\
-			GneCiiPnf & A2302559K & Private; Non-farm Total\\
-			GneCiiPnfMin & A83722619L & Private; Mining (B)\\
-			\addlinespace
-			GneCiiPnfMan & A3348511X & Private; Manufacturing (C)\\
-			GneCiiPnfWht & A3348512A & Private; Wholesale trade (F)\\
-			GneCiiPnfRet & A3348513C & Private; Retail trade (G)\\
-			GneCiiPnfOnf & A2302273C & Private; Non-farm; Other non-farm industries\\
-			\bottomrule
-		\end{tabular*}
-		\label{Tab:Expenditure-hierarchy-2}
-	
+	\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
+
+		\toprule
+		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+		\midrule
+
+		GneCii & A2302562X & Changes in Inventories\\
+		GneCiiPfm & A2302560V & Farm\\
+		GneCiiPba & A2302561W & Public authorities\\
+		GneCiiPnf & A2302559K & Private; Non-farm Total\\
+		GneCiiPnfMin & A83722619L & Private; Mining (B)\\
+		\addlinespace
+		GneCiiPnfMan & A3348511X & Private; Manufacturing (C)\\
+		GneCiiPnfWht & A3348512A & Private; Wholesale trade (F)\\
+		GneCiiPnfRet & A3348513C & Private; Retail trade (G)\\
+		GneCiiPnfOnf & A2302273C & Private; Non-farm; Other non-farm industries\\
+		\bottomrule
+	\end{tabular*}
+	\label{Tab:Expenditure-hierarchy-2}
+
 \end{table}
 
-\begin{table}[t]
+\begin{table}
 	\caption{Variables, Series IDs and their descriptions for Household Final Consumption - Expenditure Approach}
 	\small
 	\centering
-		\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
-			
-			\toprule
-			\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
-			\midrule
-			
-			GneDfdHfc & A2302254W & Household Final Consumption Expenditure\\
-			GneDfdFceHfcFud & A2302237V & Food\\
-			GneDfdFceHfcAbt & A3605816F & Alcoholic beverages and tobacco\\
-			GneDfdFceHfcAbtCig & A2302238W & Cigarettes and tobacco\\
-			GneDfdFceHfcAbtAlc & A2302239X & Alcoholic beverages\\
-			\addlinespace
-			GneDfdFceHfcCnf & A2302240J & Clothing and footwear\\
-			GneDfdFceHfcHwe & A3605680F & Housing, water, electricity, gas and other fuels\\
-			GneDfdFceHfcHweRnt & A3605681J & Actual and imputed rent for housing\\
-			GneDfdFceHfcHweWsc & A3605682K & Water and sewerage charges\\
-			GneDfdFceHfcHweEgf & A2302242L & Electricity, gas and other fuel\\
-			\addlinespace
-			GneDfdFceHfcFhe & A2302243R & Furnishings and household equipment\\
-			GneDfdFceHfcFheFnt & A3605683L & Furniture, floor coverings and household goods\\
-			GneDfdFceHfcFheApp & A3605684R & Household appliances\\
-			GneDfdFceHfcFheTls & A3605685T & Household tools\\
-			GneDfdFceHfcHlt & A2302244T & Health\\
-			\addlinespace
-			GneDfdFceHfcHltMed & A3605686V & Medicines, medical aids and therapeutic appliances\\
-			GneDfdFceHfcHltHsv & A3605687W & Total health services\\
-			GneDfdFceHfcTpt & A3605688X & Transport\\
-			GneDfdFceHfcTptPvh & A2302245V & Purchase of vehicles\\
-			GneDfdFceHfcTptOvh & A2302246W & Operation of vehicles\\
-			\addlinespace
-			GneDfdFceHfcTptTsv & A2302247X & Transport services\\
-			GneDfdFceHfcCom & A2302248A & Communications\\
-			GneDfdFceHfcRnc & A2302249C & Recreation and culture\\
-			GneDfdFceHfcEdc & A2302250L & Education services\\
-			GneDfdFceHfcHcr & A2302251R & Hotels, cafes and restaurants\\
-			\addlinespace
-			GneDfdFceHfcHcrCsv & A3605694V & Catering services\\
-			GneDfdFceHfcHcrAsv & A3605695W & Accommodation services\\
-			GneDfdFceHfcMis & A3605696X & Miscellaneous goods and services\\
-			GneDfdFceHfcMisOgd & A3605697A & Other goods\\
-			GneDfdFceHfcMisIfs & A2302252T & Insurance and other financial services\\
-			GneDfdFceHfcMisOsv & A3606485T & Other services\\
-			\bottomrule
-		\end{tabular*}
-		\label{Tab:Expenditure-hierarchy-3}
-	
+	\begin{tabular*}{\columnwidth}[width = \textwidth]{lll}
+
+		\toprule
+		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
+		\midrule
+
+		GneDfdHfc & A2302254W & Household Final Consumption Expenditure\\
+		GneDfdFceHfcFud & A2302237V & Food\\
+		GneDfdFceHfcAbt & A3605816F & Alcoholic beverages and tobacco\\
+		GneDfdFceHfcAbtCig & A2302238W & Cigarettes and tobacco\\
+		GneDfdFceHfcAbtAlc & A2302239X & Alcoholic beverages\\
+		\addlinespace
+		GneDfdFceHfcCnf & A2302240J & Clothing and footwear\\
+		GneDfdFceHfcHwe & A3605680F & Housing, water, electricity, gas and other fuels\\
+		GneDfdFceHfcHweRnt & A3605681J & Actual and imputed rent for housing\\
+		GneDfdFceHfcHweWsc & A3605682K & Water and sewerage charges\\
+		GneDfdFceHfcHweEgf & A2302242L & Electricity, gas and other fuel\\
+		\addlinespace
+		GneDfdFceHfcFhe & A2302243R & Furnishings and household equipment\\
+		GneDfdFceHfcFheFnt & A3605683L & Furniture, floor coverings and household goods\\
+		GneDfdFceHfcFheApp & A3605684R & Household appliances\\
+		GneDfdFceHfcFheTls & A3605685T & Household tools\\
+		GneDfdFceHfcHlt & A2302244T & Health\\
+		\addlinespace
+		GneDfdFceHfcHltMed & A3605686V & Medicines, medical aids and therapeutic appliances\\
+		GneDfdFceHfcHltHsv & A3605687W & Total health services\\
+		GneDfdFceHfcTpt & A3605688X & Transport\\
+		GneDfdFceHfcTptPvh & A2302245V & Purchase of vehicles\\
+		GneDfdFceHfcTptOvh & A2302246W & Operation of vehicles\\
+		\addlinespace
+		GneDfdFceHfcTptTsv & A2302247X & Transport services\\
+		GneDfdFceHfcCom & A2302248A & Communications\\
+		GneDfdFceHfcRnc & A2302249C & Recreation and culture\\
+		GneDfdFceHfcEdc & A2302250L & Education services\\
+		GneDfdFceHfcHcr & A2302251R & Hotels, cafes and restaurants\\
+		\addlinespace
+		GneDfdFceHfcHcrCsv & A3605694V & Catering services\\
+		GneDfdFceHfcHcrAsv & A3605695W & Accommodation services\\
+		GneDfdFceHfcMis & A3605696X & Miscellaneous goods and services\\
+		GneDfdFceHfcMisOgd & A3605697A & Other goods\\
+		GneDfdFceHfcMisIfs & A2302252T & Insurance and other financial services\\
+		GneDfdFceHfcMisOsv & A3606485T & Other services\\
+		\bottomrule
+	\end{tabular*}
+	\label{Tab:Expenditure-hierarchy-3}
+
 \end{table}
 %
 %\begin{figure}[t]
