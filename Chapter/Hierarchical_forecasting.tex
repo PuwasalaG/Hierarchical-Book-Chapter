@@ -399,20 +399,20 @@ Using the income approach, GDP is calculated by aggregating all income flows. In
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.9\textwidth]{Figs/IncomeApproach.png}
+	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/IncomeApproach.png}
 	\caption{Hierarchical structure of the income approach for GDP\@. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GDP_I}
 \end{figure}
 
 \subsubsection*{Expenditure approach}
 
 \begin{figure}
-	\centering	\includegraphics[width=.9\textwidth]{Figs/ExpenditureApproach.png}
+	\centering	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/ExpenditureApproach.png}
 	\caption{Hierarchical structure of the expenditure approach for GDP\@. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
 %\end{figure}
 %
 %\begin{figure}[!b]
 	\centering
-	\includegraphics[width=.9\textwidth]{Figs/GFCF.png}
+	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/GFCF.png}
 	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GFCF}
 \end{figure}
 
@@ -429,7 +429,7 @@ Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarc
 
 \begin{figure}[!t]
 	\centering
-	\includegraphics[width=.9\textwidth]{Figs/HFCE.png}
+	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/HFCE.png}
 	\caption{Hierarchical structure for Household Final Consumption Expenditure under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:HFCE}
 \end{figure}
 
@@ -438,7 +438,7 @@ Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarc
 \begin{figure}
 	\centering
 	\small
-	\includegraphics[width = .9\textwidth]{Figs/TS-plots/TSplots-INC-EXP.png}
+	\includegraphics[width = \textwidth]{Figs/TS-plots/TSplots-INC-EXP.pdf}
 	\caption{Time plots for series from different levels of income and expenditure hierarchies.}\label{fig:TSplots-INC-EXP}
 \end{figure}
 
@@ -454,9 +454,9 @@ The hierarchical forecasting approaches we consider are bottom-up, OLS, WLS with
 
 \subsection{Evaluation}
 
-For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE). The absolute scaled error is defined as\todo{What is first sum over?}
+For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE). The absolute scaled error is defined as
 \begin{equation*}
-	q_{T+h} = \sum \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
+	q_{T+h} = \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
 \end{equation*}
 where $\breve{e}_{t+h}$ is the difference between any forecast and the realisation\footnote{Breve is used instead of a hat or tilde to denote that this can be the error for either a base or reconciled forecast.}, and $4$ is used due to the quarterly nature of the data. An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series. Consequently, scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series. For more details on different point forecast accuracy measures, refer to Chapter 3 of \citet{HynAth2018}.
 
@@ -529,7 +529,7 @@ One disadvantage of the base forecasts relative to the \naive forecasts is that 
 \begin{figure}
 	\centering
 	\small
-	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_MSE.png}
+	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_MSE.pdf}
 	\caption{Mean squared errors for \naive and ARIMA base forecasts. Top panels refer to results summarised over all series while bottom panels refer to results for the top-level GDP series. Left panels refer to the income hierarchy and right panels to the expenditure hierarchy.}\label{fig: NaiveVsBase_MSE}
 \end{figure}
 
@@ -547,7 +547,7 @@ We now turn our attention to evaluating the accuracy of point forecasts obtained
 \begin{figure}
 	\centering
 	\small
-	\includegraphics[width=\textwidth]{Figs/Results/PointF_MSE.png}
+	\includegraphics[width=\textwidth]{Figs/Results/PointF_MSE.pdf}
 	\caption{Skill scores for point forecasts from alternative methods (with reference to base forecasts) using MSE\@. The left panels refer to the income hierarchy while the right panels refer to the expenditure hierarchy. The first row refers to results summarised over all series, the second row to top-level GDP series, the third row to aggregate levels, and the last row to the bottom level.}
 	\label{fig: PointF_MSE}
 \end{figure}
@@ -555,7 +555,7 @@ We now turn our attention to evaluating the accuracy of point forecasts obtained
 \begin{figure}
 	\centering
 	\small
-	\includegraphics[width=\textwidth]{Figs/Results/PointF_MASE.png}
+	\includegraphics[width=\textwidth]{Figs/Results/PointF_MASE.pdf}
 	\caption{Skill scores for point forecasts from different reconciliation methods (with reference to base forecasts) using MASE\@. The left two panels refer to the income hierarchy and the right two panels to the expenditure hierarchy. The first row refers to results summarised over all series, the second row to top-level GDP series, the third row to aggregate levels, and the last row to the bottom level.}
 	\label{fig: PointF_MASE}
 \end{figure}
@@ -569,7 +569,7 @@ To further investigate the results we break down the skill scores by different l
 \begin{figure}[!b]
 	\centering
 	\small
-	\includegraphics[width=\textwidth]{Figs/Results/ProbF_MultivS.png}
+	\includegraphics[width=\textwidth]{Figs/Results/ProbF_MultivS.pdf}
 	\caption{Skill scores for multivariate probabilistic forecasts from different reconciliation methods (with reference to base forecasts) using energy scores. The top panels refer to the results for the Gaussian approach and the bottom panels to the non-parametric bootstrap approach. Left panels refer to the income hierarchy and right panels to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_ES}
 \end{figure}
@@ -577,7 +577,7 @@ To further investigate the results we break down the skill scores by different l
 \begin{figure}
 	\centering
 	\small
-	\includegraphics[width=\textwidth]{Figs/Results/ProbF_UnivS.png}
+	\includegraphics[width=\textwidth]{Figs/Results/ProbF_UnivS.pdf}
 	\caption{Skill scores for probabilistic forecasts of top-level GDP from different reconciliation methods (with reference to base forecasts) using CRPS. Top panels refer to the results for Gaussian approach and bottom panels refer to the non-parametric bootstrap approach. The left panel refers to the income hierarchy and the right panel to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_CRPS}
 \end{figure}
