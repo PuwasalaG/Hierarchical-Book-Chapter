@@ -68,6 +68,7 @@
 \def\GH{\begin{pmatrix}\bm{G}\\ \bm{F}\end{pmatrix}}
 \def\Naive{Na\"{i}ve\ }
 \def\naive{na\"{i}ve\ }
+\def\E{\text{E}}
 
 \begin{document}
 
@@ -91,17 +92,15 @@
 
 \section{Introduction}\label{sec:intro}
 
-Accurate forecasting of key macroeconomic variables such as Gross Domestic Product (GDP), inflation, industrial production, has been at the forefront of economic research over many decades. Early approaches involved univariate models or at best low dimensional multivariate systems. The era of big data has led to the use of regularization and shrinkage methods such as dynamic factor models, Lasso, LARS, Bayesian VARs, in an effort to exploit the plethora of potentially useful predictors now available. These predictors commonly also include the components of the variables of interest. For instance, GDP is formed as an aggregate of consumption, government expenditure, investment and net exports, with each of these components also formed as aggregates of other economic variables. While the macroeconomic forecasting literature regularly uses such sub-indices as predictors, it does so in ways that fail to exploit accounting identities that describe known deterministic relationships between macroeconomic variables.
+Accurate forecasting of key macroeconomic variables such as Gross Domestic Product (GDP), inflation, and industrial production, has been at the forefront of economic research over many decades. Early approaches involved univariate models or at best low dimensional multivariate systems. The era of big data has led to the use of regularization and shrinkage methods such as dynamic factor models, Lasso, LARS, and Bayesian VARs, in an effort to exploit the plethora of potentially useful predictors now available. These predictors commonly also include the components of the variables of interest. For instance, GDP is formed as an aggregate of consumption, government expenditure, investment and net exports, with each of these components also formed as aggregates of other economic variables. While the macroeconomic forecasting literature regularly uses such sub-indices as predictors, it does so in ways that fail to exploit accounting identities that describe known deterministic relationships between macroeconomic variables.
 
-In this chapter we take a different approach. Over the past decade there has been a growing literature on forecasting collections of time series that follow aggregation constraints, known as hierarchical time series. Initially the aim of this literature was to ensure that forecasts adhered to aggregation constraints thus ensuring aligned decision making. However in many empirical settings the forecast reconciliation methods designed to deal with this problem have also been shown to improve forecast accuracy. Examples include forecasting accidents and emergency admissions \citep{AthEtAl2017}, mortality rates \citep{ShaHyn2017}, prison populations \citep{AthEtAl2019}, retail sales \citep{VilPed2018}, solar energy \citep{YanEtAl2017,YagEtAl2019}, tourism demand \citep{AthEtAl2009, HynEtAl2011, WicEtAl2019}, wind power generation \citep{ZhaDon2018}. Since both aligned decision making and forecast accuracy are key concerns for economic agents and policy makers we propose the application of state of the art forecast reconciliation methods to macroeconomic forecasting. To the best of our knowledge the only application of forecast reconciliation methods to macroeconomics is the PhD thesis of \citep{weiss2018essays} which focuses on point forecasting for inflation.
-
-\todo[inline]{Also \citet{capistran2010multi}}
+In this chapter we take a different approach. Over the past decade there has been a growing literature on forecasting collections of time series that follow aggregation constraints, known as hierarchical time series. Initially the aim of this literature was to ensure that forecasts adhered to aggregation constraints thus ensuring aligned decision making. However in many empirical settings the forecast reconciliation methods designed to deal with this problem have also been shown to improve forecast accuracy. Examples include forecasting accidents and emergency admissions \citep{AthEtAl2017}, mortality rates \citep{ShaHyn2017}, prison populations \citep{AthEtAl2019}, retail sales \citep{VilPed2018}, solar energy \citep{YanEtAl2017,YagEtAl2019}, tourism demand \citep{AthEtAl2009, HynEtAl2011, WicEtAl2019}, and wind power generation \citep{ZhaDon2018}. Since both aligned decision making and forecast accuracy are key concerns for economic agents and policy makers we propose the application of state-of-the-art forecast reconciliation methods to macroeconomic forecasting. To the best of our knowledge the only application of forecast reconciliation methods to macroeconomics focuses on point forecasting for inflation \citep{capistran2010multi,weiss2018essays}.
 
 The remainder of the chapter is set out as follows. \autoref{sec:Hier ts} introduces the concept of hierarchical time series, i.e.\ collections of time series with known linear constraints, with a particular emphasis on macroeconomic examples. \autoref{sec:point forecasting} describes state-of-the-art forecast reconciliation techniques for point forecasts, while \autoref{sec:probforecasting} describes the more recent extension of these techniques to probabilistic forecasting. \autoref{sec:data} describes the data used in our empirical case study, namely Australian GDP data, that is represented using two alternative hierarchical structures. \autoref{sec:meth} provides details on the setup of our empirical study including metrics used for the evaluation of both point and probabilistic forecasts. \autoref{sec:results} presents results and \autoref{sec:conclusions} concludes providing future avenues for research that are of particular relevance to the empirical macroeconomist.
 
 \section{Hierarchical time series}\label{sec:Hier ts}
 
-To simplify the introduction of some notation we use the simple two-level hierarchical structure shown in \autoref{fig:simple tree}. Denote as $y_{\text{Tot},t}$ the value observed at time $t$ for the most aggregate (Total) series corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{A,t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{AB,t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
+To simplify the introduction of some notation we use the simple two-level hierarchical structure shown in \autoref{fig:simple tree}. Denote as $y_{\text{Tot},t}$ the value observed at time $t$ for the most aggregate (Total) series corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{\text{A},t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{\text{AB},t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
 
 \begin{figure}[!hbt]\sidecaption[t]\centering
 	\begin{tikzpicture}
@@ -126,9 +125,9 @@ To simplify the introduction of some notation we use the simple two-level hierar
 	\label{fig:simple tree}
 \end{figure}
 
-Let $\bm{y}_t = (y_{\text{Tot},t},y_{A,t}, y_{B,t},y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t},y_{BC,t})'$ denote a vector containing observations across all series of the hierarchy at time $t$. Similarly denote as $\bm{b}_t = (y_{AA,t}, y_{AB,t}, y_{BA,t}, y_{BB,t}, y_{BC,t})'$ a vector containing observations only for the bottom-level series. In general, $\bm{y}_t\in \varmathbb{R}^n$ and $\bm{b}_t \in \varmathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of \autoref{fig:simple tree}, $n=8$ and $m=5$.
+Let $\bm{y}_t = (y_{\text{Tot},t},y_{\text{A},t}, y_{\text{B},t},y_{\text{AA},t}, y_{\text{AB},t}, y_{\text{BA},t}, y_{\text{BB},t},y_{\text{BC},t})'$ denote a vector containing observations across all series of the hierarchy at time $t$. Similarly denote as $\bm{b}_t = (y_{\text{AA},t}, y_{\text{AB},t}, y_{\text{BA},t}, y_{\text{BB},t}, y_{\text{BC},t})'$ a vector containing observations only for the bottom-level series. In general, $\bm{y}_t\in \varmathbb{R}^n$ and $\bm{b}_t \in \varmathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of \autoref{fig:simple tree}, $n=8$ and $m=5$.
 
-Aggregation constraints dictate that $y_{\text{Tot}}=y_{A,t}+y_{B,t}=y_{AA,t}+y_{AB,t}+y_{BA,t}+y_{BB,t}+y_{BC,t}$,~ $y_{A,t}=y_{AA,t}+y_{AB,t}$ and $y_{B}=y_{BA,t}+y_{BB,t}+y_{BC,t}$. Hence we can write
+Aggregation constraints dictate that $y_{\text{Tot}}=y_{\text{A},t}+y_{\text{B},t}=y_{\text{AA},t}+y_{\text{AB},t}+y_{\text{BA},t}+y_{\text{BB},t}+y_{\text{BC},t}$,~ $y_{\text{A},t}=y_{\text{AA},t}+y_{\text{AB},t}$ and $y_{\text{B}}=y_{\text{BA},t}+y_{\text{BB},t}+y_{\text{BC},t}$. Hence we can write
 \begin{equation}\label{eq:summing matrix}
 	\bm{y}_t = \bm{Sb}_t,
 \end{equation}
@@ -149,7 +148,7 @@ is an $n\times m$ matrix referred to as the \textit{summing matrix} and $\bm{I}_
 
 Structures similar to the one shown in \autoref{fig:simple tree} can be found in macroeconomics. For instance, in \autoref{sec:data} we consider two alternative hierarchical structures for the case of GDP and its components. However, while this motivating example involves aggregation constraints, the mathematical framework we use can be applied for any general linear constraints, examples of which are ubiquitous in macroeconomics. For instance, the trade balance is computed as exports minus imports, while the consumer price index is computed as a weighted average of sub-indices, which are in turn weighted averages of sub-sub-indices, and so on. These structures can also be captured by an appropriately designed $\bm{S}$ matrix.
 
-An important alternative aggregation structure, also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. \autoref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{A,t}$ and $y_{B,t}$, but also into $y_{X,t}$ and $y_{Y,t}$, at level 1, and then into the bottom-level series, $\bm{b}_t=(y_{AX}, y_{AY}, y_{BX}, y_{BY})'$. Hence, in contrast to hierarchical structures, grouped time series do not naturally disaggregate in a unique manner.
+An important alternative aggregation structure, also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. \autoref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{\text{A},t}$ and $y_{\text{B},t}$, but also into $y_{\text{X},t}$ and $y_{\text{Y},t}$, at level 1, and then into the bottom-level series, $\bm{b}_t=(y_{\text{AX}}, y_{\text{AY}}, y_{\text{BX}}, y_{\text{BY}})'$. Hence, in contrast to hierarchical structures, grouped time series do not naturally disaggregate in a unique manner.
 
 \begin{figure}[!hbt]\sidecaption\centering
 	\tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
@@ -170,7 +169,7 @@ An important alternative aggregation structure, also commonly found in macroecon
 	\label{fig:simple grouped tree}
 \end{figure}
 
-An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \citet{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies (e.g.\ quarterly, annual). There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \citet{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others, including \citet{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single best level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous making it very challenging to reach a consensus or some concrete conclusions. For example, \citet{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state,
+An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \citet{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies (e.g.\ quarterly, annual). There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \citet{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others, including \citet{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single best level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous, making it very challenging to reach a consensus or to draw firm conclusions. For example, \citet{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state:
 \begin{quote}
 ``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.''
 \end{quote}
@@ -195,17 +194,17 @@ Hence, coherent forecasts of lower level series aggregate to their corresponding
 	\resizebox{\linewidth}{!}{
 		\input{Figs/Diagram_3D/Schematic_3D}
 	}
-	\caption{Representation of a coherent subspace in a three dimensional hierarchy where $y_{\text{Tot}} = y_A + y_B$. The coherent subspace is depicted as a gray two dimensional plane labelled $\mathfrak{s}$. Note that the columns of $\vec{s}_1 = (1,1,0)'$ and $\vec{s}_2 = (1, 0, 1)'$ form a basis for $\mathfrak{s}$. The red points lying on $\mathfrak{s}$ can be either realisations or coherent forecasts.}\label{fig:Schematic-3D}
+	\caption{Representation of a coherent subspace in a three dimensional hierarchy where $y_{\text{Tot}} = y_{\text{A}} + y_{\text{B}}$. The coherent subspace is depicted as a gray two dimensional plane labelled $\mathfrak{s}$. Note that the columns of $\vec{s}_1 = (1,1,0)'$ and $\vec{s}_2 = (1, 0, 1)'$ form a basis for $\mathfrak{s}$. The red points lying on $\mathfrak{s}$ can be either realisations or coherent forecasts.}\label{fig:Schematic-3D}
 \end{figure}
 
-Let us consider the smallest possible hierarchy with two bottom-level series, depicted in \autoref{fig:Schematic-3D}, where $y_{\text{Tot}} = y_A + y_B$. While base forecasts could lie anywhere in $\varmathbb{R}^3$, the realisations and coherent forecasts lie in a two dimensional subspace $\mathfrak{s}\subset \varmathbb{R}^3$.
+Let us consider the smallest possible hierarchy with two bottom-level series, depicted in \autoref{fig:Schematic-3D}, where $y_{\text{Tot}} = y_{\text{A}} + y_{\text{B}}$. While base forecasts could lie anywhere in $\varmathbb{R}^3$, the realisations and coherent forecasts lie in a two dimensional subspace $\mathfrak{s}\subset \varmathbb{R}^3$.
 
 \subsection{Single-level approaches}\label{sec:single level approaches}
 A common theme across all traditional approaches for forecasting hierarchical time series is that a single-level of aggregation is first selected and forecasts for that level are generated. These are then linearly combined to generate a set of coherent forecasts the rest of the structure.
 
 \subsubsection{Bottom-up}
 
-In the \textit{bottom-up} approach, forecasts for the most disaggregate level are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\bm{b}}_{T+h|T} \in \varmathbb{R}^m$, a set of $h$-step-ahead forecasts for the bottom-level series. For the simple hierarchical structure of \autoref{fig:simple tree}, $\hat{\bm{b}}_{T+h|T} = (\hat{{y}}_{AA,T+h|T}, \hat{{y}}_{AB,T+h|T}, \hat{{y}}_{BA,T+h|T}, \hat{{y}}_{BB,T+h|T},\hat{{y}}_{BC,T+h|T}),$ where $\hat{{y}}_{i,T+h|T}$ is the $h$-step-ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by
+In the \textit{bottom-up} approach, forecasts for the most disaggregate level are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\bm{b}}_{T+h|T} \in \varmathbb{R}^m$, a set of $h$-step-ahead forecasts for the bottom-level series. For the simple hierarchical structure of \autoref{fig:simple tree}, $\hat{\bm{b}}_{T+h|T} = (\hat{{y}}_{\text{AA},T+h|T}, \hat{{y}}_{\text{AB},T+h|T}, \hat{{y}}_{\text{BA},T+h|T}, \hat{{y}}_{\text{BB},T+h|T},\hat{{y}}_{\text{BC},T+h|T}),$ where $\hat{{y}}_{i,T+h|T}$ is the $h$-step-ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by
 \begin{equation*}\label{eq:BU}
 	\tilde{\bm{y}}^{\text{BU}}_{T+h|T}=\bm{S\hat{\bm{b}}}_{T+h|T}.
 \end{equation*}
@@ -215,9 +214,9 @@ Generating bottom-up forecasts has the advantage of no information being lost du
 
 In contrast, \textit{top-down} approaches involve first generating forecasts for the most aggregate level and then disaggregating these down the hierarchy. In general, coherent forecasts generated from top-down approaches are given by
 \begin{equation*}
-	\tilde{\bm{y}}^{\text{TD}}_{T+h|T}=\bm{S}\bm{p}\hat{y}_{Tot, T+h|T},
+	\tilde{\bm{y}}^{\text{TD}}_{T+h|T}=\bm{S}\bm{p}\hat{y}_{\text{Tot}, T+h|T},
 \end{equation*}
-where $\bm{p} = (p_1,\dots,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{Tot, T+h|T}$ to forecasts for the bottom-level series; hence $\bm{p}\hat{y}_{Tot, T+h|T}=\bm{\hat{\bm{b}}}_{T+h|T}$. These are then aggregated by the summing matrix $\bm{S}$.
+where $\bm{p} = (p_1,\dots,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions which disaggregate the top-level forecast $\hat{y}_{\text{Tot}, T+h|T}$ to forecasts for the bottom-level series; hence $\bm{p}\hat{y}_{\text{Tot}, T+h|T}=\bm{\hat{\bm{b}}}_{T+h|T}$. These are then aggregated by the summing matrix $\bm{S}$.
 
 Traditionally, proportions have been calculated based on the observed historical data. \citet{gross1990} present and evaluate twenty-one alternative approaches. The most convenient attribute of these approaches is their simplicity. Generating a set of coherent forecasts involves only modelling and generating forecasts for the most aggregate top-level series. In general, such top-down approaches seem to produce quite reliable forecasts for the aggregate levels and they are useful with low count data. However, a significant disadvantage is the loss of information due to aggregation. A limitation of such top-down approaches is that characteristics of lower level series cannot be captured. To overcome this, \citet{AthEtAl2009} introduced a new top-down approach which disaggregates the top-level based on proportions of forecasts rather than the historical data and showed that this method outperforms the conventional top-down approaches. However, a limitation of all top-down approaches is that they introduce bias to the forecasts even when the top-level forecast itself is unbiased. We discuss this in detail in \autoref{sec:reconciliation approaches}.
 
@@ -229,11 +228,11 @@ A compromise between bottom-up and top-down approaches is the middle-out approac
 
 All approaches discussed so far are limited to only using information from a single-level of aggregation. Furthermore, these ignore any correlations across levels of a hierarchy. An alternative framework that overcomes these limitations is one that involves forecast \textit{reconciliation}. In a first step. forecasts for all the series across all levels of the hierarchy are computed, ignoring any aggregation constraints. We refer to these as \textit{base} forecasts and denote them by $\hat{\bm{y}}_{T+h|T}$. In general, base forecasts will not be coherent, unless a very simple method has been used to compute them such as for \naive forecasts. In this case, forecasts are simply equal to a previous realisation of the data and they inherit the property of coherence.
 
-The second step is an adjustment that reconciles base forecasts so that they become coherent. In general, this is achieved by mapping the base forecasts $\hat{\bm{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$ via a matrix $\bm{SG}$, resulting in a set of coherent forecasts $\tilde{\bm{y}}_{T+h|T}$. Specifically,
+The second step is an adjustment that reconciles base forecasts so that they become coherent. In general, this is achieved by mapping the base forecasts $\hat{\bm{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$ via a matrix $\bm{S}\bm{G}$, resulting in a set of coherent forecasts $\tilde{\bm{y}}_{T+h|T}$. Specifically,
 \begin{equation}\label{eq:recon}
 	\tilde{\bm{y}}_{T+h|T}=\bm{S}\bm{G}\hat{\bm{y}}_{T+h|T},
 \end{equation}
-where $\bm{G}$ is an $m\times n$ matrix that maps $\hat{\bm{y}}_{T+h|T}$ to $\varmathbb{R}^m$, producing new forecasts for the bottom-level, which are in turn mapped to the coherent subspace by the summing matrix $\bm{S}$. We restrict our attention to projections on $\mathfrak{s}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. This ensures that unbiasedness is preserved, i.e., for a set of unbiased base forecasts reconciled forecasts will also be unbiased.
+where $\bm{G}$ is an $m\times n$ matrix that maps $\hat{\bm{y}}_{T+h|T}$ to $\varmathbb{R}^m$, producing new forecasts for the bottom level, which are in turn mapped to the coherent subspace by the summing matrix $\bm{S}$. We restrict our attention to projections on $\mathfrak{s}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. This ensures that unbiasedness is preserved, i.e., for a set of unbiased base forecasts reconciled forecasts will also be unbiased.
 
 Note that all single-level approaches discussed so far can also be represented by \eqref{eq:recon} using appropriately designed $\bm{G}$ matrices, however not all of these will be projections. For example for the bottom-up approach, $\bm{G}=\begin{pmatrix}
 		\bm{0}_{(m \times n-m)} & \bm{I}_m
@@ -276,7 +275,7 @@ A significant advantage of the MinT reconciliation solution is that it is the fi
   $$
   is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \citet{Hyndman2016}.
 
-  An alternative WLS estimator is proposed by \citet{AthEtAl2017} in the context of temporal hierarchies. Here $\bm{W}_{h}$ is proportional to $\text{diag}(\bm{S}\bm{1})$ where $\bm{1}$ is a unit column vector of dimension $n$. Hence the weights are proportional to the number of bottom-level variables required to form an aggregate. For example, in the hierarchy of \autoref{fig:simple tree}, the weights corresponding to the Total, series A and series B are proportional to 5, 2 and 3 respectively. This weighting scheme depends only on the aggregation structure and is referred to as structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom-level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
+  An alternative WLS estimator is proposed by \citet{AthEtAl2017} in the context of temporal hierarchies. Here $\bm{W}_{h}$ is proportional to $\text{diag}(\bm{S}\bm{1})$ where $\bm{1}$ is a unit column vector of dimension $n$. Hence the weights are proportional to the number of bottom-level variables required to form an aggregate. For example, in the hierarchy of \autoref{fig:simple tree}, the weights corresponding to the Total, series A and series B are proportional to 5, 2 and 3 respectively. This weighting scheme depends only on the aggregation structure and is referred to as structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
 
 	\item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$ for all $h$ ($k_{h} > 0$) to be proportional to the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results as $m$ grows compared to $T$. This is referred to this as the MinT(Sample) estimator.
 
@@ -289,12 +288,12 @@ A significant advantage of the MinT reconciliation solution is that it is the fi
 
 \section{Hierarchical probabilistic forecasting}\label{sec:probforecasting}
 
-A limitation of point forecasts is that they provide no indication of uncertainty around the forecast. A richer description of forecast uncertainty can be obtained by providing a probabilistic forecast, also commonly referred to as a density forecast. For a review of probabilistic forecasts, and methods for evaluating such forecasts known as \emph{scoring rules} see \citep{Gneiting2014}. In recent years, the use of probabilistic forecasts and their evaluation via scoring rules has become pervasive in macroeconomic forecasting, some notable (but non-exhaustive) examples are \citet{GewAmi2010}, \citet{BilEtAl2013}, \citet{CarEtAl2015} and \citet{ClaRav2015}.
+A limitation of point forecasts is that they provide no indication of uncertainty around the forecast. A richer description of forecast uncertainty can be obtained by providing a probabilistic forecast, also commonly referred to as a density forecast. For a review of probabilistic forecasts, and \emph{scoring rules} for evaluating such forecasts, see \citep{Gneiting2014}. In recent years, the use of probabilistic forecasts and their evaluation via scoring rules has become pervasive in macroeconomic forecasting, some notable (but non-exhaustive) examples are \citet{GewAmi2010}, \citet{BilEtAl2013}, \citet{CarEtAl2015} and \citet{ClaRav2015}.
 
 %For example, \citet{McSharry2005} produced probabilistic forecasts for electricity demand, \citet{BenTaieb2017} for smart meter data, \citet{Pinson2009} for wind power generation, and \citet{Gel2004}, \citet{Gneiting2005a} and \citet{Gneiting2005} for various weather variables.
 
 The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\bm{y}_{T+h|T}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
-To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \citet{Taieb2017} who define a coherent forecast in terms of a convolution. An equivalent definition, provided by \citet{GamEtAl2018} defines a coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$. \citet{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
+To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \citet{Taieb2017} who define a coherent forecast in terms of a convolution. An equivalent definition due to \citet{GamEtAl2018} defines a coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$. \citet{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
 
 \begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\varmathbb{R}^n$ that are mapped onto $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a base probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ reconciles $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 \end{definition}
@@ -308,15 +307,13 @@ In practice this definition leads to two approaches. For some parametric distrib
 %Assume we have fit the time series models for each series of the hierarchy by considering all the available information. Using these fitted models we can estimate the means and variance forecasts of the hierarchy which are denoted by $\bm{\hat{\mu}}_{T+h}$ and $\hat{\Sigma}_{T+h}$ respectively. Each element in $\bm{\hat{\mu}}_{T+h}$ corresponds to the mean forecast of each series in the hierarchy and these elements are stacked in the same order as $\bm{y}_t$. Similarly $\hat{\Sigma}_{T+h}$ contains variances and covariances of all series in the hierarchy. One can either fit univariate models for each individual series of the hierarchy or fit multivariate models by considering the correlation structure of the series for getting these forecasts. However as long as the aggregation structure is not imposed, it is very unlikely that these forecasts will be coherent. Thus it comes to the point of reconciliation.
 
 In the case where the base forecasts are probabilistic forecasts characterised by elliptical distributions, \citet{GamEtAl2018} show that reconciled probabilistic forecasts will also be elliptical. This is particularly straightforward for the Gaussian distribution which is completely characterised by two moments. Letting the base probabilistic forecasts be $\mathscr{N}(\bm{\hat{y}}_{T+h|T}, \hat{\bm{\Sigma}}_{T+h|T})$, then the reconciled probabilistic forecasts will be $\mathscr{N}(\bm{\tilde{y}}_{T+h|T}, \tilde{\bm{\Sigma}}_{T+h|T})$, where
-\begin{equation}\label{eq:rec mean}
-	\bm{\tilde{y}}_{T+h|T} = \bm{SG}\bm{\hat{y}}_{T+h|T},
-\end{equation}
-and
-\begin{equation}\label{eq:rec var}
-	\tilde{\bm{\Sigma}}_{T+h|T} = \bm{SG}\hat{\bm{\Sigma}}_{T+h|T}\bm{G'S'}.
-\end{equation}
+\begin{align}\label{eq:rec mean}
+	\bm{\tilde{y}}_{T+h|T} &= \bm{S}\bm{G}\bm{\hat{y}}_{T+h|T} \\
+\text{and}\qquad\label{eq:rec var}
+	\tilde{\bm{\Sigma}}_{T+h|T} &= \bm{S}\bm{G}\hat{\bm{\Sigma}}_{T+h|T}\bm{G}'\bm{S}'.
+\end{align}
 
-There are several options for obtaining the base probabilistic forecasts and in particular the variance covariance matrix $\hat{\bm{\Sigma}}$. One option is to fit multivariate models either level by level or for the hierarchy as a whole leading respectively to a $\hat{\bm \Sigma}$ that is block diagonal or dense. Another alternative is to fit univariate models for each individual series in which case $\hat{\bm{\Sigma}}$ is a diagonal matrix. A third alternative, that we employ here, is to obtain $\hat{\bm{\Sigma}}$ using in-sample forecast errors, in a similar vein to how $\hat{\bm{W}}_{1}$ is estimated in the MinT method. Here the same shrinkage estimator described in \autoref{sec:reconciliation approaches} is used. The reconciled probabilistic forecast will ultimately depend on the choice of $\bm{G}$; the same choices of $\bm{G}$ matrices used in \autoref{sec:point forecasting} can be used.
+There are several options for obtaining the base probabilistic forecasts and in particular the variance covariance matrix $\hat{\bm{\Sigma}}$. One option is to fit multivariate models either level by level or for the hierarchy as a whole leading respectively to a $\hat{\bm \Sigma}$ that is block diagonal or dense. Another option is to fit univariate models for each individual series in which case $\hat{\bm{\Sigma}}$ is a diagonal matrix. A third option that we employ here is to obtain $\hat{\bm{\Sigma}}$ using in-sample forecast errors, in a similar vein to how $\hat{\bm{W}}_{1}$ is estimated in the MinT method. Here the same shrinkage estimator described in \autoref{sec:reconciliation approaches} is used. The reconciled probabilistic forecast will ultimately depend on the choice of $\bm{G}$; the same choices of $\bm{G}$ matrices used in \autoref{sec:point forecasting} can be used.
 
 \subsection{Probabilistic forecast reconciliation in the non-parametric framework}\label{sec:probrecnp}
 
@@ -333,10 +330,10 @@ Due to these concerns, we employ the bootstrap method proposed by \citet{GamEtAl
 \begin{enumerate}
 	\item Fit univariate models to each series in the hierarchy over a training set from $t=1,\dots,T$.
 	\item For each series compute $h$-step-ahead point forecasts, for $h=1,\dots,H$. Collect these into an $n\times H$ matrix $\hat{\bm{Y}}:=(\hat{\bm{y}}_{T+1|T},\dots,\hat{\bm{y}}_{T+H|T})$, where $\hat{\bm{y}}_{T+h|T}$ is an $n$-vector of $h$-step-ahead point forecasts for all series in the hierarchy.
-	\item Compute one-step-ahead in-sample forecast errors. Collect these into an $n \times T$ matrix ${\hat{\bm E}}=(\hat{\bm{e}}_1,\hat{\bm{e}}_2,\dots,\hat{\bm{e}}_T)$, where the $n$-vector $\hat{\bm{e}}_t={\bm{y}}_t-\hat{\bm {y}}_{t|t-1}$. Here, $\hat{\bm {y}}_{t|t-1}$ is a vector of forecasts made for time $t$ using information up to and including time $t-1$. These are called in-sample forecasts since they depend on past values but information from the entire training sample is used to estimate parameters that forecasts are based on.
-	\item Block bootstrap from $\hat{\bm{E}}$, that is choose $H$ consecutive columns of $\hat{{\bm E}}$ at random, repeating this process $B$ times. Denote the $n\times H$ matrix obtained at iteration $b$ as $\hat{{\bm E}}^b$ for $b=1,\dots,B$.
+	\item Compute one-step-ahead in-sample forecast errors. Collect these into an $n \times T$ matrix ${\hat{\bm E}}=(\hat{\bm{e}}_1,\hat{\bm{e}}_2,\dots,\hat{\bm{e}}_T)$, where the $n$-vector $\hat{\bm{e}}_t={\bm{y}}_t-\hat{\bm {y}}_{t|t-1}$. Here, $\hat{\bm {y}}_{t|t-1}$ is a vector of forecasts made for time $t$ using information up to and including time $t-1$. These are called in-sample forecasts since while they depend only on past values, information from the entire training sample is used to estimate the parameters for the models on which the forecasts are based.
+	\item Block bootstrap from $\hat{\bm{E}}$; that is choose $H$ consecutive columns of $\hat{{\bm E}}$ at random, repeating this process $B$ times. Denote the $n\times H$ matrix obtained at iteration $b$ as $\hat{{\bm E}}^b$ for $b=1,\dots,B$.
 	\item For all $b$, compute $\hat{\bm\Upsilon}^b:=\hat{\bm{Y}}+\hat{\bm{E}}^b$. Each row of $\hat{\bm \Upsilon}^b$ is a sample path of $h$ forecasts for a single series. Each column of $\hat{\bm \Upsilon}^b$ is a realisation from the joint predictive distribution at a particular horizon.
-	\item For each $b=1,\dots,B$, select the $h$th column of $\hat{\bm \Upsilon}^b$ and stack these to form an $n\times B$ matrix $\hat{\bm{\Upsilon}}_{T+h|T}$
+	\item For each $b=1,\dots,B$, select the $h$th column of $\hat{\bm \Upsilon}^b$ and stack these to form an $n\times B$ matrix $\hat{\bm{\Upsilon}}_{T+h|T}$.
 	\item For a given ${\bm G}$ matrix and for each $h=1,\dots,H$, compute $\tilde{\bm{\Upsilon}}_{T+h|T}={\bm S}{\bm G}\hat{\bm{\Upsilon}}_{T+h|T}$.  Each column of $\tilde{\bm \Upsilon}_{T+h|T}$ is a realisation from the joint $h$-step-ahead reconciled predictive distribution.
 \end{enumerate}
 
@@ -365,10 +362,10 @@ Due to these concerns, we employ the bootstrap method proposed by \citet{GamEtAl
 
 %\subsection*{Step 2: Reconciling future sample paths}
 
-%The second step is to project these sample paths to the coherent subspace. Then we get a set of reconciled future paths which form a possible sample from the reconciled probabilistic forecast distribution. Similar to the projection used in the point forecast reconciliation, we project each sample path through the projection $\bm{SG}$. Then we get,
+%The second step is to project these sample paths to the coherent subspace. Then we get a set of reconciled future paths which form a possible sample from the reconciled probabilistic forecast distribution. Similar to the projection used in the point forecast reconciliation, we project each sample path through the projection $\bm{S}\bm{G}$. Then we get,
 
 %\begin{equation} \label{eq:20}
-%\tilde{\bm{y}}_{i,T+h}^b = \bm{SG}\hat{\bm{y}}_{i,T+h}^b, \quad i = 1, \dots, N
+%\tilde{\bm{y}}_{i,T+h}^b = \bm{S}\bm{G}\hat{\bm{y}}_{i,T+h}^b, \quad i = 1, \dots, N
 %\end{equation}
 %and let
 %\begin{equation}\label{eq:21}
@@ -393,47 +390,50 @@ We concentrate on the Income and Expenditure approaches as nominal data are avai
 Using the income approach, GDP is calculated by aggregating all income flows. In particular, GDP at purchaser's price is the sum of all factor incomes and taxes, minus subsidies on production and imports \citep{ABS2015}:
 \begin{align*}
 	\textit{GDP}
-	  & = \textit{Gross operating surplus}+ \textit{Gross mixed income} \\
+	  & = \textit{Gross operating surplus} + \textit{Gross mixed income} \\
 	  & + \textit{Compensation of employees} \\
-	  & + \textit{Taxes less Subsidies on production and imports} \\
+	  & + \textit{Taxes less subsidies on production and imports} \\
 	  & + \textit{Statistical discrepancy (I)}.
 \end{align*}
-\autoref{fig:GDP_I} shows the full hierarchical structure capturing all components aggregated to form GDP using the income approach. The hierarchy has two levels of aggregation below the top-level, with a total of $n=16$ series across the whole structure and $m=10$ series at the bottom-level.
+\autoref{fig:GDP_I} shows the full hierarchical structure capturing all components aggregated to form GDP using the income approach. The hierarchy has two levels of aggregation below the top-level, with a total of $n=16$ series across the whole structure and $m=10$ series at the bottom level.
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=.9\textwidth]{Figs/IncomeApproach.png}
-	\caption{Hierarchical structure of the income approach for GDP. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GDP_I}
+	\caption{Hierarchical structure of the income approach for GDP\@. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GDP_I}
 \end{figure}
 
 \subsubsection*{Expenditure approach}
 
 \begin{figure}
 	\centering	\includegraphics[width=.9\textwidth]{Figs/ExpenditureApproach.png}
-	\caption{Hierarchical structure of the expenditure approach for GDP. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
+	\caption{Hierarchical structure of the expenditure approach for GDP\@. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
 %\end{figure}
 %
 %\begin{figure}[!b]
 	\centering
 	\includegraphics[width=.9\textwidth]{Figs/GFCF.png}
-	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series.}\label{fig:GFCF}
+	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GFCF}
 \end{figure}
 
 In the expenditure approach, GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. The underline equation is:
 \begin{align*}
 	\textit{GDP}
-	 & = \textit{Final consumption expenditure} + \textit{Gross fixed capital formation}                  \\
-	 & + \textit{Changes in inventories} + \textit{Trade balance} + \textit{Statistical discrepancy (E)}.
+	 & = \textit{Final consumption expenditure}
+     + \textit{Gross fixed capital formation} \\
+	 & + \textit{Changes in inventories}
+     + \textit{Trade balance}
+     + \textit{Statistical discrepancy (E)}.
 \end{align*}
-Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarchical structure capturing all components aggregated to form GDP using the expenditure approach. The hierarchy has three levels of aggregation below the top-level, with a total of $n=80$ series across the whole structure and $m=53$ series at the bottom-level. Descriptions of each series in these hierarchies along with the series ID assigned by the ABS are given in the Tables~\ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and~\ref{Tab:Expenditure-hierarchy-3} in the Appendix.\todo{GEORGE: I have added these to the Appendix. Will ask the Editors how they want these and that they can go to online supplementary materials.}
+Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarchical structure capturing all components aggregated to form GDP using the expenditure approach. The hierarchy has three levels of aggregation below the top-level, with a total of $n=80$ series across the whole structure and $m=53$ series at the bottom level. Descriptions of each series in these hierarchies along with the series ID assigned by the ABS are given in the Tables~\ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and~\ref{Tab:Expenditure-hierarchy-3} in the Appendix.\todo{GEORGE: I have added these to the Appendix. Will ask the Editors how they want these and that they can go to online supplementary materials.}
 
 \begin{figure}[!t]
 	\centering
 	\includegraphics[width=.9\textwidth]{Figs/HFCE.png}
-	\caption{Hierarchical structure for Household Final Consumption Expenditure under expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells to the most disaggregate bottom-level series..}\label{fig:HFCE}
+	\caption{Hierarchical structure for Household Final Consumption Expenditure under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:HFCE}
 \end{figure}
 
-\autoref{fig:TSplots-INC-EXP}\todo{Please save all figures as pdf not png. Also fix facet labels for Fig 8 and convert millions to billions.} displays time series from the income and expenditure approaches. The top panel shows the most aggregate GDP series. The panels below show series from levels below for the income hierarchy (left panel) and the expenditure hierarchy (right panel). The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account and model all information and diverse signals from each series in the hierarchy which can only be achieved through a forecast reconciliation approach.
+\autoref{fig:TSplots-INC-EXP}\todo{Please save all figures as pdf not png. Also fix facet labels for Fig 8 and convert millions to billions.} displays time series from the income and expenditure approaches. The top panel shows the most aggregate GDP series. The panels below show series from lower levels for the income hierarchy (left panel) and the expenditure hierarchy (right panel). The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account for and model all information and diverse signals from each series in the hierarchy, which can only be achieved through a forecast reconciliation approach.
 
 \begin{figure}
 	\centering
@@ -448,13 +448,13 @@ We now demonstrate the potential for reconciliation methods to improve forecast 
 
 \subsection{Models}
 
-The first task in forecast reconciliation is to obtain base forecasts for all series in the hierarchy. In the case of the income approach this necessitates forecasting $n=16$ separate time series while in the case of the expenditure approach forecasts for $n=80$ separate time series must be obtained. Given the diversity in these time series discussed in \autoref{sec:data}, we focus on an approach that is fast but also flexible. We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and the AIC using an algorithm developed by \citet{HK08} and implemented in the \verb|auto.arima()| function in \citet{Rforecast}. A similar approach was also undertaken using the ETS framework to produce base forecasts \citep{expsmooth08}. This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecasts were found to be more accurate than ETS forecasts. Consequently for brevity, we have excluded presenting the results for ETS models. However, these are available from github\footnote{URL???}\todo{Need to put them there in a clearly marked folder.}. We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions, and models and methods that handle a large number of predictors such as factor models or least angle regression. However, \citet{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
+The first task in forecast reconciliation is to obtain base forecasts for all series in the hierarchy. In the case of the income approach, this necessitates forecasting $n=16$ separate time series while in the case of the expenditure approach, forecasts for $n=80$ separate time series must be obtained. Given the diversity in these time series discussed in \autoref{sec:data}, we focus on an approach that is fast but also flexible. We consider simple univariate ARIMA models, where model order is selected via a combination of unit root testing and the AIC using an algorithm developed by \citet{HK08} and implemented in the \verb|auto.arima()| function in \citet{Rforecast}. A similar approach was also undertaken using the ETS framework to produce base forecasts \citep{expsmooth08}. This had minimal impact on our conclusions with respect to forecast reconciliation methods, and in most cases ARIMA forecasts were found to be more accurate than ETS forecasts. Consequently for brevity, we have excluded presenting the results for ETS models. However, these are available from github\footnote{URL???}\todo{Need to put them there in a clearly marked folder.}. We note that a number of more complicated approaches could have been used to obtain base forecasts including multivariate models such as vector autoregressions, and models and methods that handle a large number of predictors such as factor models or least angle regression. However, \citet{PanEtAl2019} show that univariate ARIMA models are highly competitive for forecasting Australian GDP even compared to these methods, and in any case our primary motivation is to demonstrate the potential of forecast reconciliation.
 
 The hierarchical forecasting approaches we consider are bottom-up, OLS, WLS with variance scaling and the MinT(Shrink) approach. The MinT(Sample) approach was also used but due to the size of the hierarchy, forecasts reconciled via this approach were less stable. Finally, all forecasts (both base and coherent) are compared to a seasonal \naive benchmark \citep{HynAth2018}; i.e.\ the forecast for GDP (or one of its components) is the realised GDP in the same quarter of the previous year. The \naive forecasts are by construction coherent and therefore do not need to be reconciled.
 
 \subsection{Evaluation}
 
-For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE). The absolute scaled error is defined as
+For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE). The absolute scaled error is defined as\todo{What is first sum over?}
 \begin{equation*}
 	q_{T+h} = \sum \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
 \end{equation*}
@@ -471,7 +471,7 @@ Forecast accuracy of probabilistic forecasts can be evaluated using scoring rule
 \end{equation*}
 where the subscript $i$ is used to denote that CRPS measures forecast accuracy for a single variable in the hierarchy.
 
-Alternatives to the energy score were also considered, namely log scores and variogram scores. The log score was disregarded since \citet{GamEtAl2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent. The variogram score gave similar results to the energy score, but these results are omitted for brevity but these are available from github\footnote{URL}\todo{Need to set this up.}
+Alternatives to the energy score were also considered, namely log scores and variogram scores. The log score was disregarded since \citet{GamEtAl2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent. The variogram score gave similar results to the energy score;  these results are omitted for brevity but are available from github\footnote{URL???}\todo{Need to set this up.}
 
 %\subsubsection{Comparison between different forecasting methods}
 %
@@ -513,12 +513,12 @@ Alternatives to the energy score were also considered, namely log scores and var
 
 \subsection{Base forecasts}
 
-Due to the different features in each time series a variety of ARIMA and seasonal ARIMA models were selected for generating base forecasts. For example, in the income hierarchy, some series require seasonal differencing while other did not. Furthermore the AR orders vary from 0--3, the MA orders from 0--2, and their seasonal counterparts SAR from 0--2 and SMA from 0--1. \autoref{fig: NaiveVsBase_MSE} compares the accuracy of the ARIMA base forecasts to the seasonal \naive forecasts over different forecast horizons. The panels on the left show results for the Income hierarchy while the panels on the right show the results for the Expenditure hierarchy. The top panels summarise results over all series in the hierarchy, i.e.\ we calculate the MSE for each series and then average over all series. The bottom panels show the results for the aggregate level GDP.
+Due to the different features in each time series, a variety of ARIMA and seasonal ARIMA models were selected for generating base forecasts. For example, in the income hierarchy, some series require seasonal differencing while other did not. Furthermore the AR orders vary from 0--3, the MA orders from 0--2, and their seasonal counterparts SAR from 0--2 and SMA from 0--1. \autoref{fig: NaiveVsBase_MSE} compares the accuracy of the ARIMA base forecasts to the seasonal \naive forecasts over different forecast horizons. The panels on the left show results for the Income hierarchy while the panels on the right show the results for the Expenditure hierarchy. The top panels summarise results over all series in the hierarchy, i.e.\ we calculate the MSE for each series and then average over all series. The bottom panels show the results for the aggregate level GDP.
 
-The clear result is that base forecasts are more accurate than the \naive forecasts, however as the forecasting horizon increases, the differences become smaller. This is to be expected since the \naive model here is a seasonal random walk, and for horizons $h<4$ forecasts from an ARIMA model are based on more recent information. Similar results are obtained when MASE is used as the metric for evaluating forecast accuracy.
+The clear result is that base forecasts are more accurate than the \naive forecasts, however as the forecasting horizon increases, the differences become smaller. This is to be expected since the \naive model here is a seasonal random walk, and for horizons $h<4$, forecasts from an ARIMA model are based on more recent information. Similar results are obtained when MASE is used as the metric for evaluating forecast accuracy.
 
 One disadvantage of the base forecasts relative to the \naive forecasts is that base forecasts are not coherent. As such we now turn our attention to investigating whether reconciliation approaches can lead to further improvements in forecast accuracy relative to the base forecasts.
-
+\emph{scoring rules}
 %\begin{figure}[t]
 %	\centering
 %	\small
@@ -548,7 +548,7 @@ We now turn our attention to evaluating the accuracy of point forecasts obtained
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/PointF_MSE.png}
-	\caption{Skill scores for point forecasts from alternative methods (with reference to base forecasts) using MSE. Left panels refer to the income hierarchy while the right panels refer to the expenditure hierarchy. The first row refers to results summarised over all series, second row to top-level GDP series, third row to aggregate levels and last row to the bottom-level.}
+	\caption{Skill scores for point forecasts from alternative methods (with reference to base forecasts) using MSE\@. The left panels refer to the income hierarchy while the right panels refer to the expenditure hierarchy. The first row refers to results summarised over all series, the second row to top-level GDP series, the third row to aggregate levels, and the last row to the bottom level.}
 	\label{fig: PointF_MSE}
 \end{figure}
 
@@ -556,13 +556,13 @@ We now turn our attention to evaluating the accuracy of point forecasts obtained
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/PointF_MASE.png}
-	\caption{Skill scores for point forecasts from different reconciliation methods (with reference to base forecasts) using MASE. Left two panels refer to income hierarchy and right two panels to expenditure hierarchy. First row refers to results summarised over all series, second row to top-level GDP series, third row to aggregate levels and last row to the bottom-level.}
+	\caption{Skill scores for point forecasts from different reconciliation methods (with reference to base forecasts) using MASE\@. The left two panels refer to the income hierarchy and the right two panels to the expenditure hierarchy. The first row refers to results summarised over all series, the second row to top-level GDP series, the third row to aggregate levels, and the last row to the bottom level.}
 	\label{fig: PointF_MASE}
 \end{figure}
 
 Figures~\ref{fig: PointF_MSE} and~\ref{fig: PointF_MASE} show skill scores using MSE and MASE respectively. The top row of each figure shows skill scores based on averages over all series. We conclude that reconciliation methods generally improve forecast accuracy relative to base forecasts regardless of the hierarchy used, the forecasting horizon, the forecast error measure or the reconciliation method employed. We do however note that while all reconciliation methods improve forecast performance, MinT(Shrink) is the best forecasting method in most cases.
 
-To further investigate the results we break down the skill scores by different levels of each hierarchy. The second row of Figures~\ref{fig: PointF_MSE} and~\ref{fig: PointF_MASE} shows the skill scores for a single series, namely GDP which represents the top-level of both hierarchies. The third row shows results for all series excluding those of the bottom-level, while the final row shows results for the bottom-level series only. Here, we see two general features. The first is that OLS reconciliation performs poorly on the bottom-level series, and the second is that bottom-up performs relatively poorly on aggregate series. The two features are particularly exacerbated for the larger expenditure hierarchy. These results are consistent with other findings in the forecast reconciliation literature \citep[see for instance][]{AthEtAl2017,WicEtAl2019}
+To further investigate the results we break down the skill scores by different levels of each hierarchy. The second row of Figures~\ref{fig: PointF_MSE} and~\ref{fig: PointF_MASE} shows the skill scores for a single series, namely GDP which represents the top-level of both hierarchies. The third row shows results for all series excluding those of the bottom level, while the final row shows results for the bottom-level series only. Here, we see two general features. The first is that OLS reconciliation performs poorly on the bottom-level series, and the second is that bottom-up performs relatively poorly on aggregate series. The two features are particularly exacerbated for the larger expenditure hierarchy. These results are consistent with other findings in the forecast reconciliation literature \citep[see for instance][]{AthEtAl2017,WicEtAl2019}
 
 \subsection{Probabilistic Forecast Reconciliation}
 
@@ -570,7 +570,7 @@ To further investigate the results we break down the skill scores by different l
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/ProbF_MultivS.png}
-	\caption{Skill scores for multivariate probabilistic forecasts from different reconciliation methods (with reference to base forecasts) using energy score. Top panels refer to the results for Gaussian approach and bottom panels to the non-parametric bootstrap approach. Left panels refer to the income hierarchy and right panels to the expenditure hierarchy.}
+	\caption{Skill scores for multivariate probabilistic forecasts from different reconciliation methods (with reference to base forecasts) using energy scores. The top panels refer to the results for the Gaussian approach and the bottom panels to the non-parametric bootstrap approach. Left panels refer to the income hierarchy and right panels to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_ES}
 \end{figure}
 
@@ -578,19 +578,19 @@ To further investigate the results we break down the skill scores by different l
 	\centering
 	\small
 	\includegraphics[width=\textwidth]{Figs/Results/ProbF_UnivS.png}
-	\caption{Skill scores for probabilistic forecasts of top-level GDP from different reconciliation methods (with reference to base forecasts) using CRPS. Top panels refer to the results for Gaussian approach and bottom panels refer to the non-parametric bootstrap approach. Left panel refers to the income hierarchy and right panel to the expenditure hierarchy.}
+	\caption{Skill scores for probabilistic forecasts of top-level GDP from different reconciliation methods (with reference to base forecasts) using CRPS. Top panels refer to the results for Gaussian approach and bottom panels refer to the non-parametric bootstrap approach. The left panel refers to the income hierarchy and the right panel to the expenditure hierarchy.}
 	\label{fig: Prob-forecasts-SS_CRPS}
 \end{figure}
 
-We now turn our attention towards results for probabilistic forecasts. \autoref{fig: Prob-forecasts-SS_ES} shows results for the energy score which as a multivariate score summarises forecast accuracy over the entire hierarchy. Once again all results are presented as skill scores relative to base forecasts. The top panels refer to results assuming Gaussian probabilistic forecasts as described in \autoref{sec:probrecgauss} while the bottom panels refer to the non-parametric bootstrap method described in \autoref{sec:probrecnp}. The left panels correspond to the income hierarchy while the right panels correspond to the expenditure hierarchy. For the income hierarchy, all methods improve upon base forecasts at all horizons. In nearly all cases the best performing reconciliation method is MinT(Shrink), a notable result since the optimal properties for MinT have thus far only been established theoretically in the point forecasting case. For the larger expenditure hierarchy results are little more mixed. While bottom-up tends to perform poorly, all reconciliation methods improve upon base forecasts (with the single exception of MinT(Shrink) in the Gaussian framework four quarters ahead). Interestingly, OLS performs best under the assumption of Gaussianity - this may indicate that OLS is a more robust method under model misspecification but further investigation is required.
+We now turn our attention towards results for probabilistic forecasts. \autoref{fig: Prob-forecasts-SS_ES} shows results for the energy score which as a multivariate score summarises forecast accuracy over the entire hierarchy. Once again all results are presented as skill scores relative to base forecasts. The top panels refer to results assuming Gaussian probabilistic forecasts as described in \autoref{sec:probrecgauss} while the bottom panels refer to the non-parametric bootstrap method described in \autoref{sec:probrecnp}. The left panels correspond to the income hierarchy while the right panels correspond to the expenditure hierarchy. For the income hierarchy, all methods improve upon base forecasts at all horizons. In nearly all cases the best performing reconciliation method is MinT(Shrink), a notable result since the optimal properties for MinT have thus far only been established theoretically in the point forecasting case. For the larger expenditure hierarchy results are little more mixed. While bottom-up tends to perform poorly, all reconciliation methods improve upon base forecasts (with the single exception of MinT(Shrink) in the Gaussian framework four quarters ahead). Interestingly, OLS performs best under the assumption of Gaussianity --- this may indicate that OLS is a more robust method under model misspecification but further investigation is required.
 
-Finally, \autoref{fig: Prob-forecasts-SS_CRPS} displays the skill scores based on the cumulative ranked probability score for a single series, namely top-level GDP. The cause of the poor performance of bottom-up reconciliation as a failure to accurately forecast aggregate series is apparent here.
+Finally, \autoref{fig: Prob-forecasts-SS_CRPS} displays the skill scores based on the cumulative ranked probability score for a single series, namely top-level GDP\@. The cause of the poor performance of bottom-up reconciliation as a failure to accurately forecast aggregate series is apparent here.
 
 \section{Conclusions}\label{sec:conclusions}
 
 In the macroeconomic setting, we have demonstrated the potential for forecast reconciliation methods to not only provide coherent forecasts, but to also improve overall forecast accuracy. This result holds for both point forecasts and probabilistic forecasts, for the two different hierarchies we consider and over different forecasting horizons. Even where the objective is to only forecast a single series, for instance top-level GDP, the application of forecast reconciliation methods improves forecast accuracy.
 
-By comparing results from different forecast reconciliation techniques we draw a number of conclusions. Despite its simplicity, the single-level bottom-up approach can perform poorly at more aggregated levels of the hierarchy. Meanwhile, when forecast accuracy at the bottom-level is evaluated, OLS tends to break down in some instances. Overall, the WLS and MinT(Shrink) methods, and particularly the latter tend to yield the highest improvements in forecast accuracy. Similar results can be found in both simulations and the empirical studies of \citet{AthEtAl2017} and \citet{WicEtAl2019}.
+By comparing results from different forecast reconciliation techniques we draw a number of conclusions. Despite its simplicity, the single-level bottom-up approach can perform poorly at more aggregated levels of the hierarchy. Meanwhile, when forecast accuracy at the bottom level is evaluated, OLS tends to break down in some instances. Overall, the WLS and MinT(Shrink) methods (and particularly the latter) tend to yield the highest improvements in forecast accuracy. Similar results can be found in both simulations and the empirical studies of \citet{AthEtAl2017} and \citet{WicEtAl2019}.
 
 There are a number of open avenues for research in the literature on forecast reconciliation, some of which are particularly relevant to macroeconomic applications. First there is scope to consider more complex aggregation structures, for instance in addition to the hierarchies we have already considered, data on GDP and GDP components disaggregated along geographical lines are also available. This leads to a grouped aggregation structure. Also, given the substantial literature on the optimal frequency at which to analyse macroeconomic data, a study on forecasting GDP or other variables as a temporal hierarchy may be of interest. In this chapter we have only shown that reconciliation methods can be used to improve forecast accuracy when univariate ARIMA models are used to produce base forecasts. It will be interesting to evaluate whether such results hold when a multivariate approach, e.g.\ a Bayesian VAR or dynamic factor model, is used to generate base forecasts, or whether the gains from forecast reconciliation would be more modest. Finally, a current limitation of the forecast reconciliation literature is that it only applies to collections of time series that adhere to linear constraints. In macroeconomics there are many examples of data that adhere to non-linear constraints, for instance real GDP is a complicated but deterministic function of GDP components and price deflators. The extension of forecast reconciliation methods to non-linear constraints potentially holds great promise for continued improvement in macroeconomic forecasting.
 
