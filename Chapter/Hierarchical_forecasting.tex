@@ -290,10 +290,7 @@ A significant advantage of the MinT reconciliation solution is that it is the fi
 
 A limitation of point forecasts is that they provide no indication of uncertainty around the forecast. A richer description of forecast uncertainty can be obtained by providing a probabilistic forecast, also commonly referred to as a density forecast. For a review of probabilistic forecasts, and \emph{scoring rules} for evaluating such forecasts, see \citep{Gneiting2014}. In recent years, the use of probabilistic forecasts and their evaluation via scoring rules has become pervasive in macroeconomic forecasting, some notable (but non-exhaustive) examples are \citet{GewAmi2010}, \citet{BilEtAl2013}, \citet{CarEtAl2015} and \citet{ClaRav2015}.
 
-%For example, \citet{McSharry2005} produced probabilistic forecasts for electricity demand, \citet{BenTaieb2017} for smart meter data, \citet{Pinson2009} for wind power generation, and \citet{Gel2004}, \citet{Gneiting2005a} and \citet{Gneiting2005} for various weather variables.
-
-The literature on hierarchical probabilistic forecasting is still an emerging area of interest. %There's is only a few studies in published literature. The uncertainly around $\bm{y}_{T+h|T}$ is referred to as the probabilistic forecasts in hierarchical time series. Due to the aggregation nature of the data, these should also lie in the coherent subspace $\mathfrak{s}$. If so, we call them as coherent probabilistic forecasts.
-To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \citet{Taieb2017} who define a coherent forecast in terms of a convolution. An equivalent definition due to \citet{GamEtAl2018} defines a coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$. \citet{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
+The literature on hierarchical probabilistic forecasting is still an emerging area of interest.  To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \citet{Taieb2017} who define a coherent forecast in terms of a convolution. An equivalent definition due to \citet{GamEtAl2018} defines a coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$. \citet{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
 
 \begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\varmathbb{R}^n$ that are mapped onto $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a base probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ reconciles $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 \end{definition}
@@ -301,10 +298,6 @@ To the best of our knowledge the first attempt to even define coherence in the s
 In practice this definition leads to two approaches. For some parametric distributions, for instance the multivariate normal, a reconciled probabilistic forecast can be derived analytically. However, in macroeconomic forecasting, non-standard distributions such as bimodal distributions are often required to take different policy regimes into account. In such cases a non-parametric approach based on bootstrapping in-sample errors proposed \citet{GamEtAl2018} can be used. These scenarios are now covered in detail.
 
 \subsection{Probabilistic forecast reconciliation in the Gaussian framework}\label{sec:probrecgauss}
-
-%Suppose we have a set of hierarchical time series where each realisation follows a multivariate Guassian distribution. i.e., $\bm{y}_T \sim \mathscr{N}(\bm{\mu}_T, \Sigma_T)$ where both $\bm{\mu}_T$ and $\Sigma_T$ lives in the coherent subspace $\mathfrak{s}$ due to the aggregation structure of the hierarchy. We are interested in estimating the predictive Gaussian distribution of $\bm{Y}_{T+h}| \bm{\mathscr{I}}_T$ where $\bm{\mathscr{I}}_T= \{\bm{y}_1,\bm{y}_2,\dots,\bm{y}_T\}$, which should also lives in $\mathfrak{s}$. Since Gaussian distributions are uniquely characterised by the first two moments, it is sufficient to have the mean and variance forecasts to get the Gaussian predictive distributions of the hierarchy.
-
-%Assume we have fit the time series models for each series of the hierarchy by considering all the available information. Using these fitted models we can estimate the means and variance forecasts of the hierarchy which are denoted by $\bm{\hat{\mu}}_{T+h}$ and $\hat{\Sigma}_{T+h}$ respectively. Each element in $\bm{\hat{\mu}}_{T+h}$ corresponds to the mean forecast of each series in the hierarchy and these elements are stacked in the same order as $\bm{y}_t$. Similarly $\hat{\Sigma}_{T+h}$ contains variances and covariances of all series in the hierarchy. One can either fit univariate models for each individual series of the hierarchy or fit multivariate models by considering the correlation structure of the series for getting these forecasts. However as long as the aggregation structure is not imposed, it is very unlikely that these forecasts will be coherent. Thus it comes to the point of reconciliation.
 
 In the case where the base forecasts are probabilistic forecasts characterised by elliptical distributions, \citet{GamEtAl2018} show that reconciled probabilistic forecasts will also be elliptical. This is particularly straightforward for the Gaussian distribution which is completely characterised by two moments. Letting the base probabilistic forecasts be $\mathscr{N}(\bm{\hat{y}}_{T+h|T}, \hat{\bm{\Sigma}}_{T+h|T})$, then the reconciled probabilistic forecasts will be $\mathscr{N}(\bm{\tilde{y}}_{T+h|T}, \tilde{\bm{\Sigma}}_{T+h|T})$, where
 \begin{align}\label{eq:rec mean}
@@ -319,13 +312,7 @@ There are several options for obtaining the base probabilistic forecasts and in 
 
 In many applications, including macroeconomic forecasting, it may not be reasonable to assume Gaussian predictive distributions. Therefore, non-parametric approaches have been widely used for probabilistic forecasts in different disciplines. For example, ensemble forecasting in weather applications \citep{GneRaf2005,Gneiting2014,Gneiting2008}, and bootstrap based approaches \citep{Manzan2008,Vilar2013}. In macroeconomics, \citet{CogEtAl2005} discuss the importance of allowing for skewness in density forecasts and more recently \citet{SmiVah2016} discuss this issue in detail.
 
-%Non-parametric approaches are also important in hierarchical forecasting as in most applications they have millions of time series which are often difficult to assume parametric distributions. Further, for data with heavy tails, it is often misleading to assume Gaussianity. The algorithm introduced by \citet{Taieb2017} is also a non-parametric approach as it does not make any distributional assumptions. They first generate, a sample from the bottom-level predictive distribution, and then aggregate to obtain coherent probabilistic forecasts of the upper levels of the hierarchy. Initially they use MinT algorithm to reconcile the means of the bottom-level forecast distributions, and then a copula-based approach is employed to model the dependency structure of the hierarchy. Resulting multi-dimensional distribution is used to generate the empirical forecast distributions for all bottom-level series which are then aggregated to obtain the empirical forecast distribution for the entire hierarchy. Although the means of forecast distributions are reconciled, the predictive distributions were obtained through a bottom-up based approach. Therefore this approach is not a reconciliation method as it does not use all the information from the hierarchy when producing coherent probabilistic forecasts.
-
-%\citet{Jeon2018} is the only existing study that does reconciliation in probabilistic hierarchical forecasts. This method is based on cross-validation and it also does not assume any parametric distributions for predictive densities. However they applied this method particularly for temporal hierarchies.
-
 Due to these concerns, we employ the bootstrap method proposed by \citet{GamEtAl2018} that does not make parametric assumptions about the predictive distribution. An important result exploited by this method is that applying point forecast reconciliation to the draws from an incoherent base predictive distribution, results in a sample from the reconciled predictive distribution. We summarise this process below:
-
-%In the first step we obtain possible sample paths from the incoherent forecast distributions. This follows by the reconciliation step which projects each sample path to the coherent subspace. These steps will be discussed in detail below.
 
 \begin{enumerate}
 	\item Fit univariate models to each series in the hierarchy over a training set from $t=1,\dots,T$.
@@ -336,47 +323,6 @@ Due to these concerns, we employ the bootstrap method proposed by \citet{GamEtAl
 	\item For each $b=1,\dots,B$, select the $h$th column of $\hat{\bm \Upsilon}^b$ and stack these to form an $n\times B$ matrix $\hat{\bm{\Upsilon}}_{T+h|T}$.
 	\item For a given ${\bm G}$ matrix and for each $h=1,\dots,H$, compute $\tilde{\bm{\Upsilon}}_{T+h|T}={\bm S}{\bm G}\hat{\bm{\Upsilon}}_{T+h|T}$.  Each column of $\tilde{\bm \Upsilon}_{T+h|T}$ is a realisation from the joint $h$-step-ahead reconciled predictive distribution.
 \end{enumerate}
-
-%For a given forecast horizon and add these to the point forecasts $\hat{\bm{y}}_{T+1},\dots,\hat{\bm{y}}_{T+h}$. Repeating this process for $N$ bootstrap samples and stacking in an $(N \times n)$ gives,
-
-%\begin{equation} \label{eq:19}
-%\hat{\bm{Y}}^b_{T+h|T}=\begin{pmatrix}
-%\hat{\bm{y}}_{1,T+h|T}^b\\
-%\hat{\bm{y}}_{2,T+h|T}^b\\
-%\vdots\\
-%\hat{\bm{y}}_{N,T+h|T}^b
-%\end{pmatrix}.
-%\end{equation}
-
-%bootstrapped errors will be incorporated as the error series for simulating future paths. Taking block bootstrapped in-sample errors in generating future paths will implicitly model the dependency structure of the hierarchy. These simulated future sample paths will be then formed in a vector $\hat{\bm{y}}_{T+h|T}^b$ by stacking the sample paths of each node in the same order as $\bm{y}_t$. As such we generate a sample of $N$ future paths for the hierarchy. We can denote this sample by a $(N \times n)$ matrix $\hat{\bm{Y}}^b_{T+h|T}$ where
-%\begin{equation} \label{eq:19}
-%\hat{\bm{Y}}^b_{T+h|T}=\begin{pmatrix}
-%\hat{\bm{y}}_{1,T+h|T}^b\\
-%\hat{\bm{y}}_{2,T+h|T}^b\\
-%\vdots\\
-%\hat{\bm{y}}_{N,T+h|T}^b
-%\end{pmatrix}.
-%\end{equation}
-
-%An advantage to this approach is that the dependence structure of the hierarchy as well as serial correlation, are captured through the bootstrapping. However future paths constructed in this way will not be coherent and thus require reconciliation.
-
-%\subsection*{Step 2: Reconciling future sample paths}
-
-%The second step is to project these sample paths to the coherent subspace. Then we get a set of reconciled future paths which form a possible sample from the reconciled probabilistic forecast distribution. Similar to the projection used in the point forecast reconciliation, we project each sample path through the projection $\bm{S}\bm{G}$. Then we get,
-
-%\begin{equation} \label{eq:20}
-%\tilde{\bm{y}}_{i,T+h}^b = \bm{S}\bm{G}\hat{\bm{y}}_{i,T+h}^b, \quad i = 1, \dots, N
-%\end{equation}
-%and let
-%\begin{equation}\label{eq:21}
-%\tilde{\bm{Y}}^b_{T+h|T}=\begin{pmatrix}
-%\tilde{\bm{y}}_{1,T+h|T}^b\\
-%\tilde{\bm{y}}_{2,T+h|T}^b\\
-%\vdots\\
-%\tilde{\bm{y}}_{N,T+h|T}^b
-%\end{pmatrix}
-%\end{equation}
-%where $\tilde{\bm{y}}_{i,T+h}^b \in \mathfrak{s}$ denote a $h$-step-ahead reconciled future paths for $i=1,\dots,N$. $\tilde{\bm{Y}}^b_{T+h|T}$ form an empirical coherent forecast distribution of the hierarchy that lies in the coherent subspace $\mathfrak{s}$. As we discussed in point forecast reconciliation methods, different estimates of $\bm{G}$ provide alternative estimates of reconciled future paths. We can also obtain bottom-up based future paths by simply aggregating the future paths of bottom-level series for their respective upper levels. This is referred to as bottom-up future paths. Even though the bottom-up approach generates coherent probabilistic forecasts, it cannot be considered as a reconciliation method since it use only half of the information.
 
 \section{Australian GDP}\label{sec:data}
 
@@ -408,9 +354,6 @@ Using the income approach, GDP is calculated by aggregating all income flows. In
 \begin{figure}
 	\centering	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/ExpenditureApproach.pdf}
 	\caption{Hierarchical structure of the expenditure approach for GDP\@. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
-%\end{figure}
-%
-%\begin{figure}[!b]
 	\centering
 	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/GFCF.pdf}
 	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GFCF}
@@ -473,41 +416,6 @@ where the subscript $i$ is used to denote that CRPS measures forecast accuracy f
 
 Alternatives to the energy score were also considered, namely log scores and variogram scores. The log score was disregarded since \citet{GamEtAl2018} prove that the log score is improper with respect to the class of incoherent probabilistic forecasts when the true DGP is coherent. The variogram score gave similar results to the energy score;  these results are omitted for brevity but are available from these are available from github and are discussed in detail in \cite{gamakumara2019phd}
 
-%\subsubsection{Comparison between different forecasting methods}
-%
-%{\color{red}To be included in results section - and discussed much more briefly.}
-%
-%We are mainly interested to evaluate the hierarchical forecasts in two aspects. One is to examine whether the having coherent forecasts is improving the forecast accuracy. This can be evaluated by comparing the incoherent forecasts with any coherent forecasts in both point as well as probabilistic framework. Secondly we are interested in finding the best reconciliation method by comparing reconciled forecast from different reconciliation methods.
-%
-%For any comparison we use Skill score as defined in \citep{Gneiting2007}. For a given forecasting method, evaluated by a particular scoring rule $S(\cdot)$ , the skill score can be calculated as follows,
-%\begin{equation} \label{eq:25}
-%Ss[S_B(\cdot)] = \frac{S_B(\bm{Y},\bm{y})^{\text{ref}} - S_B(\breve{\bm{Y}},\bm{y})}{S_B(\bm{Y},\bm{y})^{\text{ref}}}\times 100\%,
-%\end{equation}
-%where $S_B(\cdot)$ is average score over $B$ replicates and $S_B(\bm{Y},\bm{y})^{\text{ref}}$ is the average score of the reference forecasting methods. Thus $Ss[S_B(\cdot)]$ gives the percentage improvement of the preferred forecasting method relative to the reference method. Any positive value indicates that method is superior to the reference method, whereas any negative value of $Ss[S_B(\cdot)]$ indicate that the method we compared is poor than the reference method.
-%
-%
-%
-%
-%First step in the reconciliation process is to generate base forecasts in both point and probabilistic frameworks. Thus we fit ETS and ARIMA models for each individual series of the hierarchy by using default settings in forecast package in R software implemented by \citep{Hyndman2018}. We further use seasonal naive forecasts as the benchmark which are always coherent.
-
-%\subsubsection*{Income approach}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.50]{Figs/Results/INC-PointF.png}
-%	\caption{Summary of point forecasts in income approach}\label{Exp-PointF}
-%\end{figure}
-%
-%
-%\subsubsection*{Expenditure approach}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.50]{Figs/Results/EXP-PointF.png}
-%	\caption{Summary of point forecasts in expenditure approach}\label{Inc-PointF}
-%\end{figure}
 
 \section{Results}\label{sec:results}
 
@@ -518,13 +426,6 @@ Due to the different features in each time series, a variety of ARIMA and season
 The clear result is that base forecasts are more accurate than the \naive forecasts, however as the forecasting horizon increases, the differences become smaller. This is to be expected since the \naive model here is a seasonal random walk, and for horizons $h<4$, forecasts from an ARIMA model are based on more recent information. Similar results are obtained when MASE is used as the metric for evaluating forecast accuracy.
 
 One disadvantage of the base forecasts relative to the \naive forecasts is that base forecasts are not coherent. As such we now turn our attention to investigating whether reconciliation approaches can lead to further improvements in forecast accuracy relative to the base forecasts.
-%\emph{scoring rules}
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_SS_MSE.png}
-%	\caption{Skill scores for naive forecasts (relative to base forecasts) using mean square error as a forecast metric. Top panels refer to results summarised over all series, bottom panels only refer to the top-level GDP series. Left panels refer to the income hierarchy, right panels to the expenditure hierarchy}\label{fig: NaiveVsBase_SS_MSE}
-%\end{figure}
 
 \begin{figure}
 	\centering
@@ -532,13 +433,6 @@ One disadvantage of the base forecasts relative to the \naive forecasts is that 
 	\includegraphics[width=\textwidth]{Figs/Results/NaiveVsBase_MSE.pdf}
 	\caption{Mean squared errors for \naive and ARIMA base forecasts. Top panels refer to results summarised over all series while bottom panels refer to results for the top-level GDP series. Left panels refer to the income hierarchy and right panels to the expenditure hierarchy.}\label{fig: NaiveVsBase_MSE}
 \end{figure}
-
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.50]{Figs/Results/NaiveVsBase_MASE.png}
-%	\caption{Skill scores for naive forecasts based on MASE}\label{NaiveVsBase_MASE}
-%\end{figure}
 
 \subsection{Point Forecast Reconciliation}
 
@@ -772,124 +666,5 @@ There are a number of open avenues for research in the literature on forecast re
 	\end{tabular*}
 	\label{Tab:Expenditure-hierarchy-3}
 \end{table}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-aggregates_TSplots.png}
-%	\caption{All aggregate level series of income hierarchy.}\label{INC-aggregates_TSplot}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/INC-hierarchy/INC-bottomlevel-TSplots.png}
-%	\caption{All bottom-level series of income hierarchy.}\label{INC-bottomlevel_TSplot}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-1.png}
-%	\caption{GDP(E), GNE, Experts less Imports and Statistical discrepancy in expenditure hierarchy.}\label{EXP-set-1}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-2.png}
-%	\caption{Domestic Final Demand, Final Consumption Expenditure and Gross Fixed Capital Formations in expenditure hierarchy.}\label{EXP-set-2}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-3.png}
-%	\caption{Total changes in inventory, Private non-farm, Private farm and Public authorities in expenditure hierarchy.}\label{EXP-set-3}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-4.png}
-%	\caption{Disaggregation of private non-farm in expenditure hierarchy.}\label{EXP-set-4}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-5.png}
-%	\caption{Disaggregation of government final consumption expenditure.}\label{EXP-set-5}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-6.png}
-%	\caption{Public, private and total fixed capital formations.}\label{EXP-set-6}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-7.png}
-%	\caption{Disaggregation of general government of Gross fixed capital formations.}\label{EXP-set-7}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.65]{Figs/TS-plots/EXP-hierarchy/set-8.png}
-%	\caption{Disaggregation of public corporations of Gross fixed capital formations.}\label{EXP-set-8}
-%\end{figure}
-%
-%\begin{figure}[t]
-% 	\centering
-% 	\small
-% 	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-9.png}
-% 	\caption{Disaggregation of total dwelling and ownership transfer.}\label{EXP-set-9}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-10.png}
-%	\caption{Main disaggregation of total private business investments.}\label{EXP-set-10}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-11.png}
-%	\caption{Remaining disaggregation of total private business investments.}\label{EXP-set-11}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-12.png}
-%	\caption{Main disaggregation of household final consumption expenditure.}\label{EXP-set-12}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-13.png}
-%	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-13}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-14.png}
-%	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-14}
-%\end{figure}
-%
-%\begin{figure}[t]
-%	\centering
-%	\small
-%	\includegraphics[scale=0.5]{Figs/TS-plots/EXP-hierarchy/set-15.png}
-%	\caption{Disaggregation of household final consumption expenditure.}\label{EXP-set-15}
-%\end{figure}
 
 \end{document}
