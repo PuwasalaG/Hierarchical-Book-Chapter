@@ -399,20 +399,20 @@ Using the income approach, GDP is calculated by aggregating all income flows. In
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/IncomeApproach.png}
+	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/IncomeApproach.pdf}
 	\caption{Hierarchical structure of the income approach for GDP\@. The pink cell contains GDP the most aggregate series. The blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GDP_I}
 \end{figure}
 
 \subsubsection*{Expenditure approach}
 
 \begin{figure}
-	\centering	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/ExpenditureApproach.png}
+	\centering	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/ExpenditureApproach.pdf}
 	\caption{Hierarchical structure of the expenditure approach for GDP\@. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
 %\end{figure}
 %
 %\begin{figure}[!b]
 	\centering
-	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/GFCF.png}
+	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/GFCF.pdf}
 	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GFCF}
 \end{figure}
 
@@ -429,11 +429,11 @@ Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarc
 
 \begin{figure}[!t]
 	\centering
-	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/HFCE.png}
+	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/HFCE.pdf}
 	\caption{Hierarchical structure for Household Final Consumption Expenditure under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:HFCE}
 \end{figure}
 
-\autoref{fig:TSplots-INC-EXP}\todo{Please save all figures as pdf not png. Also fix facet labels for Fig 8 and convert millions to billions.} displays time series from the income and expenditure approaches. The top panel shows the most aggregate GDP series. The panels below show series from lower levels for the income hierarchy (left panel) and the expenditure hierarchy (right panel). The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account for and model all information and diverse signals from each series in the hierarchy, which can only be achieved through a forecast reconciliation approach.
+\autoref{fig:TSplots-INC-EXP} displays time series from the income and expenditure approaches. The top panel shows the most aggregate GDP series. The panels below show series from lower levels for the income hierarchy (left panel) and the expenditure hierarchy (right panel). The plots show the diverse features of the time series with some displaying positive and others negative trending behaviour, some showing no trends but possibly a cycle, and some having a strong seasonal component. These highlight the need to account for and model all information and diverse signals from each series in the hierarchy, which can only be achieved through a forecast reconciliation approach.
 
 \begin{figure}
 	\centering
@@ -454,7 +454,7 @@ The hierarchical forecasting approaches we consider are bottom-up, OLS, WLS with
 
 \subsection{Evaluation}
 
-For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE). The absolute scaled error is defined as
+For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE) calculated over the expanding window. The absolute scaled error is defined as
 \begin{equation*}
 	q_{T+h} = \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
 \end{equation*}

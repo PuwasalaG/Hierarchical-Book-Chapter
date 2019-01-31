@@ -6,33 +6,7 @@ library(zoo)
 library(gridExtra)
 library(ggpubr)
 
-setwd("C:/Puwasala/PhD_Monash/Research/Hierarchical-Book-Chapter/Forecasting_GDP/Final-results")
-
-load("Income-approach/ProbForecasts-GaussianApproach-ExpandingW.RData")
-
-### Log score is inflated and ES and VS are not
-
-DF_MultiV %>% dplyr::select(-`Energy score`, -`Variogram score`) %>% 
-  filter(`Log score` != "NA") %>% 
-  filter(`F-method` == "ETS") -> DF_Mult_LS_ETS
-
-DF_Mult_LS_ETS %>% ggplot(aes(x = `Replication`, y = `Log score`, color = `R-method`)) + 
-  geom_line() + facet_wrap(~`Forecast Horizon`, scales = "free_y") + ggtitle("Multivariate log scores for ETS method")
-
-DF_MultiV %>% dplyr::select(-`Energy score`, -`Variogram score`) %>% 
-  filter(`Log score` != "NA") %>% 
-  filter(`F-method` == "ARIMA") -> DF_Mult_LS_ARIMA
-
-DF_Mult_LS_ARIMA %>% ggplot(aes(x = `Replication`, y = `Log score`, color = `R-method`)) + 
-  geom_line() + facet_wrap(~`Forecast Horizon`, scales = "free_y") + ggtitle("Multivariate log scores for ARIMA method")
-
-
-DF_MultiV %>% filter(`Log score` != "NA") %>%
-  filter(`Forecast Horizon` == 1) %>%
-  filter(`R-method` == "MinT.Shr") %>%
-  gather(`Energy score`, `Log score`, `Variogram score`, key = "Scoring rule", value = "Score") %>%
-  ggplot(aes(x = `Replication`, y = `Score`)) + 
-  geom_line() + facet_wrap(~`Scoring rule`, scales = "free_y") 
+# setwd("C:/Puwasala/PhD_Monash/Research/Hierarchical-Book-Chapter/Forecasting_GDP/Final-results")
 
 
 ### Time series plots for Income and Expenditure approach
@@ -60,7 +34,7 @@ grid.arrange( arrangeGrob(INC_char_of_evels_TSplots, top = "Income"),
               ncol=2) -> INC_EXP_plots
 
 grid.arrange( arrangeGrob(INC_GDP_TSplot, top = "GDP"), 
-              arrangeGrob(INC_EXP_plots), ncol = 1)
+              arrangeGrob(INC_EXP_plots), ncol = 1, heights = c(2,4))
 
 #TS plots for each series of the hierarchy - Income hierarchy
 
