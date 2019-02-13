@@ -13,7 +13,7 @@
 
 %% Page dimensions
 \@ifpackageloaded{geometry}{}{\RequirePackage{geometry}}
-\geometry{a4paper, text={16cm,24cm}}
+\geometry{a4paper, text={16cm,25cm}}
 
 %% CAPTIONS
 \RequirePackage{caption}
@@ -173,13 +173,11 @@
 
 %% BIBLIOGRAPHY
 
-\makeatletter
-\@ifpackageloaded{biblatex}{}{\usepackage[style=authoryear-comp, backend=biber, natbib=true]{biblatex}}
-\makeatother
+\@ifpackageloaded{biblatex}{}{\usepackage[natbib=true,backend=bibtex,style=authoryear-comp,dashed=false,maxbibnames=99,firstinits=true,maxcitenames=3,url=true,doi=false,isbn=false]{biblatex}}
 \ExecuteBibliographyOptions{bibencoding=utf8,minnames=1,maxnames=3, maxbibnames=99,dashed=false,terseinits=true,giveninits=true,uniquename=false,uniquelist=false,doi=false, isbn=false,url=true,sortcites=false}
 
 
-\DeclareFieldFormat{url}{\texttt{\url{#1}}}
+\DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat[article]{pages}{#1}
 \DeclareFieldFormat[inproceedings]{pages}{\lowercase{pp.}#1}
 \DeclareFieldFormat[incollection]{pages}{\lowercase{pp.}#1}
@@ -208,6 +206,3 @@
 \makeatletter
 \DeclareDelimFormat[cbx@textcite]{nameyeardelim}{\addspace}
 \makeatother
-\renewcommand*{\finalnamedelim}{%
-  %\ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}% there really should be no funny Oxford comma business here
-  \addspace\&\space}

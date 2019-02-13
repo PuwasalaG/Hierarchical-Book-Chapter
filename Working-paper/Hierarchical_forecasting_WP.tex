@@ -1,98 +1,70 @@
-%%%%%%%%%%%%%%%%%%%% author.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% sample root file for your "contribution" to a contributed volume
-%
-% Use this file as a template for your own input.
-%
-%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\documentclass[graybox]{svmult}
-%\documentclass[a4paper, 11pt]{article}
-%\usepackage{svmult}
-% choose options for [] as required from the list
-% in the Reference Guide
-
-%\usepackage{mathptmx}       % selects Times Roman as basic font
-% Much better times roman fonts are obtained with the following 3 lines.
-\usepackage{newtxmath,newtxtext}
-\DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}
-\SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}
-\usepackage{helvet}         % selects Helvetica as sans-serif font
-\usepackage{courier}        % selects Courier as typewriter font
-\usepackage{type1cm}        % activate if the above 3 fonts are
-                            % not available on your system
-%
-\usepackage{makeidx}         % allows index generation
-\usepackage{graphicx}        % standard LaTeX graphics tool
-                             % when including figure files
-\usepackage{multicol}        % used for the two-column index
-
-\usepackage[bottom]{footmisc}% places footnotes at page bottom
-
-\usepackage{amsmath,bm}
-\usepackage{qtree, multirow, textcmds, siunitx, mathrsfs, float, booktabs, color, soul}
-\usepackage{natbib, setspace}
-\usepackage{pdfpages} %To insert pdf pages
+\documentclass[a4paper, 11pt]{article}
+\usepackage{monashwp}
+\usepackage{amssymb, qtree, bm, multirow, textcmds, siunitx, mathrsfs, float, booktabs,sidenotes}
 \usepackage[bb=boondox]{mathalfa}
-
-%% Any special functions or other packages can be loaded here.
-\usepackage{todonotes}
-\usepackage[hidelinks]{hyperref}
-\usepackage[section]{placeins}
-\usepackage[english]{babel}
-\addto\extrasenglish{
-  \def\sectionautorefname{Section}
-  \def\subsectionautorefname{Section}
-}
-
+\usepackage{tikz}
 \usepackage{tikz}
 \definecolor{hfill_blue}{RGB}{208,229,249}
 \definecolor{hfill_yellow}{RGB}{255,255,208}
-\usetikzlibrary{trees,shapes}
+\usetikzlibrary{trees,shapes,arrows,positioning,shapes,fit,calc}
 \usetikzlibrary{matrix}
 \tikzstyle{line} = [draw, thick]
 
-% see the list of further useful packages
-% in the Reference Guide
 
-\makeindex             % used for the subject index
-                       % please use the style svind.ist with
-                       % your makeindex program
+\hypersetup{citecolor=blue,linkcolor=blue,urlcolor=blue}
+\DeclareNameAlias{sortname}{last-first}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\def\mathbi#1{\textit{ #1}}
+\def\mathB#1{\textbf{ #1}}
+\def\E{\text{E}}
+\mathtoolsset{showonlyrefs=true}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\textsc{\textsc{\bibliographystyle{natbb}
-%
-%\bibliography{References_HTSF}
-
-\def\ba{\begin{pmatrix}\tilde{\bm{b}}\\ \tilde{\bm{a}}\end{pmatrix}}
-\def\GH{\begin{pmatrix}\bm{G}\\ \bm{F}\end{pmatrix}}
+\def\PQ{\begin{pmatrix}\bm{P}\\[-0.2cm]\bm{Q}\end{pmatrix}}
+\def\bt{\begin{pmatrix}\tilde{\bm{b}}_{t+h}\\[-0.2cm]\tilde{\bm{t}}_{t+h}\end{pmatrix}}
 \def\Naive{Na\"{i}ve\ }
 \def\naive{na\"{i}ve\ }
 \def\E{\text{E}}
 
-\begin{document}
+\newtheorem{definition}{Definition}[section]
 
-\title*{Hierarchical Forecasting}
-% Use \titlerunning{Short Title} for an abbreviated version of
-% your contribution title if the original one is too long
-\author{George Athanasopoulos, Puwasala Gamakumara, Anastasios Panagiotelis, Rob~J~Hyndman and Mohamed Affan}
-% Use \authorrunning{Short Title} for an abbreviated version of
-% your contribution title if the original one is too long
-\institute{George Athanasopoulos \at Monash University, Caulfield VIC 3162, Australia \email{George.Athanasopoulos@monash.edu}
-	\and Puwasala Gamakumara \at Monash University, Clayton VIC 3800, Australia, \email{Puwasala.Gamakumara@monash.edu}
-	\and Anastasios Panagiotelis \at Monash University, Caulfield VIC 3162, Australia \email{Anastasios.Panagiotelis@monash.edu}
-	\and Rob J Hyndman \at Monash University, Clayton VIC 3800, Australia \email{Rob.Hyndman@monash.edu}\and Mohamed Affan \at \email{affan.momu@gmail.com}}
-\authorrunning{Athanasopoulos, Gamakumara, Panagiotelis, Hyndman and Affan}
-%
-% Use the package "url.sty" to avoid
-% problems with special characters
-% used in your e-mail or web address
-%
+%\theoremstyle{property}
+\newtheorem{property}{Property}[section]
+
+
+\bibliography{References_BookChapter_HTS}
+
+\title{Hierarchical Forecasting}
+\author{George Athanasopoulos\\ Puwasala Gamakumara\\ Anastasios Panagiotelis\\ Rob J Hyndman\\ Mohamed Affan}
+
+\addresses{\textbf{George Athanasopoulos}\\
+	Department of Econometrics and Business Statistics,\\
+	Monash University,\\ VIC 3800, Australia.\\
+	Email: George.Athanasopoulos@monash.edu\\[1cm]
+	\textbf{Puwasala Gamakumara}\\
+	Department of Econometrics and Business Statistics,\\
+  	Monash University,\\ VIC 3800, Australia.\\
+  	Email: Puwasala.Gamakumara@monash.edu \\[1cm]
+  	\textbf{Anastasios Panagiotelis}\\
+  	Department of Econometrics and Business Statistics,\\
+  	Monash University,\\ VIC 3800, Australia.\\
+  	Email: Anastasios.Panagiotelis@monash.edu\\[1cm]
+  	\textbf{Rob J Hyndman}\\
+  	Department of Econometrics and Business Statistics,\\
+  	Monash University,\\ VIC 3800, Australia.\\
+  	Email: Rob.Hyndman@monash.edu \\[1cm]
+  	\textbf{Mohamed Affan}\\
+  	Email: affan.momu@gmail.com}
+
+\lfoot{\sf Athanasopoulos, Gamakumara, Panagiotelis, Hyndman, \& Affan: \today}
+
+\begin{document}
+  
 \maketitle
 
-\abstract{Accurate forecasts of macroeconomic data help economic agents and policy makers for align decision making. Considering the aggregation structure of these data, we propose to apply the forecast reconciliation methods to get forecasts that are coherent with the inherent aggregation constraints. While applying the state-of-the-art reconciliation methods for point forecasts, a recent extension of these methods for probabilistic forecasts were also introduced in the macroeconomic setting. Using the Australian GDP we have shown that the forecast reconciliation not only gives coherent forecasts but also improves the overall forecast accuracy in both point and probabilistic frameworks. }
+\begin{abstract}
+  Accurate forecasts of macroeconomic variables are crucial inputs into the decisions of economic agents and policy makers. Exploiting inherent aggregation structures of such variables, we apply forecast reconciliation methods to generate forecasts that are coherent with the aggregation constraints. We generate both point and probabilistic forecasts for the first time in the macroeconomic setting. Using Australian  GDP we show that forecast reconciliation not only returns coherent forecasts but also improves the overall forecast accuracy in both point and probabilistic frameworks.
+\end{abstract}
 
 \section{Introduction}\label{sec:intro}
 
@@ -107,44 +79,44 @@ The remainder of the paper is set out as follows. \autoref{sec:Hier ts} introduc
 
 To simplify the introduction of some notation we use the simple two-level hierarchical structure shown in \autoref{fig:simple tree}. Let $y_{\text{Tot},t}$ denote the value observed at time $t$ for the most aggregate (Total) series corresponding to level 0 of the hierarchy. Below level 0, denote as $y_{i,t}$ the value of the series corresponding to node $i$, observed at time $t$. For example, $y_{\text{A},t}$ denotes the $t$th observation of the series corresponding to node A at level 1, $y_{\text{AB},t}$ denotes the $t$th observation of the series corresponding to node AB at level 2, and so on.
 
-\begin{figure}[!hbt]\sidecaption[t]\centering
+\begin{figure}[!hbt]\centering
 	\begin{tikzpicture}
-		\tikzstyle{every node}=[ellipse,draw,inner sep=2pt,minimum size=7mm,fill=red!15] %158,202,225
-		\tikzstyle[level distance=.1cm]
-		\tikzstyle[sibling distance=.1cm]
-		%\tikzstyle{level 3}=[sibling distance=6.2mm,font=\tiny]
-		\tikzstyle{level 1}=[sibling distance=40mm, font=\small, set style={{every node}+=[fill=hfill_blue]}]
-		\tikzstyle{level 2}=[sibling distance=15mm, font=\footnotesize, set style={{every node}+=[fill=hfill_yellow]}]
-		\node{Total}%[edge from parent fork down]
-		child {node {A}
-				child {node {AA}}
-				child {node {AB}}
-			}
-		child {node {B}
-				child {node {BA}}
-				child {node {BB}}
-				child {node {BC}}
-			};
+	\tikzstyle{every node}=[ellipse,draw,inner sep=2pt,minimum size=7mm,fill=red!15] %158,202,225
+	\tikzstyle[level distance=.1cm]
+	\tikzstyle[sibling distance=.1cm]
+	%\tikzstyle{level 3}=[sibling distance=6.2mm,font=\tiny]
+	\tikzstyle{level 1}=[sibling distance=40mm, font=\small, set style={{every node}+=[fill=hfill_blue]}]
+	\tikzstyle{level 2}=[sibling distance=15mm, font=\footnotesize, set style={{every node}+=[fill=hfill_yellow]}]
+	\node{Total}%[edge from parent fork down]
+	child {node {A}
+		child {node {AA}}
+		child {node {AB}}
+	}
+	child {node {B}
+		child {node {BA}}
+		child {node {BB}}
+		child {node {BC}}
+	};
 	\end{tikzpicture}
 	\caption{A simple two-level hierarchical structure.}
 	\label{fig:simple tree}
 \end{figure}
 
-Let $\bm{y}_t = (y_{\text{Tot},t},y_{\text{A},t}, y_{\text{B},t},y_{\text{AA},t}, y_{\text{AB},t}, y_{\text{BA},t}, y_{\text{BB},t},y_{\text{BC},t})'$ denote a vector containing observations across all series of the hierarchy at time $t$. Similarly denote as $\bm{b}_t = (y_{\text{AA},t}, y_{\text{AB},t}, y_{\text{BA},t}, y_{\text{BB},t}, y_{\text{BC},t})'$ a vector containing observations only for the bottom-level series. In general, $\bm{y}_t\in \varmathbb{R}^n$ and $\bm{b}_t \in \varmathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of \autoref{fig:simple tree}, $n=8$ and $m=5$.
+Let $\bm{y}_t = (y_{\text{Tot},t},y_{\text{A},t}, y_{\text{B},t},y_{\text{AA},t}, y_{\text{AB},t}, y_{\text{BA},t}, y_{\text{BB},t},y_{\text{BC},t})'$ denote a vector containing observations across all series of the hierarchy at time $t$. Similarly denote as $\bm{b}_t = (y_{\text{AA},t}, y_{\text{AB},t}, y_{\text{BA},t}, y_{\text{BB},t}, y_{\text{BC},t})'$ a vector containing observations only for the bottom-level series. In general, $\bm{y}_t\in \mathbb{R}^n$ and $\bm{b}_t \in \mathbb{R}^m$ where $n$ denotes the number of total series in the structure, $m$ the number of series at the bottom level, and $n>m$ always. In the simple example of \autoref{fig:simple tree}, $n=8$ and $m=5$.
 
 Aggregation constraints dictate that $y_{\text{Tot}}=y_{\text{A},t}+y_{\text{B},t}=y_{\text{AA},t}+y_{\text{AB},t}+y_{\text{BA},t}+y_{\text{BB},t}+y_{\text{BC},t}$,~ $y_{\text{A},t}=y_{\text{AA},t}+y_{\text{AB},t}$ and $y_{\text{B}}=y_{\text{BA},t}+y_{\text{BB},t}+y_{\text{BC},t}$. Hence we can write
 \begin{equation}\label{eq:summing matrix}
-	\bm{y}_t = \bm{Sb}_t,
+\bm{y}_t = \bm{Sb}_t,
 \end{equation}
 where \begin{equation*}
-	\bm{S} = \begin{pmatrix}
-		1 & 1                            & 1 & 1 & 1 \\
-		1 & 1                            & 0 & 0 & 0 \\
-		0 & 0                            & 1 & 1 & 1 \\
-		  & \multicolumn{3}{c}{\bm{I}_5} &
-	\end{pmatrix}
+\bm{S} = \begin{pmatrix}
+1 & 1                            & 1 & 1 & 1 \\
+1 & 1                            & 0 & 0 & 0 \\
+0 & 0                            & 1 & 1 & 1 \\
+& \multicolumn{3}{c}{\bm{I}_5} &
+\end{pmatrix}
 \end{equation*}
-is an $n\times m$ matrix referred to as the \textit{summing matrix} and $\bm{I}_m$ is an $m$-dimensional identity matrix. $\bm{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\bm{S}$ span the linear subspace of $\varmathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\varmathbb{R}^m$ by $\bm{S}$ will result in an $n$-dimensional vector that lies in $\mathfrak{s}$.
+is an $n\times m$ matrix referred to as the \textit{summing matrix} and $\bm{I}_m$ is an $m$-dimensional identity matrix. $\bm{S}$ reflects the linear aggregation constraints and in particular how the bottom-level series aggregate to levels above. Thus, columns of $\bm{S}$ span the linear subspace of $\mathbb{R}^n$ for which the aggregation constraints hold. We refer to this as the \textit{coherent subspace} and denote it by $\mathfrak{s}$. Notice that pre-multiplying a vector in $\mathbb{R}^m$ by $\bm{S}$ will result in an $n$-dimensional vector that lies in $\mathfrak{s}$.
 
 \begin{property}
 	A hierarchical time series has observations that are \textit{coherent}, i.e., $\bm{y}_{t} \in \mathfrak{s}$ for all $t$. We use the term coherent to describe not just $\bm{y}_t$ but any vector in $\mathfrak{s}$.
@@ -155,20 +127,19 @@ Structures similar to the one shown in \autoref{fig:simple tree} can be found in
 
 An important alternative aggregation structure, also commonly found in macroeconomics, is one for which the most aggregate series is disaggregated by attributes of interest that are crossed, as distinct to nested which is the case for hierarchical time series. For example, industrial production may be disaggregated along the lines of geography or sector or both. We refer to this as a \textit{grouped} structure. \autoref{fig:simple grouped tree} shows a simple example of such a structure. The Total series disaggregates into $y_{\text{A},t}$ and $y_{\text{B},t}$, but also into $y_{\text{X},t}$ and $y_{\text{Y},t}$, at level 1, and then into the bottom-level series, $\bm{b}_t=(y_{\text{AX}}, y_{\text{AY}}, y_{\text{BX}}, y_{\text{BY}})'$. Hence, in contrast to hierarchical structures, grouped time series do not naturally disaggregate in a unique manner.
 
-\begin{figure}[!hbt]\sidecaption\centering
+\begin{figure}[!hbt]\centering
 	\tikzstyle{every node}=[inner sep=2pt,minimum size=7mm]
 	\begin{tikzpicture}
-		\matrix[ampersand replacement=\&,column sep=0.3cm] {
-			\node[circle,draw,fill=hfill_yellow, font=\small,distance=1cm] {AX};~ \&
-			\node[circle,draw,fill=hfill_yellow,font=\small] {AY};~ \&
-			\node[circle,draw,fill=hfill_blue, font=\small] {A}; \\[0.3cm]
-			\node[circle,draw,fill=hfill_yellow, font=\small] {BX};~ \&
-			\node[circle,draw,fill=hfill_yellow, font=\small] {BY};~ \&
-			\node[circle,draw,fill=hfill_blue, font=\small] {B}; \\[0.3cm]
-			\node[circle,draw,fill=hfill_blue, font=\small] {X};~ \&
-			\node[circle,draw,fill=hfill_blue, font=\small] {Y};~ \&
-			\node[ellipse,draw,fill=red!15] {Total}; \\
-		};
+	\matrix[ampersand replacement=\&,column sep=0.3cm] {
+		\node[circle,draw,fill=hfill_yellow, font=\small,distance=1cm] {AX};~ \&
+		\node[circle,draw,fill=hfill_yellow,font=\small] {AY};~ \&
+		\node[circle,draw,fill=hfill_blue, font=\small] {A}; \\[0.3cm]
+		\node[circle,draw,fill=hfill_yellow, font=\small] {BX};~ \&
+		\node[circle,draw,fill=hfill_yellow, font=\small] {BY};~ \&
+		\node[circle,draw,fill=hfill_blue, font=\small] {B}; \\[0.3cm]
+		\node[circle,draw,fill=hfill_blue, font=\small] {X};~ \&
+		\node[circle,draw,fill=hfill_blue, font=\small] {Y};~ \&
+		\node[ellipse,draw,fill=red!15] {Total};\\};
 	\end{tikzpicture}
 	\caption{A simple two-level grouped structure.}
 	\label{fig:simple grouped tree}
@@ -176,7 +147,7 @@ An important alternative aggregation structure, also commonly found in macroecon
 
 An important implementation of aggregation structures are \textit{temporal hierarchies} introduced by \citet{AthEtAl2017}. In this case the aggregation structure spans the time dimension and dictates how higher frequency data (e.g., monthly) are aggregated to lower frequencies (e.g.\ quarterly, annual). There is a vast literature that studies the effects of temporal aggregation, going back to the seminal work of \citet{ZelMon1971, AmeWu1972, Tia1972, Bre1973} and others, including \citet{Hot1993, HotCar1993, Mar1999, SilEtAl2008}. The main aim of this work is to find the single best level of aggregation for modelling and forecasting time series. In this literature, the analyses, results (whether theoretical or empirical) and inferences, are extremely heterogeneous, making it very challenging to reach a consensus or to draw firm conclusions. For example, \citet{RosSea1995} who study the effect of aggregation on several key macroeconomic variables state:
 \begin{quote}
-``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.''
+	``Quarterly data do not seem to suffer badly from temporal aggregation distortion, nor are they subject to the construction problems affecting monthly data. They therefore may be the optimal data for econometric analysis.''
 \end{quote}
 A similar conclusion is reached by \citet{NijPal1990}. \citet{SilEtAl2008} consider forecasting French cash state deficit and provide empirical evidence of forecast accuracy gains from forecasting with the aggregate model rather than aggregating forecasts from the disaggregate model.
 
@@ -202,16 +173,16 @@ Hence, coherent forecasts of lower level series aggregate to their corresponding
 	\caption{Representation of a coherent subspace in a three dimensional hierarchy where $y_{\text{Tot}} = y_{\text{A}} + y_{\text{B}}$. The coherent subspace is depicted as a gray two dimensional plane labelled $\mathfrak{s}$. Note that the columns of $\vec{s}_1 = (1,1,0)'$ and $\vec{s}_2 = (1, 0, 1)'$ form a basis for $\mathfrak{s}$. The red points lying on $\mathfrak{s}$ can be either realisations or coherent forecasts.}\label{fig:Schematic-3D}
 \end{figure}
 
-Let us consider the smallest possible hierarchy with two bottom-level series, depicted in \autoref{fig:Schematic-3D}, where $y_{\text{Tot}} = y_{\text{A}} + y_{\text{B}}$. While base forecasts could lie anywhere in $\varmathbb{R}^3$, the realisations and coherent forecasts lie in a two dimensional subspace $\mathfrak{s}\subset \varmathbb{R}^3$.
+Let us consider the smallest possible hierarchy with two bottom-level series, depicted in \autoref{fig:Schematic-3D}, where $y_{\text{Tot}} = y_{\text{A}} + y_{\text{B}}$. While base forecasts could lie anywhere in $\mathbb{R}^3$, the realisations and coherent forecasts lie in a two dimensional subspace $\mathfrak{s}\subset \mathbb{R}^3$.
 
 \subsection{Single-level approaches}\label{sec:single level approaches}
 A common theme across all traditional approaches for forecasting hierarchical time series is that a single-level of aggregation is first selected and forecasts for that level are generated. These are then linearly combined to generate a set of coherent forecasts in the rest of the structure.
 
 \subsubsection{Bottom-up}
 
-In the \textit{bottom-up} approach, forecasts for the most disaggregate level are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\bm{b}}_{T+h|T} \in \varmathbb{R}^m$, a set of $h$-step-ahead forecasts for the bottom-level series. For the simple hierarchical structure of \autoref{fig:simple tree}, $\hat{\bm{b}}_{T+h|T} = (\hat{{y}}_{\text{AA},T+h|T}, \hat{{y}}_{\text{AB},T+h|T}, \hat{{y}}_{\text{BA},T+h|T}, \hat{{y}}_{\text{BB},T+h|T},\hat{{y}}_{\text{BC},T+h|T}),$ where $\hat{{y}}_{i,T+h|T}$ is the $h$-step-ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by
+In the \textit{bottom-up} approach, forecasts for the most disaggregate level are first generated. These are then aggregated to obtain forecasts for all other series of the hierarchy \citep{dunn1976}. In general, this consists of first generating $\hat{\bm{b}}_{T+h|T} \in \mathbb{R}^m$, a set of $h$-step-ahead forecasts for the bottom-level series. For the simple hierarchical structure of \autoref{fig:simple tree}, $\hat{\bm{b}}_{T+h|T} = (\hat{{y}}_{\text{AA},T+h|T}, \hat{{y}}_{\text{AB},T+h|T}, \hat{{y}}_{\text{BA},T+h|T}, \hat{{y}}_{\text{BB},T+h|T},\hat{{y}}_{\text{BC},T+h|T}),$ where $\hat{{y}}_{i,T+h|T}$ is the $h$-step-ahead forecast of the series corresponding to node $i$. A set of coherent forecasts for the whole hierarchy is then given by
 \begin{equation*}\label{eq:BU}
-	\tilde{\bm{y}}^{\text{BU}}_{T+h|T}=\bm{S\hat{\bm{b}}}_{T+h|T}.
+\tilde{\bm{y}}^{\text{BU}}_{T+h|T}=\bm{S\hat{\bm{b}}}_{T+h|T}.
 \end{equation*}
 Generating bottom-up forecasts has the advantage of no information being lost due to aggregation. However, bottom-level data can potentially be highly volatile or very noisy and therefore challenging to forecast.
 
@@ -219,7 +190,7 @@ Generating bottom-up forecasts has the advantage of no information being lost du
 
 In contrast, \textit{top-down} approaches involve first generating forecasts for the most aggregate level and then disaggregating these down the hierarchy. In general, coherent forecasts generated from top-down approaches are given by
 \begin{equation*}
-	\tilde{\bm{y}}^{\text{TD}}_{T+h|T}=\bm{S}\bm{p}\hat{y}_{\text{Tot}, T+h|T},
+\tilde{\bm{y}}^{\text{TD}}_{T+h|T}=\bm{S}\bm{p}\hat{y}_{\text{Tot}, T+h|T},
 \end{equation*}
 where $\bm{p} = (p_1,\dots,p_m)'$ is an $m$-dimensional vector consisting of a set of proportions that disaggregate the top-level forecast $\hat{y}_{\text{Tot}, T+h|T}$ to forecasts for the bottom-level series; hence $\bm{p}\hat{y}_{\text{Tot}, T+h|T}=\bm{\hat{\bm{b}}}_{T+h|T}$. These are then aggregated by the summing matrix $\bm{S}$.
 
@@ -235,16 +206,16 @@ All approaches discussed so far are limited to only using information from a sin
 
 The second step is an adjustment that reconciles base forecasts so that they become coherent. In general, this is achieved by mapping the base forecasts $\hat{\bm{y}}_{T+h|T}$ onto the coherent subspace $\mathfrak{s}$ via a matrix $\bm{S}\bm{G}$, resulting in a set of coherent forecasts $\tilde{\bm{y}}_{T+h|T}$. Specifically,
 \begin{equation}\label{eq:recon}
-	\tilde{\bm{y}}_{T+h|T}=\bm{S}\bm{G}\hat{\bm{y}}_{T+h|T},
+\tilde{\bm{y}}_{T+h|T}=\bm{S}\bm{G}\hat{\bm{y}}_{T+h|T},
 \end{equation}
-where $\bm{G}$ is an $m\times n$ matrix that maps $\hat{\bm{y}}_{T+h|T}$ to $\varmathbb{R}^m$, producing new forecasts for the bottom level, which are in turn mapped to the coherent subspace by the summing matrix $\bm{S}$. We restrict our attention to projections on $\mathfrak{s}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. This ensures that unbiasedness is preserved, i.e., for a set of unbiased base forecasts reconciled forecasts will also be unbiased.
+where $\bm{G}$ is an $m\times n$ matrix that maps $\hat{\bm{y}}_{T+h|T}$ to $\mathbb{R}^m$, producing new forecasts for the bottom level, which are in turn mapped to the coherent subspace by the summing matrix $\bm{S}$. We restrict our attention to projections on $\mathfrak{s}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. This ensures that unbiasedness is preserved, i.e., for a set of unbiased base forecasts reconciled forecasts will also be unbiased.
 
 Note that all single-level approaches discussed so far can also be represented by \eqref{eq:recon} using appropriately designed $\bm{G}$ matrices, however not all of these will be projections. For example for the bottom-up approach, $\bm{G}=\begin{pmatrix}
-		\bm{0}_{(m \times n-m)} & \bm{I}_m
-	\end{pmatrix}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. For any top-down approach
+\bm{0}_{(m \times n-m)} & \bm{I}_m
+\end{pmatrix}$ in which case $\bm{S}\bm{G}\bm{S}=\bm{S}$. For any top-down approach
 $\bm{G}=\begin{pmatrix}
-		\bm{p} & \bm{0}_{(m \times n-1)}
-	\end{pmatrix}$, for which $\bm{S}\bm{G}\bm{S}\ne\bm{S}$.
+\bm{p} & \bm{0}_{(m \times n-1)}
+\end{pmatrix}$, for which $\bm{S}\bm{G}\bm{S}\ne\bm{S}$.
 
 \subsubsection{Optimal MinT reconciliation}
 
@@ -253,15 +224,15 @@ $\bm{G}=\begin{pmatrix}
 Assume that $\hat{\bm{y}}_{T+h|T}$ is a set of unbiased base forecasts, i.e., $\E_{1:T}(\hat{\bm{y}}_{T+h|T})= \E_{1:T}[\bm{y}_{T+h}\mid\bm{y}_1,\dots,\bm{y}_T]$, the true mean with the expectation taken over the observed sample up to time $T$.
 Let
 \begin{equation}\label{eq:base errors}
-	\hat{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\hat{\bm{y}}_{T+h|T}
+\hat{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\hat{\bm{y}}_{T+h|T}
 \end{equation}
 denote a set of base forecast errors with Var$(\hat{\bm{e}}_{T+h|T})=\bm{W}_h$, and
 \begin{equation*}
-	\tilde{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\tilde{\bm{y}}_{T+h|T}
+\tilde{\bm{e}}_{T+h|T} = \bm{y}_{T+h|T}-\tilde{\bm{y}}_{T+h|T}
 \end{equation*} denote a set of coherent forecast errors. Lemma 1 in \citet{WicEtAl2019} shows that for any matrix $\bm{G}$ such that $\bm{S}\bm{G}\bm{S}=\bm{S}$, $\text{Var}(\tilde{\bm{e}}_{T+h|T})=\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'
 $. Furthermore Theorem 1 shows that
 \begin{equation} \label{eq:MinT}
-	\bm{G} = (\bm{S}'{\bm{W}}^{-1}_h\bm{S})^{-1}\bm{S}'{\bm{W}}^{-1}_h
+\bm{G} = (\bm{S}'{\bm{W}}^{-1}_h\bm{S})^{-1}\bm{S}'{\bm{W}}^{-1}_h
 \end{equation}
 is the unique solution that minimises the trace of $\bm{S}\bm{G}\bm{W}_h\bm{S}'\bm{G}'$ subject to $\bm{S}\bm{G}\bm{S}=\bm{S}$. MinT is optimal in the sense that given a set of unbiased base forecasts, it returns a set of best linear unbiased reconciled forecasts, using as $\bm{G}$ the unique solution that minimises the trace (hence MinT) of the variance of the forecast error of the reconciled forecasts.
 
@@ -269,25 +240,25 @@ A significant advantage of the MinT reconciliation solution is that it is the fi
 
 \begin{itemize}\parskip=1.2ex
 	\item Set $\bm{W}_{h}=k_h\bm{I}_n$ for all $h$, where $k_{h} > 0$ is a proportionality constant. This simple assumption returns $\bm{G}=(\bm{S}'\bm{S})^{-1}\bm{S}'$ so that the base forecasts are orthogonally projected onto the coherent subspace $\mathfrak{s}$ minimising the Euclidean distance between $\hat{\bm{y}}_{T+h|T}$ and $\tilde{\bm{y}}_{T+h|T}$. \citet{HynEtAl2011} come to same solution, however from the perspective of the following regression model
-  \begin{equation*}
-    \hat{\bm{y}}_{T+h|T} = \bm{S}\bm{\beta}_{T+h|T} + \bm{\varepsilon}_{T+h|T},
-  \end{equation*}
-  where $\bm{\beta}_{T+h|T}=\E[\bm{b}_{T+h}\mid\bm{b}_1,\dots,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. The OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$, and due to this interpretation we continue to refer to this reconciliation method as OLS\@. A disadvantage of the OLS solution is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. Furthermore, OLS does not account for the correlations across series.
-
+	\begin{equation*}
+	\hat{\bm{y}}_{T+h|T} = \bm{S}\bm{\beta}_{T+h|T} + \bm{\varepsilon}_{T+h|T},
+	\end{equation*}
+	where $\bm{\beta}_{T+h|T}=\E[\bm{b}_{T+h}\mid\bm{b}_1,\dots,\bm{b}_T]$ is the unknown conditional mean of the bottom-level series and $\bm{\varepsilon}_{T+h|T}$ is the coherence or reconciliation error with mean zero and variance $\bm{V}$. The OLS solution leads to the same projection matrix $\bm{S}(\bm{S}'\bm{S})^{-1}\bm{S}'$, and due to this interpretation we continue to refer to this reconciliation method as OLS\@. A disadvantage of the OLS solution is that the homoscedastic diagonal entries do not account for the scale differences between the levels of the hierarchy due to aggregation. Furthermore, OLS does not account for the correlations across series.
+	
 	\item Set ${\bm{W}}_{h}=k_{h}\text{diag}(\hat{\bm{W}}_{1})$ for all $h$ ($k_{h} > 0$), where
-  $$
-    \hat{\bm{W}}_{1} = \frac{1}{T}\sum_{T=1}^{T} \hat{\bm{e}}_{t}\hat{\bm{e}}_{t}'
-  $$
-  is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \citet{Hyndman2016}.
-
-  An alternative WLS estimator is proposed by \citet{AthEtAl2017} in the context of temporal hierarchies. Here $\bm{W}_{h}$ is proportional to $\text{diag}(\bm{S}\bm{1})$ where $\bm{1}$ is a unit column vector of dimension $n$. Hence the weights are proportional to the number of bottom-level variables required to form an aggregate. For example, in the hierarchy of \autoref{fig:simple tree}, the weights corresponding to the Total, series A and series B are proportional to 5, 2 and 3 respectively. This weighting scheme depends only on the aggregation structure and is referred to as structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
-
+	$$
+	\hat{\bm{W}}_{1} = \frac{1}{T}\sum_{T=1}^{T} \hat{\bm{e}}_{t}\hat{\bm{e}}_{t}'
+	$$
+	is the unbiased sample estimator of the in-sample one-step-ahead base forecast errors as defined in~\eqref{eq:base errors}. Hence this estimator scales the base forecasts using the variance of the in-sample residuals and is therefore described and referred to as a weighted least squares (WLS) estimator applying variance scaling. A similar estimator was proposed by \citet{Hyndman2016}.
+	
+	An alternative WLS estimator is proposed by \citet{AthEtAl2017} in the context of temporal hierarchies. Here $\bm{W}_{h}$ is proportional to $\text{diag}(\bm{S}\bm{1})$ where $\bm{1}$ is a unit column vector of dimension $n$. Hence the weights are proportional to the number of bottom-level variables required to form an aggregate. For example, in the hierarchy of \autoref{fig:simple tree}, the weights corresponding to the Total, series A and series B are proportional to 5, 2 and 3 respectively. This weighting scheme depends only on the aggregation structure and is referred to as structural scaling. Its advantage over OLS is that it assumes equivariant forecast errors only at the bottom level of the structure and not across all levels. It is particularly useful in cases where forecast errors are not available; for example, in cases where the base forecasts are generated by judgemental forecasting.
+	
 	\item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}$ for all $h$ ($k_{h} > 0$) to be proportional to the unrestricted sample covariance estimator for $h=1$. Although this is relatively simple to obtain and provides a good solution for small hierarchies, it does not provide reliable results as $m$ grows compared to $T$. This is referred to this as the MinT(Sample) estimator.
-
+	
 	\item Set $\bm{W}_{h}=k_{h}\hat{\bm{W}}_{1}^D$ for all $h$ ($k_{h} > 0$), where $\hat{\bm{W}}^{D}_{1} = \lambda_{D} \text{diag}(\hat{\bm{W}}_{1}) + (1 - \lambda_{D})\hat{\bm{W}}_{1}$ is a shrinkage estimator with diagonal target and shrinkage intensity parameter
-  $$
-    \hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{\text{Var}}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},
-  $$
+	$$
+	\hat{\lambda}_{D} = \frac{\sum_{i \ne j}\hat{\text{Var}}(\hat{r}_{ij})}{\sum_{i \ne j}\hat{r}_{ij}^2},
+	$$
 	where $\hat{r}_{ij}$ is the $(i,j)$th element of $\hat{\bm{R}}_{1}$, the one-step-ahead sample correlation matrix as proposed by \citet{Schafer2005}. Hence, off-diagonal elements of $\hat{\bm{W}}_1$ are shrunk towards zero while diagonal elements (variances) remain unchanged. This is referred to as the MinT(Shrink) estimator.
 \end{itemize}
 
@@ -297,7 +268,7 @@ A limitation of point forecasts is that they provide no indication of uncertaint
 
 The literature on hierarchical probabilistic forecasting is still an emerging area of interest.  To the best of our knowledge the first attempt to even define coherence in the setting of probabilistic forecasting is provided by \citet{Taieb2017} who define a coherent forecast in terms of a convolution. An equivalent definition due to \citet{GamEtAl2018} defines a coherent probabilistic forecast as a probability measure on the coherent subspace $\mathfrak{s}$. \citet{GamEtAl2018} also generalise the concept of forecast reconciliation to the probabilistic setting.
 
-\begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\varmathbb{R}^n$ that are mapped onto $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a base probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ reconciles $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
+\begin{definition} Let $\mathcal{A}$ be a subset\footnote{Strictly speaking $\mathcal{A}$ is a Borel set} of $\mathfrak{s}$ and let $\mathcal{B}$ be all points in $\mathbb{R}^n$ that are mapped onto $\mathcal{A}$ after premultiplication by $\bm{S}\bm{G}$. Letting $\hat{\nu}$ be a base probabilistic forecast for the full hierarchy, the coherent measure $\tilde{\nu}$ reconciles $\hat{\nu}$ if $\tilde{\nu}(\mathcal{A})=\hat{\nu}(\mathcal{B})$ for all $\mathcal{A}$.
 \end{definition}
 
 In practice this definition leads to two approaches. For some parametric distributions, for instance the multivariate normal, a reconciled probabilistic forecast can be derived analytically. However, in macroeconomic forecasting, non-standard distributions such as bimodal distributions are often required to take different policy regimes into account. In such cases a non-parametric approach based on bootstrapping in-sample errors proposed \citet{GamEtAl2018} can be used. These scenarios are now covered in detail.
@@ -306,9 +277,9 @@ In practice this definition leads to two approaches. For some parametric distrib
 
 In the case where the base forecasts are probabilistic forecasts characterised by elliptical distributions, \citet{GamEtAl2018} show that reconciled probabilistic forecasts will also be elliptical. This is particularly straightforward for the Gaussian distribution which is completely characterised by two moments. Letting the base probabilistic forecasts be $\mathscr{N}(\bm{\hat{y}}_{T+h|T}, \hat{\bm{\Sigma}}_{T+h|T})$, then the reconciled probabilistic forecasts will be $\mathscr{N}(\bm{\tilde{y}}_{T+h|T}, \tilde{\bm{\Sigma}}_{T+h|T})$, where
 \begin{align}\label{eq:rec mean}
-	\bm{\tilde{y}}_{T+h|T} &= \bm{S}\bm{G}\bm{\hat{y}}_{T+h|T} \\
+\bm{\tilde{y}}_{T+h|T} &= \bm{S}\bm{G}\bm{\hat{y}}_{T+h|T} \\
 \text{and}\qquad\label{eq:rec var}
-	\tilde{\bm{\Sigma}}_{T+h|T} &= \bm{S}\bm{G}\hat{\bm{\Sigma}}_{T+h|T}\bm{G}'\bm{S}'.
+\tilde{\bm{\Sigma}}_{T+h|T} &= \bm{S}\bm{G}\hat{\bm{\Sigma}}_{T+h|T}\bm{G}'\bm{S}'.
 \end{align}
 
 There are several options for obtaining the base probabilistic forecasts and in particular the variance covariance matrix $\hat{\bm{\Sigma}}$. One option is to fit multivariate models either level by level or for the hierarchy as a whole leading respectively to a $\hat{\bm \Sigma}$ that is block diagonal or dense. Another option is to fit univariate models for each individual series in which case $\hat{\bm{\Sigma}}$ is a diagonal matrix. A third option that we employ here is to obtain $\hat{\bm{\Sigma}}$ using in-sample forecast errors, in a similar vein to how $\hat{\bm{W}}_{1}$ is estimated in the MinT method. Here the same shrinkage estimator described in \autoref{sec:reconciliation approaches} is used. The reconciled probabilistic forecast will ultimately depend on the choice of $\bm{G}$; the same choices of $\bm{G}$ matrices used in \autoref{sec:point forecasting} can be used.
@@ -340,11 +311,11 @@ We concentrate on the Income and Expenditure approaches as nominal data are avai
 
 Using the income approach, GDP is calculated by aggregating all income flows. In particular, GDP at purchaser's price is the sum of all factor incomes and taxes, minus subsidies on production and imports \citep{ABS2015}:
 \begin{align*}
-	\textit{GDP}
-	  & = \textit{Gross operating surplus} + \textit{Gross mixed income} \\
-	  & + \textit{Compensation of employees} \\
-	  & + \textit{Taxes less subsidies on production and imports} \\
-	  & + \textit{Statistical discrepancy (I)}.
+\textit{GDP}
+& = \textit{Gross operating surplus} + \textit{Gross mixed income} \\
+& + \textit{Compensation of employees} \\
+& + \textit{Taxes less subsidies on production and imports} \\
+& + \textit{Statistical discrepancy (I)}.
 \end{align*}
 \autoref{fig:GDP_I} shows the full hierarchical structure capturing all components aggregated to form GDP using the income approach. The hierarchy has two levels of aggregation below the top-level, with a total of $n=16$ series across the whole structure and $m=10$ series at the bottom level.
 
@@ -356,9 +327,12 @@ Using the income approach, GDP is calculated by aggregating all income flows. In
 
 \subsubsection*{Expenditure approach}
 
-\begin{figure}
+\begin{figure}[!t]
 	\centering	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/ExpenditureApproach.pdf}
 	\caption{Hierarchical structure of the expenditure approach for GDP\@. The pink cell contains GDP, the most aggregate series. The blue and purple cells contain intermediate-level series with the series in the purple cells further disaggregated in Figures~\ref{fig:GFCF} and~\ref{fig:HFCE}. The yellow cells contain the most disaggregate bottom-level series.}\label{fig:GDP_E}
+\end{figure}
+	
+\begin{figure}[!t]
 	\centering
 	\includegraphics[width=.9\textwidth]{Figs/Hierarchical-structures/GFCF.pdf}
 	\caption{Hierarchical structure for Gross Fixed Capital Formations under the expenditure approach for GDP, continued from \autoref{fig:GDP_E}. Blue cells contain intermediate-level series and the yellow cells correspond to the most disaggregate bottom-level series.}\label{fig:GFCF}
@@ -366,12 +340,12 @@ Using the income approach, GDP is calculated by aggregating all income flows. In
 
 In the expenditure approach, GDP is calculated as the aggregation of final consumption expenditure, gross fixed capital formation (GFCF), changes in inventories of finished goods, work-in-progress and raw materials and the value of exports less imports of the goods and services \citep{ABS2015}. The underline equation is:
 \begin{align*}
-	\textit{GDP}
-	 & = \textit{Final consumption expenditure}
-     + \textit{Gross fixed capital formation} \\
-	 & + \textit{Changes in inventories}
-     + \textit{Trade balance}
-     + \textit{Statistical discrepancy (E)}.
+\textit{GDP}
+& = \textit{Final consumption expenditure}
++ \textit{Gross fixed capital formation} \\
+& + \textit{Changes in inventories}
++ \textit{Trade balance}
++ \textit{Statistical discrepancy (E)}.
 \end{align*}
 Figures~\ref{fig:GDP_E}, \ref{fig:GFCF} and~\ref{fig:HFCE} show the full hierarchical structure capturing all components aggregated to form GDP using the expenditure approach. The hierarchy has three levels of aggregation below the top-level, with a total of $n=80$ series across the whole structure and $m=53$ series at the bottom level. Descriptions of each series in these hierarchies along with the series ID assigned by the ABS are given in the Tables~\ref{Tab: Income-hierarchy}, \ref{Tab:Expenditure-hierarchy-1}, \ref{Tab:Expenditure-hierarchy-2} and~\ref{Tab:Expenditure-hierarchy-3} in the Appendix.
 
@@ -404,18 +378,18 @@ The hierarchical forecasting approaches we consider are bottom-up, OLS, WLS with
 
 For evaluating point forecasts we consider two metrics, the Mean Squared Error (MSE) and the Mean Absolute Scaled Error (MASE) calculated over the expanding window. The absolute scaled error is defined as
 \begin{equation*}
-	q_{T+h} = \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
+q_{T+h} = \frac{|\breve{e}_{T+h|T}|}{(T-4)^{-1}\sum_{t=5}^{T}|y_t - y_{t-4}|}\,,
 \end{equation*}
 where $\breve{e}_{t+h}$ is the difference between any forecast and the realisation\footnote{Breve is used instead of a hat or tilde to denote that this can be the error for either a base or reconciled forecast.}, and $4$ is used due to the quarterly nature of the data. An advantage of using MASE is that it is a scale independent measure. This is particularly relevant for hierarchical time series, since aggregate series by their very nature are on a larger scale than disaggregate series. Consequently, scale dependent metrics may unfairly favour methods that perform well for the aggregate series but poorly for disaggregate series. For more details on different point forecast accuracy measures, refer to Chapter 3 of \citet{HynAth2018}.
 
 Forecast accuracy of probabilistic forecasts can be evaluated using scoring rules \citep{Gneiting2014}. Let $\breve{F}$ be a probabilistic forecast and let $\breve{\bm{y}}\sim \breve{F}$ where a breve is again used to denote that either base forecasts or coherent forecasts can be evaluated. The accuracy of multivariate probabilistic forecasts will be measured by the energy score given by
 \begin{equation*}
-	eS(\breve{F}_{T+h|T},\bm{y}_{T+h}) =
-	\E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\bm{y}_{T+h}\|^\alpha
-	-\frac{1}{2}\E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\breve{\bm{y}}^*_{T+h}\|^\alpha\,,
+eS(\breve{F}_{T+h|T},\bm{y}_{T+h}) =
+\E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\bm{y}_{T+h}\|^\alpha
+-\frac{1}{2}\E_{\breve{F}}\|\breve{\bm{y}}_{T+h}-\breve{\bm{y}}^*_{T+h}\|^\alpha\,,
 \end{equation*} where $\bm{y}_{T+h}$ is the realisation at time $T+h$, and $\alpha\in (0,2]$. We set $\alpha=1$, noting that other values of $\alpha$ give similar results. The expectations can be evaluated numerically as long as a sample from $\breve{F}$ is available, which is the case for all methods we employ. An advantage of using energy scores is that in the univariate case it simplifies to the commonly used cumulative rank probability score (CRPS) given by
 \begin{equation*}
-	\text{CRPS}(\breve{F}_i,y_{i,T+h}) = \E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}\E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
+\text{CRPS}(\breve{F}_i,y_{i,T+h}) = \E_{\breve{F}_i}|\breve{y}_{i,T+h}-y_{i,T+h}| - \frac{1}{2}\E_{\breve{F}_i}|\breve{y}_{i,T+h}-\breve{y}^*_{i,T+h}|,
 \end{equation*}
 where the subscript $i$ is used to denote that CRPS measures forecast accuracy for a single variable in the hierarchy.
 
@@ -495,11 +469,13 @@ There are a number of open avenues for research in the literature on forecast re
 
 \clearpage
 
-\bibliographystyle{agsm}
-\bibliography{References_BookChapter_HTS}
+
+
+
+\newpage
+\printbibliography
 
 \clearpage
-
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix 1}
 
@@ -511,24 +487,24 @@ There are a number of open avenues for research in the literature on forecast re
 		\toprule
 		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
 		\midrule
-    Gdpi            & A2302467A & GDP(I)\\
-    Sdi             & A2302413V & Statistical discrepancy (I)\\
-    Tsi             & A2302412T & Taxes less subsidies (I)\\
-    TfiCoeWns       & A2302399K & Compensation of employees; Wages and salaries\\
-    TfiCoeEsc       & A2302400J & Compensation of employees; Employers' social contributions\\
+		Gdpi            & A2302467A & GDP(I)\\
+		Sdi             & A2302413V & Statistical discrepancy (I)\\
+		Tsi             & A2302412T & Taxes less subsidies (I)\\
+		TfiCoeWns       & A2302399K & Compensation of employees; Wages and salaries\\
+		TfiCoeEsc       & A2302400J & Compensation of employees; Employers' social contributions\\
 		\addlinespace
-    TfiCoe          & A2302401K & Compensation of employees\\
-    TfiGosCopNfnPvt & A2323369L & Private non-financial corporations; Gross operating surplus\\
-    TfiGosCopNfnPub & A2302403R & Public non-financial corporations; Gross operating surplus\\
-    TfiGosCopNfn    & A2302404T & Non-financial corporations; Gross operating surplus\\
-    TfiGosCopFin    & A2302405V & Financial corporations; Gross operating surplus\\
+		TfiCoe          & A2302401K & Compensation of employees\\
+		TfiGosCopNfnPvt & A2323369L & Private non-financial corporations; Gross operating surplus\\
+		TfiGosCopNfnPub & A2302403R & Public non-financial corporations; Gross operating surplus\\
+		TfiGosCopNfn    & A2302404T & Non-financial corporations; Gross operating surplus\\
+		TfiGosCopFin    & A2302405V & Financial corporations; Gross operating surplus\\
 		\addlinespace
-    TfiGosCop       & A2302406W & Total corporations; Gross operating surplus\\
-    TfiGosGvt       & A2298711F & General government; Gross operating surplus\\
-    TfiGosDwl       & A2302408A & Dwellings owned by persons; Gross operating surplus\\
-    TfiGos          & A2302409C & All sectors; Gross operating surplus\\
-    TfiGmi          & A2302410L & Gross mixed income\\
-    Tfi             & A2302411R & Total factor income\\
+		TfiGosCop       & A2302406W & Total corporations; Gross operating surplus\\
+		TfiGosGvt       & A2298711F & General government; Gross operating surplus\\
+		TfiGosDwl       & A2302408A & Dwellings owned by persons; Gross operating surplus\\
+		TfiGos          & A2302409C & All sectors; Gross operating surplus\\
+		TfiGmi          & A2302410L & Gross mixed income\\
+		Tfi             & A2302411R & Total factor income\\
 		\bottomrule
 	\end{tabular*}
 	\label{Tab: Income-hierarchy}
@@ -542,59 +518,59 @@ There are a number of open avenues for research in the literature on forecast re
 		\toprule
 		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
 		\midrule
-    Gdpe                  & A2302467A & GDP(E)\\
-    Sde                   & A2302566J & Statistical Discrepancy(E)\\
-    Exp                   & A2302564C & Exports of goods and services\\
-    Imp                   & A2302565F & Imports of goods and services\\
-    Gne                   & A2302563A & Gross national exp.\\
+		Gdpe                  & A2302467A & GDP(E)\\
+		Sde                   & A2302566J & Statistical Discrepancy(E)\\
+		Exp                   & A2302564C & Exports of goods and services\\
+		Imp                   & A2302565F & Imports of goods and services\\
+		Gne                   & A2302563A & Gross national exp.\\
 		\addlinespace
-    GneDfdFceGvtNatDef    & A2302523J & Gen. gov. - National; Final consumption exp. - Defence\\
-    GneDfdFceGvtNatNdf    & A2302524K & Gen. gov. - National; Final consumption exp. - Non-defence\\
-    GneDfdFceGvtNat       & A2302525L & Gen. gov. - National; Final consumption exp.\\
-    GneDfdFceGvtSnl       & A2302526R & Gen. gov. - State and local; Final consumption exp,\\
-    GneDfdFceGvt          & A2302527T & Gen. gov.; Final consumption exp.\\
+		GneDfdFceGvtNatDef    & A2302523J & Gen. gov. - National; Final consumption exp. - Defence\\
+		GneDfdFceGvtNatNdf    & A2302524K & Gen. gov. - National; Final consumption exp. - Non-defence\\
+		GneDfdFceGvtNat       & A2302525L & Gen. gov. - National; Final consumption exp.\\
+		GneDfdFceGvtSnl       & A2302526R & Gen. gov. - State and local; Final consumption exp,\\
+		GneDfdFceGvt          & A2302527T & Gen. gov.; Final consumption exp.\\
 		\addlinespace
-    GneDfdFce             & A2302529W & All sectors; Final consumption exp.\\
-    GneDfdGfcPvtTdwNnu    & A2302543T & Pvt.; Gross fixed capital formation (GFCF)\\
-    GneDfdGfcPvtTdwAna    & A2302544V & Pvt.; GFCF - Dwellings - Alterations and additions\\
-    GneDfdGfcPvtTdw       & A2302545W & Pvt.; GFCF - Dwellings - Total\\
-    GneDfdGfcPvtOtc       & A2302546X & Pvt.; GFCF - Ownership transfer costs\\
+		GneDfdFce             & A2302529W & All sectors; Final consumption exp.\\
+		GneDfdGfcPvtTdwNnu    & A2302543T & Pvt.; Gross fixed capital formation (GFCF)\\
+		GneDfdGfcPvtTdwAna    & A2302544V & Pvt.; GFCF - Dwellings - Alterations and additions\\
+		GneDfdGfcPvtTdw       & A2302545W & Pvt.; GFCF - Dwellings - Total\\
+		GneDfdGfcPvtOtc       & A2302546X & Pvt.; GFCF - Ownership transfer costs\\
 		\addlinespace
-    GneDfdGfcPvtPbiNdcNbd & A2302533L & Pvt. GFCF - Non-dwelling construction - New building\\
-    GneDfdGfcPvtPbiNdcNec & A2302534R & Pvt.; GFCF - Non-dwelling construction -\\
-                          &           & New engineering construction\\
-    GneDfdGfcPvtPbiNdcSha & A2302535T & Pvt.; GFCF - Non-dwelling construction -\\
-                          &           & Net purchase of second hand \vphantom{1} assets\\
+		GneDfdGfcPvtPbiNdcNbd & A2302533L & Pvt. GFCF - Non-dwelling construction - New building\\
+		GneDfdGfcPvtPbiNdcNec & A2302534R & Pvt.; GFCF - Non-dwelling construction -\\
+		&           & New engineering construction\\
+		GneDfdGfcPvtPbiNdcSha & A2302535T & Pvt.; GFCF - Non-dwelling construction -\\
+		&           & Net purchase of second hand \vphantom{1} assets\\
 		\addlinespace
-    GneDfdGfcPvtPbiNdc    & A2302536V & Pvt.; GFCF - Non-dwelling construction - Total\\
-    GneDfdGfcPvtPbiNdmNew & A2302530F & Pvt.; GFCF - Machinery and equipment - New\\
-    GneDfdGfcPvtPbiNdmSha & A2302531J & Pvt.; GFCF - Machinery and equipment -\\
-                          &           & Net purchase of second hand assets\\
-    GneDfdGfcPvtPbiNdm    & A2302532K & Pvt.; GFCF - Machinery and equipment - Total\\
+		GneDfdGfcPvtPbiNdc    & A2302536V & Pvt.; GFCF - Non-dwelling construction - Total\\
+		GneDfdGfcPvtPbiNdmNew & A2302530F & Pvt.; GFCF - Machinery and equipment - New\\
+		GneDfdGfcPvtPbiNdmSha & A2302531J & Pvt.; GFCF - Machinery and equipment -\\
+		&           & Net purchase of second hand assets\\
+		GneDfdGfcPvtPbiNdm    & A2302532K & Pvt.; GFCF - Machinery and equipment - Total\\
 		\addlinespace
-    GneDfdGfcPvtPbiCbr    & A2716219R & Pvt.; GFCF - Cultivated biological resources\\
-    GneDfdGfcPvtPbiIprRnd & A2716221A & Pvt.; GFCF - Intellectual property products -\\
-                          &           & Research and development\\
-    GneDfdGfcPvtPbiIprMnp & A2302539A & Pvt.; GFCF - Intellectual property products -\\
-                          &           & Mineral and petroleum exploration\\
+		GneDfdGfcPvtPbiCbr    & A2716219R & Pvt.; GFCF - Cultivated biological resources\\
+		GneDfdGfcPvtPbiIprRnd & A2716221A & Pvt.; GFCF - Intellectual property products -\\
+		&           & Research and development\\
+		GneDfdGfcPvtPbiIprMnp & A2302539A & Pvt.; GFCF - Intellectual property products -\\
+		&           & Mineral and petroleum exploration\\
 		\addlinespace
-    GneDfdGfcPvtPbiIprCom & A2302538X & Pvt.; GFCF - Intellectual property products - Computer software\\
-    GneDfdGfcPvtPbiIprArt & A2302540K & Pvt.; GFCF - Intellectual property products - Artistic originals\\
-    GneDfdGfcPvtPbiIpr    & A2716220X & Pvt.; GFCF - Intellectual property products Total\\
-    GneDfdGfcPvtPbi       & A2302542R & Pvt.;  GFCF - Total private business investment\\
-    GneDfdGfcPvt          & A2302547A & Pvt.; GFCF\\
+		GneDfdGfcPvtPbiIprCom & A2302538X & Pvt.; GFCF - Intellectual property products - Computer software\\
+		GneDfdGfcPvtPbiIprArt & A2302540K & Pvt.; GFCF - Intellectual property products - Artistic originals\\
+		GneDfdGfcPvtPbiIpr    & A2716220X & Pvt.; GFCF - Intellectual property products Total\\
+		GneDfdGfcPvtPbi       & A2302542R & Pvt.;  GFCF - Total private business investment\\
+		GneDfdGfcPvt          & A2302547A & Pvt.; GFCF\\
 		\addlinespace
-    GneDfdGfcPubPcpCmw    & A2302548C & Plc. corporations - Commonwealth; GFCF\\
-    GneDfdGfcPubPcpSnl    & A2302549F & Plc. corporations - State and local; GFCF\\
-    GneDfdGfcPubPcp       & A2302550R & Plc. corporations; GFCF Total\\
-    GneDfdGfcPubGvtNatDef & A2302551T & Gen. gov. - National; GFCF - Defence\\
-    GneDfdGfcPubGvtNatNdf & A2302552V & Gen. gov. - National ; GFCF - Non-defence\\
+		GneDfdGfcPubPcpCmw    & A2302548C & Plc. corporations - Commonwealth; GFCF\\
+		GneDfdGfcPubPcpSnl    & A2302549F & Plc. corporations - State and local; GFCF\\
+		GneDfdGfcPubPcp       & A2302550R & Plc. corporations; GFCF Total\\
+		GneDfdGfcPubGvtNatDef & A2302551T & Gen. gov. - National; GFCF - Defence\\
+		GneDfdGfcPubGvtNatNdf & A2302552V & Gen. gov. - National ; GFCF - Non-defence\\
 		\addlinespace
-    GneDfdGfcPubGvtNat    & A2302553W & Gen. gov. - National ; GFCF Total\\
-    GneDfdGfcPubGvtSnl    & A2302554X & Gen. gov. - State and local; GFCF\\
-    GneDfdGfcPubGvt       & A2302555A & Gen. gov.; GFCF\\
-    GneDfdGfcPub          & A2302556C & Plc.; GFCF\\
-    GneDfdGfc             & A2302557F & All sectors; GFCF\\
+		GneDfdGfcPubGvtNat    & A2302553W & Gen. gov. - National ; GFCF Total\\
+		GneDfdGfcPubGvtSnl    & A2302554X & Gen. gov. - State and local; GFCF\\
+		GneDfdGfcPubGvt       & A2302555A & Gen. gov.; GFCF\\
+		GneDfdGfcPub          & A2302556C & Plc.; GFCF\\
+		GneDfdGfc             & A2302557F & All sectors; GFCF\\
 		\bottomrule
 	\end{tabular*}
 	\label{Tab:Expenditure-hierarchy-1}
@@ -608,16 +584,16 @@ There are a number of open avenues for research in the literature on forecast re
 		\toprule
 		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
 		\midrule
-    GneCii       & A2302562X  & Changes in Inventories\\
-    GneCiiPfm    & A2302560V  & Farm\\
-    GneCiiPba    & A2302561W  & Public authorities\\
-    GneCiiPnf    & A2302559K  & Private; Non-farm Total\\
-    GneCiiPnfMin & A83722619L & Private; Mining (B)\\
+		GneCii       & A2302562X  & Changes in Inventories\\
+		GneCiiPfm    & A2302560V  & Farm\\
+		GneCiiPba    & A2302561W  & Public authorities\\
+		GneCiiPnf    & A2302559K  & Private; Non-farm Total\\
+		GneCiiPnfMin & A83722619L & Private; Mining (B)\\
 		\addlinespace
-    GneCiiPnfMan & A3348511X  & Private; Manufacturing (C)\\
-    GneCiiPnfWht & A3348512A  & Private; Wholesale trade (F)\\
-    GneCiiPnfRet & A3348513C  & Private; Retail trade (G)\\
-    GneCiiPnfOnf & A2302273C  & Private; Non-farm; Other non-farm industries\\
+		GneCiiPnfMan & A3348511X  & Private; Manufacturing (C)\\
+		GneCiiPnfWht & A3348512A  & Private; Wholesale trade (F)\\
+		GneCiiPnfRet & A3348513C  & Private; Retail trade (G)\\
+		GneCiiPnfOnf & A2302273C  & Private; Non-farm; Other non-farm industries\\
 		\bottomrule
 	\end{tabular*}
 	\label{Tab:Expenditure-hierarchy-2}
@@ -631,45 +607,45 @@ There are a number of open avenues for research in the literature on forecast re
 		\toprule
 		\textbf{Variable} & \textbf{Series ID} & \textbf{Description}\\
 		\midrule
-    GneDfdHfc          & A2302254W & Household Final Consumption Expenditure\\
-    GneDfdFceHfcFud    & A2302237V & Food\\
-    GneDfdFceHfcAbt    & A3605816F & Alcoholic beverages and tobacco\\
-    GneDfdFceHfcAbtCig & A2302238W & Cigarettes and tobacco\\
-    GneDfdFceHfcAbtAlc & A2302239X & Alcoholic beverages\\
+		GneDfdHfc          & A2302254W & Household Final Consumption Expenditure\\
+		GneDfdFceHfcFud    & A2302237V & Food\\
+		GneDfdFceHfcAbt    & A3605816F & Alcoholic beverages and tobacco\\
+		GneDfdFceHfcAbtCig & A2302238W & Cigarettes and tobacco\\
+		GneDfdFceHfcAbtAlc & A2302239X & Alcoholic beverages\\
 		\addlinespace
-    GneDfdFceHfcCnf    & A2302240J & Clothing and footwear\\
-    GneDfdFceHfcHwe    & A3605680F & Housing, water, electricity, gas and other fuels\\
-    GneDfdFceHfcHweRnt & A3605681J & Actual and imputed rent for housing\\
-    GneDfdFceHfcHweWsc & A3605682K & Water and sewerage charges\\
-    GneDfdFceHfcHweEgf & A2302242L & Electricity, gas and other fuel\\
+		GneDfdFceHfcCnf    & A2302240J & Clothing and footwear\\
+		GneDfdFceHfcHwe    & A3605680F & Housing, water, electricity, gas and other fuels\\
+		GneDfdFceHfcHweRnt & A3605681J & Actual and imputed rent for housing\\
+		GneDfdFceHfcHweWsc & A3605682K & Water and sewerage charges\\
+		GneDfdFceHfcHweEgf & A2302242L & Electricity, gas and other fuel\\
 		\addlinespace
-    GneDfdFceHfcFhe    & A2302243R & Furnishings and household equipment\\
-    GneDfdFceHfcFheFnt & A3605683L & Furniture, floor coverings and household goods\\
-    GneDfdFceHfcFheApp & A3605684R & Household appliances\\
-    GneDfdFceHfcFheTls & A3605685T & Household tools\\
-    GneDfdFceHfcHlt    & A2302244T & Health\\
+		GneDfdFceHfcFhe    & A2302243R & Furnishings and household equipment\\
+		GneDfdFceHfcFheFnt & A3605683L & Furniture, floor coverings and household goods\\
+		GneDfdFceHfcFheApp & A3605684R & Household appliances\\
+		GneDfdFceHfcFheTls & A3605685T & Household tools\\
+		GneDfdFceHfcHlt    & A2302244T & Health\\
 		\addlinespace
-    GneDfdFceHfcHltMed & A3605686V & Medicines, medical aids and therapeutic appliances\\
-    GneDfdFceHfcHltHsv & A3605687W & Total health services\\
-    GneDfdFceHfcTpt    & A3605688X & Transport\\
-    GneDfdFceHfcTptPvh & A2302245V & Purchase of vehicles\\
-    GneDfdFceHfcTptOvh & A2302246W & Operation of vehicles\\
+		GneDfdFceHfcHltMed & A3605686V & Medicines, medical aids and therapeutic appliances\\
+		GneDfdFceHfcHltHsv & A3605687W & Total health services\\
+		GneDfdFceHfcTpt    & A3605688X & Transport\\
+		GneDfdFceHfcTptPvh & A2302245V & Purchase of vehicles\\
+		GneDfdFceHfcTptOvh & A2302246W & Operation of vehicles\\
 		\addlinespace
-    GneDfdFceHfcTptTsv & A2302247X & Transport services\\
-    GneDfdFceHfcCom    & A2302248A & Communications\\
-    GneDfdFceHfcRnc    & A2302249C & Recreation and culture\\
-    GneDfdFceHfcEdc    & A2302250L & Education services\\
-    GneDfdFceHfcHcr    & A2302251R & Hotels, cafes and restaurants\\
+		GneDfdFceHfcTptTsv & A2302247X & Transport services\\
+		GneDfdFceHfcCom    & A2302248A & Communications\\
+		GneDfdFceHfcRnc    & A2302249C & Recreation and culture\\
+		GneDfdFceHfcEdc    & A2302250L & Education services\\
+		GneDfdFceHfcHcr    & A2302251R & Hotels, cafes and restaurants\\
 		\addlinespace
-    GneDfdFceHfcHcrCsv & A3605694V & Catering services\\
-    GneDfdFceHfcHcrAsv & A3605695W & Accommodation services\\
-    GneDfdFceHfcMis    & A3605696X & Miscellaneous goods and services\\
-    GneDfdFceHfcMisOgd & A3605697A & Other goods\\
-    GneDfdFceHfcMisIfs & A2302252T & Insurance and other financial services\\
-    GneDfdFceHfcMisOsv & A3606485T & Other services\\
+		GneDfdFceHfcHcrCsv & A3605694V & Catering services\\
+		GneDfdFceHfcHcrAsv & A3605695W & Accommodation services\\
+		GneDfdFceHfcMis    & A3605696X & Miscellaneous goods and services\\
+		GneDfdFceHfcMisOgd & A3605697A & Other goods\\
+		GneDfdFceHfcMisIfs & A2302252T & Insurance and other financial services\\
+		GneDfdFceHfcMisOsv & A3606485T & Other services\\
 		\bottomrule
 	\end{tabular*}
 	\label{Tab:Expenditure-hierarchy-3}
 \end{table}
-
 \end{document}
+
