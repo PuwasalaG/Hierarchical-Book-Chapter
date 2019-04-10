@@ -15,16 +15,15 @@ library(scoringRules)
 #Expenditure data#
 ####Expenditure Approach - Current Prices####
 
-Exp <- read.csv("GDP-Exp.csv")[,-1] %>% as.tibble() 
+Exp <- read.csv("GDP-Exp.csv")[,-1] %>% as_tibble() 
 
 ####Summing matrix####
 S <- read.csv("S_mat.csv")[,-1] %>% as.matrix()
 
-m <- 53 #Number of most disaggregate series
+m <- 53        #Number of most disaggregate series
 n <- ncol(Exp) #Total number of series in the hieararchy
-B <- 5000 #Number of random samples generated from the forecast distribution for the evaluation
-B <- 5000 #Number of random samples generated from the forecast distribution for the evaluation
-H <- 4 #Number of forecast horizons 
+B <- 5000      #Number of random samples generated from the forecast distribution for the evaluation
+H <- 4         #Number of forecast horizons 
 N <- nrow(Exp) #Total time length of the data set
 
 #Code to get shrinkage estimator
@@ -59,7 +58,7 @@ shrink.estim <- function(x, tar)
 
 #A function to calculate Enery score to evaluate full forecast densities
 
-Energy_score <- function(Data, Real)
+Energy_score <- function(Data, Real) # Data - Probabilistic forecasts at t+h, Real - realisation at t+h 
 {
   Testing <- as.numeric(Real)
   n <- ncol(Data)
@@ -67,12 +66,10 @@ Energy_score <- function(Data, Real)
   
   
   d1_eval <- Data - matrix(rep(Testing, k), k, n, byrow = TRUE)
-  ES_1_eval <- apply(d1_eval, 1, function(x) sqrt(sum(x^2)))
-  #ES_1_eval <- sqrt(rowSums(d1_eval^2))
+  ES_1_eval <- sqrt(rowSums(d1_eval^2))
   
   d2_eval <- Data[1:k-1,] - Data[2:k,]
-  ES_2_eval <- apply(d2_eval, 1, function(x) sqrt(sum(x^2)))
-  #ES_2_eval <- sqrt(rowSums(d2_eval^2))
+  ES_2_eval <- sqrt(rowSums(d2_eval^2))
   
   ES_eval <- mean(ES_1_eval) - mean(ES_2_eval)/2
   
@@ -82,7 +79,7 @@ Energy_score <- function(Data, Real)
 
 #A function to calculate log score to evaluate full forecast densities
 
-Variogram_score <- function(Data, Real)
+Variogram_score <- function(Data, Real) # Data - Probabilistic forecasts at t+h, Real - realisation at t+h 
 {
   Testing <- as.numeric(Real)
   
@@ -97,6 +94,24 @@ Variogram_score <- function(Data, Real)
   C <- (y_diff - Y_tilde_diff_mean)^2
   
   sum(C)
+}
+
+#Following function will return the k^th future path for H forecast horizons for all n 
+#series. In the returning matrix, rows represents forecast horizons
+#columns represents the series
+FP_func <- function(k, fit, Resid, Index, Index_seq, H, n) { 
+  
+  fit_eval <- fit
+  ResidModel_all <- Resid
+  Index_eval <- Index
+  Index_seq <- Index_seq
+  H <- H
+  n <- n
+  
+  Innov <- as.list(as.data.frame(ResidModel_all[Index_seq[k,],]))
+  
+  return(mapply(simulate, fit_eval, future = TRUE, nsim = H, innov = Innov))
+  
 }
 
 
@@ -128,8 +143,6 @@ first_train_length <- Exp %>% pull(.,1) %>% ts(start = c(1984, 4), frequency = 4
 test_length <- Exp %>% pull(.,1) %>% ts(start = c(1984, 4), frequency = 4) %>% window(start=end_first_train+c(0,1), end=max_train) %>% length #Maximum time the window expands
 
 
-H <- 4
-
 Start <- Sys.time()
 for (j in 1:test_length) { #test_length
   
@@ -140,15 +153,29 @@ for (j in 1:test_length) { #test_length
   
   #Year_Qtr_of_forecast <- numeric(min(H, nrow(Test)))
   
-  #Matrix to store residuals
-  Residuals_all_ARIMA <- matrix(NA, nrow = nrow(Train), ncol = n)
-  Residuals_all_ETS <- matrix(NA, nrow = nrow(Train), ncol = n)
-  Residuals_all_Benchmark <- matrix(NA, nrow = nrow(Train), ncol = n) #Benchmark method: seasonal RW with a drift
+  #Note that for ETS models with multiplicative errors, the model residuals are different 
+  #from the insample forecast errors. To get simualted bootstrap future paths we use model residuals
+  #and to calculate MinT we use forecast errors.
   
-  #Matrix to store base forecasts
-  Base_ARIMA <- matrix(NA, nrow = min(H, nrow(Test)), ncol = n)
-  Base_ETS <- matrix(NA, nrow = min(H, nrow(Test)), ncol = n)
-  Base_Benchmark <- matrix(NA, nrow = min(H, nrow(Test)), ncol = n)
+  #List to store model fit for each series - use later to simualte future paths
+  fit_ARIMA <- list(n)
+  fit_ETS <- list(n)
+  fit_Benchmark <- list(n)
+  
+  #Matrix to store model residuals
+  ModelResid_all_ARIMA <- matrix(NA, nrow = nrow(Train), ncol = n)
+  ModelResid_all_ETS <- matrix(NA, nrow = nrow(Train), ncol = n)
+  ModelResid_all_Benchmark <- matrix(NA, nrow = nrow(Train), ncol = n) #Benchmark method: seasonal RW with a drift
+  
+  #Matrix to store model insample forecast errors.
+  ForeError_all_ARIMA <- matrix(NA, nrow = nrow(Train), ncol = n)
+  ForeError_all_ETS <- matrix(NA, nrow = nrow(Train), ncol = n)
+  ForeError_all_Benchmark <- matrix(NA, nrow = nrow(Train), ncol = n) #Benchmark method: seasonal RW with a drift
+  
+  # #Matrix to store base forecasts
+  # Base_ARIMA <- matrix(NA, nrow = min(H, nrow(Test)), ncol = n)
+  # Base_ETS <- matrix(NA, nrow = min(H, nrow(Test)), ncol = n)
+  # Base_Benchmark <- matrix(NA, nrow = min(H, nrow(Test)), ncol = n)
   
   
   for(i in 1:n) {
@@ -156,99 +183,111 @@ for (j in 1:test_length) { #test_length
     TS <- ts(Train[,i], frequency = 4, start = start_train)
     
     #Forecsting with benchmark
-    fit_Benchmark <- Arima(TS, order=c(0,0,0), seasonal=c(0,1,0), include.drift=TRUE)
-    Forecast_Benchmark <- forecast(fit_Benchmark, h = min(H, nrow(Test)))
-    Base_Benchmark[,i] <- Forecast_Benchmark$mean
-    Residuals_all_Benchmark[,i] <- as.vector(TS - fitted(fit_Benchmark))
+    
+    fit_Benchmark[[i]] <- Arima(TS, order=c(0,0,0), seasonal=c(0,1,0), include.drift=TRUE)
+    Forecast_Benchmark <- forecast(fit_Benchmark[[i]], h = min(H, nrow(Test)))
+    # Base_Benchmark[,i] <- Forecast_Benchmark$mean
+    ModelResid_all_Benchmark[,i] <- residuals(fit_Benchmark[[i]])
+    ForeError_all_Benchmark[,i] <- as.vector(TS - fitted(fit_Benchmark[[i]]))
     
     
-    ##Forecsting with ETS##
+    #Forecsting with ETS
     
-    fit_ETS <- ets(TS)
-    Forecast_ETS <- forecast(fit_ETS, h = min(H, nrow(Test)))
-    Base_ETS[,i] <- Forecast_ETS$mean
-    Residuals_all_ETS[,i] <- as.vector(TS - fitted(fit_ETS))
+    fit_ETS[[i]] <- ets(TS)
+    Forecast_ETS <- forecast(fit_ETS[[i]], h = min(H, nrow(Test)))
+    # Base_ETS[,i] <- Forecast_ETS$mean
+    ModelResid_all_ETS[,i] <- residuals(fit_ETS[[i]])
+    ForeError_all_ETS[,i] <- as.vector(TS - fitted(fit_ETS[[i]]))
     
     
     #Forecsting with ARIMA
-    fit_ARIMA <- auto.arima(TS)
-    Forecast_ARIMA <- forecast(fit_ARIMA, h = min(H, nrow(Test[,i])))
-    Base_ARIMA[,i] <- Forecast_ARIMA$mean
-    Residuals_all_ARIMA[,i] <- as.vector(TS - fitted(fit_ARIMA))
+    fit_ARIMA[[i]] <- auto.arima(TS)
+    Forecast_ARIMA <- forecast(fit_ARIMA[[i]], h = min(H, nrow(Test[,i])))
+    # Base_ARIMA[,i] <- Forecast_ARIMA$mean
+    ModelResid_all_ARIMA[,i] <- residuals(fit_ARIMA[[i]])
+    ForeError_all_ARIMA[,i] <- as.vector(TS - fitted(fit_ARIMA[[i]]))
     
     
   }
   
-  
-  #Index to get the block of bootsrap samples
-  Index <- base::sample(c(1:(nrow(Residuals_all_Benchmark)-(min(H, nrow(Test))+1))), size = B , replace = TRUE)
-  Index_seq <- matrix(0, B, min(H, nrow(Test[,i])))
   
   
   ## Getting incoherent sample paths ##
   
-  Unrecon_future_paths_bench <- list()#To store the sample paths for different forecast horizons
-  Unrecon_future_paths_ETS <- list()
-  Unrecon_future_paths_ARIMA <- list()
+  #List of lenght H to store future paths. Each element of this list corresponds to a matrix
+  #that holds bootstrap future paths at forecast horizon H.
+  Unrecon_future_paths_bench <- list(min(H, nrow(Test)))
+  Unrecon_future_paths_ETS <- list(min(H, nrow(Test)))
+  Unrecon_future_paths_ARIMA <- list(min(H, nrow(Test)))
   
-  for (h in 1: min(H, nrow(Test))) {
-    Unrecon_future_paths_bench[[h]] <- matrix(0, nrow = B, ncol = n)
-    Unrecon_future_paths_ETS[[h]] <- matrix(0, nrow = B, ncol = n)
-    Unrecon_future_paths_ARIMA[[h]] <- matrix(0, nrow = B, ncol = n)
-  }
+  #Index to get the block of bootsrap samples
+  Index <- base::sample(c(1:(nrow(ModelResid_all_ETS)-(H-1))), size = B , replace = TRUE)
+  Index_seq <- matrix(0, B, H)
   
-  
-  Future_paths_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  Future_paths_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  Future_paths_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  
-  
-  for(k in 1:B)  {
+  for (k in 1:B) {
     
-    Index_seq[k,] <- seq(from = Index[k], to = (Index[k]+min(H, nrow(Test[,i]))-1), by = 1)
-    
-    for(i in 1:n) {
-      
-      Future_paths_bench[,i] <- Base_Benchmark[,i] + Residuals_all_Benchmark[Index_seq[k,],i]
-      Future_paths_ETS[,i] <- Base_ETS[,i] + Residuals_all_ETS[Index_seq[k,],i]
-      Future_paths_ARIMA[,i] <- Base_ARIMA[,i] + Residuals_all_ARIMA[Index_seq[k,],i]
-      
-    }
-    
-    
-    for (h in 1: min(H, nrow(Test))) {
-      
-      Unrecon_future_paths_bench[[h]][k,] <- Future_paths_bench[h,]
-      Unrecon_future_paths_ETS[[h]][k,] <- Future_paths_ETS[h,]
-      Unrecon_future_paths_ARIMA[[h]][k,] <- Future_paths_ARIMA[h,]
-      
-    }
+    Index_seq[k,] <- seq(from = Index[k], to = (Index[k]+H-1), by = 1)
     
   }
   
-  ##Reconciliation of future paths obtained from benchmark method
+  #Simulating future paths
+  Start_FP <- Sys.time()
   
-  #Bottom up P
+  fp_Bench <-  lapply(c(1:B), FP_func, fit = fit_Benchmark, 
+                      Resid = ModelResid_all_Benchmark, Index = Index, 
+                      Index_seq = Index_seq, H=H, n=n)
+  
+  fp_ETS <-  lapply(c(1:B), FP_func, fit = fit_ETS, 
+                    Resid = ModelResid_all_ETS, Index = Index, 
+                    Index_seq = Index_seq, H=H, n=n)
+  
+  fp_ARIMA <-  lapply(c(1:B), FP_func, fit = fit_ARIMA, 
+                      Resid = ModelResid_all_ARIMA, Index = Index, 
+                      Index_seq = Index_seq, H=H, n=n)
+  
+  End_FP <- Sys.time()
+  
+  for (h in 1:min(H, nrow(Test))) {
+    
+    Unrecon_future_paths_bench[[h]] <- plyr::laply(fp_Bench, function(y) y[h,])
+    Unrecon_future_paths_ETS[[h]] <- plyr::laply(fp_ETS, function(y) y[h,])
+    Unrecon_future_paths_ARIMA[[h]] <- plyr::laply(fp_ARIMA, function(y) y[h,])
+    
+  }
+  
+  
+  
+  
+  ##Reconciliation of future paths obtained from benchmark method##
+  
+  #Bottom up 
   
   Null.ma <- matrix(0,m,(n-m))
-  BU_P <- cbind(Null.ma, diag(1,m,m))
+  BU_G <- cbind(Null.ma, diag(1,m,m))
   
-  #OLS P
-  OLS_P <- solve(t(S) %*% S) %*% t(S)
+  #OLS G
+  OLS_G <- solve(t(S) %*% S) %*% t(S)
   
-  #MinT shrink P
-  targ <- lowerD(Residuals_all_Benchmark)
-  shrink <- shrink.estim(Residuals_all_Benchmark,targ)
+  # #MinT Sample G
+  # n1 <- nrow(ForeError_all_Benchmark)
+  # Sam.cov_Bench <- crossprod(ForeError_all_Benchmark)/n1
+  # Inv_Sam.cov_Bench <- solve(Sam.cov_Bench)
+  # 
+  # MinT.Sam_G_Bench <- solve(t(S) %*% Inv_Sam.cov_Bench %*% S) %*% t(S) %*% Inv_Sam.cov_Bench
+  
+  #MinT shrink G
+  targ <- lowerD(ForeError_all_Benchmark)
+  shrink <- shrink.estim(ForeError_all_Benchmark,targ)
   Shr.cov_Bench <- shrink[[1]]
   Inv_Shr.cov_Bench <- solve(Shr.cov_Bench)
   
-  MinT.Shr_P_Bench <- solve(t(S) %*% Inv_Shr.cov_Bench %*% S) %*% t(S) %*% Inv_Shr.cov_Bench
+  MinT.Shr_G_Bench <- solve(t(S) %*% Inv_Shr.cov_Bench %*% S) %*% t(S) %*% Inv_Shr.cov_Bench
   
-  #WLS P
+  #WLS G
   Cov_WLS_Bench <- diag(diag(Shr.cov_Bench), n, n)
   Inv_WLS <- solve(Cov_WLS_Bench)
   
-  WLS_P_Bench <- solve(t(S) %*% Inv_WLS %*% S) %*% t(S) %*% Inv_WLS
+  WLS_G_Bench <- solve(t(S) %*% Inv_WLS %*% S) %*% t(S) %*% Inv_WLS
   
   
   
@@ -257,51 +296,25 @@ for (j in 1:test_length) { #test_length
   Reconciled_future_paths_BU_bench <- list()
   Reconciled_future_paths_OLS_bench <- list()
   Reconciled_future_paths_WLS_bench <- list()
+  # Reconciled_future_paths_MinT.Sam_bench <- list()
   Reconciled_future_paths_MinT.Shr_bench <- list()
   
   #To store univariate scores
   CRPS_BU_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_OLS_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  CRPS_WLS_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
+  CRPS_WLS_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)  
+  # CRPS_MinT.Sam_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_MinT.Shr_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_Unrecon_bench <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  
-  #To store multivariate scores
-  ES_full_BU_bench <- numeric(min(H, nrow(Test)))
-  ES_full_OLS_bench <- numeric(min(H, nrow(Test)))
-  ES_full_MinT.Shr_bench <- numeric(min(H, nrow(Test)))
-  ES_full_WLS_bench <- numeric(min(H, nrow(Test)))
-  ES_full_Unrecon_bench <- numeric(min(H, nrow(Test)))
-  
-  VS_full_BU_bench <- numeric(min(H, nrow(Test)))
-  VS_full_OLS_bench <- numeric(min(H, nrow(Test)))
-  VS_full_MinT.Shr_bench <- numeric(min(H, nrow(Test)))
-  VS_full_WLS_bench <- numeric(min(H, nrow(Test)))
-  VS_full_Unrecon_bench <- numeric(min(H, nrow(Test)))
-  
   
   
   for (h in 1: min(H, nrow(Test))) {
     
-    Reconciled_future_paths_BU_bench[[h]] <- t(S %*% BU_P %*% t(Unrecon_future_paths_bench[[h]]))
-    Reconciled_future_paths_OLS_bench[[h]] <- t(S %*% OLS_P %*% t(Unrecon_future_paths_bench[[h]]))
-    Reconciled_future_paths_WLS_bench[[h]] <- t(S %*% WLS_P_Bench %*% t(Unrecon_future_paths_bench[[h]]))
-    Reconciled_future_paths_MinT.Shr_bench[[h]] <- t(S %*% MinT.Shr_P_Bench %*% t(Unrecon_future_paths_bench[[h]]))
-    
-    #Calculating Energy score for full predicive densities
-    
-    ES_full_BU_bench[h] <- Energy_score(Data = Reconciled_future_paths_BU_bench[[h]], Real = Test[h,])
-    ES_full_OLS_bench[h] <- Energy_score(Data = Reconciled_future_paths_OLS_bench[[h]], Real = Test[h,])
-    ES_full_WLS_bench[h] <- Energy_score(Data = Reconciled_future_paths_WLS_bench[[h]], Real = Test[h,])
-    ES_full_MinT.Shr_bench[h] <- Energy_score(Data = Reconciled_future_paths_MinT.Shr_bench[[h]], Real = Test[h,])
-    ES_full_Unrecon_bench[h] <- Energy_score(Data = Unrecon_future_paths_bench[[h]], Real = Test[h,])
-    
-    #Calculating Variogram score for full predicive densities
-    VS_full_BU_bench[h] <- Variogram_score(Data = Reconciled_future_paths_BU_bench[[h]], Real = Test[h,])
-    VS_full_OLS_bench[h] <- Variogram_score(Data = Reconciled_future_paths_OLS_bench[[h]], Real = Test[h,])
-    VS_full_WLS_bench[h] <- Variogram_score(Data = Reconciled_future_paths_WLS_bench[[h]], Real = Test[h,])
-    VS_full_MinT.Shr_bench[h] <- Variogram_score(Data = Reconciled_future_paths_MinT.Shr_bench[[h]], Real = Test[h,])
-    VS_full_Unrecon_bench[h] <- Variogram_score(Data = Unrecon_future_paths_bench[[h]], Real = Test[h,])
+    Reconciled_future_paths_BU_bench[[h]] <- t(S %*% BU_G %*% t(Unrecon_future_paths_bench[[h]]))
+    Reconciled_future_paths_OLS_bench[[h]] <- t(S %*% OLS_G %*% t(Unrecon_future_paths_bench[[h]]))
+    Reconciled_future_paths_WLS_bench[[h]] <- t(S %*% WLS_G_Bench %*% t(Unrecon_future_paths_bench[[h]]))
+    # Reconciled_future_paths_MinT.Sam_bench[[h]] <- t(S %*% MinT.Sam_G_Bench %*% t(Unrecon_future_paths_bench[[h]]))
+    Reconciled_future_paths_MinT.Shr_bench[[h]] <- t(S %*% MinT.Shr_G_Bench %*% t(Unrecon_future_paths_bench[[h]]))
     
     #Calculating CRPS for univariate predictive densities
     
@@ -315,6 +328,8 @@ for (j in 1:test_length) { #test_length
                                          method = "edf")
       CRPS_WLS_bench[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_WLS_bench[[h]][,i],
                                          method = "edf")
+      # CRPS_MinT.Sam_bench[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_MinT.Sam_bench[[h]][,i],
+      #                                         method = "edf")
       CRPS_MinT.Shr_bench[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_MinT.Shr_bench[[h]][,i],
                                               method = "edf")
       
@@ -330,6 +345,27 @@ for (j in 1:test_length) { #test_length
                                    "Replication" = j)
     
   }
+  
+  #Calculating Energy score for full predicive densities
+  Test.list <- split(Test[1:min(H, nrow(Test)),], 1:min(H, nrow(Test)))
+  
+  ES_full_BU_bench <- mapply(Energy_score, Data = Reconciled_future_paths_BU_bench, Real = Test.list)
+  ES_full_OLS_bench <- mapply(Energy_score, Reconciled_future_paths_OLS_bench, Real = Test.list)
+  ES_full_WLS_bench <- mapply(Energy_score, Reconciled_future_paths_WLS_bench, Real = Test.list)
+  # ES_full_MinT.Sam_bench <- mapply(Energy_score, Reconciled_future_paths_MinT.Sam_bench, Real = Test.list)
+  ES_full_MinT.Shr_bench <- mapply(Energy_score, Reconciled_future_paths_MinT.Shr_bench, Real = Test.list)
+  ES_full_Unrecon_bench <- mapply(Energy_score, Unrecon_future_paths_bench, Real = Test.list)
+  
+  #Calculating Variogram score for full predicive densities
+  VS_full_BU_bench <- mapply(Variogram_score, Data = Reconciled_future_paths_BU_bench, Real = Test.list)
+  VS_full_OLS_bench <- mapply(Variogram_score, Reconciled_future_paths_OLS_bench, Real = Test.list)
+  VS_full_WLS_bench <- mapply(Variogram_score, Reconciled_future_paths_WLS_bench, Real = Test.list)
+  # VS_full_MinT.Sam_bench <- mapply(Variogram_score, Reconciled_future_paths_MinT.Sam_bench, Real = Test.list)
+  VS_full_MinT.Shr_bench <- mapply(Variogram_score, Reconciled_future_paths_MinT.Shr_bench, Real = Test.list)
+  VS_full_Unrecon_bench <- mapply(Variogram_score, Unrecon_future_paths_bench, Real = Test.list)
+  
+  
+  
   
   
   DF_MultiV %>% filter(`F-method`=="Benchmark", `Replication`==j) %>% dplyr::select("Year, Qtr of forecast", "F-method", 
@@ -355,6 +391,11 @@ for (j in 1:test_length) { #test_length
   DF_WLS[names(DF_MultiV)] -> DF_WLS
   DF_MultiV <- rbind(DF_MultiV, DF_WLS)
   
+  # cbind(Fltr, "R-method" = "MinT.Sam", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_MinT.Sam_bench, 
+  #       "Variogram score" = VS_full_MinT.Sam_bench) -> DF_MinT.Sam
+  # DF_MinT.Sam[names(DF_MultiV)] -> DF_MinT.Sam
+  # DF_MultiV <- rbind(DF_MultiV, DF_MinT.Sam)
+  
   cbind(Fltr, "R-method" = "MinT.Shr", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_MinT.Shr_bench, 
         "Variogram score" = VS_full_MinT.Shr_bench) -> DF_MinT.Shr
   DF_MinT.Shr[names(DF_MultiV)] -> DF_MinT.Shr
@@ -367,46 +408,58 @@ for (j in 1:test_length) { #test_length
                                                                                   "Replication") -> Fltr
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))),  "R-method" = "Base", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_Unrecon_bench))) -> DF_Base
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_Unrecon_bench))) -> DF_Base
   DF_Base[names(DF_UniV)] -> DF_Base
   DF_UniV <- rbind(DF_UniV, DF_Base)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "Bottom up", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_BU_bench))) -> DF_BU
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_BU_bench))) -> DF_BU
   DF_BU[names(DF_UniV)] -> DF_BU
   DF_UniV <- rbind(DF_UniV, DF_BU)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "OLS", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_OLS_bench))) -> DF_OLS
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_OLS_bench))) -> DF_OLS
   DF_OLS[names(DF_UniV)] -> DF_OLS
   DF_UniV <- rbind(DF_UniV, DF_OLS)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "WLS", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_WLS_bench))) -> DF_WLS
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_WLS_bench))) -> DF_WLS
   DF_WLS[names(DF_UniV)] -> DF_WLS
   DF_UniV <- rbind(DF_UniV, DF_WLS)
   
-  cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:4,]))), "R-method" = "MinT Shrink", 
-        "Forecast Horizon" = rep(1:4, each = 16), "CRPS" = c(t(CRPS_MinT.Shr_bench))) -> DF_MinT.Shr
+  # cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "MinT Sample", 
+  #       "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_MinT.Sam_bench))) -> DF_MinT.Sam
+  # DF_MinT.Sam[names(DF_UniV)] -> DF_MinT.Sam
+  # DF_UniV <- rbind(DF_UniV, DF_MinT.Sam)
+  
+  cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "MinT Shrink", 
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_MinT.Shr_bench))) -> DF_MinT.Shr
   DF_MinT.Shr[names(DF_UniV)] -> DF_MinT.Shr
   DF_UniV <- rbind(DF_UniV, DF_MinT.Shr)
   
   
   ##Reconciliation of future paths obtained from ETS method
   
-  #MinT shrink P
-  targ <- lowerD(Residuals_all_ETS)
-  shrink <- shrink.estim(Residuals_all_ETS,targ)
+  # #MinT Sample G
+  # n1 <- nrow(ForeError_all_ETS)
+  # Sam.cov_ETS <- crossprod(ForeError_all_ETS)/n1
+  # Inv_Sam.cov_ETS <- solve(Sam.cov_ETS)
+  # 
+  # MinT.Sam_G_ETS <- solve(t(S) %*% Inv_Sam.cov_ETS %*% S) %*% t(S) %*% Inv_Sam.cov_ETS
+  
+  #MinT shrink G
+  targ <- lowerD(ForeError_all_ETS)
+  shrink <- shrink.estim(ForeError_all_ETS,targ)
   Shr.cov_ETS <- shrink[[1]]
   Inv_Shr.cov_ETS <- solve(Shr.cov_ETS)
   
-  MinT.Shr_P_ETS <- solve(t(S) %*% Inv_Shr.cov_ETS %*% S) %*% t(S) %*% Inv_Shr.cov_ETS
+  MinT.Shr_G_ETS <- solve(t(S) %*% Inv_Shr.cov_ETS %*% S) %*% t(S) %*% Inv_Shr.cov_ETS
   
-  #WLS P
+  #WLS G
   Cov_WLS_ETS <- diag(diag(Shr.cov_ETS), n, n)
   Inv_WLS_ETS <- solve(Cov_WLS_ETS)
   
-  WLS_P_ETS <- solve(t(S) %*% Inv_WLS_ETS %*% S) %*% t(S) %*% Inv_WLS_ETS
+  WLS_G_ETS <- solve(t(S) %*% Inv_WLS_ETS %*% S) %*% t(S) %*% Inv_WLS_ETS
   
   
   
@@ -415,50 +468,25 @@ for (j in 1:test_length) { #test_length
   Reconciled_future_paths_BU_ETS <- list()
   Reconciled_future_paths_OLS_ETS <- list()
   Reconciled_future_paths_WLS_ETS <- list()
+  # Reconciled_future_paths_MinT.Sam_ETS <- list()
   Reconciled_future_paths_MinT.Shr_ETS <- list()
   
   #To store univariate scores
   CRPS_BU_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_OLS_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_WLS_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
+  # CRPS_MinT.Sam_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_MinT.Shr_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_Unrecon_ETS <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  
-  #To store multivariate scores
-  ES_full_BU_ETS <- numeric(min(H, nrow(Test)))
-  ES_full_OLS_ETS <- numeric(min(H, nrow(Test)))
-  ES_full_MinT.Shr_ETS <- numeric(min(H, nrow(Test)))
-  ES_full_WLS_ETS <- numeric(min(H, nrow(Test)))
-  ES_full_Unrecon_ETS <- numeric(min(H, nrow(Test)))
-  
-  VS_full_BU_ETS <- numeric(min(H, nrow(Test)))
-  VS_full_OLS_ETS <- numeric(min(H, nrow(Test)))
-  VS_full_MinT.Shr_ETS <- numeric(min(H, nrow(Test)))
-  VS_full_WLS_ETS <- numeric(min(H, nrow(Test)))
-  VS_full_Unrecon_ETS <- numeric(min(H, nrow(Test)))
   
   
   for (h in 1: min(H, nrow(Test))) {
     
-    Reconciled_future_paths_BU_ETS[[h]] <- t(S %*% BU_P %*% t(Unrecon_future_paths_ETS[[h]]))
-    Reconciled_future_paths_OLS_ETS[[h]] <- t(S %*% OLS_P %*% t(Unrecon_future_paths_ETS[[h]]))
-    Reconciled_future_paths_WLS_ETS[[h]] <- t(S %*% WLS_P_ETS %*% t(Unrecon_future_paths_ETS[[h]]))
-    Reconciled_future_paths_MinT.Shr_ETS[[h]] <- t(S %*% MinT.Shr_P_ETS %*% t(Unrecon_future_paths_ETS[[h]]))
-    
-    #Calculating Energy score for full predicive densities
-    
-    ES_full_BU_ETS[h] <- Energy_score(Data = Reconciled_future_paths_BU_ETS[[h]], Real = Test[h,])
-    ES_full_OLS_ETS[h] <- Energy_score(Data = Reconciled_future_paths_OLS_ETS[[h]], Real = Test[h,])
-    ES_full_WLS_ETS[h] <- Energy_score(Data = Reconciled_future_paths_WLS_ETS[[h]], Real = Test[h,])
-    ES_full_MinT.Shr_ETS[h] <- Energy_score(Data = Reconciled_future_paths_MinT.Shr_ETS[[h]], Real = Test[h,])
-    ES_full_Unrecon_ETS[h] <- Energy_score(Data = Unrecon_future_paths_ETS[[h]], Real = Test[h,])
-    
-    #Calculating Variogram score for full predicive densities
-    VS_full_BU_ETS[h] <- Variogram_score(Data = Reconciled_future_paths_BU_ETS[[h]], Real = Test[h,])
-    VS_full_OLS_ETS[h] <- Variogram_score(Data = Reconciled_future_paths_OLS_ETS[[h]], Real = Test[h,])
-    VS_full_WLS_ETS[h] <- Variogram_score(Data = Reconciled_future_paths_WLS_ETS[[h]], Real = Test[h,])
-    VS_full_MinT.Shr_ETS[h] <- Variogram_score(Data = Reconciled_future_paths_MinT.Shr_ETS[[h]], Real = Test[h,])
-    VS_full_Unrecon_ETS[h] <- Variogram_score(Data = Unrecon_future_paths_ETS[[h]], Real = Test[h,])
+    Reconciled_future_paths_BU_ETS[[h]] <- t(S %*% BU_G %*% t(Unrecon_future_paths_ETS[[h]]))
+    Reconciled_future_paths_OLS_ETS[[h]] <- t(S %*% OLS_G %*% t(Unrecon_future_paths_ETS[[h]]))
+    Reconciled_future_paths_WLS_ETS[[h]] <- t(S %*% WLS_G_ETS %*% t(Unrecon_future_paths_ETS[[h]]))
+    # Reconciled_future_paths_MinT.Sam_ETS[[h]] <- t(S %*% MinT.Sam_G_ETS %*% t(Unrecon_future_paths_ETS[[h]]))
+    Reconciled_future_paths_MinT.Shr_ETS[[h]] <- t(S %*% MinT.Shr_G_ETS %*% t(Unrecon_future_paths_ETS[[h]]))
     
     #Calculating CRPS for univariate predictive densities
     
@@ -472,6 +500,8 @@ for (j in 1:test_length) { #test_length
                                        method = "edf")
       CRPS_WLS_ETS[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_WLS_ETS[[h]][,i],
                                        method = "edf")
+      # CRPS_MinT.Sam_ETS[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_MinT.Sam_ETS[[h]][,i],
+      #                                       method = "edf")
       CRPS_MinT.Shr_ETS[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_MinT.Shr_ETS[[h]][,i],
                                             method = "edf")
       
@@ -487,6 +517,24 @@ for (j in 1:test_length) { #test_length
                                    "Replication" = j)
     
   }
+  
+  #Calculating Energy score for full predicive densities
+  Test.list <- split(Test[1:min(H, nrow(Test)),], 1:min(H, nrow(Test)))
+  
+  ES_full_BU_ETS <- mapply(Energy_score, Data = Reconciled_future_paths_BU_ETS, Real = Test.list)
+  ES_full_OLS_ETS <- mapply(Energy_score, Reconciled_future_paths_OLS_ETS, Real = Test.list)
+  ES_full_WLS_ETS <- mapply(Energy_score, Reconciled_future_paths_WLS_ETS, Real = Test.list)
+  # ES_full_MinT.Sam_ETS <- mapply(Energy_score, Reconciled_future_paths_MinT.Sam_ETS, Real = Test.list)
+  ES_full_MinT.Shr_ETS <- mapply(Energy_score, Reconciled_future_paths_MinT.Shr_ETS, Real = Test.list)
+  ES_full_Unrecon_ETS <- mapply(Energy_score, Unrecon_future_paths_ETS, Real = Test.list)
+  
+  #Calculating Variogram score for full predicive densities
+  VS_full_BU_ETS <- mapply(Variogram_score, Data = Reconciled_future_paths_BU_ETS, Real = Test.list)
+  VS_full_OLS_ETS <- mapply(Variogram_score, Reconciled_future_paths_OLS_ETS, Real = Test.list)
+  VS_full_WLS_ETS <- mapply(Variogram_score, Reconciled_future_paths_WLS_ETS, Real = Test.list)
+  # VS_full_MinT.Sam_ETS <- mapply(Variogram_score, Reconciled_future_paths_MinT.Sam_ETS, Real = Test.list)
+  VS_full_MinT.Shr_ETS <- mapply(Variogram_score, Reconciled_future_paths_MinT.Shr_ETS, Real = Test.list)
+  VS_full_Unrecon_ETS <- mapply(Variogram_score, Unrecon_future_paths_ETS, Real = Test.list)
   
   
   DF_MultiV %>% filter(`F-method`=="ETS", `Replication`==j) %>% dplyr::select("Year, Qtr of forecast", "F-method", 
@@ -512,6 +560,11 @@ for (j in 1:test_length) { #test_length
   DF_WLS[names(DF_MultiV)] -> DF_WLS
   DF_MultiV <- rbind(DF_MultiV, DF_WLS)
   
+  # cbind(Fltr, "R-method" = "MinT.Sam", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_MinT.Sam_ETS, 
+  #       "Variogram score" = VS_full_MinT.Sam_ETS) -> DF_MinT.Sam
+  # DF_MinT.Sam[names(DF_MultiV)] -> DF_MinT.Sam
+  # DF_MultiV <- rbind(DF_MultiV, DF_MinT.Sam)
+  
   cbind(Fltr, "R-method" = "MinT.Shr", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_MinT.Shr_ETS, 
         "Variogram score" = VS_full_MinT.Shr_ETS) -> DF_MinT.Shr
   DF_MinT.Shr[names(DF_MultiV)] -> DF_MinT.Shr
@@ -524,27 +577,32 @@ for (j in 1:test_length) { #test_length
                                                                             "Replication") -> Fltr
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))),  "R-method" = "Base", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_Unrecon_ETS))) -> DF_Base
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_Unrecon_ETS))) -> DF_Base
   DF_Base[names(DF_UniV)] -> DF_Base
   DF_UniV <- rbind(DF_UniV, DF_Base)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "Bottom up", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_BU_ETS))) -> DF_BU
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_BU_ETS))) -> DF_BU
   DF_BU[names(DF_UniV)] -> DF_BU
   DF_UniV <- rbind(DF_UniV, DF_BU)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "OLS", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_OLS_ETS))) -> DF_OLS
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_OLS_ETS))) -> DF_OLS
   DF_OLS[names(DF_UniV)] -> DF_OLS
   DF_UniV <- rbind(DF_UniV, DF_OLS)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "WLS", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_WLS_ETS))) -> DF_WLS
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_WLS_ETS))) -> DF_WLS
   DF_WLS[names(DF_UniV)] -> DF_WLS
   DF_UniV <- rbind(DF_UniV, DF_WLS)
   
+  # cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "MinT Sample", 
+  #       "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_MinT.Sam_ETS))) -> DF_MinT.Sam
+  # DF_MinT.Sam[names(DF_UniV)] -> DF_MinT.Sam
+  # DF_UniV <- rbind(DF_UniV, DF_MinT.Sam)
+  
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "MinT Shrink", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_MinT.Shr_ETS))) -> DF_MinT.Shr
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_MinT.Shr_ETS))) -> DF_MinT.Shr
   DF_MinT.Shr[names(DF_UniV)] -> DF_MinT.Shr
   DF_UniV <- rbind(DF_UniV, DF_MinT.Shr)
   
@@ -553,20 +611,27 @@ for (j in 1:test_length) { #test_length
   
   ##Reconciliation of future paths obtained from ARIMA method
   
-  #MinT shrink P
-  targ <- lowerD(Residuals_all_ARIMA)
-  shrink <- shrink.estim(Residuals_all_ARIMA,targ)
+  #MinT shrink G
+  targ <- lowerD(ForeError_all_ARIMA)
+  shrink <- shrink.estim(ForeError_all_ARIMA,targ)
   Shr.cov_ARIMA <- shrink[[1]]
   Inv_Shr.cov_ARIMA <- solve(Shr.cov_ARIMA)
   
-  MinT.Shr_P_ARIMA <- solve(t(S) %*% Inv_Shr.cov_ARIMA %*% S) %*% t(S) %*% Inv_Shr.cov_ARIMA
+  MinT.Shr_G_ARIMA <- solve(t(S) %*% Inv_Shr.cov_ARIMA %*% S) %*% t(S) %*% Inv_Shr.cov_ARIMA
   
-  #WLS P
+  # #MinT Sample G
+  # n1 <- nrow(ForeError_all_ARIMA)
+  # Sam.cov_ARIMA <- crossprod(ForeError_all_ARIMA)/n1
+  # Inv_Sam.cov_ARIMA <- solve(Sam.cov_ARIMA)
+  # 
+  # MinT.Sam_G_ARIMA <- solve(t(S) %*% Inv_Sam.cov_ARIMA %*% S) %*% t(S) %*% Inv_Sam.cov_ARIMA
+  
+  #WLS G
   Cov_WLS_ARIMA <- diag(diag(Shr.cov_ARIMA), n, n)
   Inv_WLS_ARIMA <- solve(Cov_WLS_ARIMA)
   
-  WLS_P_ARIMA <- solve(t(S) %*% Inv_WLS_ARIMA %*% S) %*% t(S) %*% Inv_WLS_ARIMA
-
+  WLS_G_ARIMA <- solve(t(S) %*% Inv_WLS_ARIMA %*% S) %*% t(S) %*% Inv_WLS_ARIMA
+  
   ###Reconciliation of base forecasts from ARIMA###
   
   Reconciled_future_paths_BU_ARIMA <- list()
@@ -579,44 +644,18 @@ for (j in 1:test_length) { #test_length
   CRPS_BU_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_OLS_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_WLS_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
+  # CRPS_MinT.Sam_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_MinT.Shr_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
   CRPS_Unrecon_ARIMA <- matrix(0, nrow = min(H, nrow(Test)), ncol = n)
-  
-  #To store multivariate scores
-  ES_full_BU_ARIMA <- numeric(min(H, nrow(Test)))
-  ES_full_OLS_ARIMA <- numeric(min(H, nrow(Test)))
-  ES_full_MinT.Shr_ARIMA <- numeric(min(H, nrow(Test)))
-  ES_full_WLS_ARIMA <- numeric(min(H, nrow(Test)))
-  ES_full_Unrecon_ARIMA <- numeric(min(H, nrow(Test)))
-  
-  VS_full_BU_ARIMA <- numeric(min(H, nrow(Test)))
-  VS_full_OLS_ARIMA <- numeric(min(H, nrow(Test)))
-  VS_full_MinT.Shr_ARIMA <- numeric(min(H, nrow(Test)))
-  VS_full_WLS_ARIMA <- numeric(min(H, nrow(Test)))
-  VS_full_Unrecon_ARIMA <- numeric(min(H, nrow(Test)))
   
   
   for (h in 1: min(H, nrow(Test))) {
     
-    Reconciled_future_paths_BU_ARIMA[[h]] <- t(S %*% BU_P %*% t(Unrecon_future_paths_ARIMA[[h]]))
-    Reconciled_future_paths_OLS_ARIMA[[h]] <- t(S %*% OLS_P %*% t(Unrecon_future_paths_ARIMA[[h]]))
-    Reconciled_future_paths_WLS_ARIMA[[h]] <- t(S %*% WLS_P_ARIMA %*% t(Unrecon_future_paths_ARIMA[[h]]))
-    Reconciled_future_paths_MinT.Shr_ARIMA[[h]] <- t(S %*% MinT.Shr_P_ARIMA %*% t(Unrecon_future_paths_ARIMA[[h]]))
-    
-    #Calculating Energy score for full predicive densities
-    
-    ES_full_BU_ARIMA[h] <- Energy_score(Data = Reconciled_future_paths_BU_ARIMA[[h]], Real = Test[h,])
-    ES_full_OLS_ARIMA[h] <- Energy_score(Data = Reconciled_future_paths_OLS_ARIMA[[h]], Real = Test[h,])
-    ES_full_WLS_ARIMA[h] <- Energy_score(Data = Reconciled_future_paths_WLS_ARIMA[[h]], Real = Test[h,])
-    ES_full_MinT.Shr_ARIMA[h] <- Energy_score(Data = Reconciled_future_paths_MinT.Shr_ARIMA[[h]], Real = Test[h,])
-    ES_full_Unrecon_ARIMA[h] <- Energy_score(Data = Unrecon_future_paths_ARIMA[[h]], Real = Test[h,])
-    
-    #Calculating Variogram score for full predicive densities
-    VS_full_BU_ARIMA[h] <- Variogram_score(Data = Reconciled_future_paths_BU_ARIMA[[h]], Real = Test[h,])
-    VS_full_OLS_ARIMA[h] <- Variogram_score(Data = Reconciled_future_paths_OLS_ARIMA[[h]], Real = Test[h,])
-    VS_full_WLS_ARIMA[h] <- Variogram_score(Data = Reconciled_future_paths_WLS_ARIMA[[h]], Real = Test[h,])
-    VS_full_MinT.Shr_ARIMA[h] <- Variogram_score(Data = Reconciled_future_paths_MinT.Shr_ARIMA[[h]], Real = Test[h,])
-    VS_full_Unrecon_ARIMA[h] <- Variogram_score(Data = Unrecon_future_paths_ARIMA[[h]], Real = Test[h,])
+    Reconciled_future_paths_BU_ARIMA[[h]] <- t(S %*% BU_G %*% t(Unrecon_future_paths_ARIMA[[h]]))
+    Reconciled_future_paths_OLS_ARIMA[[h]] <- t(S %*% OLS_G %*% t(Unrecon_future_paths_ARIMA[[h]]))
+    Reconciled_future_paths_WLS_ARIMA[[h]] <- t(S %*% WLS_G_ARIMA %*% t(Unrecon_future_paths_ARIMA[[h]]))
+    # Reconciled_future_paths_MinT.Sam_ARIMA[[h]] <- t(S %*% MinT.Sam_G_ARIMA %*% t(Unrecon_future_paths_ARIMA[[h]]))
+    Reconciled_future_paths_MinT.Shr_ARIMA[[h]] <- t(S %*% MinT.Shr_G_ARIMA %*% t(Unrecon_future_paths_ARIMA[[h]]))
     
     #Calculating CRPS for univariate predictive densities
     
@@ -630,6 +669,8 @@ for (j in 1:test_length) { #test_length
                                          method = "edf")
       CRPS_WLS_ARIMA[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_WLS_ARIMA[[h]][,i],
                                          method = "edf")
+      # CRPS_MinT.Sam_ARIMA[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_MinT.Sam_ARIMA[[h]][,i],
+      #                                         method = "edf")
       CRPS_MinT.Shr_ARIMA[h,i] <- crps_sample(as.numeric(Test[h,i]), dat = Reconciled_future_paths_MinT.Shr_ARIMA[[h]][,i],
                                               method = "edf")
       
@@ -640,15 +681,35 @@ for (j in 1:test_length) { #test_length
                                        "F-method" = "ARIMA",
                                        "Replication" = j)
     
-    DF_UniV <- DF_UniV %>% add_row("Year, Qtr of forecast" = paste(as.yearqtr(time(Forecast_ARIMA$mean))[h]),
+    DF_UniV <- DF_UniV %>% add_row("Year, Qtr of forecast" = rep(paste(as.yearqtr(time(Forecast_ARIMA$mean))[h]), each = n),
                                    "F-method" = "ARIMA",
                                    "Replication" = j)
     
   }
   
+  #Calculating Energy score for full predicive densities
+  Test.list <- split(Test[1:min(H, nrow(Test)),], 1:min(H, nrow(Test)))
   
-  DF_MultiV %>% filter(`F-method`=="ARIMA", `Replication`==j) %>% dplyr::select("Year, Qtr of forecast", "F-method", 
-                                                                                "Replication") -> Fltr
+  ES_full_BU_ARIMA <- mapply(Energy_score, Data = Reconciled_future_paths_BU_ARIMA, Real = Test.list)
+  ES_full_OLS_ARIMA <- mapply(Energy_score, Reconciled_future_paths_OLS_ARIMA, Real = Test.list)
+  ES_full_WLS_ARIMA <- mapply(Energy_score, Reconciled_future_paths_WLS_ARIMA, Real = Test.list)
+  # ES_full_MinT.Sam_ARIMA <- mapply(Energy_score, Reconciled_future_paths_MinT.Sam_ARIMA, Real = Test.list)
+  ES_full_MinT.Shr_ARIMA <- mapply(Energy_score, Reconciled_future_paths_MinT.Shr_ARIMA, Real = Test.list)
+  ES_full_Unrecon_ARIMA <- mapply(Energy_score, Unrecon_future_paths_ARIMA, Real = Test.list)
+  
+  #Calculating Variogram score for full predicive densities
+  VS_full_BU_ARIMA <- mapply(Variogram_score, Data = Reconciled_future_paths_BU_ARIMA, Real = Test.list)
+  VS_full_OLS_ARIMA <- mapply(Variogram_score, Reconciled_future_paths_OLS_ARIMA, Real = Test.list)
+  VS_full_WLS_ARIMA <- mapply(Variogram_score, Reconciled_future_paths_WLS_ARIMA, Real = Test.list)
+  # VS_full_MinT.Sam_ARIMA <- mapply(Variogram_score, Reconciled_future_paths_MinT.Sam_ARIMA, Real = Test.list)
+  VS_full_MinT.Shr_ARIMA <- mapply(Variogram_score, Reconciled_future_paths_MinT.Shr_ARIMA, Real = Test.list)
+  VS_full_Unrecon_ARIMA <- mapply(Variogram_score, Unrecon_future_paths_ARIMA, Real = Test.list)
+  
+  
+  
+  DF_MultiV %>% 
+    filter(`F-method`=="ARIMA", `Replication`==j) %>% 
+    dplyr::select("Year, Qtr of forecast", "F-method", "Replication") -> Fltr
   
   cbind(Fltr, "R-method" = "Base", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_Unrecon_ARIMA, 
         "Variogram score" = VS_full_Unrecon_ARIMA) -> DF_Base
@@ -670,6 +731,11 @@ for (j in 1:test_length) { #test_length
   DF_WLS[names(DF_MultiV)] -> DF_WLS
   DF_MultiV <- rbind(DF_MultiV, DF_WLS)
   
+  # cbind(Fltr, "R-method" = "MinT.Sam", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_MinT.Sam_ARIMA, 
+  #       "Variogram score" = VS_full_MinT.Sam_ARIMA) -> DF_MinT.Sam
+  # DF_MinT.Sam[names(DF_MultiV)] -> DF_MinT.Sam
+  # DF_MultiV <- rbind(DF_MultiV, DF_MinT.Sam)
+  
   cbind(Fltr, "R-method" = "MinT.Shr", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_MinT.Shr_ARIMA, 
         "Variogram score" = VS_full_MinT.Shr_ARIMA) -> DF_MinT.Shr
   DF_MinT.Shr[names(DF_MultiV)] -> DF_MinT.Shr
@@ -678,31 +744,37 @@ for (j in 1:test_length) { #test_length
   
   #Addinng CRPS to the DF
   
-  DF_UniV %>% filter(`F-method`=="ARIMA", `Replication`==j) %>% dplyr::select("Year, Qtr of forecast", "F-method", 
-                                                                              "Replication") -> Fltr
+  DF_UniV %>% 
+    filter(`F-method`=="ARIMA", `Replication`==j) %>% 
+    dplyr::select("Year, Qtr of forecast", "F-method", "Replication") -> Fltr
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))),  "R-method" = "Base", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_Unrecon_ARIMA))) -> DF_Base
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_Unrecon_ARIMA))) -> DF_Base
   DF_Base[names(DF_UniV)] -> DF_Base
   DF_UniV <- rbind(DF_UniV, DF_Base)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "Bottom up", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_BU_ARIMA))) -> DF_BU
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_BU_ARIMA))) -> DF_BU
   DF_BU[names(DF_UniV)] -> DF_BU
   DF_UniV <- rbind(DF_UniV, DF_BU)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "OLS", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_OLS_ARIMA))) -> DF_OLS
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_OLS_ARIMA))) -> DF_OLS
   DF_OLS[names(DF_UniV)] -> DF_OLS
   DF_UniV <- rbind(DF_UniV, DF_OLS)
   
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "WLS", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_WLS_ARIMA))) -> DF_WLS
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_WLS_ARIMA))) -> DF_WLS
   DF_WLS[names(DF_UniV)] -> DF_WLS
   DF_UniV <- rbind(DF_UniV, DF_WLS)
   
+  # cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "MinT Sample", 
+  #       "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_MinT.Sam_ARIMA))) -> DF_MinT.Sam
+  # DF_MinT.Sam[names(DF_UniV)] -> DF_MinT.Sam
+  # DF_UniV <- rbind(DF_UniV, DF_MinT.Sam)
+  
   cbind(Fltr, "Series" = names(Exp), "Actual" = c(t(as.matrix(Test[1:min(H, nrow(Test)),]))), "R-method" = "MinT Shrink", 
-        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = 16), "CRPS" = c(t(CRPS_MinT.Shr_ARIMA))) -> DF_MinT.Shr
+        "Forecast Horizon" = rep(1:min(H, nrow(Test)), each = n), "CRPS" = c(t(CRPS_MinT.Shr_ARIMA))) -> DF_MinT.Shr
   DF_MinT.Shr[names(DF_UniV)] -> DF_MinT.Shr
   DF_UniV <- rbind(DF_UniV, DF_MinT.Shr)
   
@@ -722,18 +794,22 @@ DF_MultiV[complete.cases(DF_MultiV[ , "R-method"]),] -> DF_MultiV
 #View(DF_MultiV)
 
 
-DF_MultiV %>% dplyr::select(-"Year, Qtr of forecast", -"Replication") -> DF_MultScores
+DF_MultiV %>% 
+  dplyr::select(-"Year, Qtr of forecast", -"Replication") -> DF_MultScores
 
-DF_MultScores %>% group_by(`F-method`, `R-method`, `Forecast Horizon`) %>% 
+DF_MultScores %>% 
+  group_by(`F-method`, `R-method`, `Forecast Horizon`) %>% 
   summarise(E.ES = mean(`Energy score`), 
             E.VS = mean(`Variogram score`)) -> DF_MultScores
 
 #DF_MultScores %>% dplyr::filter(`R-method` != "Base") -> DF_MultScore_Recon
 
-DF_MultScores %>% dplyr::filter(`F-method`=="ETS" | `R-method`=="Base") %>% 
+DF_MultScores %>% 
+  dplyr::filter(`F-method`=="ETS" | `R-method`=="Base") %>% 
   dplyr::filter(`F-method`!="ARIMA") -> DF_MultScores_ETS
 
-DF_MultScores %>% dplyr::filter(`F-method`=="ARIMA" | `R-method`=="Base") %>% 
+DF_MultScores %>% 
+  dplyr::filter(`F-method`=="ARIMA" | `R-method`=="Base") %>% 
   dplyr::filter(`F-method`!="ETS") -> DF_MultScores_ARIMA
 
 #Using base method from each F-method to calculate the skill scores
@@ -741,23 +817,28 @@ DF_MultScores %>% dplyr::filter(`F-method`=="ARIMA" | `R-method`=="Base") %>%
 
 #For ETS
 
-DF_MultScores_ETS %>% filter(`F-method`=="ETS", `R-method`=="Base") %>%
+DF_MultScores_ETS %>% 
+  filter(`F-method`=="ETS", `R-method`=="Base") %>%
   slice() %>%
   ungroup() %>%
   dplyr::select(`E.ES`) %>% as_vector() -> Base_E.ES_ETS 
 
-DF_MultScores_ETS %>% filter(`F-method`=="ETS", `R-method`=="Base") %>%
+DF_MultScores_ETS %>% 
+  filter(`F-method`=="ETS", `R-method`=="Base") %>%
   slice() %>%
   ungroup() %>%
   dplyr::select(`E.VS`) %>% as_vector() -> Base_E.VS_ETS 
 
-DF_MultScores_ETS %>% mutate(SS_E.ES = round((1-(`E.ES`/Base_E.ES_ETS))*100, digits = 4),
-                             SS_E.VS = round((1-(`E.VS`/Base_E.VS_ETS))*100, digits = 4)) -> DF_MultScore_SS_ETS
+DF_MultScores_ETS %>% 
+  mutate(SS_E.ES = round((1-(`E.ES`/Base_E.ES_ETS))*100, digits = 4),
+         SS_E.VS = round((1-(`E.VS`/Base_E.VS_ETS))*100, digits = 4)) -> DF_MultScore_SS_ETS
 
-DF_MultScore_SS_ETS %>%  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.VS`) %>%
+DF_MultScore_SS_ETS %>% 
+  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.VS`) %>%
   spread(key = `Forecast Horizon`, value = `SS_E.ES`) -> SS_E.ES_ETS
 
-DF_MultScore_SS_ETS %>%  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.ES`) %>%
+DF_MultScore_SS_ETS %>%  
+  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.ES`) %>%
   spread(key = `Forecast Horizon`, value = `SS_E.VS`) -> SS_E.VS_ETS
 
 # View(SS_E.ES_ETS)
@@ -765,24 +846,30 @@ DF_MultScore_SS_ETS %>%  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.ES`) %>%
 
 #For ARIMA
 
-DF_MultScores_ARIMA %>% filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
+DF_MultScores_ARIMA %>% 
+  filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>%
   ungroup() %>%
   dplyr::select(`E.ES`) %>% as_vector() -> Base_E.ES_ARIMA 
 
-DF_MultScores_ARIMA %>% filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
+DF_MultScores_ARIMA %>% 
+  filter(`F-method`=="ARIMA", `R-method`=="Base") %>%
   slice() %>%
   ungroup() %>%
-  dplyr::select(`E.VS`) %>% as_vector() -> Base_E.VS_ARIMA 
+  dplyr::select(`E.VS`) %>% 
+  as_vector() -> Base_E.VS_ARIMA 
 
 
-DF_MultScores_ARIMA %>% mutate(SS_E.ES = round((1-(`E.ES`/Base_E.ES_ARIMA))*100, digits = 4),
-                               SS_E.VS = round((1-(`E.VS`/Base_E.VS_ARIMA))*100, digits = 4)) -> DF_MultScore_SS_ARIMA
+DF_MultScores_ARIMA %>% 
+  mutate(SS_E.ES = round((1-(`E.ES`/Base_E.ES_ARIMA))*100, digits = 4),
+         SS_E.VS = round((1-(`E.VS`/Base_E.VS_ARIMA))*100, digits = 4)) -> DF_MultScore_SS_ARIMA
 
-DF_MultScore_SS_ARIMA %>%  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.VS`) %>%
+DF_MultScore_SS_ARIMA %>%  
+  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.VS`) %>%
   spread(key = `Forecast Horizon`, value = `SS_E.ES`) -> SS_E.ES_ARIMA
 
-DF_MultScore_SS_ARIMA %>%  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.ES`) %>%
+DF_MultScore_SS_ARIMA %>%  
+  dplyr::select(-`E.ES`, -`E.VS`, -`SS_E.ES`) %>%
   spread(key = `Forecast Horizon`, value = `SS_E.VS`) -> SS_E.VS_ARIMA
 
 # View(SS_E.ES_ARIMA)
@@ -808,34 +895,39 @@ Score_ets <- tibble("Series" = character(),
 
 for (i in 1:n) {
   
-  DF_UniV %>% filter(`Series`==names(Exp)[i]) %>% dplyr::select("F-method", "R-method", "Forecast Horizon", 
-                                                                "CRPS") -> DF_Score
+  DF_UniV %>% 
+    filter(`Series`==names(Exp)[i]) %>% 
+    dplyr::select("F-method", "R-method", "Forecast Horizon", "CRPS") -> DF_Score
   
-  DF_Score %>% group_by(`F-method`, `R-method`, `Forecast Horizon`) %>% 
+  DF_Score %>% 
+    group_by(`F-method`, `R-method`, `Forecast Horizon`) %>% 
     summarise(MCRPS = mean(`CRPS`)) -> DF_Score
   
-  DF_Score %>% dplyr::filter(`F-method` == "ETS" | `R-method` == "Base") %>% 
-    dplyr::filter(`F-method`!= "ARIMA") -> Score_ETS
+  DF_Score %>% 
+    dplyr::filter(`F-method` == "ETS" | `R-method` == "Base", 
+                  `F-method`!= "ARIMA") -> Score_ETS
   
   cbind(Score_ETS, "Series" = rep(names(Exp)[i], nrow(Score_ETS))) -> Score_ETS
-  Score_ETS[names(Score_ets)] %>% as.tibble() -> Score_ETS
+  Score_ETS[names(Score_ets)] %>% 
+    as_tibble() -> Score_ETS
   
   Score_ets <- rbind(Score_ets, Score_ETS)
   
   
-  DF_Score %>% dplyr::filter(`F-method` == "ARIMA" | `R-method` == "Base") %>% 
+  DF_Score %>% 
+    dplyr::filter(`F-method` == "ARIMA" | `R-method` == "Base") %>% 
     dplyr::filter(`F-method`!= "ETS") -> Score_ARIMA
   
   cbind(Score_ARIMA, "Series" = rep(names(Exp)[i], nrow(Score_ARIMA))) -> Score_ARIMA
-  Score_ARIMA[names(Score_arima)]  %>% as.tibble() -> Score_ARIMA
+  Score_ARIMA[names(Score_arima)]  %>% 
+    as_tibble() -> Score_ARIMA
   
   Score_arima <- rbind(Score_arima, Score_ARIMA)
+}
 
-  }
+save.image("Exp-ProbForecasts-BootstrapApproach-ExpandingW.RData")
 
-
-save.image("GDP-ProbForecasting-EXP-BootstrapMethod-ExpandW.RData")
-
-Skill.Score_ets %>% filter(`Series`=="Gdpe") %>% dplyr::select(-`Series`) %>% 
-  spread(key = `Forecast Horizon`, value = `SS_CRPS`) -> Gdpe_SS_CRPS
+Skill.Score_ets %>% 
+  filter(`Series`=="Gdpi") %>% dplyr::select(-`Series`) %>% 
+  spread(key = `Forecast Horizon`, value = `SS_CRPS`) -> Gdpi_SS_CRPS
 
