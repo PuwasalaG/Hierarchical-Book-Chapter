@@ -37,8 +37,10 @@ s1 <- s3d$xyz.convert(1,0,1)
 s2 <- s3d$xyz.convert(0,1,1)
 arrows(0,0,s1$x,s1$y,lwd = 3)
 arrows(0,0,s2$x,s2$y,lwd = 3)
-text(s1$x,s1$y, TeX('$\\textbf{s}_1$}'),col = 1, adj = c(-.1, -.1),cex = 2)
-text(s2$x,s2$y, TeX('$\\textbf{s}_2$}'),col = 1, adj = c(-.1, -.1),cex = 2)
+# text(s1$x,s1$y, TeX('$\\textbf{s}_1$}'),col = 1, adj = c(-.1, -.1),cex = 2)
+# text(s2$x,s2$y, TeX('$\\textbf{s}_2$}'),col = 1, adj = c(-.1, -.1),cex = 2)
 text(3, 3, "{\\Huge $\\mathfrak{s}$}",col = 1, adj = c(-.1, -.1))
 dev.off()
 
+# Compile the tex file
+tools::texi2dvi('Schematic_3D.tex',pdf=T)

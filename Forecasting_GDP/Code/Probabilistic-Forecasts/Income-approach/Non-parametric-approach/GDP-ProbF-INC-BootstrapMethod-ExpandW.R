@@ -443,8 +443,8 @@ for (j in 1:1) { #test_length
   
   
   
-  DF_MultiV %>% filter(`F-method`=="Benchmark", `Replication`==j) %>% dplyr::select("Year, Qtr of forecast", "F-method", 
-                                                                                    "Replication") -> Fltr
+  DF_MultiV %>% filter(`F-method`=="Benchmark", `Replication`==j) %>% 
+    dplyr::select("Year, Qtr of forecast", "F-method", "Replication") -> Fltr
   
   cbind(Fltr, "R-method" = "Base", "Forecast Horizon" = c(1: min(H, nrow(Test))), "Energy score" = ES_full_Unrecon_bench, 
         "Variogram score" = VS_full_Unrecon_bench) -> DF_Base
