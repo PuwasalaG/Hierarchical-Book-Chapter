@@ -227,7 +227,8 @@ for (j in 1:test_length) { #test_length
     #Adding these reconcilied forecasts from Benchmark-base to the DF
     
     Fltr <- DF %>% filter(`F-method`=="Benchmark", `R-method`=="Base", 
-                         `Training window_length` == (first_train_length + j), `Replication`==j) %>% select(-"Forecasts", -"R-method")
+                         `Training window_length` == (first_train_length + j), `Replication`==j) %>% 
+      select(-"Forecasts", -"R-method")
     
     cbind(Fltr, "Forecasts" = as.vector(Recon_PointF_BU_Benchmark), "R-method" = "Bottom-up") -> Df_BU
     Df_BU[names(DF)] -> Df_BU

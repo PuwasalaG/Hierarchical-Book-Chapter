@@ -125,6 +125,7 @@ GDPI.ARIMA_CRPS %>% gather(-Method, key = "h", value = "Score") %>%
 #Univariate forecasts for top level (Non-parametric) - Expenditure approach
 rm(list=ls()[! ls() %in% c("Plot_INC_GDPI_UnivS_Gauss", "Plot_EXP_GDPE_UnivS_Gauss",
                            "Plot_INC_GDPI_UnivS_NonPara")])
+
 load("Results-Prob-forecasts/EXP-ProbForecasts-BootstrapApproach-ExpandingW.RData")
 
 Method_Order <- c("Bottom-up", "OLS", "WLS", "MinT(Shrink)")
@@ -175,3 +176,20 @@ grid.arrange( arrangeGrob(Plot_INC_GDPI_UnivS_Gauss + theme(legend.position="non
                           Plot_EXP_GDPE_UnivS_NonPara + theme(legend.position="none"), top="Expenditure"), 
               ncol=2, mylegend, heights=c(10, 1))
 
+
+#############################################################
+
+# Following code fill find out the best performing series
+
+##### Income Hierarchy #####
+Score_arima %>% 
+  filter(`Forecast Horizon` == 1, `F-method` == "ARIMA") %>% 
+  select(-`Forecast Horizon`, -`F-method`) %>%
+  spread(key = `R-method`, value = MCRPS) -> Univ_Score_CRPS
+
+Univ_Score_CRPS %>% 
+  mutate(`Base_OLS` = 100*(Base - `OLS`)/Base, 
+         `Base_MinT` = 100*(Base - `MinT Shrink`)/Base) %>% 
+  select(Series, `Base_OLS`, `Base_MinT`) %>% 
+  View()
+  
